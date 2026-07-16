@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High Card Capital — Master Logo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --emerald:#0C4A34; --felt:#07271C; --cream:#F5F0E1; --warm-white:#FBF9F3; }
+  body { font-family:'Inter',sans-serif; background:#F4F2EC; color:#1A211D; padding:48px 24px 96px; }
+  .wrap { max-width:1160px; margin:0 auto; }
+  .kicker { font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:#8A948E; font-weight:600; margin-bottom:14px; }
+  h1 { font-family:'Fraunces',serif; font-size:42px; font-weight:600; letter-spacing:-0.5px; }
+  .lede { margin-top:10px; color:#5A6660; font-size:16px; max-width:700px; line-height:1.6; }
+  h2 { font-family:'Fraunces',serif; font-size:26px; font-weight:600; margin:56px 0 18px; }
+
+  .hero { margin-top:36px; border-radius:20px; background:var(--felt); padding:90px 40px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 24px rgba(20,40,30,.1); }
+  .hero img { width:min(680px, 90%); display:block; }
+
+  .row { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+  .tile { border-radius:16px; min-height:220px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; padding:34px 22px; box-shadow:0 2px 16px rgba(20,40,30,.07); }
+  .tile img { display:block; }
+  .cap { font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:600; opacity:.55; }
+
+  .sizes { background:var(--warm-white); border-radius:16px; padding:28px 30px; display:flex; align-items:flex-end; gap:38px; flex-wrap:wrap; box-shadow:0 2px 16px rgba(20,40,30,.07); }
+  .sizes .s { display:flex; flex-direction:column; align-items:center; gap:8px; font-size:11px; color:#8A948E; }
+
+  .files { background:#fff; border-radius:16px; padding:26px 30px; box-shadow:0 2px 16px rgba(20,40,30,.07); }
+  .files ul { list-style:none; }
+  .files li { font-family:monospace; font-size:13.5px; padding:7px 0; border-bottom:1px solid #F0EEE6; color:#33403A; }
+  .files li:last-child { border-bottom:none; }
+  .files li span { color:#8A948E; font-family:'Inter',sans-serif; font-size:12.5px; margin-left:10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">High Card Capital · Master Logo · Emerald &amp; Cream</div>
+  <h1>The lockup, hand-built.</h1>
+  <p class="lede">Every letter is custom-drawn vector geometry — no fonts anywhere. The wordmark shares the exact stroke weight, rounded terminals, and construction grid of the card icon, and the A&rsquo;s carry no crossbar: the Ace, repeated through the name. This is a single drawing, not an icon next to a font.</p>
+
+  <div class="hero"><img src="final/lockup-horizontal-cream.svg" alt="High Card Capital lockup on felt"></div>
+
+  <h2>Applications</h2>
+  <div class="row">
+    <div class="tile" style="background:var(--cream)"><img src="final/lockup-horizontal-emerald.svg" style="width:88%"><div class="cap" style="color:var(--emerald)">On cream</div></div>
+    <div class="tile" style="background:#fff"><img src="final/lockup-horizontal-emerald.svg" style="width:88%"><div class="cap" style="color:var(--emerald)">On white</div></div>
+    <div class="tile" style="background:var(--emerald)"><img src="final/lockup-stacked-cream.svg" style="width:52%"><div class="cap" style="color:var(--cream)">Stacked</div></div>
+    <div class="tile" style="background:var(--felt)"><img src="final/mark-cream.svg" style="width:26%"><div class="cap" style="color:var(--cream)">Mark only</div></div>
+  </div>
+
+  <h2>Scale test</h2>
+  <div class="sizes">
+    <div class="s"><img src="final/mark-emerald.svg" style="height:16px"><span>16px</span></div>
+    <div class="s"><img src="final/mark-emerald.svg" style="height:32px"><span>32px</span></div>
+    <div class="s"><img src="final/mark-emerald.svg" style="height:64px"><span>64px</span></div>
+    <div class="s"><img src="final/mark-emerald.svg" style="height:128px"><span>128px</span></div>
+    <div class="s"><img src="final/lockup-horizontal-emerald.svg" style="height:30px"><span>navbar · 30px</span></div>
+  </div>
+
+  <h2>Production files — brand/final/</h2>
+  <div class="files">
+    <ul>
+      <li>mark-emerald.svg <span>icon only, for light backgrounds</span></li>
+      <li>mark-cream.svg <span>icon only, for dark backgrounds</span></li>
+      <li>lockup-horizontal-emerald.svg <span>primary logo, light backgrounds</span></li>
+      <li>lockup-horizontal-cream.svg <span>primary logo, dark backgrounds</span></li>
+      <li>lockup-stacked-emerald.svg <span>square/centered uses, light</span></li>
+      <li>lockup-stacked-cream.svg <span>square/centered uses, dark</span></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High Card Capital — Final Logo Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --emerald:#004225; --felt:#00331D; --cream:#F5F0E1; --warm-white:#FBF9F3; --sage:#8FA898; --ink:#141A16; --slate:#5A6660; }
+  body { font-family:'Inter',sans-serif; background:#F4F2EC; color:var(--ink); padding:48px 24px 96px; }
+  .wrap { max-width:1020px; margin:0 auto; }
+  .kicker { font-family:'Manrope',sans-serif; font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:var(--sage); font-weight:700; margin-bottom:14px; }
+  h1 { font-family:'Fraunces',serif; font-size:40px; font-weight:600; letter-spacing:-0.5px; }
+  h1 .dot { color:var(--emerald); }
+  .lede { margin-top:10px; color:var(--slate); font-size:16px; max-width:680px; line-height:1.6; }
+  h2 { font-family:'Fraunces',serif; font-size:24px; font-weight:600; margin:52px 0 8px; }
+  .sub { color:var(--slate); font-size:14px; margin-bottom:20px; line-height:1.6; }
+
+  .tile { border-radius:18px; padding:64px 36px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 20px rgba(20,40,30,.08); }
+  .tile + .tile { margin-top:18px; }
+  .tile img { width:min(660px,92%); display:block; }
+  .strip { display:flex; gap:18px; margin-top:18px; flex-wrap:wrap; }
+  .strip .tile { flex:1; min-width:280px; padding:36px 24px; }
+  .strip .tile img { width:88%; }
+  .ai-pair { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media (max-width:800px){ .ai-pair { grid-template-columns:1fr; } }
+  .ai-pair .cell { border-radius:16px; overflow:hidden; box-shadow:0 2px 18px rgba(20,40,30,.08); background:#fff; }
+  .ai-pair img { width:100%; display:block; }
+  .ai-pair .cap { padding:12px 18px; font-size:13px; color:var(--slate); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">High Card Capital · Final Logo Review · Option 3 Spec</div>
+  <h1>The finished hand<span class="dot">.</span></h1>
+  <p class="lede">Full confirmed spec applied: edge-matched card, HIGHCARD 20% thicker and 40% tighter, CAPITAL enlarged 20% and raised, arrow on HIGHCARD's midline at 80% of the border weight, connected R, peak-A. Production vector first, gpt-image-2's renders below it.</p>
+
+  <h2>Production vector (the real files)</h2>
+  <div class="sub">This is what ships — brand/final/, pure paths, scales to any size.</div>
+  <div class="tile" style="background:var(--felt)"><img src="final/lockup-horizontal-cream.svg"></div>
+  <div class="strip">
+    <div class="tile" style="background:var(--cream)"><img src="final/lockup-horizontal-emerald.svg"></div>
+    <div class="tile" style="background:#fff"><img src="final/lockup-horizontal-emerald.svg"></div>
+  </div>
+
+  <h2>gpt-image-2 renders (the target look)</h2>
+  <div class="sub">Same spec, rendered by the image model — use these to judge the vibe; letterforms may wobble slightly.</div>
+  <div class="ai-pair">
+    <div class="cell"><img src="ai/final-light.png" onerror="this.closest('.cell').style.display='none'"><div class="cap">Racing Green on cream</div></div>
+    <div class="cell"><img src="ai/final-dark.png" onerror="this.closest('.cell').style.display='none'"><div class="cap">Cream on flat Table Green</div></div>
+  </div>
+</div>
+</body>
+</html>

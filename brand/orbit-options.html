@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orb light options · High Card Capital</title>
+<style>
+  @font-face { font-family:'Poppins'; font-weight:600; src:url('../site/assets/fonts/poppins-600.woff2') format('woff2'); font-display:swap; }
+  @font-face { font-family:'Inter'; font-weight:400; src:url('../site/assets/fonts/inter-400.woff2') format('woff2'); font-display:swap; }
+  :root { --racing:#004225; --felt:#00331D; --cream:#F5F0E1; --white:#FBF9F3; --sage:#8FA898; --slate:#5A6660; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--white); font-family:'Inter',sans-serif; color:#141A16; }
+  .intro { padding:56px clamp(20px,4vw,64px) 8px; }
+  .intro h1 { font-family:'Poppins',sans-serif; font-weight:600; font-size:34px; color:var(--racing); }
+  .intro h1 .dot { color:var(--sage); }
+  .intro p { color:var(--slate); font-size:15.5px; max-width:780px; margin-top:10px; line-height:1.6; }
+  .label { padding:56px clamp(20px,4vw,64px) 18px; display:flex; align-items:baseline; gap:16px; flex-wrap:wrap; }
+  .label .tag { font-family:'Poppins',sans-serif; font-weight:600; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--racing); background:var(--cream); border:1px solid rgba(0,66,37,.13); border-radius:999px; padding:6px 16px; }
+  .label b { font-family:'Poppins',sans-serif; font-weight:600; font-size:20px; color:var(--racing); }
+  .label span { color:var(--slate); font-size:14px; }
+
+  .hero { position:relative; background:var(--felt); overflow:hidden; min-height:680px; display:flex; align-items:center; }
+  .hero__inner { position:relative; z-index:3; width:min(1180px, 92%); margin:0 auto; display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center; padding:72px 0; }
+  .eyebrow { font-family:'Poppins',sans-serif; font-weight:600; font-size:11.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--sage); margin-bottom:22px; }
+  .hero h2 { font-family:'Poppins',sans-serif; font-weight:600; font-size:clamp(44px, 5.4vw, 72px); line-height:1.04; color:var(--cream); letter-spacing:-.01em; }
+  .hero h2 .dot { color:var(--sage); }
+  .hero p.sub { color:#B9C4BC; font-size:16.5px; line-height:1.65; max-width:440px; margin-top:26px; }
+  .cta { display:inline-block; margin-top:34px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15.5px; color:var(--racing); background:var(--cream); border-radius:12px; padding:16px 30px; text-decoration:none; }
+  .proof { justify-self:end; width:300px; position:relative; z-index:3; }
+  .proof img { width:100%; height:170px; object-fit:cover; border-radius:16px 16px 0 0; display:block; }
+  .proof__body { background:var(--white); border-radius:0 0 16px 16px; padding:18px 20px; position:relative; box-shadow:0 30px 60px -20px rgba(0,0,0,.45); }
+  .proof__cap { display:flex; justify-content:space-between; align-items:center; font-family:'Poppins',sans-serif; font-weight:600; font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--slate); }
+  .pill { border:1px solid var(--racing); color:var(--racing); border-radius:999px; padding:3px 10px; font-size:9px; }
+  .amt { font-family:'Poppins',sans-serif; font-weight:600; font-size:26px; color:var(--racing); margin:8px 0 10px; }
+  .rows { font-size:11.5px; color:var(--slate); display:flex; flex-direction:column; gap:6px; }
+  .rows div { display:flex; justify-content:space-between; border-top:1px solid rgba(0,66,37,.1); padding-top:6px; }
+  .rows b { color:#141A16; font-weight:600; }
+  @media (max-width:980px) { .hero__inner { grid-template-columns:1fr; } .proof { justify-self:start; } }
+
+  .dev { position:absolute; inset:0; z-index:1; pointer-events:none; }
+  .dev svg { width:100%; height:100%; display:block; }
+  .lines-par { transition:transform .5s cubic-bezier(.2,.6,.2,1); will-change:transform; }
+
+  circle.arc, path.arc { fill:none; }
+  .base { stroke:#F5F0E1; stroke-opacity:.07; stroke-width:1.4; }
+  .base.sage { stroke:#8FA898; stroke-opacity:.065; }
+  .trail { fill:none; stroke:#F5F0E1; stroke-opacity:.3; stroke-width:1.7; stroke-linecap:round;
+           stroke-dasharray:34 966; stroke-dashoffset:1000; animation:orb linear infinite; }
+  .halo  { fill:none; stroke:#F5F0E1; stroke-opacity:.3; stroke-width:13; stroke-linecap:round;
+           stroke-dasharray:3 997; stroke-dashoffset:969; animation:orbHead linear infinite; filter:url(#halo); }
+  .orb   { fill:none; stroke:#FBF9F3; stroke-opacity:.95; stroke-width:4.6; stroke-linecap:round;
+           stroke-dasharray:3 997; stroke-dashoffset:969; animation:orbHead linear infinite; }
+  .sagelight .trail { stroke:#8FA898; }
+  .sagelight .halo { stroke:#8FA898; }
+  @keyframes orb { to { stroke-dashoffset:0; } }
+  @keyframes orbHead { to { stroke-dashoffset:-31; } }
+  .star { fill:#F5F0E1; }
+  @media (prefers-reduced-motion: reduce) { .trail, .halo, .orb { animation:none !important; stroke-opacity:0; } }
+</style>
+</head>
+<body>
+  <div class="intro">
+    <h1>The orb light, two layouts<span class="dot">.</span></h1>
+    <p>Same racing green energy, new light: a small glowing globe with a soft halo and a short trail, gliding along faint arcs. No more streaks. Two compositions to choose between, both with the soft cursor depth shift, both quiet enough to never fight the headline.</p>
+  </div>
+
+  <div class="label"><span class="tag">Layout 1</span><b>The Orbits</b><span>four concentric arcs curve around the proof card like orbital paths, orbs gliding along them at different speeds, a few faint stars in the distance</span></div>
+  <section class="hero" data-par>
+    <div class="dev"><svg viewBox="0 0 1440 680" preserveAspectRatio="xMidYMid slice">
+      <defs><filter id="halo" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3.4"/></filter></defs>
+      <g class="lines-par" data-group>
+        <circle class="star" cx="180" cy="120" r="1.6" opacity=".14"/>
+        <circle class="star" cx="420" cy="70"  r="1.3" opacity=".11"/>
+        <circle class="star" cx="700" cy="150" r="1.8" opacity=".13"/>
+        <circle class="star" cx="1050" cy="60" r="1.4" opacity=".12"/>
+        <circle class="star" cx="1330" cy="620" r="1.6" opacity=".12"/>
+        <circle class="star" cx="90"  cy="560" r="1.4" opacity=".1"/>
+
+        <g data-orbit='{"cx":1265,"cy":1275,"r":640,"dur":30,"delay":-6,"sage":false}'></g>
+        <g data-orbit='{"cx":1265,"cy":1275,"r":790,"dur":38,"delay":-21,"sage":true}'></g>
+        <g data-orbit='{"cx":1265,"cy":1275,"r":940,"dur":46,"delay":-11,"sage":false,"second":true}'></g>
+        <g data-orbit='{"cx":1265,"cy":1275,"r":1090,"dur":56,"delay":-38,"sage":false}'></g>
+      </g>
+    </svg></div>
+    <div class="hero__inner"></div>
+  </section>
+
+  <div class="label"><span class="tag">Layout 2</span><b>The Horizon</b><span>gentle arcs span the full width low across the hero like the curve of a globe, orbs drifting along the horizon beneath your message</span></div>
+  <section class="hero" data-par>
+    <div class="dev"><svg viewBox="0 0 1440 680" preserveAspectRatio="xMidYMid slice">
+      <g class="lines-par" data-group>
+        <circle class="star" cx="240" cy="140" r="1.6" opacity=".13"/>
+        <circle class="star" cx="640" cy="90"  r="1.3" opacity=".11"/>
+        <circle class="star" cx="1130" cy="130" r="1.7" opacity=".12"/>
+        <circle class="star" cx="1380" cy="300" r="1.4" opacity=".11"/>
+
+        <g data-orbit='{"cx":720,"cy":2560,"r":2050,"dur":34,"delay":-8,"sage":false}'></g>
+        <g data-orbit='{"cx":720,"cy":2560,"r":2135,"dur":42,"delay":-27,"sage":true}'></g>
+        <g data-orbit='{"cx":720,"cy":2560,"r":2220,"dur":50,"delay":-16,"sage":false,"second":true}'></g>
+        <g data-orbit='{"cx":720,"cy":2560,"r":2305,"dur":60,"delay":-41,"sage":false}'></g>
+      </g>
+    </svg></div>
+    <div class="hero__inner"></div>
+  </section>
+
+  <div class="intro" style="padding-top:48px">
+    <p>Designer note: Layout 1 gives the hero a quiet center of gravity at the proof card, everything orbits the money. Layout 2 is even calmer and more spacious, the world under your message. Both can run a touch brighter or dimmer once one is on the real page.</p>
+  </div>
+
+<script>
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const content = `
+    <div>
+      <div class="eyebrow">Trusted Business Partner</div>
+      <h2>Funding to power your business growth<span class="dot">.</span></h2>
+      <p class="sub">Whether you're handling today's priorities or preparing for what's next, High Card Capital keeps your cash flow one step ahead.</p>
+      <a class="cta">Apply Now</a>
+    </div>
+    <div class="proof">
+      <img src="../site/assets/img/img-owners-restaurant.webp" alt="">
+      <div class="proof__body">
+        <div class="proof__cap"><span>Wire confirmation</span><span class="pill">Funded</span></div>
+        <div class="amt">$150,000</div>
+        <div class="rows">
+          <div><span>To</span><b>Restaurant · Columbus, OH</b></div>
+          <div><span>Product</span><b>Term Loan</b></div>
+          <div><span>Applied to funded</span><b>26 hours</b></div>
+        </div>
+      </div>
+    </div>`;
+  document.querySelectorAll('.hero__inner').forEach(el => el.innerHTML = content);
+
+  /* expand each orbit into base arc + (trail, halo, orb) light sets */
+  document.querySelectorAll('[data-orbit]').forEach(g => {
+    const c = JSON.parse(g.getAttribute('data-orbit'));
+    const mk = (cls, extraDelay) => `
+      <circle class="${cls}" cx="${c.cx}" cy="${c.cy}" r="${c.r}" pathLength="1000"
+        style="animation-duration:${c.dur}s; animation-delay:${c.delay + (extraDelay || 0)}s"/>`;
+    let html = `<circle class="base arc${c.sage ? ' sage' : ''}" cx="${c.cx}" cy="${c.cy}" r="${c.r}"/>`;
+    const set = (extra) => mk('trail', extra) + mk('halo', extra) + mk('orb', extra);
+    html += set(0);
+    if (c.second) html += set(-c.dur / 2);
+    g.innerHTML = html;
+    if (c.sage) g.classList.add('sagelight');
+  });
+
+  /* soft cursor depth */
+  document.querySelectorAll('[data-par]').forEach(sec => {
+    const grp = sec.querySelector('[data-group]');
+    sec.addEventListener('mousemove', e => {
+      if (reduced) return;
+      const r = sec.getBoundingClientRect();
+      const mx = ((e.clientX - r.left) / r.width - .5) * 2;
+      const my = ((e.clientY - r.top) / r.height - .5) * 2;
+      grp.style.transform = `translate(${mx * -12}px, ${my * -8}px)`;
+    });
+    sec.addEventListener('mouseleave', () => { grp.style.transform = ''; });
+  });
+})();
+</script>
+</body>
+</html>

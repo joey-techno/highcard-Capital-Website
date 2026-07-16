@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High Card Capital — Palette Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; background:#F4F2EC; color:#161B17; padding:48px 24px 96px; }
+  .wrap { max-width:1160px; margin:0 auto; }
+  .kicker { font-family:'Manrope',sans-serif; font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:#8A948E; font-weight:700; margin-bottom:14px; }
+  h1 { font-family:'Fraunces',serif; font-size:42px; font-weight:600; letter-spacing:-0.5px; }
+  .lede { margin-top:10px; color:#5A6660; font-size:16px; max-width:700px; line-height:1.6; }
+
+  .board { border-radius:20px; overflow:hidden; background:#fff; box-shadow:0 3px 24px rgba(20,40,30,.09); margin-top:40px; }
+  .board-head { padding:22px 32px 18px; display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; }
+  .board-head h2 { font-family:'Fraunces',serif; font-size:25px; font-weight:600; }
+  .board-head .tag { font-family:'Manrope',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:#8A948E; }
+  .tiles { display:grid; grid-template-columns:1.3fr 1fr; }
+  @media (max-width:820px){ .tiles { grid-template-columns:1fr; } }
+  .tile { min-height:210px; display:flex; align-items:center; justify-content:center; padding:36px 28px; }
+  .tile img { width:min(420px,88%); }
+  .meta { padding:20px 32px 26px; display:flex; gap:34px; align-items:flex-start; flex-wrap:wrap; }
+  .chips { display:flex; gap:10px; flex-wrap:wrap; flex:2; min-width:300px; }
+  .chip { display:flex; flex-direction:column; gap:5px; font-size:11px; color:#5A6660; }
+  .chip .sw { width:72px; height:44px; border-radius:9px; border:1px solid rgba(0,0,0,.07); }
+  .chip .hx { font-family:monospace; font-size:10px; color:#98A09A; }
+  .ui { display:flex; align-items:center; gap:12px; flex-wrap:wrap; flex:2; min-width:280px; }
+  .btn { border-radius:10px; padding:11px 20px; font-family:'Manrope',sans-serif; font-weight:700; font-size:13px; }
+  .ghost { border-radius:10px; padding:10px 19px; font-family:'Manrope',sans-serif; font-weight:700; font-size:13px; border:1.5px solid; background:transparent; }
+  .stat { font-family:'Manrope',sans-serif; font-weight:800; font-size:26px; }
+  .note { padding:0 32px 26px; font-size:14px; line-height:1.65; color:#5A6660; max-width:860px; }
+  .note strong { color:#161B17; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">High Card Capital · Deck Build · Step 1 — Palette</div>
+  <h1>Six palettes, zero assumptions.</h1>
+  <p class="lede">The locked logo re-dressed in six complete color systems — four greens including the incumbent, plus two honest non-green contenders. Each shows the logo on its dark surface and its light surface, the full swatch system, and live UI pieces (button, ghost, stat number). Pick the system, not just the color.</p>
+  <div id="boards"></div>
+</div>
+
+<script>
+const P = [
+  {
+    key:'racing', name:'A · Racing Green & Cream', tag:'The incumbent',
+    primary:'#004225', dark:'#00331D', light:'#F5F0E1', page:'#FBF9F3', muted:'#8FA898', ink:'#141A16',
+    chips:[['Racing Green','#004225','brand, CTAs'],['Table Green','#00331D','dark sections'],['Card Cream','#F5F0E1','warm surfaces'],['Warm White','#FBF9F3','page bg'],['Sage','#8FA898','labels'],['Ink','#141A16','text']],
+    note:'<strong>British heritage luxury.</strong> The green you picked from ten — Bentley energy, warm cream, quiet confidence. Proven across the whole deck already.'
+  },
+  {
+    key:'forest', name:'B · Deep Forest', tag:'Darker · moodier',
+    primary:'#0E4429', dark:'#06281A', light:'#F2F1EA', page:'#FAF9F4', muted:'#61876B', ink:'#12160F',
+    chips:[['Forest','#0E4429','brand, CTAs'],['Undergrowth','#06281A','dark sections'],['Bone','#F2F1EA','surfaces'],['Paper','#FAF9F4','page bg'],['Fern','#61876B','labels/accents'],['Ink','#12160F','text']],
+    note:'<strong>The midnight woods.</strong> A step darker and cooler than Racing — moodier, more mysterious, very premium. Less warmth, more gravity.'
+  },
+  {
+    key:'jewel', name:'C · Emerald Jewel', tag:'Brighter · more energy',
+    primary:'#046A38', dark:'#02351F', light:'#F6F1E3', page:'#FCFAF2', muted:'#8FB49A', ink:'#121B14',
+    chips:[['Emerald','#046A38','brand, CTAs'],['Deep Vault','#02351F','dark sections'],['Cream','#F6F1E3','surfaces'],['Ivory','#FCFAF2','page bg'],['Mint Sage','#8FB49A','labels'],['Ink','#121B14','text']],
+    note:'<strong>The polished stone.</strong> Noticeably brighter and more saturated — younger, more energetic, pops harder on screens. Slightly less old-money.'
+  },
+  {
+    key:'hunter', name:'D · Hunter & Sand', tag:'Warmest · most classic',
+    primary:'#355E3B', dark:'#22402A', light:'#EFE7D2', page:'#F9F4E9', muted:'#A99E7E', ink:'#1C221C',
+    chips:[['Hunter','#355E3B','brand, CTAs'],['Pine Shadow','#22402A','dark sections'],['Sand','#EFE7D2','surfaces'],['Linen','#F9F4E9','page bg'],['Field Khaki','#A99E7E','labels'],['Ink','#1C221C','text']],
+    note:'<strong>The banker\'s library.</strong> Warm traditional green with sandy warm neutrals — tweed, leather chairs, oldest-school trust. Softest contrast of the six.'
+  },
+  {
+    key:'navy', name:'E · Midnight Navy', tag:'Non-green contender',
+    primary:'#0A2540', dark:'#071A2E', light:'#F4F1E8', page:'#FAF8F2', muted:'#7E9CB9', ink:'#101720',
+    chips:[['Midnight Navy','#0A2540','brand, CTAs'],['Harbor','#071A2E','dark sections'],['Cream','#F4F1E8','surfaces'],['Paper','#FAF8F2','page bg'],['Steel','#7E9CB9','labels'],['Ink','#101720','text']],
+    note:'<strong>The institutional standard.</strong> Stripe/Chase territory — navy is the most trusted color in finance, full stop. Safest possible choice; also the least distinctive, and it gives up the green-money story.'
+  },
+  {
+    key:'ink', name:'F · Ink & Emerald', tag:'Non-obvious contender',
+    primary:'#131B16', dark:'#0C110D', light:'#F4F2EC', page:'#FAF9F5', muted:'#2E7D5B', ink:'#131B16',
+    chips:[['Ink','#131B16','brand, buttons'],['Coal','#0C110D','dark sections'],['Mist','#F4F2EC','surfaces'],['Paper','#FAF9F5','page bg'],['Emerald Accent','#2E7D5B','links, highlights'],['Cream','#F5F0E1','text on dark']],
+    note:'<strong>The fashion-house cut.</strong> Near-black leads; green appears only as a sharp accent on links and key numbers. Most modern and editorial — furthest from a traditional lender.'
+  }
+];
+
+const root = document.getElementById('boards');
+P.forEach(p => {
+  const b = document.createElement('div');
+  b.className = 'board';
+  b.innerHTML = `
+    <div class="board-head"><h2>${p.name}</h2><span class="tag">${p.tag}</span></div>
+    <div class="tiles">
+      <div class="tile" style="background:${p.dark}"><img src="final/lockup-horizontal-cream.svg"></div>
+      <div class="tile" style="background:${p.light}"><img src="palette/lockup-${p.key}.svg"></div>
+    </div>
+    <div class="meta">
+      <div class="chips">${p.chips.map(([n,h,r])=>`<div class="chip"><div class="sw" style="background:${h}"></div><span>${n}</span><span class="hx">${h} · ${r}</span></div>`).join('')}</div>
+      <div class="ui">
+        <span class="btn" style="background:${p.primary}; color:${p.light}">Start my application →</span>
+        <span class="ghost" style="border-color:${p.primary}; color:${p.primary}">(800) 000-0000</span>
+        <span class="stat" style="color:${p.primary}">$5K–$25M</span>
+      </div>
+    </div>
+    <div class="note">${p.note}</div>`;
+  root.appendChild(b);
+});
+</script>
+</body>
+</html>

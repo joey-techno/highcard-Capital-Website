@@ -1,0 +1,9 @@
+# Secrets - never commit
+.env
+
+# Local Claude settings
+.claude/settings.local.json
+
+# OS junk
+Thumbs.db
+Desktop.ini

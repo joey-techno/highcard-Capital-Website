@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High Card Capital — Icon Explorations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --emerald: #0C4A34;
+    --felt: #07271C;
+    --cream: #F5F0E1;
+    --warm-white: #FBF9F3;
+    --sage: #8FA898;
+    --ink: #141A16;
+  }
+  body { font-family: 'Inter', sans-serif; background: #F4F2EC; color: #1A211D; padding: 48px 24px 96px; }
+  .page-head { max-width: 1120px; margin: 0 auto 48px; }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #8A948E; font-weight: 600; margin-bottom: 14px; }
+  .page-head h1 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 600; letter-spacing: -0.5px; }
+  .page-head p { margin-top: 10px; color: #5A6660; font-size: 16px; max-width: 660px; line-height: 1.6; }
+
+  .grid { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 28px; }
+  .cell { background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 2px 20px rgba(20,40,30,.08); }
+  .cell-head { padding: 18px 24px 14px; display: flex; justify-content: space-between; align-items: baseline; }
+  .cell-head h3 { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; }
+  .cell-head span { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #8A948E; font-weight: 600; }
+  .stage { background: var(--felt); min-height: 250px; display: flex; align-items: center; justify-content: center; padding: 36px; }
+  .stage svg { height: 170px; width: auto; display: block; filter: drop-shadow(0 12px 28px rgba(0,0,0,.3)); }
+  .scale { display: flex; align-items: flex-end; gap: 20px; padding: 18px 24px; background: var(--warm-white); border-top: 1px solid #ECEAE2; }
+  .scale .s { display: flex; flex-direction: column; align-items: center; gap: 7px; font-size: 11px; color: #8A948E; }
+  .note { padding: 14px 24px 20px; font-size: 13.5px; line-height: 1.6; color: #5A6660; }
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <div class="kicker">High Card Capital · Brand Exploration 02 · Emerald &amp; Cream</div>
+  <h1>Icon-grade marks.</h1>
+  <p>Simpler geometry, heavier $, no fussy borders. Every one of these is designed to work as an app icon, favicon, and avatar first — the wordmark comes second. Shown on table-felt emerald, with a scale test on warm white.</p>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const D = { emerald: '#0C4A34', felt: '#07271C', cream: '#F5F0E1', sage: '#8FA898', ink: '#141A16' };
+const F = `font-family="Fraunces, Georgia, serif" font-weight="700"`;
+
+const variants = [
+  {
+    name: 'Face', tag: 'V1',
+    note: 'The card face reduced to essentials: cream stock, one heavy emerald $. Nothing else to lose.',
+    svg: `<svg viewBox="0 0 200 272" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="272" rx="30" fill="${D.cream}"/>
+      <text x="100" y="140" text-anchor="middle" dominant-baseline="central" ${F} font-size="168" fill="${D.emerald}">$</text>
+    </svg>`
+  },
+  {
+    name: 'Reverse', tag: 'V2',
+    note: 'Same mark flipped: emerald card, cream $. Strongest on light backgrounds — reads like a chip stamp.',
+    svg: `<svg viewBox="0 0 200 272" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="272" rx="30" fill="${D.emerald}"/>
+      <rect x="7" y="7" width="186" height="258" rx="24" fill="none" stroke="${D.cream}" stroke-opacity=".25" stroke-width="3"/>
+      <text x="100" y="140" text-anchor="middle" dominant-baseline="central" ${F} font-size="168" fill="${D.cream}">$</text>
+    </svg>`
+  },
+  {
+    name: 'High Corner', tag: 'V3',
+    note: 'One oversized $ pushed to the top-left like a card index, cropped by the edge. Asymmetric, more designed, still dead simple.',
+    svg: `<svg viewBox="0 0 200 272" xmlns="http://www.w3.org/2000/svg">
+      <defs><clipPath id="c3"><rect width="200" height="272" rx="30"/></clipPath></defs>
+      <rect width="200" height="272" rx="30" fill="${D.cream}"/>
+      <g clip-path="url(#c3)">
+        <text x="78" y="110" text-anchor="middle" dominant-baseline="central" ${F} font-size="196" fill="${D.emerald}">$</text>
+        <text x="164" y="234" text-anchor="middle" dominant-baseline="central" ${F} font-size="54" fill="${D.sage}" transform="rotate(180 164 234)">$</text>
+      </g>
+    </svg>`
+  },
+  {
+    name: 'Stack', tag: 'V4',
+    note: 'A second card fanned behind — "a hand of cards" in the flattest possible language. More brandable, still icon-clean.',
+    svg: `<svg viewBox="0 0 250 290" xmlns="http://www.w3.org/2000/svg">
+      <g transform="rotate(-10 60 250)">
+        <rect x="18" y="14" width="196" height="266" rx="30" fill="${D.sage}"/>
+      </g>
+      <rect x="42" y="12" width="196" height="266" rx="30" fill="${D.cream}"/>
+      <text x="140" y="142" text-anchor="middle" dominant-baseline="central" ${F} font-size="164" fill="${D.emerald}">$</text>
+    </svg>`
+  },
+  {
+    name: 'App Tile', tag: 'V5',
+    note: 'The card living inside an emerald squircle — a true 1:1 app-icon format. The container does the icon work; the card stays pure.',
+    svg: `<svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+      <rect width="260" height="260" rx="62" fill="${D.emerald}"/>
+      <rect x="76" y="52" width="108" height="156" rx="16" fill="${D.cream}"/>
+      <text x="130" y="132" text-anchor="middle" dominant-baseline="central" ${F} font-size="92" fill="${D.emerald}">$</text>
+    </svg>`
+  },
+  {
+    name: 'Ace Cut', tag: 'V6',
+    note: 'The $ knocked straight out of the emerald card — negative space does the work. The most minimal and the most "logo" of the set.',
+    svg: `<svg viewBox="0 0 200 272" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <mask id="m6">
+          <rect width="200" height="272" rx="30" fill="white"/>
+          <text x="100" y="140" text-anchor="middle" dominant-baseline="central" ${F} font-size="168" fill="black">$</text>
+        </mask>
+      </defs>
+      <rect width="200" height="272" rx="30" fill="${D.cream}" mask="url(#m6)"/>
+    </svg>`
+  }
+];
+
+const grid = document.getElementById('grid');
+variants.forEach(v => {
+  const cell = document.createElement('div');
+  cell.className = 'cell';
+
+  const head = document.createElement('div');
+  head.className = 'cell-head';
+  head.innerHTML = `<h3>${v.name}</h3><span>${v.tag}</span>`;
+  cell.appendChild(head);
+
+  const stage = document.createElement('div');
+  stage.className = 'stage';
+  stage.innerHTML = v.svg;
+  cell.appendChild(stage);
+
+  const scale = document.createElement('div');
+  scale.className = 'scale';
+  [16, 32, 64].forEach(px => {
+    const s = document.createElement('div');
+    s.className = 's';
+    const holder = document.createElement('div');
+    holder.innerHTML = v.svg;
+    const svg = holder.firstElementChild;
+    svg.style.height = px + 'px';
+    svg.style.width = 'auto';
+    svg.style.display = 'block';
+    s.appendChild(svg);
+    const lbl = document.createElement('span');
+    lbl.textContent = px + 'px';
+    s.appendChild(lbl);
+    scale.appendChild(s);
+  });
+  cell.appendChild(scale);
+
+  const note = document.createElement('div');
+  note.className = 'note';
+  note.textContent = v.note;
+  cell.appendChild(note);
+
+  grid.appendChild(cell);
+});
+</script>
+</body>
+</html>

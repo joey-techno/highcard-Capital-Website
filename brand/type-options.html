@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High Card Capital — Typography Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --racing:#004225; --table:#00331D; --cream:#F5F0E1; --warm:#FBF9F3; --sage:#8FA898; --ink:#141A16; --slate:#5A6660; }
+  body { font-family:'Inter',sans-serif; background:#F4F2EC; color:var(--ink); padding:48px 24px 96px; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  .kicker { font-family:'Manrope',sans-serif; font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:var(--sage); font-weight:700; margin-bottom:14px; }
+  h1 { font-family:'Fraunces',serif; font-size:42px; font-weight:600; letter-spacing:-0.5px; }
+  .lede { margin-top:10px; color:var(--slate); font-size:16px; max-width:700px; line-height:1.6; }
+
+  .opt { border-radius:20px; overflow:hidden; background:#fff; box-shadow:0 3px 24px rgba(20,40,30,.09); margin-top:40px; }
+  .opt-head { padding:22px 32px 18px; display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; border-bottom:1px solid #EFEDE5; }
+  .opt-head h2 { font-family:'Fraunces',serif; font-size:24px; font-weight:600; }
+  .opt-head .tag { font-family:'Manrope',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--sage); }
+  .spec { padding:36px 32px 30px; background:var(--warm); }
+  .eyebrow { font-size:12.5px; letter-spacing:3.5px; text-transform:uppercase; font-weight:700; color:var(--racing); margin-bottom:16px; }
+  .headline { color:var(--ink); margin-bottom:14px; }
+  .headline .dot { color:var(--racing); }
+  .body-text { font-family:'Inter',sans-serif; font-size:16px; line-height:1.65; color:var(--slate); max-width:560px; margin-bottom:22px; }
+  .row { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .btn { background:var(--racing); color:var(--cream); border-radius:10px; padding:12px 22px; font-weight:700; font-size:14px; }
+  .ghost { border:1.5px solid #D8D4C6; color:var(--ink); border-radius:10px; padding:11px 21px; font-weight:600; font-size:14px; }
+  .stat { font-weight:800; font-size:30px; color:var(--racing); }
+  .stat small { font-size:13px; color:var(--sage); font-weight:600; }
+  .note { padding:18px 32px 26px; font-size:14px; line-height:1.65; color:var(--slate); }
+  .note strong { color:var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">High Card Capital · Deck Build · Step 2 — Typography</div>
+  <h1>Five voices. One brand.</h1>
+  <p class="lede">Same palette, same copy, same layout — only the typefaces change. Every option keeps the Racing period signature on headlines (easy to drop if you don't want it). Body text stays Inter in all five: it's the most readable screen font alive, and the display face is where personality lives.</p>
+  <div id="opts"></div>
+</div>
+
+<script>
+const OPTS = [
+  { name:'1 · Poppins', tag:'The logo\'s own family', fam:"'Poppins',sans-serif", hw:600, ls:'-0.5px', hs:44,
+    note:'<strong>Maximum cohesion.</strong> Your wordmark is built on Poppins geometry — using it for headlines makes the whole site feel like the logo grew into a website. Round, confident, friendly.' },
+  { name:'2 · Manrope', tag:'Modern fintech standard', fam:"'Manrope',sans-serif", hw:800, ls:'-1.2px', hs:44,
+    note:'<strong>The sharpest operator.</strong> Tighter and more engineered than Poppins — Mercury/Ramp energy. Slightly more serious than the logo, which can be a feature: logo charms, site means business.' },
+  { name:'3 · Fraunces', tag:'Editorial serif contrast', fam:"'Fraunces',serif", hw:600, ls:'-0.5px', hs:46,
+    note:'<strong>The private bank.</strong> A characterful serif against the geometric logo — old-money warmth, editorial gravitas. The biggest personality swing of the five; pairs beautifully with the warm cream.' },
+  { name:'4 · Space Grotesk', tag:'Characterful tech', fam:"'Space Grotesk',sans-serif", hw:700, ls:'-1px', hs:43,
+    note:'<strong>The modern edge.</strong> Quirky letterforms with technical DNA — memorable and current. Leans startup; less traditional-lender than the others.' },
+  { name:'5 · Archivo', tag:'American grotesque', fam:"'Archivo',sans-serif", hw:700, ls:'-0.8px', hs:44,
+    note:'<strong>The straight shooter.</strong> Sturdy, newspaper-masthead American grotesque. No frills, high trust, ages extremely well. The most neutral of the five.' }
+];
+const root = document.getElementById('opts');
+OPTS.forEach(o => {
+  const d = document.createElement('div');
+  d.className = 'opt';
+  d.innerHTML = `
+    <div class="opt-head"><h2>${o.name}</h2><span class="tag">${o.tag}</span></div>
+    <div class="spec">
+      <div class="eyebrow" style="font-family:${o.fam}">Fast business funding · Human advisors</div>
+      <div class="headline" style="font-family:${o.fam}; font-weight:${o.hw}; font-size:${o.hs}px; letter-spacing:${o.ls}; line-height:1.08;">The strongest hand in business funding<span class="dot">.</span></div>
+      <div class="body-text">It takes two minutes to tell us about your business. A real advisor does the rest, matching you to the right Term Loan, SBA, HELOC, or Line of Credit.</div>
+      <div class="row">
+        <span class="btn" style="font-family:${o.fam}">Start my application →</span>
+        <span class="ghost" style="font-family:${o.fam}">(800) 000-0000</span>
+        <span class="stat" style="font-family:${o.fam}">$5K–$25M <small>funding range</small></span>
+      </div>
+    </div>
+    <div class="note">${o.note}</div>`;
+  root.appendChild(d);
+});
+</script>
+</body>
+</html>

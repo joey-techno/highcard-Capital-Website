@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High Card Capital — Accent Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F4F2EC;
+    color: #1A211D;
+    padding: 48px 24px 96px;
+  }
+  .page-head { max-width: 1080px; margin: 0 auto 56px; }
+  .page-head h1 { font-family: 'Fraunces', serif; font-size: 44px; font-weight: 600; letter-spacing: -0.5px; }
+  .page-head p { margin-top: 10px; color: #5A6660; font-size: 16px; max-width: 640px; line-height: 1.6; }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #8A948E; font-weight: 600; margin-bottom: 14px; }
+
+  .board {
+    max-width: 1080px; margin: 0 auto 64px;
+    background: #FFFFFF; border-radius: 20px;
+    box-shadow: 0 2px 24px rgba(20, 40, 30, 0.08);
+    overflow: hidden;
+  }
+  .board-head { padding: 28px 36px 22px; display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid #ECEAE2; flex-wrap: wrap; gap: 8px;}
+  .board-head h2 { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 600; }
+  .board-head .option-tag { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #8A948E; font-weight: 600; }
+  .board-body { display: grid; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 820px) { .board-body { grid-template-columns: 1fr; } }
+
+  .tile { padding: 48px 36px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px; min-height: 380px; }
+  .tile .mark-large svg { width: 150px; height: auto; display: block; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.25)); }
+  .lockup { display: flex; align-items: center; gap: 16px; }
+  .lockup svg { width: 46px; height: auto; }
+  .lockup .name { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600; letter-spacing: -0.3px; line-height: 1.05; }
+
+  .meta-row { padding: 26px 36px 34px; border-top: 1px solid #ECEAE2; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+  .sizes { display: flex; align-items: flex-end; gap: 18px; }
+  .sizes .s { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 11px; color: #8A948E; }
+  .chips { display: flex; gap: 10px; flex-wrap: wrap; }
+  .chip { display: flex; flex-direction: column; gap: 6px; font-size: 11px; color: #5A6660; }
+  .chip .swatch { width: 64px; height: 40px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.08); }
+  .chip .hex { font-family: monospace; font-size: 10.5px; color: #8A948E; }
+  .rationale { padding: 0 36px 30px; color: #5A6660; font-size: 14.5px; line-height: 1.65; max-width: 760px; }
+  .rationale strong { color: #1A211D; }
+
+  /* ---- variant color systems ---- */
+  .v-gold   { --card: #0C4A34; --pip: #D4AF37; --border: #C9A227; }
+  .v-cream  { --card: #F5F0E1; --pip: #0C4A34; --border: #0C4A34; }
+  .v-ink    { --card: #12181A; --pip: #2FA37A; --border: #2FA37A; }
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <div class="kicker">High Card Capital · Brand Exploration 01</div>
+  <h1>The Ace of Dollars — three accents.</h1>
+  <p>Same mark, same deep emerald, same flat geometry. The only variable is the accent treatment. Each option is shown on light and dark, with its palette and a favicon-size scale test.</p>
+</div>
+
+<template id="card-svg">
+  <svg viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="200" height="280" rx="20" fill="var(--card)"/>
+    <rect x="12" y="12" width="176" height="256" rx="13" fill="none" stroke="var(--border)" stroke-width="3"/>
+    <text x="100" y="140" text-anchor="middle" dominant-baseline="central"
+          font-family="Fraunces, Georgia, serif" font-weight="600" font-size="130" fill="var(--pip)">$</text>
+    <text x="32" y="58" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="600" font-size="36" fill="var(--pip)">$</text>
+    <text x="168" y="222" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="600" font-size="36" fill="var(--pip)"
+          transform="rotate(180 168 222)">$</text>
+  </svg>
+</template>
+
+<div id="boards"></div>
+
+<script>
+const variants = [
+  {
+    cls: 'v-gold', tag: 'Option A', name: 'Emerald & Gold',
+    lightBg: '#F7F4EA', darkBg: '#07271C',
+    lightText: '#0C4A34', darkText: '#EDE6D2',
+    chips: [
+      ['Deep Emerald', '#0C4A34'], ['Table Emerald', '#07271C'],
+      ['Gold', '#D4AF37'], ['Brass', '#C9A227'], ['Card Cream', '#F7F4EA'], ['Ink', '#141A16']
+    ],
+    rationale: '<strong>The winning-hand read.</strong> Green + gold is the most premium pairing — money and victory in one glance. The gold border doubles as the card&rsquo;s gilt edge, like a high-end casino deck. Risk: gold can feel flashy if overused, so on the website it stays reserved for the mark, buttons, and small moments.'
+  },
+  {
+    cls: 'v-cream', tag: 'Option B', name: 'Emerald & Cream',
+    lightBg: '#0C4A34', darkBg: '#07271C',
+    lightText: '#F5F0E1', darkText: '#F5F0E1',
+    chips: [
+      ['Deep Emerald', '#0C4A34'], ['Table Emerald', '#07271C'],
+      ['Card Cream', '#F5F0E1'], ['Warm White', '#FBF9F3'], ['Sage', '#8FA898'], ['Ink', '#141A16']
+    ],
+    rationale: '<strong>The real-card-stock read.</strong> The card face is cream — like an actual playing card lying on emerald felt — with the $ printed in emerald. Understated, classic, zero flash. This is the most &ldquo;established institution&rdquo; of the three. Risk: quietest option; less pop at small sizes on white backgrounds.'
+  },
+  {
+    cls: 'v-ink', tag: 'Option C', name: 'Emerald & Ink',
+    lightBg: '#F4F2EC', darkBg: '#0B0E0C',
+    lightText: '#12181A', darkText: '#E8EDE9',
+    chips: [
+      ['Ink', '#12181A'], ['Deep Emerald', '#0C4A34'],
+      ['Bright Emerald', '#2FA37A'], ['Mist', '#F4F2EC'], ['Slate', '#5A6660'], ['White', '#FFFFFF']
+    ],
+    rationale: '<strong>The sharp modern read.</strong> Near-black card with a vivid emerald $ — high contrast, fintech-forward, looks incredible on dark UI. Risk: the least traditional; leans startup more than lender, and drops the warmth the other two carry.'
+  }
+];
+
+const tpl = document.getElementById('card-svg');
+function mark(cls, w) {
+  const div = document.createElement('div');
+  div.className = cls;
+  div.style.display = 'inline-block';
+  const svg = tpl.content.firstElementChild.cloneNode(true);
+  svg.style.width = w + 'px';
+  svg.style.height = 'auto';
+  div.appendChild(svg);
+  return div;
+}
+
+const root = document.getElementById('boards');
+variants.forEach(v => {
+  const b = document.createElement('div');
+  b.className = 'board ' + v.cls;
+
+  const head = document.createElement('div');
+  head.className = 'board-head';
+  head.innerHTML = `<h2>${v.name}</h2><span class="option-tag">${v.tag}</span>`;
+  b.appendChild(head);
+
+  const body = document.createElement('div');
+  body.className = 'board-body';
+  [[v.lightBg, v.lightText], [v.darkBg, v.darkText]].forEach(([bg, tx]) => {
+    const tile = document.createElement('div');
+    tile.className = 'tile';
+    tile.style.background = bg;
+    const large = document.createElement('div');
+    large.className = 'mark-large';
+    large.appendChild(mark(v.cls, 150));
+    tile.appendChild(large);
+    const lock = document.createElement('div');
+    lock.className = 'lockup';
+    lock.appendChild(mark(v.cls, 46));
+    const nm = document.createElement('div');
+    nm.className = 'name';
+    nm.style.color = tx;
+    nm.innerHTML = 'High Card<br>Capital';
+    lock.appendChild(nm);
+    tile.appendChild(lock);
+    body.appendChild(tile);
+  });
+  b.appendChild(body);
+
+  const meta = document.createElement('div');
+  meta.className = 'meta-row';
+  const sizes = document.createElement('div');
+  sizes.className = 'sizes';
+  [16, 32, 64].forEach(px => {
+    const s = document.createElement('div');
+    s.className = 's';
+    s.appendChild(mark(v.cls, px));
+    const lbl = document.createElement('span');
+    lbl.textContent = px + 'px';
+    s.appendChild(lbl);
+    sizes.appendChild(s);
+  });
+  meta.appendChild(sizes);
+
+  const chips = document.createElement('div');
+  chips.className = 'chips';
+  v.chips.forEach(([name, hex]) => {
+    const c = document.createElement('div');
+    c.className = 'chip';
+    c.innerHTML = `<div class="swatch" style="background:${hex}"></div><span>${name}</span><span class="hex">${hex}</span>`;
+    chips.appendChild(c);
+  });
+  meta.appendChild(chips);
+  b.appendChild(meta);
+
+  const r = document.createElement('div');
+  r.className = 'rationale';
+  r.innerHTML = v.rationale;
+  b.appendChild(r);
+
+  root.appendChild(b);
+});
+</script>
+</body>
+</html>

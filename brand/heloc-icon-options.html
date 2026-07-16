@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HELOC house icon · Pick one · High Card Capital</title>
+<style>
+  @font-face { font-family:'Poppins'; font-weight:600; src:url('../site/assets/fonts/poppins-600.woff2') format('woff2'); font-display:swap; }
+  @font-face { font-family:'Inter'; font-weight:400; src:url('../site/assets/fonts/inter-400.woff2') format('woff2'); font-display:swap; }
+  :root { --racing:#004225; --cream:#F5F0E1; --white:#FBF9F3; --sage:#8FA898; --slate:#5A6660; --line:rgba(0,66,37,.13); }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--white); font-family:'Inter',sans-serif; color:#141A16; padding:56px clamp(20px,4vw,64px) 96px; }
+  h1 { font-family:'Poppins',sans-serif; font-weight:600; font-size:34px; color:var(--racing); }
+  h1 .dot { color:var(--sage); }
+  .lede { color:var(--slate); font-size:15.5px; max-width:680px; margin-top:10px; line-height:1.6; }
+  .row { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:26px; max-width:1000px; margin-top:44px; }
+  @media (max-width:900px) { .row { grid-template-columns:1fr; } }
+  .opt { text-align:center; }
+  .tag { display:inline-block; font-family:'Poppins',sans-serif; font-weight:600; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--racing); background:var(--cream); border:1px solid var(--line); border-radius:999px; padding:6px 16px; margin-bottom:16px; }
+  .big { width:150px; height:150px; border-radius:20px; border:1px solid var(--line); overflow:hidden; margin:0 auto 22px; }
+  .big img { width:100%; height:100%; display:block; }
+  .note { font-size:13.5px; color:var(--slate); margin-top:14px; }
+  .prod {
+    position:relative; background:var(--white); border:1px solid rgba(0,66,37,.14); border-radius:20px;
+    box-shadow:0 1px 3px rgba(0,66,37,.06), 0 8px 24px -18px rgba(0,66,37,.2);
+    padding:28px; min-height:352px; display:flex; flex-direction:column; text-align:center; align-items:center;
+  }
+  .prod::before { content:''; position:absolute; inset:11px; border:1px solid rgba(0,66,37,.11); border-radius:10px; pointer-events:none; }
+  .chip { width:40px; height:40px; border-radius:12px; border:1px solid var(--line); background:var(--cream); overflow:hidden; margin-bottom:12px; }
+  .chip img { width:100%; height:100%; display:block; }
+  .prod h3 { font-family:'Poppins',sans-serif; font-weight:600; font-size:29px; color:var(--racing); margin-bottom:16px; }
+  ul { list-style:none; margin:auto; width:158px; display:flex; flex-direction:column; gap:9px; }
+  li { display:flex; align-items:center; gap:9px; font-size:13.5px; color:var(--slate); text-align:left; }
+  li::before { content:'✓'; color:var(--racing); font-size:12px; }
+  .ctas { margin-top:16px; padding-top:16px; border-top:1px solid var(--line); width:calc(100% + 34px); display:flex; justify-content:center; }
+  .btn { font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:var(--racing); border:1.5px solid var(--racing); border-radius:9px; padding:8.5px 24.5px; background:transparent; text-decoration:none; cursor:pointer; transition:background .18s, color .18s; }
+  .btn:hover { background:var(--racing); color:var(--cream); }
+</style>
+</head>
+<body>
+  <h1>The new HELOC house<span class="dot">.</span></h1>
+  <p class="lede">Three takes, no arrow, same Set A style as the other three icons. Each is shown big and inside the real card at actual size.</p>
+  <div class="row">
+    <div class="opt">
+      <span class="tag">House 1</span>
+      <div class="big"><img src="ai/icons/heloc-v1.png" alt=""></div>
+      <div class="prod"><span class="chip"><img src="ai/icons/heloc-v1.png" alt=""></span><h3>HELOC</h3><ul><li>Cash on hand</li><li>Inventory buys</li><li>Payroll</li></ul><div class="ctas"><a class="btn">Learn more</a></div></div>
+      <p class="note">Sage front door</p>
+    </div>
+    <div class="opt">
+      <span class="tag">House 2</span>
+      <div class="big"><img src="ai/icons/heloc-v2.png" alt=""></div>
+      <div class="prod"><span class="chip"><img src="ai/icons/heloc-v2.png" alt=""></span><h3>HELOC</h3><ul><li>Cash on hand</li><li>Inventory buys</li><li>Payroll</li></ul><div class="ctas"><a class="btn">Learn more</a></div></div>
+      <p class="note">Sage roof</p>
+    </div>
+    <div class="opt">
+      <span class="tag">House 3</span>
+      <div class="big"><img src="ai/icons/heloc-v3.png" alt=""></div>
+      <div class="prod"><span class="chip"><img src="ai/icons/heloc-v3.png" alt=""></span><h3>HELOC</h3><ul><li>Cash on hand</li><li>Inventory buys</li><li>Payroll</li></ul><div class="ctas"><a class="btn">Learn more</a></div></div>
+      <p class="note">Sage round window</p>
+    </div>
+  </div>
+</body>
+</html>

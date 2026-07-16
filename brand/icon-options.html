@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product card icons · Pick a set · High Card Capital</title>
+<style>
+  @font-face { font-family:'Poppins'; font-weight:600; src:url('../site/assets/fonts/poppins-600.woff2') format('woff2'); font-display:swap; }
+  @font-face { font-family:'Inter'; font-weight:400; src:url('../site/assets/fonts/inter-400.woff2') format('woff2'); font-display:swap; }
+  :root {
+    --racing:#004225; --cream:#F5F0E1; --white:#FBF9F3; --sage:#8FA898; --ink:#141A16;
+    --slate:#5A6660; --line:rgba(0,66,37,.13);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#FBF9F3; font-family:'Inter',sans-serif; color:var(--ink); padding:56px clamp(20px,4vw,64px) 96px; }
+  h1 { font-family:'Poppins',sans-serif; font-weight:600; font-size:34px; color:var(--racing); }
+  h1 .dot { color:var(--sage); }
+  .lede { color:var(--slate); font-size:15.5px; max-width:720px; margin-top:10px; line-height:1.6; }
+  h2 { font-family:'Poppins',sans-serif; font-weight:600; font-size:22px; color:var(--racing); margin:64px 0 6px; }
+  .setnote { color:var(--slate); font-size:14px; margin-bottom:22px; }
+  .big-row { display:flex; gap:18px; margin-bottom:26px; flex-wrap:wrap; }
+  .big-tile { width:130px; height:130px; border-radius:18px; border:1px solid var(--line); overflow:hidden; background:var(--cream); }
+  .big-tile img { width:100%; height:100%; display:block; }
+  .grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:18px; max-width:1180px; }
+  @media (max-width:1100px) { .grid { grid-template-columns:1fr 1fr; } }
+  .prod {
+    position:relative; background:var(--white); border:1px solid rgba(0,66,37,.14); border-radius:20px;
+    box-shadow:0 1px 3px rgba(0,66,37,.06), 0 8px 24px -18px rgba(0,66,37,.2);
+    padding:28px; min-height:352px; display:flex; flex-direction:column; text-align:center; align-items:center;
+  }
+  .prod::before { content:''; position:absolute; inset:11px; border:1px solid rgba(0,66,37,.11); border-radius:10px; pointer-events:none; }
+  .chip {
+    width:44px; height:44px; border-radius:12px; border:1px solid var(--line); background:var(--cream);
+    overflow:hidden; display:grid; place-items:center; margin-bottom:12px;
+  }
+  .chip img { width:150%; height:150%; object-fit:contain; }
+  .prod h3 { font-family:'Poppins',sans-serif; font-weight:600; font-size:29px; color:var(--racing); margin-bottom:16px; }
+  ul { list-style:none; margin:auto; width:158px; display:flex; flex-direction:column; gap:9px; }
+  li { display:flex; align-items:center; gap:9px; font-size:13.5px; color:var(--slate); text-align:left; }
+  li::before { content:'✓'; color:var(--racing); font-size:12px; }
+  .ctas { margin-top:16px; padding-top:16px; border-top:1px solid var(--line); width:calc(100% + 34px); display:flex; justify-content:center; }
+  .btn {
+    font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:var(--racing);
+    border:1.5px solid var(--racing); border-radius:9px; padding:8.5px 24.5px; background:transparent;
+    text-decoration:none; cursor:pointer; transition:background .18s, color .18s;
+  }
+  .btn:hover { background:var(--racing); color:var(--cream); }
+  .tag { display:inline-block; font-family:'Poppins',sans-serif; font-weight:600; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--racing); background:var(--cream); border:1px solid var(--line); border-radius:999px; padding:6px 16px; margin-bottom:14px; }
+</style>
+</head>
+<body>
+  <h1>New product card icons<span class="dot">.</span></h1>
+  <p class="lede">Both sets were generated in the locked palette: Racing Green and Sage on Card Cream. Same four subjects, two different treatments. The mock cards below are the real card style so you can judge them in context, and the Learn more buttons have the new green hover so you can feel it. A mix of the two sets is also possible.</p>
+
+  <h2><span class="tag">Set A</span> Clean solid glyph</h2>
+  <p class="setnote">One bold Racing Green mark with a single small sage accent. The most minimal and the closest to a classic brand icon.</p>
+  <div class="big-row">
+    <div class="big-tile"><img src="ai/icons/a-term-loan.png" alt=""></div>
+    <div class="big-tile"><img src="ai/icons/a-sba.png" alt=""></div>
+    <div class="big-tile"><img src="ai/icons/a-heloc.png" alt=""></div>
+    <div class="big-tile"><img src="ai/icons/a-line-of-credit.png" alt=""></div>
+  </div>
+  <div class="grid">
+    <div class="prod"><span class="chip"><img src="ai/icons/a-term-loan.png" alt=""></span><h3>Term Loan</h3><ul><li>Big purchases</li><li>Equipment</li><li>Expansion</li></ul><div class="ctas"><a class="btn">Learn more</a></div></div>
+    <div class="prod"><span class="chip"><img src="ai/icons/a-sba.png" alt=""></span><h3>SBA</h3><ul><li>Expansion</li><li>Refinancing debt</li><li>Working capital</li></ul><div class="ctas"><a class="btn">Learn more</a></div></div>
+    <div class="prod"><span class="chip"><img src="ai/icons/a-heloc.png" alt=""></span><h3>HELOC</h3><ul><li>Cash on hand</li><li>Inventory buys</li><li>Payroll</li></ul><div class="ctas"><a class="btn">Learn more</a></div></div>
+    <div class="prod"><span class="chip"><img src="ai/icons/a-line-of-credit.png" alt=""></span><h3>Line of Credit</h3><ul><li>Cash flow</li><li>Seasonal swings</li><li>Restocking</li></ul><div class="ctas"><a class="btn">Learn more</a></div></div>
+  </div>
+
+  <h2><span class="tag">Set B</span> Sage shadow badge</h2>
+  <p class="setnote">The same Racing Green glyph with a soft sage offset shape behind it. A touch more designed and dimensional, still completely flat.</p>
+  <div class="big-row">
+    <div class="big-tile"><img src="ai/icons/b-term-loan.png" alt=""></div>
+    <div class="big-tile"><img src="ai/icons/b-sba.png" alt=""></div>
+    <div class="big-tile"><img src="ai/icons/b-heloc.png" alt=""></div>
+    <div class="big-tile"><img src="ai/icons/b-line-of-credit.png" alt=""></div>
+  </div>
+  <div class="grid">
+    <div class="prod"><span class="chip"><img src="ai/icons/b-term-loan.png" alt=""></span><h3>Term Loan</h3><ul><li>Big purchases</li><li>Equipment</li><li>Expansion</li></ul><div class="ctas"><a class="btn">Learn more</a></div></div>
+    <div class="prod"><span class="chip"><img src="ai/icons/b-sba.png" alt=""></span><h3>SBA</h3><ul><li>Expansion</li><li>Refinancing debt</li><li>Working capital</li></ul><div class="ctas"><a class="btn">Learn more</a></div></div>
+    <div class="prod"><span class="chip"><img src="ai/icons/b-heloc.png" alt=""></span><h3>HELOC</h3><ul><li>Cash on hand</li><li>Inventory buys</li><li>Payroll</li></ul><div class="ctas"><a class="btn">Learn more</a></div></div>
+    <div class="prod"><span class="chip"><img src="ai/icons/b-line-of-credit.png" alt=""></span><h3>Line of Credit</h3><ul><li>Cash flow</li><li>Seasonal swings</li><li>Restocking</li></ul><div class="ctas"><a class="btn">Learn more</a></div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High Card Capital — Refining the Ace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Montserrat:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --emerald: #0C4A34;
+    --felt: #07271C;
+    --cream: #F5F0E1;
+    --warm-white: #FBF9F3;
+  }
+  body { font-family: 'Inter', sans-serif; background: #F4F2EC; color: #1A211D; padding: 48px 24px 96px; }
+  .wrap { max-width: 1160px; margin: 0 auto; }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #8A948E; font-weight: 600; margin-bottom: 14px; }
+  h1 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 600; letter-spacing: -0.5px; }
+  .lede { margin-top: 10px; color: #5A6660; font-size: 16px; max-width: 700px; line-height: 1.6; }
+  h2 { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 600; margin: 64px 0 18px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 28px; }
+  .cell { background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 2px 20px rgba(20,40,30,.08); }
+  .cell-head { padding: 18px 24px 14px; display: flex; justify-content: space-between; align-items: baseline; }
+  .cell-head h3 { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; }
+  .cell-head span { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #8A948E; font-weight: 600; }
+  .stage { background: var(--felt); color: var(--cream); min-height: 235px; display: flex; align-items: center; justify-content: center; gap: 26px; padding: 40px 28px; }
+  .note { padding: 14px 24px 20px; font-size: 13.5px; line-height: 1.6; color: #5A6660; }
+
+  .stage svg.mark { height: 110px; width: auto; display: block; flex: none; }
+  .wordblock { display: flex; flex-direction: column; align-items: flex-start; }
+  .wordblock .l1 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 31px; letter-spacing: 1.5px; white-space: nowrap; line-height: 1; }
+  .wordblock .l2 { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13.5px; letter-spacing: 9.5px; margin-top: 9px; white-space: nowrap; text-indent: 2px; }
+
+  .scale { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 16px 24px; background: var(--warm-white); color: var(--emerald); border-top: 1px solid #ECEAE2; flex-wrap: wrap; }
+  .mini { display: flex; align-items: center; gap: 9px; }
+  .mini svg { height: 30px; width: auto; }
+  .mini .wordblock .l1 { font-size: 14.5px; letter-spacing: .8px; }
+  .mini .wordblock .l2 { font-size: 6.5px; letter-spacing: 4.4px; margin-top: 3.5px; }
+  .tiny { display: flex; align-items: center; gap: 14px; }
+  .tiny .s { display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 10.5px; color: #8A948E; }
+
+  .formats { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .fmt { border-radius: 16px; min-height: 230px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 30px 20px; box-shadow: 0 2px 16px rgba(20,40,30,.07); }
+  .fmt .cap { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; opacity: .55; }
+  .fmt svg { display: block; }
+  .stacked { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .stacked .wordblock { align-items: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">High Card Capital · Brand Exploration 05 · Refining the Ace Card</div>
+  <h1>Your concept, finished.</h1>
+  <p class="lede">The peak-in-card is the right logo — it&rsquo;s an A missing its crossbar (the Ace), an arrow up, and a summit, all at once. Below: your version rebuilt with optical corrections, then three evolutions of it. Watch the A&rsquo;s in the wordmark.</p>
+
+  <h2>The mark</h2>
+  <div class="grid" id="grid"></div>
+
+  <h2>The one I&rsquo;d ship — in every format</h2>
+  <div class="formats" id="formats"></div>
+</div>
+
+<script>
+const S = `stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"`;
+
+const marks = {
+  tuned: `<svg class="mark" viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg">
+      <rect x="22" y="20" width="176" height="240" rx="34" ${S} stroke-width="18"/>
+      <path d="M 66 178 L 110 102 L 154 178" ${S} stroke-width="18"/>
+    </svg>`,
+  break_: `<svg class="mark" viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg">
+      <defs><mask id="mPB"><rect width="220" height="280" fill="white"/><circle cx="110" cy="20" r="30" fill="black"/></mask></defs>
+      <rect x="22" y="20" width="176" height="240" rx="34" ${S} stroke-width="18" mask="url(#mPB)"/>
+      <path d="M 62 170 L 110 30 L 158 170" ${S} stroke-width="18"/>
+    </svg>`,
+  grounded: `<svg class="mark" viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg">
+      <rect x="22" y="20" width="176" height="240" rx="34" ${S} stroke-width="18"/>
+      <path d="M 64 260 L 110 112 L 156 260" ${S} stroke-width="18"/>
+    </svg>`
+};
+
+function words(lambda) {
+  const a = lambda ? 'Λ' : 'A';
+  return `<div class="wordblock"><div class="l1">HIGHC${a}RD</div><div class="l2">C${a}PIT${a}L</div></div>`;
+}
+
+const variants = [
+  {
+    name: 'Optically tuned', tag: 'R1',
+    mark: marks.tuned, lambda: false,
+    note: 'Your design with the finish work done: every stroke is now the exact same weight, the peak is optically centered (a hair above true center, where a triangle looks centered), the apex angle is tightened so it reads "A" not "tent", and the icon is scaled so its height matches the full two-line wordmark.'
+  },
+  {
+    name: 'Signature A', tag: 'R2',
+    mark: marks.tuned, lambda: true,
+    note: 'The big unlock: the A&rsquo;s in the wordmark drop their crossbars to match the icon. Now the type and the mark share DNA — HIGHCΛRD CΛPITΛL becomes proprietary, not just a font. This is the move that makes the whole thing feel designed by one hand.'
+  },
+  {
+    name: 'Summit break', tag: 'R3',
+    mark: marks.break_, lambda: true,
+    note: 'The peak grows tall enough to break through the top of the card — funding that gets you past the ceiling. More dynamic, still clean. Slightly riskier at 16px where the gap gets tight.'
+  },
+  {
+    name: 'Grounded peak', tag: 'R4',
+    mark: marks.grounded, lambda: true,
+    note: 'The peak&rsquo;s legs plant into the card&rsquo;s bottom edge — a mountain rising from the baseline, structurally fused with the frame like your earlier H reference. Sturdiest, most architectural of the set.'
+  }
+];
+
+const grid = document.getElementById('grid');
+variants.forEach(v => {
+  const cell = document.createElement('div');
+  cell.className = 'cell';
+  cell.innerHTML = `
+    <div class="cell-head"><h3>${v.name}</h3><span>${v.tag}</span></div>
+    <div class="stage">${v.mark}${words(v.lambda)}</div>
+    <div class="scale">
+      <div class="mini">${v.mark}${words(v.lambda)}</div>
+      <div class="tiny"></div>
+    </div>
+    <div class="note">${v.note}</div>`;
+  const tiny = cell.querySelector('.tiny');
+  [16, 32].forEach(px => {
+    const s = document.createElement('div');
+    s.className = 's';
+    const holder = document.createElement('div');
+    holder.innerHTML = v.mark;
+    const svg = holder.firstElementChild;
+    svg.style.height = px + 'px';
+    svg.style.width = 'auto';
+    s.appendChild(svg);
+    const lbl = document.createElement('span');
+    lbl.textContent = px + 'px';
+    s.appendChild(lbl);
+    tiny.appendChild(s);
+  });
+  grid.appendChild(cell);
+});
+
+/* formats board — R2 as the hero */
+const fm = document.getElementById('formats');
+const combos = [
+  { bg: '#F5F0E1', fg: '#0C4A34', cap: 'On cream' },
+  { bg: '#07271C', fg: '#F5F0E1', cap: 'On felt' },
+  { bg: '#FFFFFF', fg: '#0C4A34', cap: 'On white' }
+];
+combos.forEach(c => {
+  const d = document.createElement('div');
+  d.className = 'fmt';
+  d.style.background = c.bg;
+  d.style.color = c.fg;
+  d.innerHTML = `<div style="display:flex;align-items:center;gap:18px">${marks.tuned}${words(true)}</div><div class="cap">${c.cap}</div>`;
+  d.querySelector('svg').style.height = '74px';
+  d.querySelector('.l1').style.fontSize = '21px';
+  d.querySelector('.l2').style.cssText += ';font-size:9.5px;letter-spacing:6.4px;margin-top:6px';
+  fm.appendChild(d);
+});
+const stacked = document.createElement('div');
+stacked.className = 'fmt';
+stacked.style.background = '#0C4A34';
+stacked.style.color = '#F5F0E1';
+stacked.innerHTML = `<div class="stacked">${marks.tuned}${words(true)}</div><div class="cap">Stacked · centered</div>`;
+stacked.querySelector('svg').style.height = '84px';
+stacked.querySelector('.l1').style.fontSize = '19px';
+stacked.querySelector('.l2').style.cssText += ';font-size:9px;letter-spacing:6px;margin-top:6px';
+fm.appendChild(stacked);
+</script>
+</body>
+</html>

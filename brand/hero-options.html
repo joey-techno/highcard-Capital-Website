@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero background options · High Card Capital</title>
+<style>
+  @font-face { font-family:'Poppins'; font-weight:600; src:url('../site/assets/fonts/poppins-600.woff2') format('woff2'); font-display:swap; }
+  @font-face { font-family:'Inter'; font-weight:400; src:url('../site/assets/fonts/inter-400.woff2') format('woff2'); font-display:swap; }
+  :root { --racing:#004225; --felt:#00331D; --cream:#F5F0E1; --white:#FBF9F3; --sage:#8FA898; --slate:#5A6660; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--white); font-family:'Inter',sans-serif; color:#141A16; }
+  .intro { padding:56px clamp(20px,4vw,64px) 8px; }
+  .intro h1 { font-family:'Poppins',sans-serif; font-weight:600; font-size:34px; color:var(--racing); }
+  .intro h1 .dot { color:var(--sage); }
+  .intro p { color:var(--slate); font-size:15.5px; max-width:760px; margin-top:10px; line-height:1.6; }
+  .label { padding:56px clamp(20px,4vw,64px) 18px; display:flex; align-items:baseline; gap:16px; }
+  .label .tag { font-family:'Poppins',sans-serif; font-weight:600; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--racing); background:var(--cream); border:1px solid rgba(0,66,37,.13); border-radius:999px; padding:6px 16px; }
+  .label b { font-family:'Poppins',sans-serif; font-weight:600; font-size:20px; color:var(--racing); }
+  .label span { color:var(--slate); font-size:14px; }
+
+  /* ---- shared hero replica ---- */
+  .hero { position:relative; background:var(--felt); overflow:hidden; min-height:680px; display:flex; align-items:center; }
+  .hero__inner { position:relative; z-index:3; width:min(1180px, 92%); margin:0 auto; display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center; padding:72px 0; }
+  .eyebrow { font-family:'Poppins',sans-serif; font-weight:600; font-size:11.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--sage); margin-bottom:22px; }
+  .hero h2 { font-family:'Poppins',sans-serif; font-weight:600; font-size:clamp(44px, 5.4vw, 72px); line-height:1.04; color:var(--cream); letter-spacing:-.01em; }
+  .hero h2 .dot { color:var(--sage); }
+  .hero p.sub { color:#B9C4BC; font-size:16.5px; line-height:1.65; max-width:440px; margin-top:26px; }
+  .cta { display:inline-block; margin-top:34px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15.5px; color:var(--racing); background:var(--cream); border-radius:12px; padding:16px 30px; text-decoration:none; }
+  .proof { justify-self:end; width:300px; position:relative; z-index:3; }
+  .proof img { width:100%; height:170px; object-fit:cover; border-radius:16px 16px 0 0; display:block; }
+  .proof__body { background:var(--white); border-radius:0 0 16px 16px; padding:18px 20px; margin-top:-24px; position:relative; box-shadow:0 30px 60px -20px rgba(0,0,0,.45); }
+  .proof__cap { display:flex; justify-content:space-between; align-items:center; font-family:'Poppins',sans-serif; font-weight:600; font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--slate); }
+  .pill { border:1px solid var(--racing); color:var(--racing); border-radius:999px; padding:3px 10px; font-size:9px; }
+  .amt { font-family:'Poppins',sans-serif; font-weight:600; font-size:26px; color:var(--racing); margin:8px 0 10px; }
+  .rows { font-size:11.5px; color:var(--slate); display:flex; flex-direction:column; gap:6px; }
+  .rows div { display:flex; justify-content:space-between; border-top:1px solid rgba(0,66,37,.1); padding-top:6px; }
+  .rows b { color:#141A16; font-weight:600; }
+  @media (max-width:980px) { .hero__inner { grid-template-columns:1fr; } .proof { justify-self:start; } }
+
+  /* ---- background devices (z-index 1-2, under content) ---- */
+  .bgdev { position:absolute; inset:0; z-index:1; pointer-events:none; }
+
+  /* A: cropped mega watermark mark */
+  .dev-mark svg { position:absolute; right:-140px; top:-110px; height:135%; transform:rotate(9deg); opacity:.08; }
+
+  /* B: engraved micro-peak pattern field */
+  .dev-pattern { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M18 34 L28 16 L38 34' fill='none' stroke='%23F5F0E1' stroke-width='2' stroke-linecap='round' opacity='.05'/%3E%3C/svg%3E"); background-size:56px 56px; }
+
+  /* C: card-face keyline frame + film grain */
+  .dev-frame::before { content:''; position:absolute; inset:20px; border:1px solid rgba(245,240,225,.14); border-radius:26px; }
+  .dev-frame::after {
+    content:''; position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+    opacity:.07; mix-blend-mode:soft-light;
+  }
+
+  /* D: fanned card outlines behind the proof card */
+  .dev-fan svg { position:absolute; right:-40px; bottom:-40px; height:115%; opacity:.12; }
+</style>
+</head>
+<body>
+  <div class="intro">
+    <h1>Hero background options<span class="dot">.</span></h1>
+    <p>Four ways to give the hero a designed layer, researched from award-level and premium-finance sites. Every one sits on the locked flat Table Green: no gradients, no second dark green, no gold. Combos are possible (C pairs well with A or D). Scroll and compare.</p>
+  </div>
+
+  <!-- ============ OPTION A ============ -->
+  <div class="label"><span class="tag">Option A</span><b>The Watermark</b><span>your card mark, huge and cropped off the edge, barely there</span></div>
+  <section class="hero">
+    <div class="bgdev dev-mark">
+      <svg viewBox="248 648 415 653" preserveAspectRatio="xMidYMid meet"><path fill="#F5F0E1" fill-rule="evenodd" d="M281.0 1293.9C269.9 1290.0 259.8 1279.7 256.0 1268.6L254.0 1262.6L254.0 975.0L254.0 687.3L255.9 681.7C260.0 670.0 269.2 661.2 282.6 656.4L289.1 654.0L456.9 654.0L624.6 654.0L630.6 656.0C642.0 659.9 652.1 670.0 656.0 681.4L658.0 687.4L658.0 975.0L658.0 1262.6L656.0 1268.6C652.1 1280.0 642.0 1290.1 630.6 1294.0L624.6 1296.0L455.6 1295.9L286.5 1295.8L281.0 1293.9ZM626.7 1281.9C634.3 1279.0 641.0 1272.3 643.9 1264.7L646.0 1258.9L646.0 974.7L646.0 690.5L642.9 684.0C638.9 675.5 636.9 673.4 628.5 669.4L621.6 666.0L457.5 666.0L293.4 666.0L287.3 668.1C279.3 670.8 273.0 676.3 269.1 684.2L266.0 690.3L266.0 975.0L266.0 1259.7L269.0 1265.8C272.6 1272.8 278.1 1278.2 285.4 1281.6L290.5 1284.0L455.7 1284.0L620.9 1284.0L626.7 1281.9ZM340.2 1013.3C337.8 1012.4 339.2 1009.6 356.7 980.7C366.4 964.6 387.2 930.1 403.0 904.0C457.2 814.2 454.5 818.5 457.2 818.2L459.7 817.9L484.0 858.2C497.4 880.4 520.9 919.4 536.3 945.0C551.7 970.6 565.5 993.3 567.0 995.5C577.5 1011.1 577.7 1014.0 568.3 1014.0C561.4 1014.0 559.5 1013.0 556.9 1007.7C555.7 1005.4 552.5 999.9 549.8 995.5C547.1 991.1 542.0 982.8 538.6 977.0C535.1 971.2 524.5 953.7 515.0 938.0C505.5 922.3 490.0 896.7 480.6 881.1C471.2 865.6 462.1 851.2 460.3 849.1L457.1 845.5L455.2 847.5C454.1 848.6 450.7 853.8 447.5 859.0C440.5 870.5 409.0 922.3 399.0 939.0C397.2 942.0 393.4 948.1 390.7 952.5C387.9 956.9 378.7 972.0 370.3 986.0C361.9 1000.0 354.2 1012.1 353.3 1012.8C351.7 1014.0 342.8 1014.4 340.2 1013.3Z"/></svg>
+    </div>
+    <div class="hero__inner">
+      <div>
+        <div class="eyebrow">Trusted Business Partner</div>
+        <h2>Funding to power your business growth<span class="dot">.</span></h2>
+        <p class="sub">Whether you're handling today's priorities or preparing for what's next, High Card Capital keeps your cash flow one step ahead.</p>
+        <a class="cta">Apply Now</a>
+      </div>
+      <div class="proof">
+        <img src="../site/assets/img/img-owners-restaurant.webp" alt="">
+        <div class="proof__body">
+          <div class="proof__cap"><span>Wire confirmation</span><span class="pill">Funded</span></div>
+          <div class="amt">$150,000</div>
+          <div class="rows">
+            <div><span>To</span><b>Restaurant · Columbus, OH</b></div>
+            <div><span>Product</span><b>Term Loan</b></div>
+            <div><span>Applied to funded</span><b>26 hours</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OPTION B ============ -->
+  <div class="label"><span class="tag">Option B</span><b>The Engraving</b><span>a fine banknote-style field of your ace peak, reads as texture</span></div>
+  <section class="hero">
+    <div class="bgdev dev-pattern"></div>
+    <div class="hero__inner">
+      <div>
+        <div class="eyebrow">Trusted Business Partner</div>
+        <h2>Funding to power your business growth<span class="dot">.</span></h2>
+        <p class="sub">Whether you're handling today's priorities or preparing for what's next, High Card Capital keeps your cash flow one step ahead.</p>
+        <a class="cta">Apply Now</a>
+      </div>
+      <div class="proof">
+        <img src="../site/assets/img/img-owners-restaurant.webp" alt="">
+        <div class="proof__body">
+          <div class="proof__cap"><span>Wire confirmation</span><span class="pill">Funded</span></div>
+          <div class="amt">$150,000</div>
+          <div class="rows">
+            <div><span>To</span><b>Restaurant · Columbus, OH</b></div>
+            <div><span>Product</span><b>Term Loan</b></div>
+            <div><span>Applied to funded</span><b>26 hours</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OPTION C ============ -->
+  <div class="label"><span class="tag">Option C</span><b>The Card Face</b><span>a thin keyline frame + film grain, the hero becomes a giant card, matches your new product cards</span></div>
+  <section class="hero dev-frame">
+    <div class="hero__inner">
+      <div>
+        <div class="eyebrow">Trusted Business Partner</div>
+        <h2>Funding to power your business growth<span class="dot">.</span></h2>
+        <p class="sub">Whether you're handling today's priorities or preparing for what's next, High Card Capital keeps your cash flow one step ahead.</p>
+        <a class="cta">Apply Now</a>
+      </div>
+      <div class="proof">
+        <img src="../site/assets/img/img-owners-restaurant.webp" alt="">
+        <div class="proof__body">
+          <div class="proof__cap"><span>Wire confirmation</span><span class="pill">Funded</span></div>
+          <div class="amt">$150,000</div>
+          <div class="rows">
+            <div><span>To</span><b>Restaurant · Columbus, OH</b></div>
+            <div><span>Product</span><b>Term Loan</b></div>
+            <div><span>Applied to funded</span><b>26 hours</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OPTION D ============ -->
+  <div class="label"><span class="tag">Option D</span><b>The High Card</b><span>a fanned hand of card outlines behind the proof card, one raised</span></div>
+  <section class="hero">
+    <div class="bgdev dev-fan">
+      <svg viewBox="0 0 900 1000" fill="none" stroke="#F5F0E1" stroke-width="3">
+        <g transform="rotate(-16 450 900)"><rect x="240" y="230" width="415" height="653" rx="42"/></g>
+        <g transform="rotate(-4 450 900)"><rect x="250" y="180" width="415" height="653" rx="42"/></g>
+        <g transform="rotate(9 450 900)">
+          <rect x="260" y="90" width="415" height="653" rx="42"/>
+          <path d="M370 500 L467 330 L564 500" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="hero__inner">
+      <div>
+        <div class="eyebrow">Trusted Business Partner</div>
+        <h2>Funding to power your business growth<span class="dot">.</span></h2>
+        <p class="sub">Whether you're handling today's priorities or preparing for what's next, High Card Capital keeps your cash flow one step ahead.</p>
+        <a class="cta">Apply Now</a>
+      </div>
+      <div class="proof">
+        <img src="../site/assets/img/img-owners-restaurant.webp" alt="">
+        <div class="proof__body">
+          <div class="proof__cap"><span>Wire confirmation</span><span class="pill">Funded</span></div>
+          <div class="amt">$150,000</div>
+          <div class="rows">
+            <div><span>To</span><b>Restaurant · Columbus, OH</b></div>
+            <div><span>Product</span><b>Term Loan</b></div>
+            <div><span>Applied to funded</span><b>26 hours</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="intro" style="padding-top:48px">
+    <p>A note on each: A is the most "expensive brand" move (Porsche, On Running do this). B reads as heritage engraving, the Coutts direction. C ties the whole site together since the product cards now have the same keyline face. D is the most literal brand story, the dealt hand with the high card raised.</p>
+  </div>
+</body>
+</html>

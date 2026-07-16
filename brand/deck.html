@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High Card Capital — Brand Confirmation Deck</title>
+<link rel="icon" href="final/app-tile.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --emerald:#004225; --felt:#00331D; --felt-hi:#00331D; --cream:#F5F0E1; --warm-white:#FBF9F3;
+    --sage:#8FA898; --ink:#141A16; --mist:#F4F2EC; --slate:#5A6660;
+  }
+  body { font-family:'Inter',sans-serif; background:var(--mist); color:var(--ink); }
+  section { padding:96px 6vw; }
+  .inner { max-width:1180px; margin:0 auto; }
+  .eyebrow { font-family:'Poppins',sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; font-weight:700; color:var(--sage); margin-bottom:18px; }
+  h2 { font-family:'Fraunces',serif; font-size:clamp(32px,4vw,46px); font-weight:600; letter-spacing:-0.5px; margin-bottom:14px; }
+  .lede { color:var(--slate); font-size:17px; line-height:1.65; max-width:680px; }
+  .dark { background:var(--felt); color:var(--cream); }
+  .dark h2 { color:var(--cream); }
+  .dark .lede { color:#B9C4BC; }
+  .dark .eyebrow { color:var(--sage); }
+
+  /* cover */
+  .cover { min-height:92vh; display:flex; align-items:center; justify-content:center; text-align:center;
+    background:var(--felt); position:relative; }
+  .cover img.lockup { width:min(420px,70vw); margin:0 auto 40px; display:block; }
+  .cover .sub { font-family:'Poppins',sans-serif; letter-spacing:4px; font-size:13px; text-transform:uppercase; font-weight:700; color:var(--sage); }
+  .cover .date { margin-top:14px; font-size:13px; color:#7E8F86; }
+
+  /* idea */
+  .idea-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:24px; margin-top:48px; }
+  .idea-card { background:#fff; border-radius:18px; padding:34px 30px; box-shadow:0 2px 18px rgba(20,40,30,.07); }
+  .idea-card svg { height:64px; width:auto; color:var(--emerald); margin-bottom:20px; }
+  .idea-card h3 { font-family:'Fraunces',serif; font-size:21px; font-weight:600; margin-bottom:8px; }
+  .idea-card p { color:var(--slate); font-size:14.5px; line-height:1.6; }
+
+  /* logo */
+  .logo-hero { background:var(--felt); border-radius:22px; padding:72px 40px; display:flex; align-items:center; justify-content:center; margin:44px 0 24px; }
+  .logo-hero img { width:min(640px,85%); }
+  .logo-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:20px; }
+  .logo-tile { border-radius:16px; min-height:200px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; padding:28px 18px; box-shadow:0 2px 14px rgba(20,40,30,.06); }
+  .cap { font-family:'Poppins',sans-serif; font-size:10.5px; letter-spacing:2px; text-transform:uppercase; font-weight:700; opacity:.55; }
+  .logo-notes { margin-top:28px; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+  .note-card { background:#fff; border-radius:14px; padding:22px 24px; font-size:14px; line-height:1.6; color:var(--slate); box-shadow:0 2px 14px rgba(20,40,30,.06); }
+  .note-card strong { color:var(--ink); }
+
+  /* color */
+  .swatch-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:18px; margin:44px 0 30px; }
+  .swatch { border-radius:16px; height:150px; padding:18px; display:flex; flex-direction:column; justify-content:flex-end; box-shadow:0 2px 14px rgba(20,40,30,.08); }
+  .swatch .nm { font-family:'Poppins',sans-serif; font-weight:700; font-size:14px; }
+  .swatch .hx { font-family:monospace; font-size:12px; opacity:.75; margin-top:3px; }
+  .prop-bar { display:flex; height:56px; border-radius:14px; overflow:hidden; box-shadow:0 2px 14px rgba(20,40,30,.08); }
+  .prop-bar div { display:flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-size:11px; letter-spacing:1.5px; font-weight:700; text-transform:uppercase; }
+  .prop-note { margin-top:14px; font-size:13.5px; color:var(--slate); }
+
+  /* typography */
+  .type-board { background:#fff; border-radius:18px; padding:44px; margin-top:44px; box-shadow:0 2px 18px rgba(20,40,30,.07); }
+  .type-row { padding:26px 0; border-bottom:1px solid #EFEDE5; display:flex; align-items:baseline; gap:34px; flex-wrap:wrap; }
+  .type-row:last-child { border-bottom:none; }
+  .type-label { font-family:'Poppins',sans-serif; width:170px; flex:none; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--sage); }
+
+  /* icons */
+  .icon-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:16px; margin-top:44px; }
+  .icon-cell { background:#fff; border-radius:14px; padding:24px 12px 18px; display:flex; flex-direction:column; align-items:center; gap:14px; box-shadow:0 2px 12px rgba(20,40,30,.06); }
+  .icon-cell svg { width:40px; height:40px; color:var(--emerald); }
+  .icon-cell span { font-size:11px; color:var(--slate); font-family:monospace; }
+  .icon-dark { background:var(--emerald); }
+  .icon-dark svg { color:var(--cream); }
+  .icon-dark span { color:var(--sage); }
+
+  /* imagery */
+  .img-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; margin-top:44px; }
+  .img-card { border-radius:16px; overflow:hidden; background:#fff; box-shadow:0 2px 16px rgba(20,40,30,.08); }
+  .img-card img { width:100%; display:block; aspect-ratio:3/2; object-fit:cover; }
+  .img-card .cp { padding:14px 18px; font-size:13px; color:var(--slate); }
+
+  /* research */
+  .tech-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:18px; margin-top:44px; }
+  .tech { background:#fff; border-radius:14px; padding:24px 26px; box-shadow:0 2px 12px rgba(20,40,30,.06); }
+  .tech .no { font-family:'Fraunces',serif; font-size:15px; color:var(--sage); font-weight:600; }
+  .tech h4 { font-family:'Poppins',sans-serif; font-size:15.5px; font-weight:700; margin:8px 0 6px; color:var(--ink); }
+  .tech p { font-size:13.5px; line-height:1.6; color:var(--slate); }
+
+  /* directions */
+  .dir { border-radius:22px; overflow:hidden; box-shadow:0 4px 28px rgba(20,40,30,.1); margin-top:44px; background:#fff; }
+  .dir-head { padding:30px 38px 26px; display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:10px; border-bottom:1px solid #EFEDE5; }
+  .dir-head h3 { font-family:'Fraunces',serif; font-size:27px; font-weight:600; }
+  .dir-head .tag { font-family:'Poppins',sans-serif; font-size:11px; letter-spacing:2.5px; text-transform:uppercase; font-weight:700; color:var(--sage); }
+  .dir-body { display:grid; grid-template-columns:1.5fr 1fr; }
+  @media (max-width:900px){ .dir-body { grid-template-columns:1fr; } }
+  .mock { padding:34px; }
+  .browser { border-radius:14px; overflow:hidden; border:1px solid #E5E2D8; box-shadow:0 10px 34px rgba(20,40,30,.12); }
+  .browser .bar { height:30px; background:#ECEAE0; display:flex; align-items:center; gap:6px; padding:0 12px; }
+  .browser .bar i { width:9px; height:9px; border-radius:50%; background:#D5D2C6; }
+  .mock-nav { display:flex; justify-content:space-between; align-items:center; padding:14px 26px; }
+  .mock-nav img { height:26px; }
+  .mock-nav .links { display:flex; gap:16px; font-size:10.5px; font-weight:600; }
+  .m-btn { border-radius:999px; padding:9px 18px; font-size:11px; font-weight:700; display:inline-block; }
+  .mock-hero { padding:34px 26px 40px; }
+  .spec { padding:34px 38px; background:var(--warm-white); border-left:1px solid #EFEDE5; }
+  .spec h5 { font-family:'Poppins',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--sage); margin:20px 0 8px; }
+  .spec h5:first-child { margin-top:0; }
+  .spec p { font-size:13.5px; line-height:1.6; color:var(--slate); }
+  .spec .fonts span { display:block; margin-bottom:6px; }
+
+  /* next */
+  .checklist { margin-top:36px; display:grid; gap:12px; max-width:640px; }
+  .check-item { background:#fff; border-radius:12px; padding:18px 22px; display:flex; gap:14px; align-items:center; font-size:15px; box-shadow:0 2px 10px rgba(20,40,30,.05); }
+  .check-item svg { width:22px; height:22px; color:var(--emerald); flex:none; }
+
+  .slide-no { position:absolute; } /* unused, keep simple */
+</style>
+</head>
+<body>
+
+<!-- 00 · COVER -->
+<section class="cover" id="cover">
+  <div>
+    <img class="lockup" src="final/lockup-stacked-cream.svg" alt="High Card Capital">
+    <div class="sub">Brand Confirmation Deck</div>
+    <div class="date">Identity · Typography · Icons · Imagery · 3 Website Directions — July 2026</div>
+  </div>
+</section>
+
+<!-- 01 · THE IDEA -->
+<section>
+  <div class="inner">
+    <div class="eyebrow">01 · The Idea</div>
+    <h2>One shape, three meanings.</h2>
+    <p class="lede">The mark is a single upright card holding a peak — an A with no crossbar. Every read works in our favor, and none of them is a gimmick.</p>
+    <div class="idea-grid">
+      <div class="idea-card">
+        <svg viewBox="0 0 200 300" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter"><rect x="14" y="10" width="172" height="280" rx="30"/><path d="M66 180 L100 112 L134 180"/></svg>
+        <h3>The Ace</h3>
+        <p>The peak inside the card is the ace — the high card. It's the name of the company drawn as a single glyph.</p>
+      </div>
+      <div class="idea-card">
+        <svg viewBox="0 0 200 300" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter"><path d="M66 190 L110 114 L154 190" transform="translate(0,-24)"/><path d="M110 90 V210" transform="translate(0,10)" opacity="0"/></svg>
+        <h3>The Climb</h3>
+        <p>Read again and it's an arrow pointing up: growth, funding, momentum for the businesses we back.</p>
+      </div>
+      <div class="idea-card">
+        <svg viewBox="0 0 200 300" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter"><path d="M40 200 L98 110 L128 155 L152 120 L190 200" transform="translate(-5,-10) scale(0.95)"/></svg>
+        <h3>The Summit</h3>
+        <p>And it's a peak — "High." Quiet altitude, not casino flash. Premium without the gold leaf.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · LOGO -->
+<section style="background:var(--mist)">
+  <div class="inner">
+    <div class="eyebrow">02 · Logo System</div>
+    <h2>Your logo — locked.</h2>
+    <p class="lede">The approved artwork, traced directly into production vector paths — every curve, cut, and letterform is pixel-faithful to the version you signed off, with edges cleaned in three verification passes. Pure SVG paths, no font dependencies, scales from favicon to billboard.</p>
+    <div class="logo-hero"><img src="final/lockup-horizontal-cream.svg" alt="Primary lockup"></div>
+    <div class="logo-grid">
+      <div class="logo-tile" style="background:var(--cream)"><img src="final/lockup-horizontal-emerald.svg" style="width:92%"><div class="cap" style="color:var(--emerald)">Primary · light</div></div>
+      <div class="logo-tile" style="background:var(--felt)"><img src="final/lockup-stacked-cream.svg" style="width:56%"><div class="cap" style="color:var(--cream)">Stacked</div></div>
+      <div class="logo-tile" style="background:#fff"><img src="final/mark-emerald.svg" style="width:30%"><div class="cap" style="color:var(--emerald)">Mark</div></div>
+      <div class="logo-tile" style="background:var(--warm-white)"><img src="final/mark-emerald.svg" style="width:11%"><img src="final/mark-emerald.svg" style="width:7%"><div class="cap" style="color:var(--emerald)">Mark at 32 / 16px</div></div>
+      <div class="logo-tile" style="background:var(--mist)"><img src="final/app-tile.svg" style="width:34%; border-radius:18px"><div class="cap" style="color:var(--emerald)">App tile / avatar</div></div>
+    </div>
+    <div class="logo-notes">
+      <div class="note-card"><strong>Clear space:</strong> keep one card-width of empty space around the lockup on all sides. Nothing parks inside it.</div>
+      <div class="note-card"><strong>Minimum sizes:</strong> horizontal lockup ≥ 140px wide; below that, switch to the mark alone. Favicon and avatar use the app-tile (mark on Racing Green squircle).</div>
+      <div class="note-card"><strong>Two colors only:</strong> Racing Green on light surfaces, cream on dark. Never gold, never multi-color, never outlines-on-photos without a scrim.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · COLOR -->
+<section>
+  <div class="inner">
+    <div class="eyebrow">03 · Color</div>
+    <h2>Racing Green &amp; cream, disciplined.</h2>
+    <p class="lede">British Racing Green (#004225) leads; cream is the warmth; the neutrals do the everyday work. Every dark surface in the brand is one single flat shade — Table Green #00331D — no gradients, no texture, no light-and-dark. No gold anywhere.</p>
+    <div class="swatch-row">
+      <div class="swatch" style="background:var(--emerald); color:var(--cream)"><div class="nm">Racing Green</div><div class="hx">#004225 · brand, CTAs</div></div>
+      <div class="swatch" style="background:var(--felt); color:var(--cream)"><div class="nm">Table Green</div><div class="hx">#00331D · all dark sections — one flat shade</div></div>
+      <div class="swatch" style="background:var(--cream); color:var(--emerald)"><div class="nm">Card Cream</div><div class="hx">#F5F0E1 · warm surfaces</div></div>
+      <div class="swatch" style="background:var(--warm-white); color:var(--emerald); border:1px solid #ECE9DE"><div class="nm">Warm White</div><div class="hx">#FBF9F3 · page background</div></div>
+      <div class="swatch" style="background:var(--sage); color:var(--felt)"><div class="nm">Sage</div><div class="hx">#8FA898 · secondary, eyebrows</div></div>
+      <div class="swatch" style="background:var(--ink); color:var(--cream)"><div class="nm">Ink</div><div class="hx">#141A16 · body text</div></div>
+    </div>
+    <div class="prop-bar">
+      <div style="flex:6; background:var(--warm-white); color:var(--slate)">Warm neutrals · 60%</div>
+      <div style="flex:3; background:var(--cream); color:var(--emerald)">Cream · 30%</div>
+      <div style="flex:1.4; background:var(--emerald); color:var(--cream)">Racing</div>
+      <div style="flex:0.6; background:var(--felt); color:var(--sage)">Midnight</div>
+    </div>
+    <div class="prop-note">The 60/30/10 rule keeps it premium: mostly warm neutral, Racing Green reserved for moments that matter — buttons, links, the mark. That restraint is what reads "$10k website" instead of "green website."</div>
+  </div>
+</section>
+
+<!-- 04 · TYPOGRAPHY -->
+<section style="background:var(--mist)">
+  <div class="inner">
+    <div class="eyebrow">04 · Typography — chosen</div>
+    <h2>Poppins &amp; Inter — the researched system<span style="color:var(--emerald)">.</span></h2>
+    <p class="lede">Locked after live research across banks, lenders, and fintech: <strong>Poppins for display</strong> (the logo's own family — and notably, no major bank uses it, so it's ours), <strong>Inter for body and UI</strong> (the fintech gold standard), and <strong>tabular figures on every number</strong>. The signature stays: every headline ends with a period in Racing Green.</p>
+    <div class="type-board">
+      <div class="type-row"><div class="type-label">Display · Poppins 600</div><div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:46px; letter-spacing:-0.3px; line-height:1.08;">Funded at full strength<span style="color:var(--emerald)">.</span></div></div>
+      <div class="type-row"><div class="type-label">H2 · Poppins 600</div><div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:30px; letter-spacing:-0.2px;">Four ways to fund the next move<span style="color:var(--emerald)">.</span></div></div>
+      <div class="type-row"><div class="type-label">Eyebrow label</div><div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:13px; letter-spacing:3.5px; text-transform:uppercase; color:var(--emerald)">Fast business funding · Human advisors</div></div>
+      <div class="type-row"><div class="type-label">Body / Inter</div><div style="font-size:16.5px; line-height:1.65; color:var(--slate); max-width:560px;">It takes two minutes to tell us about your business. A real advisor does the rest, matching you to the right Term Loan, SBA, HELOC, or Line of Credit.</div></div>
+      <div class="type-row"><div class="type-label">Numbers</div><div style="font-family:'Poppins',sans-serif; font-weight:800; font-size:34px; color:var(--emerald)">$5K – $25M <span style="font-size:15px; color:var(--sage); font-weight:600">funding range</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · ICONS -->
+<section>
+  <div class="inner">
+    <div class="eyebrow">05 · Iconography</div>
+    <h2>Seventeen icons, one hand.</h2>
+    <p class="lede">Custom-drawn on the same grid as the logo — identical stroke weight, identical rounded terminals. These cover every section of the site: the four products, the value props, and the UI. Delivered as individual SVGs in <code style="font-family:monospace; font-size:14px;">brand/icons/</code>.</p>
+    <div class="icon-grid" id="iconGrid"></div>
+  </div>
+</section>
+
+<!-- 06 · IMAGERY -->
+<section style="background:var(--mist)">
+  <div class="inner">
+    <div class="eyebrow">06 · Imagery</div>
+    <h2>Real merchants, warm light.</h2>
+    <p class="lede">Generated with the top OpenAI image model to set the photographic direction: real-feeling business owners, golden natural light, emerald and cream living inside the scene. No suits shaking hands on white backgrounds — ever.</p>
+    <div class="img-grid">
+      <div class="img-card"><img src="ai/img-bakery.png" onerror="this.closest('.img-card').style.display='none'"><div class="cp">The owner, proud, at their place — hero &amp; story imagery</div></div>
+      <div class="img-card"><img src="ai/img-advisor.png" onerror="this.closest('.img-card').style.display='none'"><div class="cp">Advisor and merchant, side by side — the human promise</div></div>
+      <div class="img-card"><img src="ai/img-trucker.png" onerror="this.closest('.img-card').style.display='none'"><div class="cp">Trucking owner — product-page hero</div></div>
+      <div class="img-card"><img src="ai/img-salon.png" onerror="this.closest('.img-card').style.display='none'"><div class="cp">Salon owner — testimonial band</div></div>
+      <div class="img-card"><img src="ai/img-contractor.png" onerror="this.closest('.img-card').style.display='none'"><div class="cp">Contractor — Term Loan page</div></div>
+      <div class="img-card"><img src="ai/img-boutique.png" onerror="this.closest('.img-card').style.display='none'"><div class="cp">Boutique owner — About page</div></div>
+      <div class="img-card"><img src="ai/img-chef.png" onerror="this.closest('.img-card').style.display='none'"><div class="cp">Chef-owner — SBA page</div></div>
+      <div class="img-card"><img src="ai/img-coffee.png" onerror="this.closest('.img-card').style.display='none'"><div class="cp">Coffee shop owner — hero rotation</div></div>
+      <div class="img-card"><img src="ai/img-workshop.png" onerror="this.closest('.img-card').style.display='none'"><div class="cp">Hands and craft — detail shots between sections</div></div>
+      <div class="img-card"><img src="ai/tex-cream.png" onerror="this.closest('.img-card').style.display='none'"><div class="cp">Embossed cream texture — light section backgrounds (dark sections stay flat Midnight Green with a subtle gradient — no texture)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · RESEARCH -->
+<section class="dark">
+  <div class="inner">
+    <div class="eyebrow">07 · What the best financial sites do</div>
+    <h2>Techniques we're stealing.</h2>
+    <p class="lede">From a survey of leading fintech and lending sites — Mercury, Ramp, Stripe, Bluevine and peers. Each one below is a concrete pattern the build will implement.</p>
+    <div class="tech-grid" id="techGrid"></div>
+  </div>
+</section>
+
+<!-- 08 · BUILD BLUEPRINT -->
+<section>
+  <div class="inner">
+    <div class="eyebrow">08 · The build blueprint</div>
+    <h2>What we're building<span style="color:var(--emerald)">.</span></h2>
+    <p class="lede">A full multi-page site. The application itself lives in JotForm — every CTA on the site wires to the Apply page, which ships as a ready JotForm shell. This deck plus this blueprint is the complete spec for the build.</p>
+
+    <h3 style="font-family:'Fraunces',serif; font-size:22px; margin:44px 0 14px;">The menu bar</h3>
+    <div style="background:#fff; border:1px solid #E9E6DA; border-radius:14px; padding:16px 26px; display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap; box-shadow:0 2px 14px rgba(20,40,30,.06);">
+      <img src="final/lockup-horizontal-emerald.svg" style="height:30px;">
+      <div style="display:flex; gap:22px; align-items:center; font-family:'Poppins',sans-serif; font-size:13px; font-weight:500; color:var(--ink); flex-wrap:wrap;">
+        <span>Funding <span style="color:var(--sage)">▾</span></span><span>How it works</span><span>About us</span><span>FAQ</span><span>Contact</span>
+        <span style="color:var(--emerald); font-weight:600;">(800) 000-0000</span>
+        <span style="background:var(--emerald); color:var(--cream); border-radius:10px; padding:10px 18px; font-weight:600;">Apply now →</span>
+      </div>
+    </div>
+    <p style="margin-top:12px; font-size:13px; color:var(--slate);">"Funding" opens a dropdown of the four product pages. Sticky on scroll; on mobile the bar collapses to logo + hamburger + a persistent Apply button.</p>
+
+    <h3 style="font-family:'Fraunces',serif; font-size:22px; margin:44px 0 14px;">The pages — ten</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:16px;" id="pages"></div>
+
+    <h3 style="font-family:'Fraunces',serif; font-size:22px; margin:44px 0 14px;">Included in this build</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:12px;" id="features"></div>
+  </div>
+</section>
+
+<!-- 09 · NEXT -->
+<section class="dark" style="padding-bottom:120px;">
+  <div class="inner">
+    <div class="eyebrow">09 · Next steps</div>
+    <h2>The spec is complete.</h2>
+    <p class="lede">Logo, palette, typography, and icons are locked — each one pressure-tested against alternatives and real industry research. The design system is done. The blueprint above defines pages, menu, and features. Hand this deck to the build — visual direction is the builder's to take at full strength.</p>
+    <div class="checklist">
+      <div class="check-item" style="background:rgba(245,240,225,.05); border:1px solid rgba(245,240,225,.18); box-shadow:none; color:var(--cream);"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="15"/><path d="M16.5 24 L22 29.5 L32 18.5"/></svg>Logo — LOCKED · traced from your approved artwork</div>
+      <div class="check-item" style="background:rgba(245,240,225,.05); border:1px solid rgba(245,240,225,.18); box-shadow:none; color:var(--cream);"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="15"/><path d="M16.5 24 L22 29.5 L32 18.5"/></svg>Palette — LOCKED · Racing Green &amp; Cream, re-confirmed against 5 rivals</div>
+      <div class="check-item" style="background:rgba(245,240,225,.05); border:1px solid rgba(245,240,225,.18); box-shadow:none; color:var(--cream);"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="15"/><path d="M16.5 24 L22 29.5 L32 18.5"/></svg>Build blueprint — pages, menu, features (confirmed below)</div>
+      <div class="check-item" style="background:rgba(245,240,225,.05); border:1px solid rgba(245,240,225,.18); box-shadow:none; color:var(--cream);"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="15"/><path d="M16.5 24 L22 29.5 L32 18.5"/></svg>Typography — LOCKED · Poppins display + Inter body + tabular numbers</div>
+      <div class="check-item" style="background:rgba(245,240,225,.05); border:1px solid rgba(245,240,225,.18); box-shadow:none; color:var(--cream);"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="15"/><path d="M16.5 24 L22 29.5 L32 18.5"/></svg>Icons — LOCKED · 20 custom, 24px grid / 2px stroke, logo-angle chevrons</div>
+    </div>
+  </div>
+</section>
+
+<script src="icons/icons.js"></script>
+<script>
+// icon grid
+const names = Object.keys(window.HCC_ICONS || {});
+const ig = document.getElementById('iconGrid');
+names.forEach((n, i) => {
+  const d = document.createElement('div');
+  d.className = 'icon-cell' + (i % 6 === 5 ? ' icon-dark' : '');
+  d.innerHTML = window.HCC_ICONS[n] + `<span>${n}</span>`;
+  ig.appendChild(d);
+});
+
+// research techniques — filled from live research
+const TECHNIQUES = window.HCC_TECHNIQUES || [];
+const tg = document.getElementById('techGrid');
+TECHNIQUES.forEach((t, i) => {
+  const d = document.createElement('div');
+  d.className = 'tech';
+  d.innerHTML = `<div class="no">${String(i+1).padStart(2,'0')}</div><h4>${t[0]}</h4><p>${t[1]}</p>`;
+  tg.appendChild(d);
+});
+</script>
+<script src="research.js"></script>
+<script>
+// re-render techniques if research.js loaded after
+if (window.HCC_TECHNIQUES && !document.querySelector('#techGrid .tech')) {
+  window.HCC_TECHNIQUES.forEach((t, i) => {
+    const d = document.createElement('div');
+    d.className = 'tech';
+    d.innerHTML = `<div class="no">${String(i+1).padStart(2,'0')}</div><h4>${t[0]}</h4><p>${t[1]}</p>`;
+    document.getElementById('techGrid').appendChild(d);
+  });
+}
+</script>
+<script>
+const PAGES = [
+  ['Home', 'Hero: \u201cApply this morning. Options by tomorrow.\u201d + needs-router + single Apply CTA \u00b7 benefit pills (minutes to apply \u00b7 soft credit check \u00b7 $5K\u2013$25M) \u00b7 4 product cards with dual CTAs (Apply / Learn more) \u00b7 01\u201302\u201303 strip \u00b7 \u201cAre we a match?\u201d checklist \u00b7 proof: 2\u20133 outcome testimonials + count-up stat line \u00b7 final CTA. CUT: badge walls, mid-page forms, FAQ blocks, blog.'],
+  ['Term Loans', 'Product skeleton: hero + one proof metric \u00b7 3 benefit cards \u00b7 what it is + who it\u2019s for \u00b7 \u201care we a match?\u201d checklist \u00b7 4\u20135 product-specific mini-FAQs \u00b7 final CTA with phone fallback. Unique: terms card (range + lengths, \u201csee your options\u201d framing) \u00b7 hero notes one application also covers Line of Credit.'],
+  ['SBA Loans', 'Same skeleton. Unique: open rate-range card (\u201cPrime + X\u201d \u2014 SBA transparency wins) \u00b7 \u201cwhat to gather\u201d doc-prep list before the CTA \u00b7 own application.'],
+  ['HELOC', 'Same skeleton. Unique: CTA copy \u201cSee my rate\u201d (lower friction than Apply) \u00b7 equity/eligibility basics inside the match checklist \u00b7 term-length options card \u00b7 own application.'],
+  ['Line of Credit', 'Same skeleton. Unique: \u201cdraw, repay, draw again\u201d mechanics mini-diagram (least-understood product) \u00b7 \u201conly pay for what you use\u201d reassurance near CTAs \u00b7 shares the Term Loan application.'],
+  ['How it works', 'Speed-first hero (\u201cFrom hello to funded \u2014 options by tomorrow\u201d) \u00b7 the 3 steps expanded, one line each \u00b7 \u201cwhat happens after you apply\u201d mini-flowchart \u00b7 proof: 2 named wins + ONE Apply CTA. CUT: team bios, per-step CTAs, on-page FAQ.'],
+  ['About us', 'One screen: 1\u20132 sentence story \u00b7 the numbers as bullets ($ funded, businesses served, years) \u00b7 licensing & credentials shown prominently \u00b7 talk-to-us + Apply CTA. CUT: team photos, founder bios, values manifesto \u2014 trust comes from numbers and licenses.'],
+  ['FAQ', 'One-line header + category jump links \u00b7 the 10 questions in FULL TEXT (not hidden in accordions), grouped: Products / Applying / Funding & repayment \u00b7 \u201cdidn\u2019t find it? call us\u201d \u00b7 Apply CTA. CUT: 50-question sprawl, search boxes, help-center loops.'],
+  ['Contact', '\u201cTalk to a funding advisor\u201d header \u00b7 phone split New Funding vs Current Client + email + hours + a response-time promise \u00b7 form of 4 fields MAX (name, email, phone, message) \u00b7 one warm reassurance line + FAQ link. CUT: office lists, social rows.'],
+  ['Apply', 'JotForm shell with PRODUCT ROUTING \u2014 three applications: Term Loan & Line of Credit share one form; SBA has its own; HELOC has its own. Product pages deep-link to their form; the generic Apply CTA asks \u201cWhat are you applying for?\u201d then loads the right embed. Containers wired, waiting for the three JotForm IDs.'],
+];
+const pg = document.getElementById('pages');
+PAGES.forEach(([t, c], i) => {
+  const d = document.createElement('div');
+  d.style.cssText = 'background:#fff; border:1px solid #E9E6DA; border-radius:14px; padding:18px 22px;';
+  d.innerHTML = `<div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:15px; margin-bottom:6px;"><span style="color:var(--sage); font-size:12px; margin-right:8px;">${String(i+1).padStart(2,'0')}</span>${t}</div><div style="font-size:13px; line-height:1.6; color:var(--slate);">${c}</div>`;
+  pg.appendChild(d);
+});
+const FEATURES = [
+  ['Needs-router in the hero', 'picked'],
+  ['Count-up stats band', 'picked'],
+  ['Outcome-specific testimonials', 'picked'],
+  ['Smiling-owner photography throughout', 'picked'],
+  ['Comparison table (How it works)', 'recommended'],
+  ['Trust badges — max three', 'recommended'],
+  ['Soft-pull microcopy under every CTA', 'recommended'],
+  ['Broker candor block (About + footer)', 'recommended'],
+  ['Hover-lift cards + logo-angle chevrons', 'recommended'],
+  ['Sticky mobile call/apply bar', 'recommended'],
+  ['Racing-period headlines sitewide', 'locked system'],
+  ['Instant-quote calculator', 'phase 2 — after JotForm launch'],
+];
+const ft = document.getElementById('features');
+FEATURES.forEach(([t, s2]) => {
+  const d = document.createElement('div');
+  const green = s2 === 'picked' || s2 === 'locked system';
+  d.style.cssText = 'background:#fff; border:1px solid #E9E6DA; border-radius:12px; padding:13px 18px; display:flex; justify-content:space-between; gap:12px; align-items:center;';
+  d.innerHTML = `<span style="font-size:13.5px; font-weight:500;">${t}</span><span style="font-size:10px; font-family:'Poppins',sans-serif; letter-spacing:1px; text-transform:uppercase; font-weight:600; color:${green ? 'var(--emerald)' : 'var(--sage)'};">${s2}</span>`;
+  ft.appendChild(d);
+});
+</script>
+</body>
+</html>

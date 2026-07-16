@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High Card Capital — Centering Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --emerald:#004225; --felt:#00331D; --cream:#F5F0E1; --warm-white:#FBF9F3; --sage:#8FA898; --ink:#141A16; --slate:#5A6660; }
+  body { font-family:'Inter',sans-serif; background:#F4F2EC; color:var(--ink); padding:48px 24px 96px; }
+  .wrap { max-width:1000px; margin:0 auto; }
+  .kicker { font-family:'Manrope',sans-serif; font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:var(--sage); font-weight:700; margin-bottom:14px; }
+  h1 { font-family:'Fraunces',serif; font-size:40px; font-weight:600; letter-spacing:-0.5px; }
+  h1 .dot { color:var(--emerald); }
+  .lede { margin-top:10px; color:var(--slate); font-size:16px; max-width:680px; line-height:1.6; }
+
+  .opt { background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 2px 20px rgba(20,40,30,.08); margin-top:36px; }
+  .opt-head { padding:20px 28px 16px; display:flex; justify-content:space-between; align-items:baseline; }
+  .opt-head h2 { font-family:'Fraunces',serif; font-size:22px; font-weight:600; }
+  .opt-head span { font-family:'Manrope',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--sage); }
+  .opt img { width:100%; display:block; }
+  .opt .note { padding:14px 28px 20px; font-size:14px; line-height:1.6; color:var(--slate); }
+  .footer-note { margin-top:32px; background:var(--warm-white); border:1px solid #E9E6DA; border-radius:14px; padding:20px 24px; font-size:14px; line-height:1.65; color:var(--slate); }
+  .footer-note strong { color:var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">High Card Capital · Brand Exploration 07 · Lockup Centering</div>
+  <h1>Three ways to sit together<span class="dot">.</span></h1>
+  <p class="lede">Rendered by gpt-image-2 with the full confirmed spec: angled-terminal lettering, connected R, peak-A in HIGHCARD, tight centered CAPITAL, slimmer card, and the triangle at its same spot with a 20%-thinner stroke than the border. Only the vertical alignment changes between the three.</p>
+
+  <div class="opt">
+    <div class="opt-head"><h2>Option 1 · Word-centered</h2><span>Card centers on HIGHCARD</span></div>
+    <img src="ai/center-1.png" onerror="this.closest('.opt').style.display='none'">
+    <div class="note">The card's center lines up with HIGHCARD only — CAPITAL hangs below the shared axis. Feels top-weighted and confident; the main word owns the eye-line.</div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><h2>Option 2 · Block-centered</h2><span>Card centers on the whole text</span></div>
+    <img src="ai/center-2.png" onerror="this.closest('.opt').style.display='none'">
+    <div class="note">The card centers on HIGHCARD + CAPITAL together. The most balanced and symmetrical — nothing leans anywhere.</div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><h2>Option 3 · Edge-matched</h2><span>Card spans the full text height</span></div>
+    <img src="ai/center-3.png" onerror="this.closest('.opt').style.display='none'">
+    <div class="note">The card's top edge aligns with the top of HIGHCARD and its bottom edge with CAPITAL's baseline — the whole lockup reads as one clean rectangle. Tightest, most architectural.</div>
+  </div>
+
+  <div class="footer-note"><strong>Next step:</strong> pick 1, 2, or 3 (or ask for a tweak). Once you call it, I implement the winner precisely in the production vector files — these renders are the decision aid, the SVGs are the deliverable.</div>
+</div>
+</body>
+</html>

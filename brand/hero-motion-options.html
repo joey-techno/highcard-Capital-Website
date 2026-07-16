@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero motion options · High Card Capital</title>
+<style>
+  @font-face { font-family:'Poppins'; font-weight:600; src:url('../site/assets/fonts/poppins-600.woff2') format('woff2'); font-display:swap; }
+  @font-face { font-family:'Inter'; font-weight:400; src:url('../site/assets/fonts/inter-400.woff2') format('woff2'); font-display:swap; }
+  :root { --racing:#004225; --felt:#00331D; --cream:#F5F0E1; --white:#FBF9F3; --sage:#8FA898; --slate:#5A6660; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--white); font-family:'Inter',sans-serif; color:#141A16; }
+  .intro { padding:56px clamp(20px,4vw,64px) 8px; }
+  .intro h1 { font-family:'Poppins',sans-serif; font-weight:600; font-size:34px; color:var(--racing); }
+  .intro h1 .dot { color:var(--sage); }
+  .intro p { color:var(--slate); font-size:15.5px; max-width:780px; margin-top:10px; line-height:1.6; }
+  .label { padding:56px clamp(20px,4vw,64px) 18px; display:flex; align-items:baseline; gap:16px; flex-wrap:wrap; }
+  .label .tag { font-family:'Poppins',sans-serif; font-weight:600; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--racing); background:var(--cream); border:1px solid rgba(0,66,37,.13); border-radius:999px; padding:6px 16px; }
+  .label b { font-family:'Poppins',sans-serif; font-weight:600; font-size:20px; color:var(--racing); }
+  .label span { color:var(--slate); font-size:14px; }
+
+  .hero { position:relative; background:var(--felt); overflow:hidden; min-height:680px; display:flex; align-items:center; }
+  .hero__inner { position:relative; z-index:3; width:min(1180px, 92%); margin:0 auto; display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center; padding:72px 0; }
+  .eyebrow { font-family:'Poppins',sans-serif; font-weight:600; font-size:11.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--sage); margin-bottom:22px; }
+  .hero h2 { font-family:'Poppins',sans-serif; font-weight:600; font-size:clamp(44px, 5.4vw, 72px); line-height:1.04; color:var(--cream); letter-spacing:-.01em; }
+  .hero h2 .dot { color:var(--sage); }
+  .hero p.sub { color:#B9C4BC; font-size:16.5px; line-height:1.65; max-width:440px; margin-top:26px; }
+  .cta { display:inline-block; margin-top:34px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15.5px; color:var(--racing); background:var(--cream); border-radius:12px; padding:16px 30px; text-decoration:none; }
+  .proof { justify-self:end; width:300px; position:relative; z-index:3; }
+  .proof img { width:100%; height:170px; object-fit:cover; border-radius:16px 16px 0 0; display:block; }
+  .proof__body { background:var(--white); border-radius:0 0 16px 16px; padding:18px 20px; position:relative; box-shadow:0 30px 60px -20px rgba(0,0,0,.45); }
+  .proof__cap { display:flex; justify-content:space-between; align-items:center; font-family:'Poppins',sans-serif; font-weight:600; font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--slate); }
+  .pill { border:1px solid var(--racing); color:var(--racing); border-radius:999px; padding:3px 10px; font-size:9px; }
+  .amt { font-family:'Poppins',sans-serif; font-weight:600; font-size:26px; color:var(--racing); margin:8px 0 10px; }
+  .rows { font-size:11.5px; color:var(--slate); display:flex; flex-direction:column; gap:6px; }
+  .rows div { display:flex; justify-content:space-between; border-top:1px solid rgba(0,66,37,.1); padding-top:6px; }
+  .rows b { color:#141A16; font-weight:600; }
+  @media (max-width:980px) { .hero__inner { grid-template-columns:1fr; } .proof { justify-self:start; } }
+
+  .dev { position:absolute; inset:0; z-index:1; pointer-events:none; }
+  canvas.dev { width:100%; height:100%; display:block; }
+
+  /* Option 1: racing line comets (pure CSS on normalized paths) */
+  .rl path { fill:none; stroke-linecap:round; }
+  .rl .base { stroke:#F5F0E1; stroke-opacity:.07; stroke-width:1.5; }
+  .rl .comet {
+    stroke:#F5F0E1; stroke-opacity:.55; stroke-width:2;
+    stroke-dasharray:70 930; stroke-dashoffset:1000;
+    animation:comet linear infinite;
+  }
+  .rl .comet.sage { stroke:#8FA898; stroke-opacity:.5; }
+  @keyframes comet { to { stroke-dashoffset:0; } }
+
+  /* Option 3: 3D card hand */
+  .stage { position:absolute; top:50%; right:-40px; width:620px; height:640px; transform:translateY(-50%); perspective:1300px; }
+  .par { position:absolute; inset:0; transform-style:preserve-3d; transition:transform .35s ease-out; }
+  .c3d { position:absolute; border:1.5px solid rgba(245,240,225,.15); border-radius:34px; transform-style:preserve-3d; }
+  .c3d svg { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+  .c3d.back  { width:250px; height:394px; left:60px; top:150px; animation:f1 11s ease-in-out infinite; border-color:rgba(143,168,152,.13); }
+  .c3d.mid   { width:300px; height:472px; left:150px; top:90px; animation:f2 13s ease-in-out infinite; border-color:rgba(245,240,225,.11); }
+  .c3d.front { width:340px; height:536px; left:250px; top:40px; animation:f3 15s ease-in-out infinite; border-color:rgba(245,240,225,.22); overflow:hidden; }
+  .c3d.front::after {
+    content:''; position:absolute; top:-20%; left:-60%; width:34%; height:140%;
+    background:rgba(245,240,225,.05); transform:skewX(-18deg);
+    animation:glint 7s ease-in-out infinite;
+  }
+  @keyframes f1 { 0%,100% { transform:rotateY(-22deg) rotateX(7deg) rotateZ(-14deg) translateY(0); } 50% { transform:rotateY(-15deg) rotateX(4deg) rotateZ(-13deg) translateY(-14px); } }
+  @keyframes f2 { 0%,100% { transform:rotateY(-18deg) rotateX(5deg) rotateZ(-6deg) translateY(0); } 50% { transform:rotateY(-11deg) rotateX(8deg) rotateZ(-5deg) translateY(-22px); } }
+  @keyframes f3 { 0%,100% { transform:rotateY(-14deg) rotateX(4deg) rotateZ(4deg) translateY(0); } 50% { transform:rotateY(-20deg) rotateX(7deg) rotateZ(5deg) translateY(-18px); } }
+  @keyframes glint { 0%, 55%, 100% { left:-60%; } 75% { left:130%; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rl .comet, .c3d, .c3d.front::after { animation:none !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="intro">
+    <h1>Hero motion options<span class="dot">.</span></h1>
+    <p>Four live, animated directions. These move, so judge them here in the browser, not in screenshots. All of them sit on the locked flat Table Green, use only cream and sage light on it, and switch off for visitors who prefer reduced motion. The techniques are the ones behind top-tier hero work: normalized path light tracing, generative flow fields, layered CSS 3D with cursor parallax, and live sine field line meshes.</p>
+  </div>
+
+  <div class="label"><span class="tag">Option 1</span><b>The Racing Line</b><span>light traces the fastest line through the corner, a nod to where British Racing Green comes from</span></div>
+  <section class="hero" data-opt="1">
+    <svg class="dev rl" viewBox="0 0 1440 680" preserveAspectRatio="xMidYMid slice">
+      <g id="rlines"></g>
+    </svg>
+    <div class="hero__inner"></div>
+  </section>
+
+  <div class="label"><span class="tag">Option 2</span><b>The Silk</b><span>hundreds of fine threads drifting on a generative flow field, slowly weaving and dissolving</span></div>
+  <section class="hero" data-opt="2">
+    <canvas class="dev" id="silk"></canvas>
+    <div class="hero__inner"></div>
+  </section>
+
+  <div class="label"><span class="tag">Option 3</span><b>The Deal</b><span>a hand of three cards floating in real 3D depth, breathing, glinting, following your cursor</span></div>
+  <section class="hero" data-opt="3" id="dealSec">
+    <div class="dev">
+      <div class="stage">
+        <div class="par" data-depth="1">
+          <div class="c3d back"></div>
+          <div class="c3d mid"></div>
+          <div class="c3d front">
+            <svg viewBox="0 0 340 536"><path d="M100 330 L170 205 L240 330" fill="none" stroke="rgba(245,240,225,.2)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero__inner"></div>
+  </section>
+
+  <div class="label"><span class="tag">Option 4</span><b>The Current</b><span>a field of ridgelines that merge and part like slow water, lines becoming one surface</span></div>
+  <section class="hero" data-opt="4">
+    <canvas class="dev" id="current"></canvas>
+    <div class="hero__inner"></div>
+  </section>
+
+  <div class="intro" style="padding-top:48px">
+    <p>They can also be combined with the quieter layer you half liked: the fine engraved peak field from the last round can sit underneath option 1 or 4 at half strength. Say the word and I'll show a combo.</p>
+  </div>
+
+<script>
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* shared hero content */
+  const content = `
+    <div>
+      <div class="eyebrow">Trusted Business Partner</div>
+      <h2>Funding to power your business growth<span class="dot">.</span></h2>
+      <p class="sub">Whether you're handling today's priorities or preparing for what's next, High Card Capital keeps your cash flow one step ahead.</p>
+      <a class="cta">Apply Now</a>
+    </div>
+    <div class="proof">
+      <img src="../site/assets/img/img-owners-restaurant.webp" alt="">
+      <div class="proof__body">
+        <div class="proof__cap"><span>Wire confirmation</span><span class="pill">Funded</span></div>
+        <div class="amt">$150,000</div>
+        <div class="rows">
+          <div><span>To</span><b>Restaurant · Columbus, OH</b></div>
+          <div><span>Product</span><b>Term Loan</b></div>
+          <div><span>Applied to funded</span><b>26 hours</b></div>
+        </div>
+      </div>
+    </div>`;
+  document.querySelectorAll('.hero__inner').forEach(el => el.innerHTML = content);
+
+  /* ---------- Option 1: racing lines ---------- */
+  const R = [
+    { d: 'M-60 640 C 300 660, 620 430, 830 300 S 1260 60, 1520 90',            dur: 9,  delay: 0,   sage: false },
+    { d: 'M-60 700 C 340 720, 700 480, 900 350 S 1300 120, 1520 160',          dur: 11, delay: 2.2, sage: true  },
+    { d: 'M-60 580 C 260 600, 560 380, 780 260 S 1220 10, 1520 30',            dur: 13, delay: 4.6, sage: false },
+    { d: 'M-60 760 C 380 780, 760 540, 960 410 S 1340 190, 1520 230',          dur: 10, delay: 1.1, sage: false },
+    { d: 'M-60 520 C 240 540, 520 330, 740 215 S 1180 -40, 1520 -20',          dur: 14, delay: 3.4, sage: true  },
+  ];
+  const g = document.getElementById('rlines');
+  const NS = 'http://www.w3.org/2000/svg';
+  R.forEach(r => {
+    const base = document.createElementNS(NS, 'path');
+    base.setAttribute('d', r.d); base.setAttribute('class', 'base');
+    g.appendChild(base);
+    const comet = document.createElementNS(NS, 'path');
+    comet.setAttribute('d', r.d);
+    comet.setAttribute('class', 'comet' + (r.sage ? ' sage' : ''));
+    comet.setAttribute('pathLength', '1000');
+    comet.style.animationDuration = r.dur + 's';
+    comet.style.animationDelay = r.delay + 's';
+    g.appendChild(comet);
+  });
+
+  /* helpers for canvas sections */
+  function fitCanvas(cv) {
+    const dpr = Math.min(devicePixelRatio || 1, 1.5);
+    const r = cv.parentElement.getBoundingClientRect();
+    cv.width = r.width * dpr; cv.height = r.height * dpr;
+    return dpr;
+  }
+  function runWhenVisible(section, loop) {
+    if (reduced) return;
+    let raf = null;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && raf === null) { const tick = (t) => { loop(t); raf = requestAnimationFrame(tick); }; raf = requestAnimationFrame(tick); }
+      else if (!e.isIntersecting && raf !== null) { cancelAnimationFrame(raf); raf = null; }
+    }, { threshold: .05 });
+    io.observe(section);
+  }
+
+  /* ---------- Option 2: silk flow field ---------- */
+  {
+    const cv = document.getElementById('silk');
+    const ctx = cv.getContext('2d');
+    const dpr = fitCanvas(cv);
+    ctx.fillStyle = '#00331D'; ctx.fillRect(0, 0, cv.width, cv.height);
+    const N = 340;
+    const P = Array.from({ length: N }, () => ({
+      x: Math.random() * cv.width, y: Math.random() * cv.height,
+      sage: Math.random() < .28,
+    }));
+    const speed = 1.15 * dpr;
+    runWhenVisible(cv.parentElement, (t) => {
+      ctx.fillStyle = 'rgba(0,51,29,.028)';
+      ctx.fillRect(0, 0, cv.width, cv.height);
+      ctx.lineWidth = 1 * dpr;
+      for (const p of P) {
+        const a = Math.sin(p.x * .0016 / dpr + t * .00022) * 1.9
+                + Math.cos(p.y * .0013 / dpr - t * .00017) * 1.9
+                + Math.sin((p.x + p.y) * .0007 / dpr) * .9;
+        const nx = p.x + Math.cos(a) * speed, ny = p.y + Math.sin(a) * speed;
+        ctx.strokeStyle = p.sage ? 'rgba(143,168,152,.062)' : 'rgba(245,240,225,.05)';
+        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(nx, ny); ctx.stroke();
+        p.x = nx; p.y = ny;
+        if (p.x < -4 || p.x > cv.width + 4 || p.y < -4 || p.y > cv.height + 4) {
+          p.x = Math.random() * cv.width; p.y = Math.random() * cv.height;
+        }
+      }
+    });
+  }
+
+  /* ---------- Option 3: cursor parallax on the 3D hand ---------- */
+  {
+    const sec = document.getElementById('dealSec');
+    const par = sec.querySelector('.par');
+    sec.addEventListener('mousemove', (e) => {
+      if (reduced) return;
+      const r = sec.getBoundingClientRect();
+      const mx = ((e.clientX - r.left) / r.width - .5) * 2;
+      const my = ((e.clientY - r.top) / r.height - .5) * 2;
+      par.style.transform = `rotateY(${mx * 7}deg) rotateX(${my * -5}deg) translateX(${mx * 14}px)`;
+    });
+    sec.addEventListener('mouseleave', () => { par.style.transform = ''; });
+  }
+
+  /* ---------- Option 4: merging ridgelines ---------- */
+  {
+    const cv = document.getElementById('current');
+    const ctx = cv.getContext('2d');
+    const dpr = fitCanvas(cv);
+    const LINES = 16, STEP = 22 * dpr;
+    runWhenVisible(cv.parentElement, (t) => {
+      ctx.fillStyle = '#00331D'; ctx.fillRect(0, 0, cv.width, cv.height);
+      ctx.lineWidth = 1.1 * dpr;
+      for (let i = 0; i < LINES; i++) {
+        const baseY = cv.height * (.42 + (i / (LINES - 1)) * .62);
+        const cream = i % 4 === 0;
+        ctx.strokeStyle = cream ? 'rgba(245,240,225,.085)' : 'rgba(143,168,152,.07)';
+        ctx.beginPath();
+        for (let x = 0; x <= cv.width + STEP; x += STEP) {
+          const y = baseY
+            + Math.sin(x * .004 / dpr + t * .00055 + i * .52) * 16 * dpr
+            + Math.sin(x * .0016 / dpr - t * .00038 + i * .3) * 30 * dpr
+            + Math.cos(x * .0009 / dpr + t * .00021 + i * .8) * 14 * dpr;
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>
