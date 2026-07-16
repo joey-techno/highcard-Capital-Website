@@ -425,16 +425,16 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .proof-stack__body {
   background:var(--white); border-radius:14px; position:relative; z-index:2;
   box-shadow:0 -10px 24px -18px rgba(0,18,10,.35), 0 26px 54px -24px rgba(0,18,10,.5);
-  padding:14px 12px 10px;
+  padding:17px 13px 13px; /* card runs ~10% longer; type below scales to fill it */
 }
-.proof-stack .wcard__amt { font-size:19px; }
-.proof-stack .wcard__rows div { font-size:9.5px; padding:4px 0; }
-.proof-stack .wcard__rows { margin-top:8px; }
-.proof-stack .wcard__cap { font-size:8px; letter-spacing:.14em; }
-.proof-stack .wcard__stars { margin-top:9px; font-size:9.5px; letter-spacing:2px; }
-.proof-stack .wcard__quote { margin-top:5px; font-size:10.5px; font-style:italic; }
-.proof-stack .wcard__note { margin-top:7px; font-size:7px; }
-.proof-stack .funded-pill { font-size:7.5px; padding:2px 8px; }
+.proof-stack .wcard__amt { font-size:21px; }
+.proof-stack .wcard__rows div { font-size:10.5px; padding:5px 0; }
+.proof-stack .wcard__rows { margin-top:9px; }
+.proof-stack .wcard__cap { font-size:9px; letter-spacing:.14em; }
+.proof-stack .wcard__stars { margin-top:10px; font-size:10.5px; letter-spacing:2px; }
+.proof-stack .wcard__quote { margin-top:6px; font-size:11.5px; font-style:italic; }
+.proof-stack .wcard__note { margin-top:8px; font-size:8px; }
+.proof-stack .funded-pill { font-size:8.5px; padding:2.5px 9px; }
 .wcard__note {
   margin-top:12px; font-family:var(--font-d); font-size:9px; font-weight:700;
   letter-spacing:.18em; text-transform:uppercase; color:var(--sage-deep);
@@ -553,6 +553,10 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
    ============================================================ */
 /* products section — pulled up under the trust band, heavier centered title */
 .sec-products { padding-top:calc(var(--pad-sec) * .5); }
+/* held cards start lower + smaller; heading settles into place when they release */
+.prod-grid .prod[data-reveal]:not(.is-inview) { transform:translateY(46px) scale(.96); }
+.sec-products .sec-head { transition:transform .9s cubic-bezier(.16,.84,.28,1); }
+.sec-products .sec-head.presettle { transform:translateY(18px); }
 .sec-products .sec-head h2 { font-weight:700; letter-spacing:-.028em; line-height:1.05; }
 .sec-products .sec-head::after {
   content:''; display:block; width:56px; height:2px; border-radius:2px;
@@ -566,12 +570,22 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   background:var(--white); border:1px solid rgba(0,66,37,.12); border-radius:14px;
   box-shadow:0 2px 6px rgba(0,66,37,.06), 0 18px 40px -18px rgba(0,18,10,.28);
   padding:26px 20px 22px; text-align:center;
+  /* two shared alignment lines across the band: numerals on top, captions pinned to the bottom */
+  display:flex; flex-direction:column;
 }
 .stat-card__num {
-  font-family:var(--font-d); font-weight:800; font-size:clamp(28px, 3vw, 40px);
+  font-family:var(--font-d); font-weight:600; font-size:clamp(28px, 3vw, 40px);
   color:var(--racing); letter-spacing:-.02em; line-height:1; font-variant-numeric:tabular-nums;
 }
-.stat-card__label { margin-top:8px; font-size:13.5px; color:var(--slate); }
+.stat-card__stars {
+  color:#FBBC04; /* Google review-star gold — third-party rating iconography, exempt from the no-gold brand rule */
+  font-size:18px; letter-spacing:7px; padding-left:7px; /* left pad balances the trailing letter-space so the run centers true */
+  line-height:1; margin-top:8px;
+}
+.stat-card__label {
+  font-family:var(--font-d); font-weight:600; font-size:13px; letter-spacing:.01em;
+  color:var(--sage-deep); margin-bottom:10px;
+}
 @media (max-width:920px) {
   .stat-bridge { margin:-30px 0; }
   .stat-bridge__row { grid-template-columns:1fr; gap:12px; }

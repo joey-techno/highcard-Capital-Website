@@ -169,6 +169,31 @@
   });
   if (reduced) splitEls.forEach(el => el.classList.add('is-inview'));
 
+  /* ---------- home: hold the product cards until the first scroll ---------- */
+  if (page === 'home' && !reduced) {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    scrollTo(0, 0);
+    const held = [...doc.querySelectorAll('.prod-grid .prod')];
+    const prodHead = doc.querySelector('.sec-products .sec-head');
+    if (held.length) {
+      const hold = () => held.forEach(c => c.classList.remove('is-inview'));
+      hold();
+      const iv = setInterval(hold, 100); /* outlast the observer's async delivery */
+      if (prodHead) prodHead.classList.add('presettle');
+      let released = false;
+      const release = () => {
+        if (released) return;
+        released = true;
+        clearInterval(iv);
+        held.forEach(c => c.classList.add('is-inview'));
+        if (prodHead) prodHead.classList.remove('presettle');
+      };
+      addEventListener('wheel', release, { passive: true });
+      addEventListener('touchmove', release, { passive: true });
+      addEventListener('scroll', () => { if (scrollY > 8) release(); }, { passive: true });
+    }
+  }
+
   /* ---------- counters ---------- */
   const fmt = new Intl.NumberFormat('en-US');
   const cio = new IntersectionObserver(entries => {
