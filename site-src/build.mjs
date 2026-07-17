@@ -4,7 +4,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
-const OUT = 'c:/High Card Capital/site';
+const OUT = process.env.OUT || join(ROOT, '..', 'site');
 const P = (f) => readFileSync(join(ROOT, 'partials', f), 'utf8');
 const B = (f) => readFileSync(join(ROOT, 'pages', f), 'utf8');
 
@@ -31,8 +31,8 @@ const PAGES = [
     title: 'About Us · A Brokerage That Comes to the Table Prepared | High Card Capital',
     desc: 'High Card Capital is a commercial-financing brokerage: one application, a network of lenders, and a human advisor who does the homework. The numbers and credentials, up front.' },
   { file: 'faq.html',            body: 'faq.html',     id: 'faq',     nav: 'faq',
-    title: 'FAQ · Asked by Merchants. Answered Straight. | High Card Capital',
-    desc: 'How fast is funding, really? Will checking options hurt my credit? What does a broker cost? The ten questions merchants actually ask, answered in full, in plain language.' },
+    title: 'FAQ · Asked by Businesses. Answered Straight. | High Card Capital',
+    desc: 'How fast is funding, really? Will checking options hurt my credit? What does a broker cost? The ten questions businesses actually ask, answered in full, in plain language.' },
   { file: 'contact.html',        body: 'contact.html', id: 'contact', nav: 'contact',
     title: 'Contact · Talk to a Funding Advisor | High Card Capital',
     desc: 'Call, email, or send four fields and we respond within one business hour, Mon–Fri 8am–7pm ET. New funding and current clients each have a direct line.' },

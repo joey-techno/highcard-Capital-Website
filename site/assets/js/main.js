@@ -147,6 +147,15 @@
        synchronous call here crashes the whole script when fonts are cached */
     if (doc.fonts) doc.fonts.ready.then(doSplit);
     else setTimeout(doSplit, 0);
+    /* re-split on real width changes so line breaks never freeze at a stale layout */
+    let lastW = window.innerWidth, rsT;
+    window.addEventListener('resize', () => {
+      if (window.innerWidth === lastW) return;
+      clearTimeout(rsT);
+      rsT = setTimeout(() => { lastW = window.innerWidth; splitEls.forEach(splitLines); }, 150);
+    });
+    /* bfcache restore: layout may differ from when the page was frozen — re-split */
+    window.addEventListener('pageshow', e => { if (e.persisted) splitEls.forEach(splitLines); });
   }
 
   /* ---------- reveal engine ---------- */
@@ -356,6 +365,56 @@
     };
     window.addEventListener('scroll', update, { passive: true });
     update();
+  }
+
+  /* ---------- home: deal panel — steps synced to the 3D phone ---------- */
+  const dealScene = doc.querySelector('[data-deal-scene]');
+  if (dealScene) {
+    const steps = Array.from(doc.querySelectorAll('.deal-step'));
+    const screens = Array.from(dealScene.querySelectorAll('.dscreen'));
+    const dots = Array.from(dealScene.querySelectorAll('.dphone__dots i'));
+    const HOLD = 4400; /* keep in step with --hold in main.css */
+    let cur = 0, timer = null;
+    const show = (i) => {
+      cur = i;
+      steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
+      screens.forEach((s, k) => s.classList.toggle('is-on', k === i));
+      dots.forEach((d, k) => d.classList.toggle('is-on', k === i));
+    };
+    const arm = () => {
+      clearInterval(timer);
+      if (!reduced) timer = setInterval(() => show((cur + 1) % screens.length), HOLD);
+    };
+    steps.forEach((s, i) => {
+      s.addEventListener('click', () => { show(i); arm(); });
+      if (finePointer) s.addEventListener('pointerenter', () => { if (i !== cur) { show(i); arm(); } });
+    });
+    /* cycle only while the panel is on screen */
+    new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) arm(); else clearInterval(timer); });
+    }, { threshold: 0.25 }).observe(dealScene);
+
+    /* pointer parallax on the phone */
+    const tilt = dealScene.querySelector('.deal-tilt');
+    if (tilt && finePointer && !reduced) {
+      let tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+      const host = dealScene.closest('.sec-deal') || dealScene;
+      host.addEventListener('pointermove', ev => {
+        const r = dealScene.getBoundingClientRect();
+        tx = Math.max(-0.6, Math.min(0.6, (ev.clientX - r.left) / r.width - 0.5));
+        ty = Math.max(-0.6, Math.min(0.6, (ev.clientY - r.top) / r.height - 0.5));
+        if (!raf) loop();
+      });
+      host.addEventListener('pointerleave', () => { tx = 0; ty = 0; if (!raf) loop(); });
+      function loop() {
+        raf = requestAnimationFrame(() => {
+          cx += (tx - cx) * 0.06; cy += (ty - cy) * 0.06;
+          tilt.style.transform = `rotateY(${-12 + cx * 10}deg) rotateX(${4 + cy * -8}deg)`;
+          if (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) loop();
+          else raf = null;
+        });
+      }
+    }
   }
 
   /* ---------- FAQ scrollspy ---------- */
