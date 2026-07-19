@@ -7,3 +7,15 @@
 # OS junk
 Thumbs.db
 Desktop.ini
+
+# QA screenshots & experimental mocks (scratch, kept locally)
+brand/*-mock.png
+brand/*-zone.png
+brand/mobile-*.png
+brand/stats-*.png
+brand/deal-mock-*.png
+brand/products-mock-*.png
+brand/deal-bg-options.html
+brand/products-bg-options.html
+brand/ai/deal/
+brand/ai/products/

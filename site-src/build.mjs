@@ -42,6 +42,7 @@ const PAGES = [
 ];
 
 const head = P('head.html'), nav = P('nav.html'), footer = P('footer.html'), scripts = P('scripts.html');
+const V = Date.now().toString(36); // cache-buster: new value every build so browsers refetch CSS/JS
 
 for (const pg of PAGES) {
   let html = head + nav + B(pg.body) + footer + scripts;
@@ -49,7 +50,8 @@ for (const pg of PAGES) {
     .replaceAll('{{TITLE}}', pg.title)
     .replaceAll('{{DESC}}', pg.desc)
     .replaceAll('{{ID}}', pg.id)
-    .replaceAll('{{NAV}}', pg.nav);
+    .replaceAll('{{NAV}}', pg.nav)
+    .replaceAll('{{V}}', V);
   writeFileSync(join(OUT, pg.file), html);
   console.log('built', pg.file);
 }

@@ -1,0 +1,114 @@
+<meta charset="utf-8">
+<title>Mobile preview — High Card Capital home @390px</title>
+<style>
+  body { margin:0; padding:28px; background:#E9E7DD; font-family:-apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size:15px; letter-spacing:.18em; text-transform:uppercase; color:#00422A; text-align:center; margin:0 0 24px; }
+  #stage { display:flex; flex-wrap:wrap; gap:28px; justify-content:center; align-items:flex-start; }
+  .frame { --z:1; --w:390px; }
+  .scalebox { width:calc((var(--w) + 24px) * var(--z)); height:calc(804px * var(--z)); }
+  .bezel {
+    width:calc(var(--w) + 24px); background:#101311; border-radius:38px; padding:12px;
+    box-shadow:0 24px 60px -20px rgba(0,20,11,.45);
+    transform:scale(var(--z)); transform-origin:top left;
+  }
+  iframe { width:var(--w); height:780px; border:0; border-radius:26px; background:#fff; display:block; }
+  figure { margin:0; }
+  figcaption {
+    margin-top:12px; text-align:center; font-size:13px; font-weight:600; color:#1E2B24;
+    max-width:calc((var(--w) + 24px) * var(--z));
+  }
+  figcaption.warn { color:#8a3b2c; }
+</style>
+<h1>High Card Capital — home page at iPhone width (390px)</h1>
+<div id="stage"></div>
+<script>
+  /* make every reveal-animated element visible instantly + freeze marquees for a clean shot */
+  const KILL = `
+    [data-reveal], .sl-inner { opacity:1 !important; transform:none !important; transition:none !important; }
+    [data-draw] svg * { stroke-dashoffset:0 !important; transition:none !important; }
+    .curtain::after { display:none !important; } .curtain img { transform:none !important; }
+    .proof-stack { animation:none !important; }
+    .belt__track { animation-play-state:paused !important; }
+    html { scroll-behavior:auto !important; }
+    ::-webkit-scrollbar { display:none; }
+  `;
+  /* experiment slot — rules here preview on top of the live CSS; empty = pure viewer.
+     (the original 2x2 + hero proposal shipped into site/assets/css/main.css) */
+  const PROPOSED = ``;
+  const SHIPPED_FOR_REFERENCE = `
+  @media (max-width:640px) {
+    /* products: keep the 4-card lineup as a 2x2 grid, compacted to phone scale */
+    .prod-grid { grid-template-columns:1fr 1fr; gap:14px; }
+    .prod { --pp:16px; --kl:9px; min-height:0; border-radius:18px; }
+    .prod__head { gap:9px; margin-bottom:12px; }
+    .prod__head h3 { font-size:19px; padding-bottom:6px; }
+    .prod .icon--chip { width:34px; height:34px; border-radius:10px; }
+    .prod__list { width:auto; gap:8px; }
+    .prod__list li { font-size:12.5px; gap:8px; }
+    .prod__list li .icon { width:14px; height:14px; }
+    .prod__list + .prod__ctas { margin-top:14px; }
+    .prod__ctas { padding-top:13px; }
+    .prod__ctas .btn { width:100%; padding:11px 0; font-size:13px; border-radius:10px; }
+    /* stat bridge: keep the 3-up row like desktop, compact */
+    .stat-bridge__row { grid-template-columns:repeat(3, 1fr); gap:10px; }
+    .stat-card { padding:16px 8px 14px; border-radius:13px; }
+    .stat-card__label { font-size:10.5px; letter-spacing:0; margin-bottom:7px; }
+    .stat-card__num { font-size:21px; }
+    .stat-card__stars { font-size:12px; letter-spacing:3px; padding-left:3px; margin-top:6px; }
+  }`;
+
+  const FRAMES = [
+    { y:0,                 label:'1 · Hero — headline + Apply' },
+    { sel:'.hero__visual', dy:-80,  label:'2 · Hero proof card + trust band' },
+    { sel:'.sec-products', dy:-30,  label:'3 · Funding options — 2×2 + stats (live)' },
+    { sel:'.sec-choose',   dy:-30,  label:'5 · Why businesses choose us' },
+    { sel:'.sec-match',    dy:-30,  label:'6 · Are we a match — photo' },
+    { sel:'.qcard',        dy:-170, label:'7 · Match checklist + CTAs' },
+    { sel:'#stories',      dy:-30,  label:'8 · Client stories + review belt' },
+    { sel:'.sec-deal',     dy:-20,  label:'9 · Deal panel — steps + 3D phone' },
+    { sel:'.footer',       dy:-20,  label:'10 · Footer + sticky call bar' },
+  ];
+
+  const params = new URLSearchParams(location.search);
+  let frames = FRAMES;
+  if (params.get('ws')) frames = params.get('ws').split(',')
+    .map(w => ({ y:0, sel:params.get('sec') || undefined, dy:parseInt(params.get('dy') || '-30', 10), label:w + 'px wide', w:parseInt(w, 10) }));
+  if (params.get('frames') === 'cards') frames = [FRAMES[2]];
+  if (params.get('frames') === 'hero')  frames = [FRAMES[0], FRAMES[1]];
+  if (params.get('frames') === 'herocmp') frames = [
+    { y:0, label:'A · Current — as on your phone now', nofix:true },
+    { y:0, label:'B · Proposed — fundbox-tuned type + corner ring' },
+  ];
+  const zoom = parseFloat(params.get('zoom') || '1');
+  const width = parseInt(params.get('w') || '390', 10);
+
+  const stage = document.getElementById('stage');
+  frames.forEach(f => {
+    const fig = document.createElement('figure');
+    fig.className = 'frame';
+    fig.style.setProperty('--z', zoom);
+    fig.style.setProperty('--w', (f.w || width) + 'px');
+    fig.innerHTML = `
+      <div class="scalebox"><div class="bezel">
+        <iframe src="/site/index.html" scrolling="no"></iframe>
+      </div></div>
+      <figcaption class="${f.nofix ? 'warn' : ''}">${f.label}</figcaption>`;
+    stage.appendChild(fig);
+    const ifr = fig.querySelector('iframe');
+    ifr.addEventListener('load', () => {
+      const win = ifr.contentWindow, doc = win.document;
+      const style = doc.createElement('style');
+      style.textContent = KILL + (f.nofix ? '' : PROPOSED);
+      doc.head.appendChild(style);
+      const settle = new Promise(r => setTimeout(r, 700));
+      Promise.all([win.document.fonts.ready, settle]).then(() => {
+        let y = f.y || 0;
+        if (f.sel) {
+          const el = doc.querySelector(f.sel);
+          if (el) y = el.getBoundingClientRect().top + win.scrollY + (f.dy || 0);
+        }
+        win.scrollTo(0, Math.max(0, y));
+      });
+    });
+  });
+</script>
