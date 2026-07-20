@@ -1376,7 +1376,7 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 }
 .deal-float b { font-family:var(--font-d); font-weight:800; font-size:20px; color:var(--racing); line-height:1.1; font-variant-numeric:tabular-nums; }
 .deal-float span { font-size:11.5px; color:var(--sage-deep); font-weight:500; white-space:nowrap; }
-/* MODES-OK: deleted dead .deal-float--rate rule + its dfloat-b keyframe (rate chip removed from HTML for all sizes) */
+/* MODES-OK: no .deal-float--rate rule/keyframe — the "5.0 rated on Google" chip is removed from the HTML for all sizes (owner 2026-07) */
 .deal-float--wire { right:-54px; top:15%; transform:translateZ(70px); animation:dfloat-a 7s ease-in-out infinite alternate; }
 @keyframes dfloat-a { from { transform:translateZ(70px) translateY(-6px); } to { transform:translateZ(70px) translateY(9px); } }
 
@@ -1401,12 +1401,13 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .deal-step__body { padding-right:clamp(96px, 34vw, 150px); }
   /* MODES-OK: small burger + mobile — phone floated over the right, pulled ~20% further left so the $50,000 chip clears the headline; kept fully on-screen */
   .deal-scene {
-    position:absolute; right:clamp(24px, 8vw, 56px); top:clamp(96px, 30vw, 190px); margin-top:0;
+    /* MODES-OK: small burger + mobile — phone nudged down 10% (owner 2026-07): top clamp terms all ×1.1 */
+    position:absolute; right:clamp(24px, 8vw, 56px); top:clamp(105.6px, 33vw, 209px); margin-top:0;
     zoom:.46; z-index:0; pointer-events:none;
   }
   /* MODES-OK: small burger + mobile — shorten the horizontal meter line so it ends cleanly before the floating phone (no line slicing the phone UI) */
   .deal-step__meter { right:clamp(139px, 40vw, 181px); }
-  /* MODES-OK: small burger + mobile — hide the $50,000 wired chip (rate chip already removed for all sizes in HTML) */
+  /* MODES-OK: small burger + mobile — hide the $50,000 wired chip (the rate chip is removed from the HTML for all sizes) */
   .deal-float--wire { display:none; }
   /* steps + their lines sit above the floating phone so text stays readable */
   .deal-steps { position:relative; z-index:1; }
@@ -1520,19 +1521,23 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   /* MODES-OK: all 3 burger modes. burger↔logo gap and cta gap are fluid (calc px+vw) so the row
      tightens toward 390px and never overflows; both terms scale, per the fluid rule. */
   .nav__burger { display:block; flex:none; order:-2; margin-right:calc(2px + 1vw); }
-  /* MODES-OK: all 3 burger modes. logo fluid: ~23px at 390px → 29px by the 920px handoff — smaller
-     on phones so Apply fits, reaching the bigger 29px in big burger where there's room. Both terms scale. */
-  .nav__logo { order:-1; height:calc(20.5px + .65vw); margin-right:auto; }
-  .nav__cta { gap:calc(4px + .8vw); flex:none; }
-  /* phone comes back as a tap-to-call icon-only white/green pill, sitting before Apply Now.
-     MODES-OK: all 3 burger modes — a 40x40 fixed square tap target (like the burger button, an
-     accessibility minimum), intentionally not fluid so it's identical at every burger width. */
-  .nav__phone { display:inline-flex; padding-inline:0; width:40px; height:40px; justify-content:center; flex:none; }
+  /* MODES-OK: all 3 burger modes. logo fluid, +15% (owner 2026-07): ~26.4px at 390px → 33.4px by the
+     920px handoff. Both terms scaled by 1.15 so it stays fluid/per-pixel, just 15% larger everywhere. */
+  .nav__logo { order:-1; height:calc(23.575px + .7475vw); margin-right:auto; }
+  /* MODES-OK: all 3 burger modes — Apply + phone share ONE fluid height token (--navbtn) so the two
+     boxes are always identical in height. --navbtn: ~33.4px at 390px → 40px at the 920 handoff. */
+  .nav__cta { gap:calc(4px + .8vw); flex:none; align-items:center; --navbtn:calc(28px + 1.3vw); }
+  /* phone = tap-to-call icon-only white/green pill before Apply. A GUARANTEED square: width == height
+     == --navbtn (same as Apply), so it's a clean box, not a tall pill. Icon centered by inline-flex. */
+  .nav__phone {
+    display:inline-flex; align-items:center; justify-content:center; flex:none;
+    height:var(--navbtn); width:var(--navbtn); padding:0;
+  }
   .nav__phone span:not(.icon) { display:none; }
-  .nav__phone .icon { width:18px !important; height:18px !important; }
-  /* MODES-OK: all 3 burger modes — Apply padding/size fluid so it fits beside the bigger logo at 390px.
-     Label shortens to just "Apply" in burger mode (owner's call) — the "Now" span is hidden. */
-  .nav__apply { padding:calc(6px + .8vw) calc(9px + 1.4vw); font-size:calc(11.5px + .3vw); flex:none; }
+  .nav__phone .icon { width:calc(15px + .9vw) !important; height:calc(15px + .9vw) !important; } /* ~18.5px→26px, scales with the box */
+  /* MODES-OK: all 3 burger modes — Apply uses the SAME --navbtn height (not padding) so it matches the
+     phone exactly; horizontal padding fluid so it fits beside the bigger logo at 390px. "Now" hidden. */
+  .nav__apply { height:var(--navbtn); padding:0 calc(9px + 1.4vw); font-size:calc(11.5px + .3vw); flex:none; }
   .nav__apply .arr, .nav__apply-now { display:none; }
   .hero { padding-top:calc(var(--nav-h) + 16px); min-height:auto; }
   .hero__grid { grid-template-columns:1fr; gap:56px; }
