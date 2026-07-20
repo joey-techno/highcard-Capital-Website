@@ -8,7 +8,11 @@ Fonts are self-hosted, all JS is hand-written vanilla, images are optimized WebP
 ## The 10 pages
 
 `index` · `term-loans` · `sba-loans` · `heloc` · `line-of-credit` ·
-`how-it-works` · `about` · `faq` · `contact` · `apply`
+`about` · `faq` · `blog` · `contact` · `apply`
+
+> `how-it-works` still exists as a source template (`site-src/pages/how-it-works.html`)
+> but is intentionally excluded from the built site and the nav (owner's call 2026-07).
+> To bring it back, re-add its entry to the `PAGES` array in `site-src/build.mjs`.
 
 ## Before launch — the placeholder checklist
 

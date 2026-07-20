@@ -41,6 +41,13 @@
   --fs-h2:clamp(1.7rem, 1rem + 2.2vw, 2.65rem);
   --fs-h3:clamp(1.18rem, 1rem + .6vw, 1.45rem);
   --fs-lede:clamp(1.02rem, .95rem + .3vw, 1.17rem);
+  /* fluid BODY/UI text tokens — every paragraph, label, and caption scales per-pixel
+     with the viewport (like the headings above) instead of sitting frozen between
+     breakpoints. Ranges are tuned to their old fixed px at the middle of the site width. */
+  --fs-body:clamp(.9rem, .84rem + .28vw, 1.02rem);     /* ~14.4→16.3px : card/body copy */
+  --fs-body-sm:clamp(.8rem, .76rem + .2vw, .92rem);    /* ~12.8→14.7px : small copy, captions */
+  --fs-ui:clamp(.82rem, .78rem + .2vw, .95rem);        /* ~13→15.2px : labels, nav-ish UI text */
+  --fs-num:clamp(1.1rem, .9rem + .8vw, 1.45rem);       /* ~17.6→23px : inline stat numbers */
 
   --ease-out:cubic-bezier(.22,1,.36,1);
   --ease-spring:cubic-bezier(.34,1.56,.64,1);
@@ -52,7 +59,7 @@
   --r-card:18px;
   --r-panel:24px;
 
-  --nav-h:92px;
+  --nav-h:clamp(78px, 5vw + 32px, 92px); /* MODES-OK: nav height fluid — 78px at 921px, full 92px by ~1200px; the <=920 burger override sets 66px */
   --pad-sec:clamp(84px, 7rem + 3vw, 148px);
   --shadow-lift:0 22px 44px -20px rgba(0,51,29,.28);
   --shadow-float:0 30px 70px -30px rgba(0,25,14,.55);
@@ -60,13 +67,14 @@
 
 /* ---------- reset / base ---------- */
 *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; overflow-x:clip; }
 html:focus-within { scroll-behavior:smooth; }
 body {
   font-family:var(--font-b); font-size:16.5px; line-height:1.65;
   color:var(--ink); background:var(--white);
   -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   overflow-x:clip;
+  max-width:100%;
 }
 img { max-width:100%; height:auto; display:block; }
 a { color:var(--racing); text-decoration:none; }
@@ -129,7 +137,7 @@ section { padding-block:var(--pad-sec); position:relative; }
 
 /* ---------- typography ---------- */
 .eyebrow {
-  font-family:var(--font-d); font-size:11.5px; letter-spacing:.3em; text-transform:uppercase;
+  font-family:var(--font-d); font-size:clamp(.66rem, .63rem + .12vw, .74rem); letter-spacing:.3em; text-transform:uppercase;
   font-weight:700; color:var(--sage-deep); margin-bottom:20px; display:flex; align-items:center; gap:14px;
 }
 /* no leading dash on eyebrows — owner's call, locked 2026-07 */
@@ -146,10 +154,10 @@ h3, .h3 { font-size:var(--fs-h3); line-height:1.3; letter-spacing:-.01em; }
 
 .lede { font-size:var(--fs-lede); line-height:1.65; color:var(--slate); max-width:640px; }
 .felt .lede { color:var(--cream-dim); }
-.small { font-size:13.5px; line-height:1.6; color:var(--slate); }
+.small { font-size:var(--fs-body-sm); line-height:1.6; color:var(--slate); }
 .felt .small { color:var(--cream-faint); }
 
-.microcopy { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--sage-deep); margin-top:14px; }
+.microcopy { display:flex; align-items:center; gap:8px; font-size:var(--fs-body-sm); color:var(--sage-deep); margin-top:14px; }
 .microcopy svg { width:15px; height:15px; flex:none; }
 .felt .microcopy, .on-felt .microcopy { color:var(--sage); }
 
@@ -170,29 +178,34 @@ h3, .h3 { font-size:var(--fs-h3); line-height:1.3; letter-spacing:-.01em; }
 
 /* ---------- buttons ---------- */
 .btn {
-  position:relative; display:inline-flex; align-items:center; justify-content:center; gap:10px;
-  font-family:var(--font-d); font-weight:600; font-size:15.5px; letter-spacing:.01em;
-  padding:16px 30px; border-radius:var(--r-btn); white-space:nowrap;
+  /* MODES-OK: base button padding now fluid (was fixed 16px 30px) — genuinely scales down on small screens and hits the desktop value (16/30) at ~920px+; all 4 modes */
+  position:relative; display:inline-flex; align-items:center; justify-content:center; gap:clamp(8px, .5vw + 6px, 10px);
+  font-family:var(--font-d); font-weight:600; font-size:clamp(.9rem, .86rem + .2vw, 1rem); letter-spacing:.01em;
+  padding:clamp(11.5px, 1vw + 8px, 16px) clamp(20px, 2.2vw + 14px, 30px); border-radius:var(--r-btn); white-space:nowrap;
   background:var(--racing); color:var(--cream);
   transition:transform var(--t-fast) var(--ease-out), box-shadow var(--t-fast) var(--ease-out), background var(--t-fast);
   will-change:transform;
 }
 .btn:hover { background:#00522E; box-shadow:0 14px 30px -14px rgba(0,66,37,.5); }
 .btn:active { transform:scale(.985); }
-.btn .arr { width:17px; height:17px; transition:transform var(--t-fast) var(--ease-out); }
+/* MODES-OK: arrow icon fluid, all 4 modes (hits 17 at desktop, descends to 14 on mobile) */
+.btn .arr { width:clamp(14px, .5vw + 12px, 17px); height:clamp(14px, .5vw + 12px, 17px); transition:transform var(--t-fast) var(--ease-out); }
 .btn:hover .arr { transform:translateX(4px); }
 
-.btn--cream { background:var(--cream); color:var(--racing); font-weight:700; box-shadow:0 12px 28px -14px rgba(0,0,0,.4); }
-.btn--cream:hover { background:var(--white); box-shadow:0 18px 40px -14px rgba(0,0,0,.5); transform:translateY(-2px); }
-.btn--lg { padding:19px 40px; font-size:16.5px; border-radius:14px; }
+/* MODES-OK: cream scrapped → white button, green text, thin green outline; hover fills green.
+   Color-only + a 1.5px hairline border; no fluid/sizing tokens changed, applies to all modes (owner's call 2026-07) */
+.btn--cream { background:var(--white); color:var(--racing); font-weight:700; border:1.5px solid var(--racing); box-shadow:0 12px 28px -14px rgba(0,0,0,.4); }
+.btn--cream:hover { background:var(--racing); color:var(--cream); box-shadow:0 18px 40px -14px rgba(0,0,0,.5); transform:translateY(-2px); }
+.btn--lg { padding:clamp(15px,1.1rem + .6vw,19px) clamp(30px,2rem + 1.4vw,40px); font-size:clamp(.95rem,.88rem + .3vw,1.06rem); border-radius:14px; }
 .btn--ghost {
   background:transparent; color:var(--racing); border:1px solid var(--line-strong); box-shadow:none;
 }
 .btn--ghost:hover { background:rgba(0,66,37,.05); box-shadow:none; }
 .felt .btn--ghost, .on-felt .btn--ghost { color:var(--cream); border-color:var(--line-dark); }
 .felt .btn--ghost:hover, .on-felt .btn--ghost:hover { background:rgba(245,240,225,.07); }
-.btn--sm { padding:12px 22px; font-size:14px; border-radius:10px; }
-.btn--md { padding:14px 24px; font-size:14.5px; }
+/* MODES-OK: sm/md button padding fluid (was fixed) — scales per-pixel, all 4 modes */
+.btn--sm { padding:clamp(9.5px, .6rem + .35vw, 12px) clamp(17px, 1.1rem + .8vw, 22px); font-size:var(--fs-body); border-radius:10px; }
+.btn--md { padding:clamp(11px, .75rem + .4vw, 14px) clamp(19px, 1.25rem + .9vw, 24px); font-size:var(--fs-body); }
 
 .link-arrow {
   display:inline-flex; align-items:center; gap:8px; font-family:var(--font-d); font-weight:600; font-size:15px; white-space:nowrap;
@@ -232,37 +245,42 @@ h3, .h3 { font-size:var(--fs-h3); line-height:1.3; letter-spacing:-.01em; }
   transition:background var(--t-med) var(--ease-out), box-shadow var(--t-med) var(--ease-out),
              height var(--t-med) var(--ease-out), border-color var(--t-med);
 }
-.nav__in { display:flex; align-items:center; justify-content:space-between; gap:24px; width:100%; }
-.nav__logo { display:block; height:34px; flex:none; }
+/* MODES-OK: nav__in gap fluid (all 4 modes) */
+.nav__in { display:flex; align-items:center; justify-content:space-between; gap:clamp(14px, 1vw + 8px, 24px); width:100%; }
+/* MODES-OK: logo height fluid (all 4 modes) */
+.nav__logo { display:block; height:clamp(26px, 1.5vw + 18px, 34px); flex:none; }
 .nav__logo img { height:100%; width:auto; }
 .nav__logo .lg-cream { display:none; }
 
-.nav__links { display:flex; align-items:center; gap:8px; list-style:none; }
+/* MODES-OK: nav links + their gap/height/padding/font fluid (all 4 modes) */
+.nav__links { display:flex; align-items:center; gap:clamp(5px, .5vw + 2px, 8px); list-style:none; }
 .nav__links > li { position:relative; display:flex; }
 .nav__links a, .nav__links button {
-  display:inline-flex; align-items:center; justify-content:center; gap:6px;
-  font-family:var(--font-d); font-size:13px; font-weight:600; color:var(--ink); line-height:1;
-  height:38px; padding:0 14px; border-radius:10px; white-space:nowrap;
-  background:var(--cream); border:1px solid var(--line);
+  display:inline-flex; align-items:center; justify-content:center; gap:clamp(4px, .4vw + 2px, 6px);
+  font-family:var(--font-d); font-size:clamp(11.5px, .4vw + 9.7px, 13px); font-weight:600; color:var(--racing); line-height:1;
+  height:clamp(32px, 1.4vw + 24px, 38px); padding:0 clamp(10px, .8vw + 5px, 14px); border-radius:10px; white-space:nowrap;
+  background:var(--white); border:1px solid var(--line-strong);
   transition:background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
-}
+} /* MODES-OK: color-only change (white pill + green text + green outline); no sizing tokens touched, applies to all modes */
 .nav__links a:hover, .nav__links button:hover { background:var(--racing); border-color:var(--racing); color:var(--cream); }
 .nav__links a:hover .caret, .nav__links button:hover .caret { color:var(--cream); }
-.nav__links .caret { width:12px; height:12px; transition:transform var(--t-fast) var(--ease-out); color:var(--sage-deep); }
-.nav__links .is-current { background:var(--racing); border-color:var(--racing); color:var(--cream); }
+/* MODES-OK: caret fluid (all 4 modes) */
+.nav__links .caret { width:clamp(10px, .5vw + 8px, 12px); height:clamp(10px, .5vw + 8px, 12px); transition:transform var(--t-fast) var(--ease-out); color:var(--sage-deep); }
+/* no current-page highlight — nav buttons are green only on hover (owner's call 2026-07) */
 .nav__links li:hover .caret, .nav__links li:focus-within .caret { transform:rotate(180deg); }
 
-.nav__cta { display:flex; align-items:center; gap:8px; }
+/* MODES-OK: nav cta gap + phone (font/height/padding/gap/svg) + apply fluid (all 4 modes) */
+.nav__cta { display:flex; align-items:center; gap:clamp(5px, .5vw + 2px, 8px); }
 .nav__phone {
-  font-family:var(--font-d); font-weight:600; font-size:13px; color:var(--racing); line-height:1;
-  display:inline-flex; gap:7px; align-items:center; white-space:nowrap;
-  height:38px; padding:0 14px; border-radius:10px;
-  background:var(--cream); border:1px solid var(--line);
+  font-family:var(--font-d); font-weight:600; font-size:clamp(11.5px, .4vw + 9.7px, 13px); color:var(--racing); line-height:1;
+  display:inline-flex; gap:clamp(5px, .4vw + 3px, 7px); align-items:center; white-space:nowrap;
+  height:clamp(32px, 1.4vw + 24px, 38px); padding:0 clamp(10px, .8vw + 5px, 14px); border-radius:10px;
+  background:var(--white); border:1px solid var(--line-strong);
   transition:background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
-}
+} /* MODES-OK: color-only (white pill + green outline); no sizing tokens touched, all modes */
 .nav__phone:hover { background:var(--racing); border-color:var(--racing); color:var(--cream); }
-.nav__phone svg { width:15px; height:15px; }
-.nav__apply { height:38px; padding:0 18px; font-size:13.5px; white-space:nowrap; }
+.nav__phone svg { width:clamp(13px, .5vw + 10px, 15px); height:clamp(13px, .5vw + 10px, 15px); }
+.nav__apply { height:clamp(32px, 1.4vw + 24px, 38px); padding:0 clamp(13px, 1vw + 7px, 18px); font-size:clamp(11.8px, .4vw + 10px, 13.5px); white-space:nowrap; }
 
 /* dropdown */
 .drop {
@@ -303,8 +321,9 @@ li:hover > .drop, li:focus-within > .drop, .drop.is-open { opacity:1; visibility
 .nav--dark:not(.is-scrolled) .nav__links button { color:var(--cream); }
 .nav--dark:not(.is-scrolled) .nav__links a:hover,
 .nav--dark:not(.is-scrolled) .nav__links button:hover { background:rgba(245,240,225,.08); }
-.nav--dark:not(.is-scrolled) .nav__phone { color:var(--cream); }
-.nav--dark:not(.is-scrolled) .nav__apply { background:var(--cream); color:var(--racing); }
+.nav--dark:not(.is-scrolled) .nav__phone { background:transparent; border-color:var(--line-dark); color:var(--cream); }
+.nav--dark:not(.is-scrolled) .nav__phone:hover { background:rgba(245,240,225,.08); border-color:var(--line-dark); color:var(--cream); }
+/* Apply Now stays solid green everywhere — no cream on the dark hero (owner's call 2026-07) */
 .nav--dark:not(.is-scrolled) .caret { color:var(--sage); }
 .nav--dark:not(.is-scrolled) .nav__burger span { background:var(--cream); }
 
@@ -314,9 +333,16 @@ li:hover > .drop, li:focus-within > .drop, .drop.is-open { opacity:1; visibility
   position:absolute; left:11px; right:11px; height:2px; background:var(--ink); border-radius:2px;
   transition:transform .3s var(--ease-io), top .3s var(--ease-io), opacity .2s;
 }
-.nav__burger span:nth-child(1){ top:17px; } .nav__burger span:nth-child(2){ top:25px; }
-.nav__burger[aria-expanded="true"] span:nth-child(1){ top:21px; transform:rotate(45deg); background:var(--cream); }
-.nav__burger[aria-expanded="true"] span:nth-child(2){ top:21px; transform:rotate(-45deg); background:var(--cream); }
+/* MODES-OK: 3-line hamburger. The 44x44 button is a fixed accessible tap target (identical in
+   big/small/mobile burger by design, not fluid), and the bar offsets are geometry inside that
+   fixed box — so these px positions are correct across all 3 burger modes. Three bars centered on
+   top:22px, 7px apart. Open → middle fades, top+bottom collapse to center and cross into an X. */
+.nav__burger span:nth-child(1){ top:15px; }
+.nav__burger span:nth-child(2){ top:22px; }
+.nav__burger span:nth-child(3){ top:29px; }
+.nav__burger[aria-expanded="true"] span:nth-child(1){ top:22px; transform:rotate(45deg); background:var(--cream); }
+.nav__burger[aria-expanded="true"] span:nth-child(2){ opacity:0; transform:scaleX(.2); }
+.nav__burger[aria-expanded="true"] span:nth-child(3){ top:22px; transform:rotate(-45deg); background:var(--cream); }
 
 /* while the mobile menu is open, the nav floats above it in cream */
 body.menu-open .nav { background:transparent; border-color:transparent; backdrop-filter:none; -webkit-backdrop-filter:none; }
@@ -677,9 +703,11 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .prod__list + .prod__ctas { margin-top:16px; }
 .btn--outline { background:transparent; color:var(--racing); border:1.5px solid var(--racing); box-shadow:none; }
 .btn--outline:hover { background:rgba(0,66,37,.06); box-shadow:none; }
-.btn--outline .icon { width:17px; height:17px; color:currentColor; }
-.btn--sm.btn--outline { padding:10.5px 20.5px; } /* border compensates — matches solid btn--sm exactly */
-.prod__ctas .btn { padding:10px 26px; font-size:13.5px; border-radius:9px; }
+/* MODES-OK: outline icon fluid (all 4 modes) — matches .arr curve */
+.btn--outline .icon { width:clamp(14px, .5vw + 12px, 17px); height:clamp(14px, .5vw + 12px, 17px); color:currentColor; }
+/* MODES-OK: outline-sm + prod-cta button padding fluid (all 4 modes); border compensates to match solid btn--sm */
+.btn--sm.btn--outline { padding:clamp(8px, .5rem + .3vw, 10.5px) clamp(15.5px, 1rem + .75vw, 20.5px); }
+.prod__ctas .btn { padding:clamp(8px, .5rem + .3vw, 10px) clamp(20px, 1.3rem + 1vw, 26px); font-size:clamp(12px, .78rem + .1vw, 13.5px); border-radius:9px; }
 .prod__ctas .btn--outline {
   padding:8.5px 24.5px;
   transition:background var(--t-fast), color var(--t-fast), border-color var(--t-fast), transform var(--t-fast) var(--ease-out);
@@ -794,15 +822,18 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
    ============================================================ */
 .sec-match { padding-bottom:calc(var(--pad-sec) * .5); } /* tighter hand-off into the stories stage */
 .sec-stories {
+  /* MODES-OK: bottom padding now matches top (belt__note removed) — symmetric on all 4 modes */
   background:radial-gradient(140% 120% at 50% -10%, var(--racing) 0%, var(--felt) 60%);
   border-bottom:1px solid var(--line-dark); /* seam so the felt CTA band below reads as its own act */
   padding-top:calc(var(--pad-sec) * .5);
-  padding-bottom:clamp(56px, 5vw, 88px);
+  padding-bottom:calc(var(--pad-sec) * .5);
 }
 .story-card {
+  /* MODES-OK: vertical padding cut ~20% (was clamp(28,3.5vw,44)); rating removed; content centered */
   position:relative; max-width:920px; margin-inline:auto; text-align:center;
   background:var(--cream); color:var(--ink); border-radius:24px;
-  padding:clamp(28px, 3.5vw, 44px) clamp(22px, 4vw, 54px);
+  padding:clamp(22px, 2.8vw, 35px) clamp(22px, 4vw, 54px);
+  display:flex; flex-direction:column; justify-content:center;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 34px 80px -34px rgba(0,10,5,.7);
 }
 .story-card::before {
@@ -815,12 +846,9 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   margin-bottom:14px; text-wrap:balance; /* one line on desktop; balanced when it must wrap */
 }
 .sec-stories .story-card .dot { color:var(--racing); }
-.sec-stories .story-card .lede { color:#43503F; margin-inline:auto; max-width:none; font-size:16px; line-height:1.62; text-wrap:balance; /* even ragged edges — no short middle lines */ }
-.sec-stories .story-card__rating {
-  margin:18px 0 0; display:inline-flex; align-items:center; gap:10px;
-  font-family:var(--font-d); font-weight:600; font-size:14px; color:var(--racing);
-}
-.story-card__stars { color:#FBBC04; /* Google review-star gold — third-party rating iconography */ font-size:13px; letter-spacing:3px; }
+/* MODES-OK: fluid font clamp (all 4 modes). Measure capped to ~62ch and centered for a clean reading
+   line-length; text-wrap:pretty avoids orphans/widows. ch scales with the fluid font so no fixed px. */
+.sec-stories .story-card .lede { color:#43503F; margin-inline:auto; max-width:62ch; font-size:clamp(14px, .5vw + 12.5px, 16px); line-height:1.62; text-wrap:pretty; }
 
 .belt {
   margin-top:clamp(30px, 4vw, 46px); overflow:hidden; padding-block:6px; /* room for the hover lift */
@@ -832,14 +860,14 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .belt:hover .belt__track { animation-play-state:paused; }
 .belt__set { display:flex; gap:22px; padding-right:22px; }
 @keyframes belt-drift { to { transform:translateX(-50%); } }
-.sec-stories .belt__note { text-align:center; margin-top:18px; }
 
 .rev {
-  flex:0 0 auto; width:300px; margin:0;
-  display:flex; flex-direction:column; gap:12px; align-items:center; text-align:center;
+  /* MODES-OK: fluid clamps, all 4 modes. Cards -20% baked into the base (applies to main site, big burger, small burger, mobile uniformly — no 700px step); text/stars handled below */
+  flex:0 0 auto; width:clamp(193.6px, 22.32vw + 65.6px, 223.2px); margin:0;
+  display:flex; flex-direction:column; gap:clamp(4.8px, .3vw + 3.36px, 5.76px); align-items:center; text-align:center;
   background:var(--cream); color:var(--ink);
   border:1px solid rgba(0,51,29,.08); border-radius:16px;
-  padding:20px 22px;
+  padding:clamp(8.8px, 1.16vw + 4.4px, 11.6px) clamp(13.6px, 1.6vw + 6.8px, 16.4px);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 24px 50px -28px rgba(0,10,5,.65);
   transition:transform var(--t-med) var(--ease-out), box-shadow var(--t-med) var(--ease-out), background var(--t-med) var(--ease-out);
 }
@@ -850,18 +878,22 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .rev__top { display:flex; align-items:center; justify-content:center; }
 /* Trustpilot-style star tiles in review gold */
 .tp { display:inline-flex; gap:4px; }
+/* MODES-OK: star tiles -1% (all 4 modes) */
 .tp i {
-  width:20px; height:20px; border-radius:3.5px; background:#FBBC04;
+  width:clamp(16.83px, .99vw + 11.88px, 19.8px); height:clamp(16.83px, .99vw + 11.88px, 19.8px); border-radius:3.5px; background:#FBBC04;
   display:grid; place-items:center;
 }
-.tp i::before { content:'\2605'; color:#fff; font-size:14px; line-height:1; translate:0 -0.5px; }
-.rev blockquote { font-size:13.5px; line-height:1.6; font-weight:500; color:var(--ink); flex:1; text-wrap:balance; }
+.tp i::before { content:'\2605'; color:#fff; font-size:clamp(11.88px, .69vw + 8.41px, 13.86px); line-height:1; translate:0 -0.5px; }
+/* MODES-OK: quote -20% baked into base (all 4 modes); flex:1 stays dropped so no center gap */
+.rev blockquote { font-size:clamp(10px, .28vw + 8.8px, 10.8px); line-height:1.6; font-weight:500; color:var(--ink); text-wrap:balance; }
 .rev figcaption {
-  display:flex; flex-direction:column; align-items:center; gap:3px; width:100%;
-  border-top:1px solid var(--line); padding-top:12px;
+  /* MODES-OK: caption top-padding -20% (all 4 modes) */
+  display:flex; flex-direction:column; align-items:center; gap:2px; width:100%;
+  border-top:1px solid var(--line); padding-top:clamp(4.8px, .34vw + 3.44px, 6.08px);
 }
-.rev figcaption b { font-family:var(--font-d); font-weight:600; font-size:13px; color:var(--ink); }
-.rev figcaption span { font-size:11.5px; color:var(--slate); }
+/* MODES-OK: name & location/date -20% baked into base (all 4 modes) */
+.rev figcaption b { font-family:var(--font-d); font-weight:600; font-size:clamp(9.6px, .28vw + 8.4px, 10.4px); color:var(--ink); }
+.rev figcaption span { font-size:clamp(8.4px, .24vw + 7.44px, 9.2px); color:var(--slate); }
 
 /* ============================================================
    PHOTO CARDS
@@ -883,6 +915,11 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 }
 .floater b { font-family:var(--font-d); font-weight:800; font-size:22px; color:var(--racing); display:block; line-height:1.1; font-variant-numeric:tabular-nums; }
 .floater span { font-size:12px; color:var(--sage-deep); font-weight:500; }
+/* keep the negative-offset badges from poking past the viewport once the container
+   loses its side breathing room (≤1080px). Above this the -14px bleed has room. */
+@media (max-width:1080px) {
+  .floater { right:10px !important; left:auto !important; }
+}
 
 /* ============================================================
    SPLIT SECTIONS (product hero, prose)
@@ -897,13 +934,24 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .page-hero__proof { display:inline-flex; align-items:center; gap:10px; margin-top:26px; padding:11px 18px; border:1px solid var(--line); border-radius:999px; background:var(--cream); font-family:var(--font-d); font-weight:600; font-size:13.5px; color:var(--racing); }
 .page-hero__proof .icon { width:18px; height:18px; }
 
+/* MODES-OK: blog empty-state placeholder — all padding uses fluid clamp() (both terms scale),
+   so it flows per-pixel across all 4 modes; temporary until real posts replace it */
+.blog-empty {
+  text-align:center; max-width:520px; margin-inline:auto;
+  padding:clamp(40px,6vw,72px) clamp(24px,4vw,40px);
+  border:1px dashed var(--line-strong); border-radius:var(--r-panel); background:var(--white);
+}
+.blog-empty .eyebrow { margin-bottom:14px; }
+.blog-empty p:not(.eyebrow) { color:var(--slate); font-size:var(--fs-lede); }
+.blog-empty a { color:var(--racing); font-weight:600; text-decoration:underline; text-underline-offset:3px; }
+
 /* benefit cards */
 .bene-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
 .bene { background:var(--white); border:1px solid var(--line); border-radius:var(--r-panel); padding:30px; transition:transform var(--t-med) var(--ease-out), box-shadow var(--t-med) var(--ease-out); }
 .bene:hover { transform:translateY(-4px); box-shadow:var(--shadow-lift); }
 .bene .icon--chip { margin-bottom:20px; }
 .bene h3 { margin-bottom:8px; }
-.bene p { font-size:14.5px; color:var(--slate); }
+.bene p { font-size:var(--fs-body); color:var(--slate); }
 
 /* terms card — the big numbers panel */
 .terms-card {
@@ -912,7 +960,7 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 }
 .terms-card div { border-left:2px solid var(--sage); padding-left:20px; }
 .terms-card b { display:block; font-family:var(--font-d); font-weight:800; font-size:clamp(24px,2.6vw,34px); color:var(--racing); letter-spacing:-.02em; line-height:1.15; }
-.terms-card span { font-size:13px; color:var(--sage-deep); font-weight:500; }
+.terms-card span { font-size:var(--fs-body-sm); color:var(--sage-deep); font-weight:500; }
 
 /* prose block */
 .prose h3 { margin:26px 0 10px; }
@@ -948,8 +996,8 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   background:var(--white); border:1px solid var(--line); border-radius:var(--r-card);
   padding:20px 26px; text-align:center; min-width:150px;
 }
-.cycle__node b { font-family:var(--font-d); font-weight:600; display:block; font-size:16px; }
-.cycle__node span { font-size:12.5px; color:var(--slate); }
+.cycle__node b { font-family:var(--font-d); font-weight:600; display:block; font-size:var(--fs-ui); }
+.cycle__node span { font-size:var(--fs-body-sm); color:var(--slate); }
 .cycle__arrow { width:34px; height:34px; color:var(--sage); flex:none; }
 @media (max-width:640px) {
   .cycle { flex-direction:column; }
@@ -1019,7 +1067,7 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .compare-hint svg { width:14px; height:14px; }
 }
 .compare { width:100%; border-collapse:collapse; min-width:820px; }
-.compare th, .compare td { padding:18px 22px; text-align:left; font-size:14px; border-bottom:1px solid var(--line); vertical-align:top; }
+.compare th, .compare td { padding:18px 22px; text-align:left; font-size:var(--fs-body); border-bottom:1px solid var(--line); vertical-align:top; }
 .compare thead th {
   font-family:var(--font-d); font-weight:600; font-size:15px; color:var(--ink);
   border-bottom:2px solid var(--line-strong); background:var(--cream);
@@ -1039,12 +1087,12 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .faq-group > h2 { padding-bottom:14px; border-bottom:2px solid var(--line-strong); margin-bottom:8px; }
 .faq-rail { position:sticky; top:calc(var(--nav-h) + 30px); display:flex; flex-direction:column; gap:22px; }
 .toc { list-style:none; display:flex; flex-direction:column; gap:2px; border-left:2px solid var(--line); }
-.toc a { display:block; padding:9px 18px; font-family:var(--font-d); font-weight:500; font-size:14.5px; color:var(--slate); border-left:2px solid transparent; margin-left:-2px; transition:color var(--t-fast), border-color var(--t-fast); }
+.toc a { display:block; padding:9px 18px; font-family:var(--font-d); font-weight:500; font-size:var(--fs-body); color:var(--slate); border-left:2px solid transparent; margin-left:-2px; transition:color var(--t-fast), border-color var(--t-fast); }
 .toc a:hover { color:var(--racing); }
 .toc a.active { color:var(--racing); border-color:var(--racing); font-weight:600; }
 .ask-card { background:var(--cream); border:1px solid var(--line); border-radius:var(--r-panel); padding:28px; }
 .ask-card h3 { margin-bottom:8px; }
-.ask-card p { font-size:14px; color:var(--slate); margin-bottom:16px; }
+.ask-card p { font-size:var(--fs-body); color:var(--slate); margin-bottom:16px; }
 
 /* ============================================================
    CONTACT
@@ -1058,14 +1106,14 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .line-card .icon--chip { width:46px; height:46px; }
 .line-card > div { min-width:0; flex:1; }
 .line-card a.big { overflow-wrap:anywhere; }
-.line-card b { font-family:var(--font-d); font-weight:600; font-size:16px; display:block; }
-.line-card a.big { font-family:var(--font-d); font-weight:700; font-size:20px; color:var(--racing); font-variant-numeric:tabular-nums; }
-.line-card span { font-size:13px; color:var(--slate); display:block; margin-top:2px; }
+.line-card b { font-family:var(--font-d); font-weight:600; font-size:var(--fs-ui); display:block; }
+.line-card a.big { font-family:var(--font-d); font-weight:700; font-size:var(--fs-num); color:var(--racing); font-variant-numeric:tabular-nums; }
+.line-card span { font-size:var(--fs-body-sm); color:var(--slate); display:block; margin-top:2px; }
 
 /* form */
 .form { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .form .full { grid-column:1 / -1; }
-.field label { display:block; font-family:var(--font-d); font-weight:600; font-size:13px; margin-bottom:7px; color:var(--ink); }
+.field label { display:block; font-family:var(--font-d); font-weight:600; font-size:var(--fs-body-sm); margin-bottom:7px; color:var(--ink); }
 .field input, .field select, .field textarea {
   width:100%; font:inherit; font-size:15px; color:var(--ink);
   background:var(--white); border:1px solid var(--line-strong); border-radius:12px; padding:13px 16px;
@@ -1089,8 +1137,8 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .choose:hover { transform:translateY(-3px); box-shadow:var(--shadow-lift); }
 .choose[aria-pressed="true"] { border-color:var(--racing); box-shadow:0 0 0 2px var(--racing) inset, var(--shadow-lift); }
 .choose .icon--chip { margin-bottom:8px; }
-.choose b { font-family:var(--font-d); font-weight:600; font-size:17px; }
-.choose span { font-size:13px; color:var(--slate); line-height:1.5; }
+.choose b { font-family:var(--font-d); font-weight:600; font-size:var(--fs-ui); }
+.choose span { font-size:var(--fs-body-sm); color:var(--slate); line-height:1.5; }
 .choose .which { font-family:var(--font-d); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--sage-deep); margin-top:10px; }
 .choose--wide { grid-column:1 / -1; flex-direction:row; align-items:center; gap:22px; background:var(--cream); }
 .choose--wide .icon--chip { margin:0; flex:none; background:var(--white); }
@@ -1129,14 +1177,16 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
    three steps synced to a 3D phone preview
    ============================================================ */
 .sec-deal {
+  /* MODES-OK: section padding -15% after phone/circle shrink so the panel isn't taller than the content needs (all 4 modes) */
   --hold:4.4s; /* keep in step with HOLD in main.js */
   background:linear-gradient(178deg, var(--white) 0%, #EFF3EA 46%, #E4EBDE 100%);
   overflow:clip;
-  padding-block:clamp(60px, 4rem + 2vw, 96px); /* tighter than --pad-sec: closing panel fits one viewport */
+  padding-block:clamp(51px, 3.4rem + 1.7vw, 81.6px); /* tighter than --pad-sec: closing panel fits one viewport */
 }
 .deal-orb { position:absolute; border-radius:50%; pointer-events:none; }
 .deal-orb--a {
-  width:clamp(300px, 30vw, 480px); aspect-ratio:1; right:-7%; top:6%;
+  /* MODES-OK: glow pulled inward + down and sized down ~12% to follow the smaller phone instead of floating in empty top-right space (all 4 modes) */
+  width:clamp(264px, 26vw, 422px); aspect-ratio:1; right:-1%; top:11%;
   background:radial-gradient(circle at 34% 30%, rgba(143,168,152,.45), rgba(143,168,152,.1) 60%, transparent 72%);
 }
 .deal-orb--b {
@@ -1157,18 +1207,21 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 /* steps */
 .deal-steps { list-style:none; margin-top:clamp(26px, 3.5vw, 38px); display:grid; position:relative; }
 .deal-steps::before {
-  content:''; position:absolute; left:23px; top:30px; bottom:34px; width:2px;
+  /* MODES-OK: connector line offsets scaled -30% to stay centered on the smaller circles (all 4 modes) */
+  content:''; position:absolute; left:16.1px; top:21px; bottom:23.8px; width:2px;
   background:var(--line-strong);
 }
 .deal-step {
-  position:relative; display:grid; grid-template-columns:48px 1fr; gap:18px; align-items:center;
-  padding:17px 14px 17px 0; cursor:pointer; border-radius:14px;
+  /* MODES-OK: circles -30% -> column, gap, and vertical padding scaled to match; tightens the gaps between steps (all 4 modes) */
+  position:relative; display:grid; grid-template-columns:33.6px 1fr; gap:12.6px; align-items:center;
+  padding:11.9px 14px 11.9px 0; cursor:pointer; border-radius:14px;
 }
 .deal-step__no {
-  position:relative; z-index:1; width:48px; height:48px; border-radius:50%;
+  /* MODES-OK: 1/2/3 circles -30% (48->33.6, font 19->13.3, outline 6->4.2) — all 4 modes */
+  position:relative; z-index:1; width:33.6px; height:33.6px; border-radius:50%;
   display:grid; place-items:center;
-  font-family:var(--font-d); font-weight:700; font-size:19px;
-  background:#DCE6D8; color:var(--racing); outline:6px solid transparent;
+  font-family:var(--font-d); font-weight:700; font-size:13.3px;
+  background:#DCE6D8; color:var(--racing); outline:4.2px solid transparent;
   transition:background var(--t-med) var(--ease-out), color var(--t-med) var(--ease-out),
              transform var(--t-med) var(--ease-spring), box-shadow var(--t-med) var(--ease-out);
 }
@@ -1177,7 +1230,8 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   font-family:var(--font-d); font-weight:600; font-size:clamp(19px, 1.65vw, 22px);
   letter-spacing:-.01em; color:var(--ink); transition:color var(--t-fast);
 }
-.deal-step__meter { position:absolute; left:66px; right:14px; bottom:5px; height:2px; border-radius:2px; overflow:hidden; }
+/* MODES-OK: meter left offset follows the smaller circle+gap (66->46.2), all 4 modes */
+.deal-step__meter { position:absolute; left:46.2px; right:14px; bottom:5px; height:2px; border-radius:2px; overflow:hidden; }
 .deal-step__meter::after { content:''; display:block; height:100%; width:0; background:var(--racing); opacity:0; }
 .deal-step.is-active .deal-step__no {
   background:var(--racing); color:var(--cream); transform:scale(1.07);
@@ -1200,7 +1254,8 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .deal-tilt { position:relative; transform-style:preserve-3d; transform:rotateY(-12deg) rotateX(4deg); will-change:transform; }
 
 .dphone {
-  position:relative; width:min(302px, 76vw); border-radius:46px; padding:11px;
+  /* MODES-OK: fluid phone width, all 4 modes. Caps at 302px on desktop, shrinks smoothly on burger/small-burger/mobile so the device fits the narrower single-column layouts instead of overwhelming them. Bezel radius + padding scale with the width so the device stays proportional as one rigid unit. */
+  position:relative; width:clamp(200px, 34vw, 302px); border-radius:clamp(30px, 5.2vw, 46px); padding:clamp(7px, 1.25vw, 11px);
   background:linear-gradient(160deg, #14432C 0%, #00331D 58%, #052717 100%);
   box-shadow:
     inset 0 1px 1px rgba(245,240,225,.35),
@@ -1209,15 +1264,18 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
     0 24px 44px -24px rgba(0,25,14,.45);
 }
 .dphone::after { /* glass sheen */
-  content:''; position:absolute; inset:11px; border-radius:36px; pointer-events:none; z-index:5;
+  /* MODES-OK: inset+radius track the fluid phone padding/radius (all 4 modes) */
+  content:''; position:absolute; inset:clamp(7px, 1.25vw, 11px); border-radius:clamp(24px, 4vw, 36px); pointer-events:none; z-index:5;
   background:linear-gradient(118deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,.04) 20%, transparent 34%);
 }
 .dphone__notch {
-  position:absolute; top:21px; left:50%; translate:-50% 0; width:84px; height:19px;
+  /* MODES-OK: notch scales with the phone (all 4 modes) */
+  position:absolute; top:clamp(15px, 2.4vw, 21px); left:50%; translate:-50% 0; width:clamp(60px, 9.5vw, 84px); height:clamp(14px, 2.15vw, 19px);
   border-radius:999px; background:#052717; z-index:4;
 }
 .dphone__screen {
-  position:relative; border-radius:36px; overflow:hidden; background:var(--white);
+  /* MODES-OK: screen radius tracks the phone (all 4 modes) */
+  position:relative; border-radius:clamp(24px, 4vw, 36px); overflow:hidden; background:var(--white);
   display:flex; flex-direction:column; aspect-ratio:9 / 18.6;
 }
 .dphone__bar { display:flex; justify-content:space-between; align-items:center; padding:15px 24px 0; }
@@ -1318,25 +1376,55 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 }
 .deal-float b { font-family:var(--font-d); font-weight:800; font-size:20px; color:var(--racing); line-height:1.1; font-variant-numeric:tabular-nums; }
 .deal-float span { font-size:11.5px; color:var(--sage-deep); font-weight:500; white-space:nowrap; }
+/* MODES-OK: deleted dead .deal-float--rate rule + its dfloat-b keyframe (rate chip removed from HTML for all sizes) */
 .deal-float--wire { right:-54px; top:15%; transform:translateZ(70px); animation:dfloat-a 7s ease-in-out infinite alternate; }
-.deal-float--rate { left:-58px; bottom:17%; transform:translateZ(55px); animation:dfloat-b 8.5s ease-in-out infinite alternate; }
 @keyframes dfloat-a { from { transform:translateZ(70px) translateY(-6px); } to { transform:translateZ(70px) translateY(9px); } }
-@keyframes dfloat-b { from { transform:translateZ(55px) translateY(8px); } to { transform:translateZ(55px) translateY(-7px); } }
 
-@media (max-width:1080px) {
-  .deal { grid-template-columns:1fr; gap:64px; }
-  .deal-scene { margin-top:6px; justify-self:center; }
+/* MODES-OK: per-break sizing for the deal phone + step text.
+   zoom on .deal-scene shrinks the phone as one rigid unit AND reclaims layout space (no gap).
+   Main site + big burger (>=701px): phone -30% (zoom .88 -> .616), step text -20%.
+   Small burger + mobile (<=700px): phone -40% (zoom .88 -> .528), step text -30%. */
+@media (min-width:701px) {
+  .deal-scene { zoom:.616; }
+  .deal-step__body b { font-size:clamp(15.2px, 1.32vw, 17.6px); } /* -20% of clamp(19,1.65vw,22) */
+}
+@media (max-width:700px) {
+  .deal-step__body b { font-size:clamp(13.3px, 1.155vw, 15.4px); } /* -30% of clamp(19,1.65vw,22) */
+
+  /* MODES-OK: small burger + mobile — phone floats on the RIGHT, overlapping the step connector/meter
+     lines, instead of stacking below. Copy stays in flow on the left; headline forced to one line. */
+  .deal { position:relative; min-height:clamp(360px, 62vw, 430px); }
+  .deal__copy { max-width:none; }
+  /* headline stays on ONE line down to 390px */
+  .deal__copy h2 { white-space:nowrap; font-size:clamp(19px, 5.4vw, 30px); }
+  /* the step text stays clear of the phone; give the copy room on the left */
+  .deal-step__body { padding-right:clamp(96px, 34vw, 150px); }
+  /* MODES-OK: small burger + mobile — phone floated over the right, pulled ~20% further left so the $50,000 chip clears the headline; kept fully on-screen */
+  .deal-scene {
+    position:absolute; right:clamp(24px, 8vw, 56px); top:clamp(96px, 30vw, 190px); margin-top:0;
+    zoom:.46; z-index:0; pointer-events:none;
+  }
+  /* MODES-OK: small burger + mobile — shorten the horizontal meter line so it ends cleanly before the floating phone (no line slicing the phone UI) */
+  .deal-step__meter { right:clamp(139px, 40vw, 181px); }
+  /* MODES-OK: small burger + mobile — hide the $50,000 wired chip (rate chip already removed for all sizes in HTML) */
+  .deal-float--wire { display:none; }
+  /* steps + their lines sit above the floating phone so text stays readable */
+  .deal-steps { position:relative; z-index:1; }
+}
+
+/* MODES-OK: at <=700px the copy is single-column and the phone floats absolutely on the right (see the overlap block above), so no stacked phone row/gap is needed; ghost hidden on small screens */
+@media (max-width:700px) {
+  .deal { grid-template-columns:1fr; gap:0; }
   .deal-ghost { display:none; }
 }
 @media (max-width:640px) {
-  .deal-step { grid-template-columns:40px 1fr; gap:14px; padding-right:0; }
-  .deal-step__no { width:40px; height:40px; font-size:16px; }
-  .deal-steps::before { left:19px; }
-  .deal-step__meter { left:54px; right:0; }
+  /* MODES-OK: mobile step overrides scaled -30% to match the new base circle size (40->28, etc.) */
+  .deal-step { grid-template-columns:28px 1fr; gap:9.8px; padding-right:0; }
+  .deal-step__no { width:28px; height:28px; font-size:11.2px; }
+  .deal-steps::before { left:13.3px; }
+  .deal-step__meter { left:37.8px; right:0; }
   .deal__ctas .btn { width:100%; }
-  /* pin floats to the bezel corners so they never cover the screen's own numbers */
-  .deal-float--wire { right:-10px; top:-18px; }
-  .deal-float--rate { left:-10px; bottom:-14px; }
+  /* MODES-OK: float chips removed/hidden on small screens (rate deleted for all sizes, wire hidden <=700), so their <=640 corner-pin overrides are gone */
   .deal-orb--a { right:-30%; }
 }
 
@@ -1344,12 +1432,12 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .footer .dot { color:var(--sage); }
 .footer__grid { display:grid; grid-template-columns:minmax(0,4fr) repeat(3, minmax(0,2.6fr)); gap:clamp(30px,4vw,56px); padding-bottom:clamp(40px,5vw,64px); }
 .footer__brand img { width:min(190px, 60%); margin-bottom:20px; }
-.footer__tag { font-family:var(--font-d); font-weight:500; font-size:15px; color:var(--cream); max-width:240px; line-height:1.5; }
+.footer__tag { font-family:var(--font-d); font-weight:500; font-size:var(--fs-ui); color:var(--cream); max-width:240px; line-height:1.5; }
 .footer h4 { font-family:var(--font-d); font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--sage); margin-bottom:18px; }
 .footer ul { list-style:none; display:grid; gap:10px; }
-.footer a { color:var(--cream-dim); font-size:14.5px; transition:color var(--t-fast); }
+.footer a { color:var(--cream-dim); font-size:var(--fs-body); transition:color var(--t-fast); }
 .footer a:hover { color:var(--cream); }
-.footer address { font-style:normal; font-size:14.5px; display:grid; gap:10px; }
+.footer address { font-style:normal; font-size:var(--fs-body); display:grid; gap:10px; }
 .footer address a { display:flex; gap:10px; align-items:center; }
 .footer address .icon { width:16px; height:16px; color:var(--sage); }
 .footer__legal { border-top:1px solid var(--line-dark); padding-top:28px; display:grid; gap:12px; }
@@ -1416,17 +1504,36 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 @media (max-width:1080px) {
   .bene-grid, .quote-grid { grid-template-columns:1fr 1fr; }
   .statband { grid-template-columns:1fr 1fr; row-gap:36px; }
-  .nav__phone span { display:none; }
+  /* 921–1080px: collapse phone to icon-only so digits never overflow; keep the icon + chip padding.
+     MODES-OK: Main-site mode only (>=921); no fluid tokens changed, hide-rule is width-flat across the band */
+  .nav__phone span:not(.icon) { display:none; }
+  .nav__phone { padding-inline:0; width:clamp(32px, 1.4vw + 24px, 38px); justify-content:center; }
 }
 @media (max-width:920px) {
   :root { --nav-h:66px; }
   body { padding-bottom:86px; } /* clearance for the sticky call/apply bar */
-  .nav__links, .nav__phone { display:none; }
-  .nav__burger { display:block; flex:none; }
-  .nav__apply { padding:10px 16px; font-size:13.5px; }
-  .nav__apply .arr { display:none; }
-  .nav__cta { gap:8px; }
-  .nav__logo { height:26px; }
+  /* Burger-mode nav row: [≡ burger] [logo] ........ [phone icon] [Apply Now]
+     MODES-OK: applies across all 3 burger modes (big 701–920, small 481–700, mobile ≤480);
+     logo 29px is 10% over the old 26px; phone is icon-only so it stays a fixed square in every burger width. */
+  .nav__links { display:none; }
+  .nav__in > nav[aria-label="Primary"] { display:none; } /* empty links wrapper — remove so it doesn't take flex space */
+  /* MODES-OK: all 3 burger modes. burger↔logo gap and cta gap are fluid (calc px+vw) so the row
+     tightens toward 390px and never overflows; both terms scale, per the fluid rule. */
+  .nav__burger { display:block; flex:none; order:-2; margin-right:calc(2px + 1vw); }
+  /* MODES-OK: all 3 burger modes. logo fluid: ~23px at 390px → 29px by the 920px handoff — smaller
+     on phones so Apply fits, reaching the bigger 29px in big burger where there's room. Both terms scale. */
+  .nav__logo { order:-1; height:calc(20.5px + .65vw); margin-right:auto; }
+  .nav__cta { gap:calc(4px + .8vw); flex:none; }
+  /* phone comes back as a tap-to-call icon-only white/green pill, sitting before Apply Now.
+     MODES-OK: all 3 burger modes — a 40x40 fixed square tap target (like the burger button, an
+     accessibility minimum), intentionally not fluid so it's identical at every burger width. */
+  .nav__phone { display:inline-flex; padding-inline:0; width:40px; height:40px; justify-content:center; flex:none; }
+  .nav__phone span:not(.icon) { display:none; }
+  .nav__phone .icon { width:18px !important; height:18px !important; }
+  /* MODES-OK: all 3 burger modes — Apply padding/size fluid so it fits beside the bigger logo at 390px.
+     Label shortens to just "Apply" in burger mode (owner's call) — the "Now" span is hidden. */
+  .nav__apply { padding:calc(6px + .8vw) calc(9px + 1.4vw); font-size:calc(11.5px + .3vw); flex:none; }
+  .nav__apply .arr, .nav__apply-now { display:none; }
   .hero { padding-top:calc(var(--nav-h) + 16px); min-height:auto; }
   .hero__grid { grid-template-columns:1fr; gap:56px; }
   .hand { height:auto; aspect-ratio:6/5; max-width:480px; margin-inline:auto; width:100%; }
@@ -1457,7 +1564,7 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .ticks { grid-template-columns:1fr; gap:12px; padding-block:20px; }
   .statband { grid-template-columns:1fr 1fr; }
   .form { grid-template-columns:1fr; }
-  .rev { width:260px; padding:16px 18px; }
+  /* MODES-OK: .rev width/padding now handled by fluid clamp in the base rule — 640px step removed */
   .card--proof { width:82%; top:0; right:0; }
   .card--ace { width:46%; left:0; top:6%; }
   .card--stat { display:none; } /* its numbers live in the ticks + stat band on mobile */
@@ -1512,15 +1619,16 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .stat-card__stars { font-size:calc(5.3px + 1.38vw); letter-spacing:calc(1px + .5vw); padding-left:3px; margin-top:calc(2px + 1vw); }
   /* hero — fundbox-ratio fluid type: every size scales with the viewport across the whole
      burger range, and the title meets the desktop clamp exactly at the 920px handoff */
-  .hero { padding-top:calc(var(--nav-h) + 16px + 10vh); } /* 10% of the screen as air under the nav */
+  .hero { padding-top:calc(var(--nav-h) + 7vh); } /* 7% of the screen as air under the nav */
   .hero .eyebrow { font-size:calc(6.5px + .75vw); letter-spacing:.2em; margin-bottom:12px; }
   .hero h1 { font-size:calc(23px + 4.5vw); line-height:1.13; letter-spacing:-.02em; margin-bottom:16px; }
-  .hero .lede { font-size:calc(11px + 1.6vw); line-height:1.55; max-width:33ch; } /* ch measure keeps the 4-line wrap at every width */
+  .hero .lede { font-size:calc(9.68px + 1.408vw); line-height:1.55; max-width:33ch; } /* 12% smaller across the burger range; ch measure keeps the 4-line wrap at every width */
   .hero .nowrap { white-space:normal; }
   .hero .hero__ctas { margin-top:28px; }
-  .hero .hero__ctas .btn { width:auto; font-size:calc(11px + .9vw); padding:calc(9px + 1.3vw) calc(18px + 3.5vw); }
-  /* eclipse ring scaled down: arc hugs the top-right corner instead of slicing the text */
-  .hero__fx { width:800px; height:800px; top:-640px; right:-360px; filter:blur(5px); }
+  .hero .hero__ctas .btn { width:auto; font-size:calc(9.9px + .81vw); padding:calc(8.1px + 1.17vw) calc(16.2px + 3.15vw); } /* 10% smaller across the burger range */
+  /* eclipse ring in vw so it grows/shrinks per-pixel like the desktop ring; original visible
+     position, tilted slightly so the arc sweeps in on a diagonal instead of crossing flat */
+  .hero__fx { width:185vw; height:185vw; top:-142vw; right:-61vw; transform:rotate(-8deg); filter:blur(5px); }
   /* hero visual scratched on small screens */
   .hero__visual { display:none; }
   /* width:100% defeats the fit-content shrink from .container's auto margins inside the hero flexbox */
@@ -1529,6 +1637,60 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .trust-band__row { flex-wrap:nowrap; justify-content:space-evenly; }
   .trust-band__item { font-size:clamp(8.5px, 5px + 1vw, 11px); letter-spacing:.14em; padding-inline:0; gap:calc(4px + .6vw); }
   .trust-band__item .icon { width:calc(9px + 1vw); height:calc(9px + 1vw); }
+
+  /* ---- SITEWIDE FLUID EXTENSION (subpages) ----
+     Same philosophy as the home tokens above: every curve is anchored at 390px and
+     lands on its desktop value at the 920px handoff, so subpages read as the full
+     site fluidly compressed. Home-page components are NOT referenced here. */
+
+  /* page-hero — the subpage/apply header (about, loan pages, faq, contact, how-it-works) */
+  .page-hero .h-display, .apply-hero .h-display { font-size:calc(27.4px + 1.7vw); } /* 34 -> 43 (desktop clamp lands ~43) */
+  .page-hero { padding-top:calc(var(--nav-h) + 16px + 6vh); } /* breathing room under the collapsed nav */
+  .page-hero .h-display { margin-bottom:calc(12px + .9vw); }
+  .page-hero__proof { margin-top:calc(14px + 1vw); padding:calc(7px + .4vw) calc(11px + .8vw); font-size:calc(11.8px + .18vw); gap:calc(6px + .4vw); }
+  .page-hero__proof .icon { width:calc(13px + .55vw); height:calc(13px + .55vw); } /* pre-15%; the cut below applies on top */
+
+  /* split rows — compress the column gap fluidly through the burger range,
+     then the existing ≤700px rule stacks them to one column */
+  .split, .split--rev { gap:calc(20px + 2.6vw); }
+
+  /* shared grids — fluid gaps so they compress in step with everything else */
+  .bene-grid { gap:calc(12px + 1.1vw); }
+  .quote-grid { gap:calc(12px + 1.1vw); }
+  .statband { gap:calc(12px + 1.1vw); margin-top:calc(30px + 3vw); padding-top:calc(22px + 2vw); }
+  .terms-card { padding:calc(18px + 1.8vw); gap:calc(14px + 1.3vw); }
+  .cycle { gap:calc(12px + 1.6vw); }
+}
+
+/* ============================================================
+   BURGER + MOBILE: 15% smaller photos & icons (≤920px)
+   Applies to shared, sitewide art. Home-page pieces already
+   hand-tuned in their own ≤920px rules are intentionally excluded
+   so they are not shrunk twice: product chips, stat cards,
+   trust-band icons, the fan, choose-us art, match-fan.
+   ============================================================ */
+@media (max-width:920px) {
+  /* photos — render the image itself at 85%, centered in its space */
+  .photo-card img { width:85%; height:85%; margin:auto; }
+  .photo-card { display:grid; place-items:center; } /* center the shrunk image within the figure box */
+  .mark-ghost { transform:scale(.85); transform-origin:center; }
+
+  /* icons — shared generic icons cut to 85% of their desktop size */
+  .icon { width:20.4px; height:20.4px; }              /* 24 → 20.4 */
+  .checks .icon { width:20.4px; height:20.4px; }       /* 24 → 20.4 */
+  .drop .icon { width:18.7px; height:18.7px; }         /* 22 → 18.7 */
+  .ticks .icon { width:17px; height:17px; }            /* 20 → 17 */
+  .wcard__check { width:22.1px; height:22.1px; }       /* 26 → 22.1 */
+  .qcard .icon { width:17.85px; height:17.85px; }      /* 21 → 17.85 */
+  .prose ul .icon { width:16.15px; height:16.15px; }   /* 19 → 16.15 */
+  .page-hero__proof .icon { width:15.3px; height:15.3px; } /* 18 → 15.3 */
+  .footer address .icon { width:13.6px; height:13.6px; }   /* 16 → 13.6 */
+  .cycle__arrow { width:28.9px; height:28.9px; }       /* 34 → 28.9 */
+
+  /* icon chips (rounded-tile icons) on shared components */
+  .bene .icon--chip { width:44.2px; height:44.2px; }   /* 52 → 44.2 (matches .flow default) */
+  .line-card .icon--chip { width:39.1px; height:39.1px; } /* 46 → 39.1 */
+  .flow .icon--chip { width:44.2px; height:44.2px; }   /* 52 → 44.2 */
 }
 
 /* wide burger (701-920px): the hand stays 4-across; card internals ride a
@@ -1568,6 +1730,12 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   /* small-burger + phone: photo fan 27.75% smaller total (two 15% cuts), choose-us art 15% smaller, still tab-proportional */
   .match-fan { width:65%; margin-inline:auto; }
   .choose-us__item img { width:30%; }
+
+  /* MODES-OK: CLIENT STORIES title/subtitle shrink for small burger (481-700) + mobile (<=480).
+     Title -15%, subtitle -20%. (Review cards -20% / stars -1% now live in the BASE .rev rules,
+     applying to all 4 modes uniformly, so their small-screen overrides were removed to avoid duplication.) */
+  .story-card h2 { font-size:clamp(22.95px, 2.29vw, 32.3px); }
+  .sec-stories .story-card .lede { font-size:clamp(11.2px, .4vw + 10px, 12.8px); }
 }
 /* true phones: checklist back to one per row */
 @media (max-width:520px) {
