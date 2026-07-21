@@ -1480,14 +1480,18 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
    10–35px of margin; nowrap enforces it. Cap 1.6rem (25.6px) is ~15% under the un-slimmed h2 size. */
 .faqcard__head h2 {
   margin-bottom:0;
-  font-size:clamp(12px, 4vw - 2.2px, 1.6rem);
-  white-space:nowrap;
+  /* MODES-OK: title +10%, all 4 modes — both slope terms x1.10 (4vw−2.2 -> 4.4vw−2.42) and cap x1.10 (1.6->1.76rem); floor x1.10 (12->13.2). */
+  font-size:clamp(13.2px, 4.4vw - 2.42px, 1.76rem);
+  /* nowrap removed: at +10% the one-line fit is lost below ~880px and would clip; allow a graceful 2-line wrap instead. */
+  text-wrap:balance;
 }
-/* MODES-OK: title +7% on small-burger (481–700) and mobile (<=480) only. Both terms of the
-   slope scaled x1.07 (4vw−2.2 -> 4.28vw−2.354) and the cap x1.07 (1.6->1.7125rem); floor held
-   at 12px so 340px still fits. Verified one line with positive margin from 340px up. */
+/* MODES-OK: small-burger (481–700) + mobile (≤480) — heading forced to ONE line inside the card.
+   Slope 2.9vw−0.44px tracks the card's inner width so the single line fits with ~0px spare from
+   ~340px up (verified by rendered measurement at 360/420/481/560/684); cap 15px, floor 10px. nowrap
+   enforces the single line. This is necessarily smaller than the wide-mode +10% — a fixed string
+   can't stay both larger AND one-line as the container narrows. */
 @media (max-width:700px) {
-  .faqcard__head h2 { font-size:clamp(12px, 4.28vw - 2.354px, 1.7125rem); }
+  .faqcard__head h2 { font-size:clamp(10px, 2.9vw - 0.44px, 15px); white-space:nowrap; }
 }
 
 .faqcard__list { display:grid; }
@@ -1656,21 +1660,30 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
    colors only, no sizing/layout change, applies to all 4 modes. */
 .footer {
   --f-bg:var(--cream); --f-text:var(--ink); --f-strong:var(--racing); --f-muted:var(--racing); --f-line:var(--line-strong);
-  background:var(--f-bg); color:var(--f-text); border-top:1px solid var(--f-line); padding:clamp(56px,7vw,88px) 0 clamp(28px,3vw,36px);
+  /* MODES-OK: shorter footer, all 4 modes — both terms scaled down again from 40/28+2.6vw/64 + 22/17+1vw/30. */
+  background:var(--f-bg); color:var(--f-text); border-top:1px solid var(--f-line); padding:clamp(30px, 22px + 1.9vw, 48px) 0 clamp(18px, 14px + .8vw, 26px);
 }
 .footer .dot { color:var(--f-muted); }
 /* min-width:0 lets each column shrink so its content wraps rather than overflowing the grid track */
-.footer__grid { display:grid; grid-template-columns:minmax(0,4fr) repeat(3, minmax(0,2.6fr)); gap:clamp(30px,4vw,56px); padding-bottom:clamp(40px,5vw,64px); }
+/* MODES-OK: columns grouped left right after the logo — brand sized to content, three link columns
+   follow, a trailing 1fr track absorbs leftover space on the right. Tighter col gap & bottom pad.
+   All 4 modes, both clamp terms scaled. */
+.footer__grid { display:grid; grid-template-columns:auto auto auto minmax(0,max-content) minmax(0,1fr); gap:clamp(20px, 14px + 1.3vw, 36px); padding-bottom:clamp(22px, 16px + 1.4vw, 36px); } /* MODES-OK: proportional tracks, all 4 modes; clamp gap/pad both terms scaled */
 .footer__grid > * { min-width:0; }
 .footer__brand img { width:min(190px, 60%); margin-bottom:clamp(14px,1.4vw,20px); }
 /* MODES-OK: color-only recolor for gray footer (all 4 modes) — sizing/spacing unchanged. */
 .footer__tag { font-family:var(--font-d); font-weight:500; font-size:var(--fs-ui); color:var(--f-strong); max-width:240px; line-height:1.5; }
-.footer h4 { font-family:var(--font-d); font-size:var(--fs-eyebrow); font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--f-muted); margin-bottom:clamp(12px,1.4vw,18px); }
-.footer ul { list-style:none; display:grid; gap:clamp(7px,.8vw,10px); }
-.footer a { color:var(--f-text); font-size:var(--fs-body); transition:color var(--t-fast); }
+/* MODES-OK: tighter heading margin, all 4 modes — both clamp terms scaled from old 12/1.4vw/18. */
+.footer h4 { font-family:var(--font-d); font-size:var(--fs-eyebrow); font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--f-muted); margin-bottom:clamp(10px, 8px + .5vw, 14px); }
+/* MODES-OK: link stack pulled closer, all 4 modes — both terms scaled down from 6/5+.18vw/8. */
+.footer ul { list-style:none; display:grid; gap:clamp(4px, 3.4px + .13vw, 6px); }
+/* MODES-OK: link text 20% smaller than prior (14/13+.28vw/15.5 -> x0.8), all 4 modes, both terms scaled.
+   Small-burger + mobile take a further 30%-of-original size below (see @media max-width:700). */
+.footer a { color:var(--f-text); font-size:clamp(11.2px, 10.4px + .224vw, 12.4px); transition:color var(--t-fast); }
 .footer a:hover { color:var(--f-strong); }
 /* overflow-wrap:anywhere breaks the long email / address so nothing clips past the column edge */
-.footer address { font-style:normal; font-size:var(--fs-body); display:grid; gap:clamp(7px,.8vw,10px); overflow-wrap:anywhere; }
+/* MODES-OK: address text matches the new 20%-smaller link size; tighter row gap. All 4 modes, both terms scaled. */
+.footer address { font-style:normal; font-size:clamp(11.2px, 10.4px + .224vw, 12.4px); display:grid; gap:clamp(6px, 4.8px + .3vw, 9px); overflow-wrap:anywhere; }
 .footer address a { display:flex; gap:clamp(7px,.8vw,10px); align-items:center; }
 /* MODES-OK: hours row matches the icon+gap of the links above; address indent = icon width + gap so the
    text lines up under them. Both fluid (all 4 modes) — replaces the old inline gap:10px / padding-left:26px. */
@@ -1794,6 +1807,19 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .footer__grid { grid-template-columns:1fr 1fr; }
   .footer__brand { grid-column:1/-1; }
 }
+/* MODES-OK: small-burger (481–700) + mobile (≤480) — link/address text 30% under the ORIGINAL
+   (14/13+.28vw/15.5 -> x0.7); both clamp terms scaled so it stays fluid across the whole 320–700 range. */
+@media (max-width:700px) {
+  .footer a,
+  .footer address { font-size:clamp(9.8px, 9.1px + .196vw, 10.85px); }
+  /* MODES-OK: small-burger (481–700) + mobile — straight-down single column (1fr, no px to scale),
+     not the 2-col big-burger layout. Big burger (701–920) keeps 1fr 1fr from the 920px block. */
+  .footer__grid { grid-template-columns:1fr; }
+  /* MODES-OK: small-burger + mobile — Reach us on top; logo hidden (display:none, no px to scale),
+     which also removes the empty cell/gap the logo left behind. */
+  .footer__grid > *:last-child { order:-1; }
+  .footer__brand { display:none; }
+}
 @media (max-width:640px) {
   body { font-size:15.5px; }
   :root { --pad-sec:clamp(64px, 16vw, 84px); }
@@ -1810,7 +1836,7 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .card--ace { width:46%; left:0; top:6%; }
   .card--stat { display:none; } /* its numbers live in the ticks + stat band on mobile */
   .hand { aspect-ratio:5/4.6; }
-  .footer__grid { grid-template-columns:1fr; }
+  /* MODES-OK: footer straight-down stack now starts at ≤700px (see that block); redundant 1fr removed here */
   .cta-band .mark-ghost { display:none; }
 }
 
