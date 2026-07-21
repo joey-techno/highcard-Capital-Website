@@ -13,7 +13,7 @@
 <link rel="icon" href="assets/logo/app-tile.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/main.css?v=mrtuxkpg">
+<link rel="stylesheet" href="assets/css/main.css?v=mruyzxwb">
 </head>
 <body data-page="home" data-nav="home">
 <a class="skip" href="#main">Skip to content</a>
@@ -446,6 +446,115 @@
     </div>
   </section>
 
+  <!-- FAQ CARD — five straight answers, one open at a time -->
+  <section class="sec-faqcard">
+    <div class="container container--tight">
+      <div class="faqcard" data-faqcard data-reveal>
+        <header class="faqcard__head">
+          <h2>You&rsquo;ve got questions, <span class="h2-accent">we&rsquo;ve got answers<span class="dot">.</span></span></h2>
+        </header>
+
+        <div class="faqcard__list" data-stagger=".05">
+          <details class="faqq">
+            <summary>
+              <span class="faqq__q">How does a loan with High Card work?</span>
+              <span class="faqq__ico" aria-hidden="true"></span>
+            </summary>
+            <div class="faqq__a"><p>Complete a quick <a href="apply.html">online application</a> to determine your business&rsquo;s eligibility, or do it over the phone. Once it&rsquo;s filled out, your estimated loan terms can be customized by adjusting the amount and duration. After you select the loan that fits and the application is complete, you&rsquo;re prompted to electronically sign a contract emailed to you, and the funds are wired into your account shortly thereafter.</p></div>
+          </details>
+
+          <details class="faqq">
+            <summary>
+              <span class="faqq__q">I&rsquo;m already indebted to another company. Can you still help me?</span>
+              <span class="faqq__ico" aria-hidden="true"></span>
+            </summary>
+            <div class="faqq__a"><p>Usually, yes. Depending on the numbers, that&rsquo;s either a consolidation that replaces expensive daily-payment debt with something saner, or a second position layered carefully on top of what exists. Bring your current statements and your advisor will map the exits with you.</p></div>
+          </details>
+
+          <details class="faqq">
+            <summary>
+              <span class="faqq__q">What factors are you taking into account?</span>
+              <span class="faqq__ico" aria-hidden="true"></span>
+            </summary>
+            <div class="faqq__a"><p>Many data points go into your rate and terms: time in business, monthly revenue, the health and consistency of your deposits, and credit history among them. Revenue and steady cash flow carry the most weight, so a less-than-perfect score rarely rules you out.</p></div>
+          </details>
+
+          <details class="faqq">
+            <summary>
+              <span class="faqq__q">What interest amount am I paying?</span>
+              <span class="faqq__ico" aria-hidden="true"></span>
+            </summary>
+            <div class="faqq__a"><p>There are various products we work with, and APRs will vary from 12% and up. Many data points go into the rates and terms, but all of it is presented transparently before any agreements are drawn up.</p></div>
+          </details>
+
+          <details class="faqq">
+            <summary>
+              <span class="faqq__q">How much money will my business qualify for?</span>
+              <span class="faqq__ico" aria-hidden="true"></span>
+            </summary>
+            <div class="faqq__a"><p>Every business is different, but typically we&rsquo;re able to fund approximately 10% of your annual revenue. Of course, that&rsquo;s an oversimplified answer, and the best way to determine how much you&rsquo;d receive is to apply.</p></div>
+          </details>
+        </div>
+
+        <div class="faqcard__foot">
+          <a class="btn btn--sm" href="faq.html" data-magnetic>View more FAQs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GET IN TOUCH — emerald band: reach us (left) + qualify form (right) -->
+  <section class="sec-touch felt">
+    <div class="container">
+      <h2 class="touch__title" data-split>Let&rsquo;s get in touch<span class="dot">.</span></h2>
+      <div class="touch">
+        <div class="touch__info" data-reveal>
+          <p class="touch__lede">We are available for our client 24/7. If you need business funding, we can be reached here:</p>
+          <ul class="touch__reach">
+            <li>
+              <span class="icon--chip"><span class="icon" data-icon="phone"></span></span>
+              <span class="touch__reach-t"><b>Phone</b><a class="num" href="tel:+18000000000">(800) 000-0000</a></span>
+            </li>
+            <li>
+              <span class="icon--chip"><span class="icon" data-icon="mail"></span></span>
+              <span class="touch__reach-t"><b>Email</b><a href="mailto:hello@highcardcapital.example">hello@highcardcapital.example</a></span>
+            </li>
+            <li>
+              <span class="icon--chip"><span class="icon" data-icon="clock"></span></span>
+              <span class="touch__reach-t"><b>Hours</b><span class="touch__reach-v">Mon&ndash;Fri, 8am&ndash;7pm ET</span></span>
+            </li>
+          </ul>
+          <ul class="ticks touch__ticks">
+            <li><span class="icon" data-icon="secure"></span><span>Soft pull only &mdash; <b>invisible to your credit score</b></span></li>
+            <li><span class="icon" data-icon="advisor"></span><span>A <b>named advisor</b>, never a call center</span></li>
+          </ul>
+        </div>
+
+        <div class="touch__card" data-reveal="scale">
+          <h3>See how much you qualify for<span class="dot">.</span></h3>
+          <form class="form touch__form" id="qualifyForm">
+            <div class="field"><label for="qf-name">Name</label><input id="qf-name" name="name" type="text" autocomplete="name" required placeholder="Alex Rivera"></div>
+            <div class="field"><label for="qf-phone">Phone</label><input id="qf-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(555) 000-0000"></div>
+            <div class="field full"><label for="qf-email">Email</label><input id="qf-email" name="email" type="email" autocomplete="email" required placeholder="you@yourbusiness.com"></div>
+            <div class="field full"><label for="qf-rev">Annual revenue</label>
+              <select id="qf-rev" name="revenue" required>
+                <option value="" disabled selected>Select a range</option>
+                <option value="under-250k">Under $250K</option>
+                <option value="250k-499k">$250K &ndash; $499K</option>
+                <option value="500k-999k">$500K &ndash; $999K</option>
+                <option value="over-1m">Over $1M</option>
+              </select>
+            </div>
+            <div class="full">
+              <button class="btn touch__btn" type="submit" data-magnetic>See my options</button>
+            </div>
+            <p class="full small touch__note"><span class="icon" data-icon="secure"></span>Soft pull only. No cost, no obligation.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="footer">
@@ -479,8 +588,8 @@
         <address>
           <a href="tel:+18000000000"><span class="icon" data-icon="phone"></span>(800) 000-0000</a>
           <a href="mailto:hello@highcardcapital.example"><span class="icon" data-icon="mail"></span>hello@highcardcapital.example</a>
-          <span style="display:flex;gap:10px"><span class="icon" data-icon="calendar"></span>Mon–Fri, 8am–7pm ET</span>
-          <span style="padding-left:26px">100 Placeholder Plaza, Suite 400<br>New York, NY 10001</span>
+          <span class="footer__hours"><span class="icon" data-icon="calendar"></span>Mon–Fri, 8am–7pm ET</span>
+          <span class="footer__addr">100 Placeholder Plaza, Suite 400<br>New York, NY 10001</span>
         </address>
       </div>
     </div>
@@ -500,9 +609,9 @@
   <a class="btn" href="apply.html">Apply Now, it takes 2 minutes</a>
 </div>
 
-<script src="assets/js/icons.js?v=mrtuxkpg"></script>
-<script src="assets/js/main.js?v=mrtuxkpg"></script>
-<script src="assets/js/gl-hover.js?v=mrtuxkpg"></script>
-<script src="assets/js/forms.js?v=mrtuxkpg"></script>
+<script src="assets/js/icons.js?v=mruyzxwb"></script>
+<script src="assets/js/main.js?v=mruyzxwb"></script>
+<script src="assets/js/gl-hover.js?v=mruyzxwb"></script>
+<script src="assets/js/forms.js?v=mruyzxwb"></script>
 </body>
 </html>

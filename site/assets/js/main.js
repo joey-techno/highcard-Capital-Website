@@ -417,6 +417,24 @@
     }
   }
 
+  /* ---------- home: FAQ card — strictly one answer open at a time ----------
+     Manage state on the summary click (not the toggle event): the browser's
+     default toggles THIS item, and we close every sibling in the same tick, so
+     no toggle-cascade race can leave two panels open. */
+  const faqCard = doc.querySelector('[data-faqcard]');
+  if (faqCard) {
+    const items = Array.from(faqCard.querySelectorAll('.faqq'));
+    items.forEach(item => {
+      const summary = item.querySelector('summary');
+      if (!summary) return;
+      summary.addEventListener('click', () => {
+        // read state BEFORE the browser flips it: if it's closed now, it's about to open
+        const willOpen = !item.open;
+        if (willOpen) items.forEach(o => { if (o !== item) o.open = false; });
+      });
+    });
+  }
+
   /* ---------- FAQ scrollspy ---------- */
   const toc = doc.querySelector('.toc');
   if (toc) {

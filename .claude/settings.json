@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"c:/High Card Capital/.claude/hooks/sizing-guard.js\"",
+            "statusMessage": "Checking sizing-rule guard..."
+          }
+        ]
+      }
+    ]
+  }
+}

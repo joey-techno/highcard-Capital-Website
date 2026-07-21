@@ -47,6 +47,9 @@
   --fs-body:clamp(.9rem, .84rem + .28vw, 1.02rem);     /* ~14.4→16.3px : card/body copy */
   --fs-body-sm:clamp(.8rem, .76rem + .2vw, .92rem);    /* ~12.8→14.7px : small copy, captions */
   --fs-ui:clamp(.82rem, .78rem + .2vw, .95rem);        /* ~13→15.2px : labels, nav-ish UI text */
+  /* MODES-OK: all 4 modes — fluid clamp tokens (both ends defined, scale per-pixel across every width) */
+  --fs-micro:clamp(.72rem, .69rem + .16vw, .82rem);    /* ~11.5→13.1px : fine print, legal, footer rows */
+  --fs-eyebrow:clamp(.66rem, .63rem + .13vw, .72rem);  /* ~10.5→11.5px : uppercase eyebrow/column labels */
   --fs-num:clamp(1.1rem, .9rem + .8vw, 1.45rem);       /* ~17.6→23px : inline stat numbers */
 
   --ease-out:cubic-bezier(.22,1,.36,1);
@@ -1429,22 +1432,226 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .deal-orb--a { right:-30%; }
 }
 
-.footer { background:var(--felt); color:var(--cream-dim); border-top:1px solid var(--line-dark); padding:clamp(56px,7vw,88px) 0 36px; }
+/* ============================================================
+   FAQ CARD — home: one white floating card, five straight
+   answers, one open at a time. Native <details>. All-modes
+   fluid: every value is a token or clamp (both ends defined),
+   so it scales per-pixel across every width like the rest.
+   ============================================================ */
+.sec-faqcard {
+  background:var(--mist);
+  padding-block:clamp(46px, 3rem + 1.8vw, 84px);
+}
+.faqcard {
+  /* MODES-OK: slimmer card, all 4 modes — 760px cap on wide widths; below the cap it's
+     container-bound and scales per-pixel with the fluid gutter/padding already in play. */
+  max-width:760px; margin-inline:auto;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:clamp(16px, 12px + .9vw, 24px);
+  box-shadow:0 2px 6px rgba(0,66,37,.05), 0 30px 60px -30px rgba(0,18,10,.28);
+  padding:clamp(22px, 1rem + 2.6vw, 44px) clamp(20px, .8rem + 2.4vw, 46px);
+  overflow:clip;
+}
+.faqcard__head { text-align:center; margin-bottom:clamp(18px, 1rem + 1vw, 30px); }
+/* MODES-OK: title −15% and pinned to ONE line across every width, all 4 modes. The slope
+   (4vw − 2.2px) tracks the card's inner width so the single line always fits from ~340px up with
+   10–35px of margin; nowrap enforces it. Cap 1.6rem (25.6px) is ~15% under the un-slimmed h2 size. */
+.faqcard__head h2 {
+  margin-bottom:0;
+  font-size:clamp(12px, 4vw - 2.2px, 1.6rem);
+  white-space:nowrap;
+}
+/* MODES-OK: title +7% on small-burger (481–700) and mobile (<=480) only. Both terms of the
+   slope scaled x1.07 (4vw−2.2 -> 4.28vw−2.354) and the cap x1.07 (1.6->1.7125rem); floor held
+   at 12px so 340px still fits. Verified one line with positive margin from 340px up. */
+@media (max-width:700px) {
+  .faqcard__head h2 { font-size:clamp(12px, 4.28vw - 2.354px, 1.7125rem); }
+}
+
+.faqcard__list { display:grid; }
+
+/* one question row */
+.faqq { border-top:1px solid var(--line); }
+.faqq:first-child { border-top:0; }
+.faqq summary {
+  list-style:none; cursor:pointer;
+  display:flex; align-items:center; gap:clamp(12px, .6rem + 1vw, 22px);
+  padding:clamp(14px, .7rem + .9vw, 22px) 0;
+  font-family:var(--font-d); font-weight:600; letter-spacing:-.01em;
+  color:var(--felt); line-height:1.3;
+  transition:color var(--t-fast) var(--ease-out);
+}
+.faqq summary::-webkit-details-marker { display:none; }
+.faqq summary:hover { color:var(--racing); }
+.faqq[open] summary { color:#0E8A4F; } /* green when open, like the reference */
+/* MODES-OK: question text −25%, all 4 modes — both clamp terms scaled from the original
+   (.98→.735rem floor, .92rem+.35vw→.69rem+.2625vw slope, 1.18→.885rem cap) so it stays fluid. */
+.faqq__q { font-size:clamp(.735rem, .69rem + .2625vw, .885rem); flex:1; }
+
+/* chevron: pure-CSS caret, rotates on open */
+.faqq__ico {
+  flex:0 0 auto; width:clamp(13px, 11px + .4vw, 16px); height:clamp(13px, 11px + .4vw, 16px);
+  position:relative; margin-right:2px;
+  transition:transform var(--t-fast) var(--ease-out);
+}
+.faqq__ico::before {
+  content:''; position:absolute; inset:0; margin:auto;
+  width:64%; height:64%;
+  border-right:2px solid currentColor; border-bottom:2px solid currentColor;
+  transform:translateY(-18%) rotate(45deg); /* points down */
+}
+.faqq[open] .faqq__ico { transform:rotate(180deg); }
+
+/* answer */
+.faqq__a {
+  overflow:hidden;
+  display:grid; grid-template-rows:0fr;
+  transition:grid-template-rows var(--t-med) var(--ease-out);
+}
+.faqq[open] .faqq__a { grid-template-rows:1fr; }
+.faqq__a > p {
+  min-height:0; /* required for the 0fr→1fr grid trick to clip */
+  /* MODES-OK: answer text −25%, all 4 modes — both terms scaled from --fs-body
+     (.9→.675rem floor, .84rem+.28vw→.63rem+.21vw slope, 1.02→.765rem cap), stays fluid. */
+  color:var(--slate); font-size:clamp(.675rem, .63rem + .21vw, .765rem); line-height:1.7;
+  max-width:64ch;
+  padding:0 clamp(24px, 18px + .8vw, 34px) clamp(16px, .7rem + .8vw, 24px) 0;
+  margin:0;
+}
+.faqq__a a { color:var(--racing); text-decoration:underline; text-underline-offset:2px; }
+.faqq__a a:hover { color:#0E8A4F; }
+
+/* reduced motion: no row animation, just show/hide */
+@media (prefers-reduced-motion:reduce) {
+  .faqq__a, .faqq__ico { transition:none; }
+}
+
+.faqcard__foot { text-align:center; margin-top:clamp(18px, 1rem + 1vw, 30px); }
+
+/* ============================================================
+   GET IN TOUCH — home: emerald band, reach-us (left) + qualify
+   form card (right). Reuses .felt, .ticks, .field, .icon--chip.
+   All-modes fluid: every value is a token or clamp (both ends).
+   ============================================================ */
+.sec-touch { padding-block:clamp(48px, 3rem + 2vw, 92px); }
+/* MODES-OK: title is PER-PIXEL fluid across every width (all 4 modes) — NOT the global --fs-h2,
+   which plateaus (caps ~1200px, flat thereafter). This clamp scales continuously from ~22px@360
+   to ~43px@1440 and only caps (2.75rem) beyond ~1470px, so there is no flat band on any real device. */
+.touch__title { text-align:center; color:var(--cream); margin-bottom:clamp(26px, 1.4rem + 1.6vw, 46px); font-size:clamp(1.1rem, .827rem + 1.711vw, 2.42rem); } /* MODES-OK: -20% then +10% content scale, live to ~1450px, all 4 modes */
+.sec-touch .dot { color:var(--sage); }
+/* MODES-OK: two-column on wide widths (main site + big burger), single column at/below 700px
+   (small burger + mobile). Fluid gap; card and info both scale per-pixel. */
+.touch {
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  gap:clamp(28px, 2rem + 3vw, 72px); align-items:start;
+}
+/* ---- WHOLE CONTAINER is PER-PIXEL fluid, all 4 modes (owner lock 2026-07): every text size,
+   field, button, icon, radius AND animation (durations + reveal distances) scales continuously.
+   Nothing inherits a shared token that plateaus (--fs-lede/body/eyebrow/ui and --fs-h2 all cap
+   ~1030–1200px, so they're re-declared here with clamps that stay live through ~1440px, capping
+   only beyond). See [[hcc-title-fluidity-lock]]. Scoped to .sec-touch so other pages are untouched. */
+
+/* fluid animation timing + distance, scoped to this container */
+.sec-touch {
+  --tt-fast:clamp(.16s, .12s + .3vw, .26s);   /* was fixed --t-fast .22s */
+  --tt-med:clamp(.32s, .24s + .6vw, .52s);    /* was fixed --t-med .45s */
+  --tt-slide:clamp(20px, 12px + 1.4vw, 40px); /* reveal slide distance (was fixed 34px) */
+}
+.sec-touch [data-reveal] { transition:opacity clamp(.5s,.4s+.7vw,.9s) var(--ease-out), transform clamp(.5s,.4s+.7vw,.9s) var(--ease-out); transition-delay:var(--d,0s); }
+.sec-touch [data-reveal]:not([data-reveal="scale"]):not(.is-inview) { transform:translateY(var(--tt-slide)); }
+
+/* MODES-OK: all clamps below stay live through ~1450px before capping (all 4 modes), so no element
+   plateaus on any real desktop. Owner lock: entire container per-pixel fluid — text, fields, button,
+   icons, radii, animation timing + distance. See [[hcc-title-fluidity-lock]]. */
+.touch__lede {
+  color:var(--cream-dim); line-height:1.6; max-width:34ch;
+  font-size:clamp(.8rem, .749rem + .36vw, 1.075rem);     /* MODES-OK: -20% content scale, live to ~1450px, all 4 modes */
+  margin-bottom:clamp(22px, 1.2rem + 1.4vw, 36px);
+}
+
+/* reach-us list */
+.touch__reach { list-style:none; display:grid; gap:clamp(14px, .8rem + .8vw, 22px); }
+.touch__reach li { display:flex; align-items:center; gap:clamp(12px, .6rem + .8vw, 18px); }
+.touch__reach .icon--chip {
+  flex:0 0 auto;
+  width:clamp(32px, 27.2px + .72vw, 38.4px); height:clamp(32px, 27.2px + .72vw, 38.4px); /* MODES-OK: -20% content scale, all 4 modes */
+  background:var(--card-dark); border:1px solid var(--line-dark); border-radius:clamp(8.8px, 6.4px + .48vw, 12.8px);
+  display:flex; align-items:center; justify-content:center; line-height:0; transition:background var(--tt-fast), border-color var(--tt-fast);
+}
+/* icon flex-centered inside the chip so the glyph sits dead-center (grid place-items left it optically high) */
+.touch__reach .icon--chip .icon { display:flex; align-items:center; justify-content:center; width:clamp(13.6px, 12px + .24vw, 16px); height:clamp(13.6px, 12px + .24vw, 16px); color:var(--sage); } /* MODES-OK: -20%, all 4 modes */
+.touch__reach .icon--chip .icon svg { width:100%; height:100%; display:block; }
+.touch__reach-t { display:grid; min-width:0; }
+.touch__reach-t b { font-family:var(--font-d); font-weight:600; font-size:clamp(.496rem, .464rem + .144vw, .592rem); letter-spacing:.16em; text-transform:uppercase; color:var(--sage); } /* MODES-OK: -20% content scale, all 4 modes */
+.touch__reach-t a, .touch__reach-v {
+  font-family:var(--font-d); font-weight:500; font-size:clamp(.8rem, .722rem + .389vw, 1.075rem); /* MODES-OK: weight 600->500 (less bold); -20% content scale, live to ~1450px, all 4 modes */
+  color:var(--cream); overflow-wrap:anywhere; transition:color var(--tt-fast);
+}
+.touch__reach-t a:hover { color:var(--sage); }
+
+/* trust ticks — re-declared fluid (base .ticks li font/gap/icon are fixed px) */
+.touch__ticks { margin-top:clamp(22px, 1.2rem + 1.4vw, 34px); padding-top:clamp(20px, 1rem + 1.2vw, 28px); border-top:1px solid var(--line-dark); grid-template-columns:1fr; gap:clamp(11px, .6rem + .5vw, 15px); }
+.touch__ticks li { gap:clamp(8px, .4rem + .4vw, 11.2px); font-size:clamp(.64rem, .592rem + .24vw, .776rem); } /* MODES-OK: -20% content scale, all 4 modes */
+.touch__ticks .icon { width:clamp(13.6px, 12px + .24vw, 16.8px); height:clamp(13.6px, 12px + .24vw, 16.8px); } /* MODES-OK: -20%, all 4 modes */
+
+/* form card */
+.touch__card {
+  background:var(--white); border:1px solid rgba(245,240,225,.14); border-radius:clamp(16px, 11px + 1vw, 26px);
+  box-shadow:0 40px 90px -34px rgba(0,18,10,.6), 0 10px 30px -14px rgba(0,40,22,.4);
+  /* MODES-OK: card padding -20% (less border-to-content); bottom trimmed extra since the note is tiny
+     and had dead space beneath it. All 4 modes. */
+  padding:clamp(19.2px, .8rem + 2.08vw, 35.2px) clamp(19.2px, .8rem + 2.08vw, 35.2px) clamp(12px, .5rem + 1.3vw, 22px);
+}
+/* heading sits directly above the form now (subtitle removed) — add the space the sub used to hold */
+.touch__card h3 { font-family:var(--font-d); font-weight:600; letter-spacing:-.02em; color:var(--felt); font-size:clamp(.944rem, .768rem + .807vw, 1.5rem); line-height:1.15; margin-bottom:clamp(14px, .9rem + .8vw, 22px); } /* MODES-OK: -20% content scale, live to ~1450px, all 4 modes */
+.touch__card .dot { color:var(--sage-deep); }
+.touch__form { gap:clamp(14px, .7rem + .8vw, 18px); }
+/* fields per-pixel fluid: base .field uses fixed 15px font, 13px 16px padding, 12px radius */
+.touch__form .field label { font-size:clamp(.686rem, .642rem + .229vw, .818rem); margin-bottom:clamp(4px, .24rem + .16vw, 6.4px); } /* MODES-OK: label +10% (text above field boxes); all 4 modes */
+.touch__form input, .touch__form select { /* MODES-OK: -20% content scale, thinner boxes (pad-y -25%); font/padding/radius live to ~1450px, all 4 modes */
+  font-size:clamp(.72rem, .65rem + .308vw, .93rem);
+  padding:clamp(6.6px, .376rem + .248vw, 9.6px) clamp(10.4px, .56rem + .56vw, 15.2px);
+  border-radius:clamp(7.2px, 4.8px + .48vw, 11.2px);
+}
+.touch__btn { width:100%; justify-content:center; margin-top:clamp(2px, .3vw, 6px); border-radius:clamp(7.2px, 4.8px + .48vw, 11.2px); font-size:clamp(.736rem, .67rem + .33vw, .97rem); padding:clamp(9.2px, .8vw + 6.4px, 12.8px) clamp(16px, 1.76vw + 11.2px, 24px); transition:transform var(--tt-fast) var(--ease-out), box-shadow var(--tt-fast) var(--ease-out), background var(--tt-fast); } /* MODES-OK: -20% content scale (incl. base .btn padding), live to ~1450px, all 4 modes */
+/* note pulled tight under the button + negative margin cancels the form gap so there's no dead space
+   below it before the card's bottom padding */
+.touch__note { display:flex; align-items:center; gap:clamp(4.8px, .24rem + .24vw, 7.2px); margin-top:clamp(-8px, -.4rem - .3vw, -4px); color:var(--slate); font-size:clamp(.624rem, .584rem + .192vw, .736rem); } /* MODES-OK: -20% content scale, tightened bottom gap, all 4 modes */
+.touch__note .icon { width:clamp(10.4px, 8.8px + .24vw, 12.8px); height:clamp(10.4px, 8.8px + .24vw, 12.8px); color:var(--sage-deep); flex:none; } /* MODES-OK: -20%, all 4 modes */
+
+/* MODES-OK: stack to one column on small burger (481–700) and mobile (<=480). */
+@media (max-width:700px) {
+  .touch { grid-template-columns:1fr; }
+  .touch__lede { max-width:none; }
+}
+
+/* MODES-OK: footer size-fluidity pass — all 4 modes. Every hardcoded px below is now a fluid token or
+   clamp (both terms defined) so the footer scales per-pixel like the rest of the site, and long tokens
+   (email/address) wrap instead of clipping at the column edge. */
+.footer { background:var(--felt); color:var(--cream-dim); border-top:1px solid var(--line-dark); padding:clamp(56px,7vw,88px) 0 clamp(28px,3vw,36px); }
 .footer .dot { color:var(--sage); }
+/* min-width:0 lets each column shrink so its content wraps rather than overflowing the grid track */
 .footer__grid { display:grid; grid-template-columns:minmax(0,4fr) repeat(3, minmax(0,2.6fr)); gap:clamp(30px,4vw,56px); padding-bottom:clamp(40px,5vw,64px); }
-.footer__brand img { width:min(190px, 60%); margin-bottom:20px; }
+.footer__grid > * { min-width:0; }
+.footer__brand img { width:min(190px, 60%); margin-bottom:clamp(14px,1.4vw,20px); }
 .footer__tag { font-family:var(--font-d); font-weight:500; font-size:var(--fs-ui); color:var(--cream); max-width:240px; line-height:1.5; }
-.footer h4 { font-family:var(--font-d); font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--sage); margin-bottom:18px; }
-.footer ul { list-style:none; display:grid; gap:10px; }
+.footer h4 { font-family:var(--font-d); font-size:var(--fs-eyebrow); font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--sage); margin-bottom:clamp(12px,1.4vw,18px); }
+.footer ul { list-style:none; display:grid; gap:clamp(7px,.8vw,10px); }
 .footer a { color:var(--cream-dim); font-size:var(--fs-body); transition:color var(--t-fast); }
 .footer a:hover { color:var(--cream); }
-.footer address { font-style:normal; font-size:var(--fs-body); display:grid; gap:10px; }
-.footer address a { display:flex; gap:10px; align-items:center; }
-.footer address .icon { width:16px; height:16px; color:var(--sage); }
-.footer__legal { border-top:1px solid var(--line-dark); padding-top:28px; display:grid; gap:12px; }
-.footer__legal p { font-size:12.5px; line-height:1.6; color:#AFBDB4; max-width:880px; }
-.footer__row { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; font-size:12.5px; }
-.footer__row a { font-size:12.5px; }
+/* overflow-wrap:anywhere breaks the long email / address so nothing clips past the column edge */
+.footer address { font-style:normal; font-size:var(--fs-body); display:grid; gap:clamp(7px,.8vw,10px); overflow-wrap:anywhere; }
+.footer address a { display:flex; gap:clamp(7px,.8vw,10px); align-items:center; }
+/* MODES-OK: hours row matches the icon+gap of the links above; address indent = icon width + gap so the
+   text lines up under them. Both fluid (all 4 modes) — replaces the old inline gap:10px / padding-left:26px. */
+.footer__hours { display:flex; gap:clamp(7px,.8vw,10px); align-items:center; }
+.footer__addr { padding-left:calc(clamp(13.5px,1.1vw,16px) + clamp(7px,.8vw,10px)); }
+.footer address .icon { width:clamp(13.5px,1.1vw,16px); height:clamp(13.5px,1.1vw,16px); color:var(--sage); flex:none; }
+.footer__legal { border-top:1px solid var(--line-dark); padding-top:clamp(22px,2.6vw,28px); display:grid; gap:clamp(9px,1vw,12px); }
+.footer__legal p { font-size:var(--fs-micro); line-height:1.6; color:#AFBDB4; max-width:880px; }
+.footer__row { display:flex; justify-content:space-between; gap:clamp(14px,1.6vw,20px); flex-wrap:wrap; font-size:var(--fs-micro); }
+.footer__row a { font-size:var(--fs-micro); }
 
 /* ============================================================
    MOBILE STICKY BAR
@@ -1689,7 +1896,7 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .qcard .icon { width:17.85px; height:17.85px; }      /* 21 → 17.85 */
   .prose ul .icon { width:16.15px; height:16.15px; }   /* 19 → 16.15 */
   .page-hero__proof .icon { width:15.3px; height:15.3px; } /* 18 → 15.3 */
-  .footer address .icon { width:13.6px; height:13.6px; }   /* 16 → 13.6 */
+  /* footer icon override removed — base .footer address .icon is now a fluid clamp (MODES-OK) */
   .cycle__arrow { width:28.9px; height:28.9px; }       /* 34 → 28.9 */
 
   /* icon chips (rounded-tile icons) on shared components */
