@@ -1652,17 +1652,23 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 /* MODES-OK: footer size-fluidity pass — all 4 modes. Every hardcoded px below is now a fluid token or
    clamp (both terms defined) so the footer scales per-pixel like the rest of the site, and long tokens
    (email/address) wrap instead of clipping at the column edge. */
-.footer { background:var(--felt); color:var(--cream-dim); border-top:1px solid var(--line-dark); padding:clamp(56px,7vw,88px) 0 clamp(28px,3vw,36px); }
-.footer .dot { color:var(--sage); }
+/* MODES-OK: footer recolored to a neutral medium gray (owner 2026-07) — light text on gray;
+   colors only, no sizing/layout change, applies to all 4 modes. */
+.footer {
+  --f-bg:#3C4240; --f-text:#CBD1CE; --f-strong:#F1F3F1; --f-muted:#9AA3A0; --f-line:rgba(255,255,255,.12);
+  background:var(--f-bg); color:var(--f-text); border-top:1px solid var(--f-line); padding:clamp(56px,7vw,88px) 0 clamp(28px,3vw,36px);
+}
+.footer .dot { color:var(--f-muted); }
 /* min-width:0 lets each column shrink so its content wraps rather than overflowing the grid track */
 .footer__grid { display:grid; grid-template-columns:minmax(0,4fr) repeat(3, minmax(0,2.6fr)); gap:clamp(30px,4vw,56px); padding-bottom:clamp(40px,5vw,64px); }
 .footer__grid > * { min-width:0; }
 .footer__brand img { width:min(190px, 60%); margin-bottom:clamp(14px,1.4vw,20px); }
-.footer__tag { font-family:var(--font-d); font-weight:500; font-size:var(--fs-ui); color:var(--cream); max-width:240px; line-height:1.5; }
-.footer h4 { font-family:var(--font-d); font-size:var(--fs-eyebrow); font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--sage); margin-bottom:clamp(12px,1.4vw,18px); }
+/* MODES-OK: color-only recolor for gray footer (all 4 modes) — sizing/spacing unchanged. */
+.footer__tag { font-family:var(--font-d); font-weight:500; font-size:var(--fs-ui); color:var(--f-strong); max-width:240px; line-height:1.5; }
+.footer h4 { font-family:var(--font-d); font-size:var(--fs-eyebrow); font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--f-muted); margin-bottom:clamp(12px,1.4vw,18px); }
 .footer ul { list-style:none; display:grid; gap:clamp(7px,.8vw,10px); }
-.footer a { color:var(--cream-dim); font-size:var(--fs-body); transition:color var(--t-fast); }
-.footer a:hover { color:var(--cream); }
+.footer a { color:var(--f-text); font-size:var(--fs-body); transition:color var(--t-fast); }
+.footer a:hover { color:var(--f-strong); }
 /* overflow-wrap:anywhere breaks the long email / address so nothing clips past the column edge */
 .footer address { font-style:normal; font-size:var(--fs-body); display:grid; gap:clamp(7px,.8vw,10px); overflow-wrap:anywhere; }
 .footer address a { display:flex; gap:clamp(7px,.8vw,10px); align-items:center; }
@@ -1670,7 +1676,7 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
    text lines up under them. Both fluid (all 4 modes) — replaces the old inline gap:10px / padding-left:26px. */
 .footer__hours { display:flex; gap:clamp(7px,.8vw,10px); align-items:center; }
 .footer__addr { padding-left:calc(clamp(13.5px,1.1vw,16px) + clamp(7px,.8vw,10px)); }
-.footer address .icon { width:clamp(13.5px,1.1vw,16px); height:clamp(13.5px,1.1vw,16px); color:var(--sage); flex:none; }
+.footer address .icon { width:clamp(13.5px,1.1vw,16px); height:clamp(13.5px,1.1vw,16px); color:var(--f-muted); flex:none; } /* MODES-OK: color-only, all 4 modes */
 .footer__legal { border-top:1px solid var(--line-dark); padding-top:clamp(22px,2.6vw,28px); display:grid; gap:clamp(9px,1vw,12px); }
 .footer__legal p { font-size:var(--fs-micro); line-height:1.6; color:#AFBDB4; max-width:880px; }
 .footer__row { display:flex; justify-content:space-between; gap:clamp(14px,1.6vw,20px); flex-wrap:wrap; font-size:var(--fs-micro); }
