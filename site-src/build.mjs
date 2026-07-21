@@ -40,6 +40,12 @@ const PAGES = [
   { file: 'apply.html',          body: 'apply.html',   id: 'apply',   nav: '',
     title: 'Apply · Two Minutes to See Your Options | High Card Capital',
     desc: 'Tell us what you are applying for and finish in about two minutes. Soft credit pull, encrypted, no cost and no obligation. A real advisor calls you the same business day.' },
+  { file: 'privacy-policy.html', body: 'privacy-policy.html', id: 'privacy', nav: '',
+    title: 'Privacy Policy | High Card Capital',
+    desc: 'How High Card Capital collects, uses, shares, and protects your information. What we collect, how we use it, our promise never to sell your data, and the choices you have.' },
+  { file: 'terms-of-service.html', body: 'terms-of-service.html', id: 'terms', nav: '',
+    title: 'Terms of Service | High Card Capital',
+    desc: 'The terms that govern your use of the High Card Capital website: eligibility, acceptable use, intellectual property, disclaimers, limitation of liability, and how to reach us.' },
 ];
 
 const head = P('head.html'), nav = P('nav.html'), footer = P('footer.html'), scripts = P('scripts.html');
