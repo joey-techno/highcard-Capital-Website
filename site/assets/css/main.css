@@ -1460,14 +1460,14 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
    so it scales per-pixel across every width like the rest.
    ============================================================ */
 .sec-faqcard {
-  background:var(--mist);
+  background:var(--cream); /* MODES-OK: color-only, all 4 modes */
   padding-block:clamp(46px, 3rem + 1.8vw, 84px);
 }
 .faqcard {
   /* MODES-OK: slimmer card, all 4 modes — 760px cap on wide widths; below the cap it's
      container-bound and scales per-pixel with the fluid gutter/padding already in play. */
   max-width:760px; margin-inline:auto;
-  background:var(--white);
+  background:var(--white); /* MODES-OK: color-only, all 4 modes */
   border:1px solid var(--line);
   border-radius:clamp(16px, 12px + .9vw, 24px);
   box-shadow:0 2px 6px rgba(0,66,37,.05), 0 30px 60px -30px rgba(0,18,10,.28);
@@ -1655,7 +1655,7 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 /* MODES-OK: footer recolored to a neutral medium gray (owner 2026-07) — light text on gray;
    colors only, no sizing/layout change, applies to all 4 modes. */
 .footer {
-  --f-bg:#3C4240; --f-text:#CBD1CE; --f-strong:#F1F3F1; --f-muted:#9AA3A0; --f-line:rgba(255,255,255,.12);
+  --f-bg:var(--cream); --f-text:var(--ink); --f-strong:var(--racing); --f-muted:var(--racing); --f-line:var(--line-strong);
   background:var(--f-bg); color:var(--f-text); border-top:1px solid var(--f-line); padding:clamp(56px,7vw,88px) 0 clamp(28px,3vw,36px);
 }
 .footer .dot { color:var(--f-muted); }
