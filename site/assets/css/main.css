@@ -2027,3 +2027,82 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .belt__track { animation:none !important; } /* belt parks as a static row */
   * { animation-duration:.001s !important; }
 }
+
+/* ============================================================
+   SERVICES — landing grid + centered page hero + nav additions
+   (added with the Services build. Every value here is a scoped
+   clamp that stays live through ~1450px — nothing inherits a
+   shared token that plateaus early. MODES-OK notes per block.)
+   ============================================================ */
+
+/* centered page hero (services landing) — MODES-OK: text centers in all 4 modes,
+   lede width is fluid so line length holds from 320px to 1450px+ */
+/* MODES-OK: all 4 modes — hero-to-cards gap tightens fluidly (both clamp terms scale),
+   lede measure widens fluidly so the last line never orphans; verified 320→1450px */
+.page-hero--center { text-align:center; padding-bottom:clamp(10px, .4rem + 1vw, 26px); }
+.page-hero--center .lede { margin-inline:auto; max-width:clamp(300px, 30rem + 10vw, 700px); }
+.footer h4 a { color:inherit; }
+
+/* the full hand — 7 products + help card.
+   main site (>=921): 4 columns, two rows, like the home funding grid */
+.sec-services { padding-top:clamp(28px, 1rem + 2.4vw, 64px); }
+.svc-grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:clamp(12px, 6px + .9vw, 19px); }
+.svc {
+  min-width:0; display:flex; flex-direction:column;
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-card);
+  padding:clamp(18px, 10px + 1.1vw, 26px);
+  transition:transform var(--t-med) var(--ease-out), box-shadow var(--t-med) var(--ease-out), border-color var(--t-med);
+}
+.svc:hover { transform:translateY(-4px); box-shadow:var(--shadow-lift); border-color:var(--line-strong); }
+.svc__head { display:flex; align-items:center; gap:clamp(9px, 5px + .55vw, 13px); margin-bottom:clamp(10px, 6px + .5vw, 14px); }
+.svc .icon--chip { width:clamp(32px, 22px + 1.1vw, 40px); height:clamp(32px, 22px + 1.1vw, 40px); border-radius:clamp(9px, 6px + .4vw, 12px); flex:none; }
+.svc .icon--chip svg { width:clamp(16px, 11px + .55vw, 20px); height:clamp(16px, 11px + .55vw, 20px); }
+.svc h3 { font-size:clamp(.98rem, .77rem + .45vw, 1.18rem); line-height:1.22; letter-spacing:-.01em; }
+.svc__range { font-family:var(--font-d); font-weight:600; color:var(--sage-deep); font-size:clamp(.72rem, .6rem + .28vw, .86rem); margin-bottom:clamp(6px, 3px + .35vw, 9px); }
+.svc__desc { color:var(--slate); line-height:1.55; font-size:clamp(.78rem, .66rem + .3vw, .93rem); flex:1; margin-bottom:clamp(14px, 9px + .6vw, 19px); }
+.svc__ctas .btn { font-size:clamp(.72rem, .62rem + .24vw, .84rem); }
+.svc__ctas .phone-link { font-size:clamp(.76rem, .66rem + .24vw, .88rem); }
+.svc--help { background:var(--cream); }
+.svc--help .icon--chip { background:var(--white); }
+
+/* dropdown grew to 7 products — compact rows so the panel stays on screen,
+   and a scroll guard for short laptop viewports. MODES-OK: dropdown exists only >=921.
+   The row override below unwinds the .nav__links pill constraints (fixed height,
+   nowrap, white bg) that squash multi-line dropdown rows. */
+.nav__links .drop a {
+  display:flex; height:auto; white-space:normal; line-height:1.4;
+  justify-content:flex-start; background:transparent; border:none;
+  padding:10.5px 14px; border-radius:12px;
+}
+.nav__links .drop a:hover { background:var(--mist); color:var(--ink); }
+.drop { max-height:calc(100vh - var(--nav-h) - 28px); overflow:auto; overscroll-behavior:contain; }
+
+/* mobile menu holds 7 sub-links now — let it scroll on short phones instead of clipping.
+   MODES-OK: menu exists only <=920; sub-row size steps down fluidly on small heights */
+.menu { overflow-y:auto; -webkit-overflow-scrolling:touch; }
+.menu__sub a { font-size:clamp(15px, 2.6vh + 6px, 19px); padding:clamp(4px, .8vh, 7px) 0; }
+.menu__links a { padding-block:clamp(6px, 1.2vh, 10px); }
+
+/* big burger (701-920): the hand goes 2x4 — per-pixel paddings and type via vw */
+@media (max-width:920px) {
+  .svc-grid { grid-template-columns:repeat(2, minmax(0,1fr)); gap:calc(8px + 1vw); }
+  .svc { padding:calc(12px + 1.4vw); border-radius:calc(10px + 1vw); }
+  .svc h3 { font-size:calc(13.4px + .45vw); }
+  .svc__range { font-size:calc(10px + .32vw); }
+  .svc__desc { font-size:calc(11px + .34vw); }
+  .svc .icon--chip { width:calc(24px + 1.4vw); height:calc(24px + 1.4vw); }
+  .svc .icon--chip svg { width:calc(12px + .7vw); height:calc(12px + .7vw); }
+}
+
+/* small burger (481-700) + mobile (<=480): single column, full-width cards,
+   type keeps scaling per-pixel down to 320px */
+@media (max-width:700px) {
+  .svc-grid { grid-template-columns:1fr; gap:calc(8px + 1.2vw); }
+  .svc { padding:calc(13px + 1.6vw); }
+  .svc h3 { font-size:calc(13.6px + .75vw); }
+  .svc__range { font-size:calc(10.2px + .5vw); }
+  .svc__desc { font-size:calc(11.4px + .5vw); }
+  .svc .icon--chip { width:calc(26px + 1.8vw); height:calc(26px + 1.8vw); }
+  .svc .icon--chip svg { width:calc(13px + .9vw); height:calc(13px + .9vw); }
+  .page-hero--center .lede { max-width:100%; }
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services landing options · High Card Capital</title>
+<style>
+  @font-face { font-family:'Poppins'; font-weight:600; src:url('../site/assets/fonts/poppins-600.woff2') format('woff2'); font-display:swap; }
+  @font-face { font-family:'Inter'; font-weight:400; src:url('../site/assets/fonts/inter-400.woff2') format('woff2'); font-display:swap; }
+  :root {
+    --racing:#004225; --felt:#00331D; --cream:#F5F0E1; --white:#FBF9F3; --mist:#F4F2EC;
+    --sage:#8FA898; --sage-deep:#4F6B5C; --ink:#141A16; --slate:#5A6660;
+    --line:rgba(0,66,37,.13); --line-strong:rgba(0,66,37,.28); --line-dark:rgba(245,240,225,.16);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--white); font-family:'Inter',sans-serif; color:var(--ink); padding:56px clamp(20px,4vw,64px) 120px; }
+  h1 { font-family:'Poppins',sans-serif; font-weight:600; font-size:34px; color:var(--racing); }
+  h1 .dot { color:var(--sage); }
+  .lede { color:var(--slate); font-size:15.5px; max-width:760px; margin-top:10px; line-height:1.6; }
+  .label { margin:64px 0 16px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+  .tag { font-family:'Poppins',sans-serif; font-weight:600; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--racing); background:var(--cream); border:1px solid var(--line); border-radius:999px; padding:6px 16px; }
+  .label b { font-family:'Poppins',sans-serif; font-weight:600; font-size:18px; color:var(--racing); }
+  .label span { color:var(--slate); font-size:13.5px; max-width:640px; }
+
+  .frame { max-width:1180px; margin:0 auto; border:1px solid var(--line-strong); border-radius:14px; overflow:hidden; box-shadow:0 30px 70px -30px rgba(0,25,14,.35); background:var(--white); }
+  .chrome { display:flex; gap:6px; padding:10px 14px; background:var(--mist); border-bottom:1px solid var(--line); }
+  .chrome i { width:9px; height:9px; border-radius:50%; background:rgba(0,66,37,.18); }
+  .mocknav { display:flex; align-items:center; justify-content:space-between; padding:14px 34px; background:var(--white); border-bottom:1px solid var(--line); }
+  .mocknav img { height:22px; }
+  .mocknav .links { display:flex; gap:18px; font-size:11.5px; color:var(--sage-deep); }
+  .mocknav .links b { color:var(--racing); }
+  .mockapply { font-family:'Poppins',sans-serif; font-weight:600; font-size:11.5px; background:var(--racing); color:var(--cream); padding:8px 16px; border-radius:9px; }
+
+  .eyebrow { font-family:'Poppins',sans-serif; font-weight:600; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--sage-deep); }
+  .hd { font-family:'Poppins',sans-serif; font-weight:600; color:var(--racing); letter-spacing:-.015em; line-height:1.12; }
+  .dot { color:var(--sage); }
+  .body-copy { color:var(--slate); line-height:1.62; font-size:12.5px; }
+  .btn { display:inline-block; font-family:'Poppins',sans-serif; font-weight:600; font-size:12px; background:var(--racing); color:var(--cream); padding:11px 22px; border-radius:10px; }
+  .btn--cream { background:var(--white); color:var(--racing); border:1.5px solid var(--racing); }
+  .btn--outline { display:inline-block; font-family:'Poppins',sans-serif; font-weight:600; font-size:10.5px; background:transparent; color:var(--racing); border:1.5px solid var(--racing); padding:7px 14px; border-radius:9px; }
+  .micro { font-size:10.5px; color:var(--sage-deep); }
+  .chip { width:32px; height:32px; border-radius:10px; background:var(--cream); border:1px solid var(--line); display:grid; place-items:center; font-size:14px; flex:none; }
+  .ctaband { background:var(--felt); text-align:center; padding:44px 56px 50px; }
+  .ctaband .hd { font-size:22px; color:var(--cream); max-width:520px; margin:0 auto 18px; }
+  .ctaband .micro { color:var(--sage); margin-top:12px; }
+  .secnote { max-width:1180px; margin:8px auto 0; font-size:11.5px; color:var(--sage-deep); }
+  .secnote b { color:var(--racing); }
+  .photo { border-radius:14px; overflow:hidden; box-shadow:0 22px 44px -20px rgba(0,51,29,.4); }
+  .photo img { width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* ============ OPTION A : The full hand (uniform grid) ============ */
+  .oa-hero { text-align:center; padding:48px 56px 8px; }
+  .oa-hero .hd { font-size:30px; max-width:560px; margin:6px auto 0; }
+  .oa-hero .body-copy { max-width:520px; margin:12px auto 0; }
+  .oa-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; padding:34px 56px 8px; }
+  .svc { border:1px solid var(--line-strong); border-radius:15px; padding:20px 18px 18px; background:var(--white); display:flex; flex-direction:column; gap:8px; transition:box-shadow .2s; }
+  .svc:hover { box-shadow:0 18px 40px -18px rgba(0,18,10,.25); }
+  .svc .top { display:flex; align-items:center; gap:10px; }
+  .svc h4 { font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:var(--racing); }
+  .svc .range { font-family:'Poppins',sans-serif; font-weight:600; font-size:11px; color:var(--sage-deep); }
+  .svc p { font-size:11px; color:var(--slate); line-height:1.5; flex:1; }
+  .oa-help { display:flex; align-items:center; justify-content:center; gap:18px; padding:26px 56px 40px; }
+
+  /* ============ OPTION B : Featured deal (photo lead card) ============ */
+  .ob-hero { padding:48px 56px 6px; }
+  .ob-hero .hd { font-size:30px; max-width:520px; margin-top:6px; }
+  .ob-hero .body-copy { max-width:480px; margin-top:12px; }
+  .ob-feature { margin:30px 56px 18px; display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--line-strong); border-radius:16px; overflow:hidden; background:var(--white); box-shadow:0 18px 40px -18px rgba(0,18,10,.2); }
+  .ob-feature .photo { border-radius:0; box-shadow:none; height:100%; min-height:200px; }
+  .ob-feature .body { padding:26px 28px; display:flex; flex-direction:column; gap:10px; }
+  .ob-feature h4 { font-family:'Poppins',sans-serif; font-weight:600; font-size:18px; color:var(--racing); }
+  .ob-feature .range { font-family:'Poppins',sans-serif; font-weight:600; font-size:12px; color:var(--sage-deep); }
+  .ob-feature p { font-size:12px; color:var(--slate); line-height:1.6; flex:1; }
+  .ob-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; padding:0 56px 40px; }
+
+  /* ============ OPTION C : Dealt in rows (guided list) ============ */
+  .oc-hero { padding:48px 56px 10px; display:grid; grid-template-columns:1fr .75fr; gap:44px; align-items:center; }
+  .oc-hero .hd { font-size:30px; margin-top:6px; }
+  .oc-hero .body-copy { margin-top:12px; max-width:420px; }
+  .oc-list { padding:26px 56px 44px; display:flex; flex-direction:column; gap:12px; }
+  .row-svc { display:grid; grid-template-columns:auto 1.2fr 2fr auto auto; gap:20px; align-items:center; border:1px solid var(--line-strong); border-radius:13px; padding:15px 20px; background:var(--white); }
+  .row-svc h4 { font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:var(--racing); }
+  .row-svc .range { font-family:'Poppins',sans-serif; font-weight:600; font-size:10.5px; color:var(--sage-deep); display:block; margin-top:2px; }
+  .row-svc p { font-size:11px; color:var(--slate); line-height:1.5; }
+  .row-svc .arrow { color:var(--racing); font-size:15px; }
+
+  @media (max-width:860px) {
+    .oa-grid,.ob-grid { grid-template-columns:1fr; }
+    .ob-feature,.oc-hero { grid-template-columns:1fr; }
+    .row-svc { grid-template-columns:auto 1fr auto; }
+    .row-svc p { display:none; }
+  }
+</style>
+</head>
+<body>
+  <h1>The Services page, three ways<span class="dot">.</span></h1>
+  <p class="lede">The landing page behind the new Services nav link. Seven products: Term Loans, Working Capital, Equipment Financing, SBA, Revenue-Based Financing, Line of Credit, HELOC. Every card links to that service's one-pager, and the page ends on the same dark Apply band as the rest of the site. Short by design: hero, the products, one CTA.</p>
+
+  <!-- ======================= OPTION A ======================= -->
+  <div class="label"><span class="tag">Option A</span><b>The full hand</b><span>a clean uniform grid, all seven products equal weight like the home page's funding cards, fastest to scan, plus a "not sure?" phone row before the CTA band</span></div>
+  <div class="frame">
+    <div class="chrome"><i></i><i></i><i></i></div>
+    <div class="mocknav">
+      <img src="../site/assets/logo/lockup-horizontal-emerald.svg" alt="High Card Capital">
+      <div class="links"><span>Home</span><b>Services ▾</b><span>About us</span><span>FAQ</span><span>Blog</span><span>Contact</span></div>
+      <span class="mockapply">Apply Now</span>
+    </div>
+    <div class="oa-hero">
+      <p class="eyebrow">Services</p>
+      <h2 class="hd">Seven ways to fund the next move<span class="dot">.</span></h2>
+      <p class="body-copy">Every product below runs through the same five-minute application. Pick the one that fits, or apply once and let your advisor price the matches.</p>
+    </div>
+    <div class="oa-grid">
+      <div class="svc"><div class="top"><span class="chip">💵</span><h4>Term Loans</h4></div><span class="range">$5K – $25M</span><p>One lump sum, one fixed payment. The cleanest route for a defined purchase.</p><span class="btn--outline">Learn more</span></div>
+      <div class="svc"><div class="top"><span class="chip">🔄</span><h4>Working Capital</h4></div><span class="range">Fast &amp; flexible</span><p>Cash for payroll, inventory, and the gap between busy and paid.</p><span class="btn--outline">Learn more</span></div>
+      <div class="svc"><div class="top"><span class="chip">🚜</span><h4>Equipment Financing</h4></div><span class="range">New &amp; used</span><p>The machine pays for itself while you pay it off. The equipment is the collateral.</p><span class="btn--outline">Learn more</span></div>
+      <div class="svc"><div class="top"><span class="chip">🏛️</span><h4>SBA Loans</h4></div><span class="range">$25K – $15M</span><p>Government-backed rates with terms up to 25 years. Worth the paperwork; we carry it.</p><span class="btn--outline">Learn more</span></div>
+      <div class="svc"><div class="top"><span class="chip">📈</span><h4>Revenue-Based Financing</h4></div><span class="range">1–3× monthly revenue</span><p>Funding sized to your deposits, repaid as a share of sales. Slow month, smaller payment.</p><span class="btn--outline">Learn more</span></div>
+      <div class="svc"><div class="top"><span class="chip">💳</span><h4>Line of Credit</h4></div><span class="range">$10K – $2M</span><p>Draw, repay, redraw. Interest only on what you use. A safety net that waits.</p><span class="btn--outline">Learn more</span></div>
+      <div class="svc"><div class="top"><span class="chip">🏠</span><h4>HELOC</h4></div><span class="range">Up to 90% CLTV</span><p>Your home equity, working for the business at rates unsecured money can't touch.</p><span class="btn--outline">Learn more</span></div>
+    </div>
+    <div class="oa-help">
+      <p class="body-copy" style="margin:0">Not sure which fits? One call sorts it.</p>
+      <span class="btn--outline">📞 (800) 000-0000</span>
+    </div>
+    <div class="ctaband">
+      <h3 class="hd">One application. Every option priced<span class="dot">.</span></h3>
+      <span class="btn btn--cream">Apply Now</span>
+      <p class="micro">Soft pull only. No cost. Options usually within 24&ndash;48 hours.</p>
+    </div>
+  </div>
+  <p class="secnote"><b>On mobile:</b> cards stack single column in nav order, each one full width with the button always visible; identical card component to the home funding grid so it feels familiar.</p>
+
+  <!-- ======================= OPTION B ======================= -->
+  <div class="label"><span class="tag">Option B</span><b>Featured deal</b><span>Term Loans leads as a wide photo card (rotatable to any product you want to push), the other six sit in a compact grid under it, gives the page a hero product and a human face</span></div>
+  <div class="frame">
+    <div class="chrome"><i></i><i></i><i></i></div>
+    <div class="mocknav">
+      <img src="../site/assets/logo/lockup-horizontal-emerald.svg" alt="High Card Capital">
+      <div class="links"><span>Home</span><b>Services ▾</b><span>About us</span><span>FAQ</span><span>Blog</span><span>Contact</span></div>
+      <span class="mockapply">Apply Now</span>
+    </div>
+    <div class="ob-hero">
+      <p class="eyebrow">Services</p>
+      <h2 class="hd">Seven ways to fund the next move<span class="dot">.</span></h2>
+      <p class="body-copy">Every product below runs through the same five-minute application. Pick the one that fits, or apply once and let your advisor price the matches.</p>
+    </div>
+    <div class="ob-feature">
+      <div class="photo"><img src="../site/assets/img/img-contractor.webp" alt=""></div>
+      <div class="body">
+        <h4>Term Loans</h4>
+        <span class="range">$5K – $25M · one lump sum, one plan</span>
+        <p>One amount wired to your account, one fixed payment you can plan around. The cleanest product for a defined purchase with a defined payoff, and the fastest to fund.</p>
+        <span class="btn" style="align-self:flex-start">Learn more</span>
+      </div>
+    </div>
+    <div class="ob-grid">
+      <div class="svc"><div class="top"><span class="chip">🔄</span><h4>Working Capital</h4></div><span class="range">Fast &amp; flexible</span><p>Cash for payroll, inventory, and the gap between busy and paid.</p><span class="btn--outline">Learn more</span></div>
+      <div class="svc"><div class="top"><span class="chip">🚜</span><h4>Equipment Financing</h4></div><span class="range">New &amp; used</span><p>The machine pays for itself while you pay it off.</p><span class="btn--outline">Learn more</span></div>
+      <div class="svc"><div class="top"><span class="chip">🏛️</span><h4>SBA Loans</h4></div><span class="range">$25K – $15M</span><p>Government-backed rates, terms up to 25 years.</p><span class="btn--outline">Learn more</span></div>
+      <div class="svc"><div class="top"><span class="chip">📈</span><h4>Revenue-Based Financing</h4></div><span class="range">1–3× monthly revenue</span><p>Repaid as a share of sales. Slow month, smaller payment.</p><span class="btn--outline">Learn more</span></div>
+      <div class="svc"><div class="top"><span class="chip">💳</span><h4>Line of Credit</h4></div><span class="range">$10K – $2M</span><p>Draw, repay, redraw. Interest only on what you use.</p><span class="btn--outline">Learn more</span></div>
+      <div class="svc"><div class="top"><span class="chip">🏠</span><h4>HELOC</h4></div><span class="range">Up to 90% CLTV</span><p>Your equity, working at rates unsecured money can't touch.</p><span class="btn--outline">Learn more</span></div>
+    </div>
+    <div class="ctaband">
+      <h3 class="hd">One application. Every option priced<span class="dot">.</span></h3>
+      <span class="btn btn--cream">Apply Now</span>
+      <p class="micro">Soft pull only. No cost. Options usually within 24&ndash;48 hours.</p>
+    </div>
+  </div>
+  <p class="secnote"><b>On mobile:</b> the featured card stacks photo over copy like the home hero, then the six compact cards go single column.</p>
+
+  <!-- ======================= OPTION C ======================= -->
+  <div class="label"><span class="tag">Option C</span><b>Dealt in rows</b><span>each service is a full-width row with icon, range, and one line, reads like a menu, extremely fast on a phone where rows become tap targets, hero keeps a photo for warmth</span></div>
+  <div class="frame">
+    <div class="chrome"><i></i><i></i><i></i></div>
+    <div class="mocknav">
+      <img src="../site/assets/logo/lockup-horizontal-emerald.svg" alt="High Card Capital">
+      <div class="links"><span>Home</span><b>Services ▾</b><span>About us</span><span>FAQ</span><span>Blog</span><span>Contact</span></div>
+      <span class="mockapply">Apply Now</span>
+    </div>
+    <div class="oc-hero">
+      <div>
+        <p class="eyebrow">Services</p>
+        <h2 class="hd">Seven ways to fund the next move<span class="dot">.</span></h2>
+        <p class="body-copy">Every product below runs through the same five-minute application. Pick the one that fits, or apply once and let your advisor price the matches.</p>
+        <div style="margin-top:16px"><span class="btn">Apply Now</span></div>
+      </div>
+      <div class="photo" style="height:170px"><img src="../site/assets/img/img-owners-restaurant.webp" alt=""></div>
+    </div>
+    <div class="oc-list">
+      <div class="row-svc"><span class="chip">💵</span><div><h4>Term Loans</h4><span class="range">$5K – $25M</span></div><p>One lump sum, one fixed payment. The cleanest route for a defined purchase.</p><span class="btn--outline">Learn more</span><span class="arrow">→</span></div>
+      <div class="row-svc"><span class="chip">🔄</span><div><h4>Working Capital</h4><span class="range">Fast &amp; flexible</span></div><p>Cash for payroll, inventory, and the gap between busy and paid.</p><span class="btn--outline">Learn more</span><span class="arrow">→</span></div>
+      <div class="row-svc"><span class="chip">🚜</span><div><h4>Equipment Financing</h4><span class="range">New &amp; used</span></div><p>The machine pays for itself while you pay it off.</p><span class="btn--outline">Learn more</span><span class="arrow">→</span></div>
+      <div class="row-svc"><span class="chip">🏛️</span><div><h4>SBA Loans</h4><span class="range">$25K – $15M</span></div><p>Government-backed rates with terms up to 25 years.</p><span class="btn--outline">Learn more</span><span class="arrow">→</span></div>
+      <div class="row-svc"><span class="chip">📈</span><div><h4>Revenue-Based Financing</h4><span class="range">1–3× monthly revenue</span></div><p>Repaid as a share of sales. Slow month, smaller payment.</p><span class="btn--outline">Learn more</span><span class="arrow">→</span></div>
+      <div class="row-svc"><span class="chip">💳</span><div><h4>Line of Credit</h4><span class="range">$10K – $2M</span></div><p>Draw, repay, redraw. Interest only on what you use.</p><span class="btn--outline">Learn more</span><span class="arrow">→</span></div>
+      <div class="row-svc"><span class="chip">🏠</span><div><h4>HELOC</h4><span class="range">Up to 90% CLTV</span></div><p>Your equity, working at rates unsecured money can't touch.</p><span class="btn--outline">Learn more</span><span class="arrow">→</span></div>
+    </div>
+    <div class="ctaband">
+      <h3 class="hd">One application. Every option priced<span class="dot">.</span></h3>
+      <span class="btn btn--cream">Apply Now</span>
+      <p class="micro">Soft pull only. No cost. Options usually within 24&ndash;48 hours.</p>
+    </div>
+  </div>
+  <p class="secnote"><b>On mobile:</b> rows compress to icon + name + range + arrow, the whole row is the tap target, seven taps visible in about two screens.</p>
+
+</body>
+</html>

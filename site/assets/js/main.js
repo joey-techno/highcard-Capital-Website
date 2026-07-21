@@ -31,7 +31,11 @@
         drop.classList.toggle('is-open', open);
         dropBtn.setAttribute('aria-expanded', String(open));
       };
-      dropBtn.addEventListener('click', () => setDrop(!drop.classList.contains('is-open')));
+      /* Services is a real link now: click navigates, hover/focus opens the panel.
+         Only wire click-to-toggle when the trigger is a non-navigating button. */
+      if (dropBtn.tagName !== 'A') {
+        dropBtn.addEventListener('click', () => setDrop(!drop.classList.contains('is-open')));
+      }
       dropBtn.parentElement.addEventListener('mouseenter', () => dropBtn.setAttribute('aria-expanded', 'true'));
       dropBtn.parentElement.addEventListener('mouseleave', () => { if (!drop.classList.contains('is-open')) dropBtn.setAttribute('aria-expanded', 'false'); });
       doc.addEventListener('keydown', e => {
@@ -91,7 +95,7 @@
     window.addEventListener('scroll', update, { passive: true });
     update();
     // product pages deep-link their sticky Apply button
-    const P2Q = { term: 'term', loc: 'loc', sba: 'sba', heloc: 'heloc' };
+    const P2Q = { term: 'term', loc: 'loc', sba: 'sba', heloc: 'heloc', wc: 'wc', equipment: 'equipment', rbf: 'rbf' };
     if (P2Q[page]) {
       const applyBtn = mbar.querySelector('.btn');
       if (applyBtn) applyBtn.href = 'apply.html?product=' + P2Q[page];

@@ -13,7 +13,7 @@
 <link rel="icon" href="assets/logo/app-tile.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/main.css?v=mruyzxwb">
+<link rel="stylesheet" href="assets/css/main.css?v=mrv8n9i8">
 </head>
 <body data-page="term" data-nav="funding">
 <a class="skip" href="#main">Skip to content</a>
@@ -29,12 +29,16 @@
       <ul class="nav__links">
         <li><a href="index.html" data-nav-item="home">Home</a></li>
         <li>
-          <button type="button" data-nav-item="funding" aria-haspopup="true">Services <span class="caret" data-icon="chevron-up" style="transform:rotate(180deg)"></span></button>
+          <a href="services.html" data-nav-item="funding" aria-haspopup="true">Services <span class="caret" data-icon="chevron-up" style="transform:rotate(180deg)"></span></a>
           <div class="drop">
             <a href="term-loans.html"><span class="icon" data-icon="term-loan"></span><span><b>Term Loans</b><span>$5K – $25M · one lump sum, one plan</span></span></a>
+            <a href="working-capital.html"><span class="icon" data-icon="working-capital"></span><span><b>Working Capital</b><span>Cash for the gap between busy and paid</span></span></a>
+            <a href="equipment-financing.html"><span class="icon" data-icon="equipment"></span><span><b>Equipment Financing</b><span>New &amp; used · the equipment is the collateral</span></span></a>
             <a href="sba-loans.html"><span class="icon" data-icon="sba-loan"></span><span><b>SBA</b><span>$25K – $15M · terms up to 25 years</span></span></a>
-            <a href="heloc.html"><span class="icon" data-icon="heloc"></span><span><b>HELOC</b><span>Up to 90% CLTV · your equity, working</span></span></a>
+            <a href="revenue-financing.html"><span class="icon" data-icon="chart-up"></span><span><b>Revenue-Based Financing</b><span>Sized 1–3&times; monthly revenue</span></span></a>
             <a href="line-of-credit.html"><span class="icon" data-icon="line-of-credit"></span><span><b>Line of Credit</b><span>$10K – $2M · draw, repay, redraw</span></span></a>
+            <a href="heloc.html"><span class="icon" data-icon="heloc"></span><span><b>HELOC</b><span>Up to 90% CLTV · your equity, working</span></span></a>
+            <div class="drop__foot"><a class="link-arrow" href="services.html">See all services <span data-icon="chevron-right"></span></a></div>
           </div>
         </li>
         <li><a href="about.html" data-nav-item="about">About us</a></li>
@@ -54,12 +58,16 @@
   <nav aria-label="Mobile">
     <ul class="menu__links">
       <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
       <li>
         <ul class="menu__sub">
           <li><a href="term-loans.html">Term Loans <small>$5K – $25M</small></a></li>
+          <li><a href="working-capital.html">Working Capital <small>flexible cash flow</small></a></li>
+          <li><a href="equipment-financing.html">Equipment Financing <small>new &amp; used</small></a></li>
           <li><a href="sba-loans.html">SBA <small>$25K – $15M</small></a></li>
-          <li><a href="heloc.html">HELOC <small>up to 90% CLTV</small></a></li>
+          <li><a href="revenue-financing.html">Revenue-Based Financing <small>1–3&times; monthly revenue</small></a></li>
           <li><a href="line-of-credit.html">Line of Credit <small>$10K – $2M</small></a></li>
+          <li><a href="heloc.html">HELOC <small>up to 90% CLTV</small></a></li>
         </ul>
       </li>
       <li><a href="about.html">About us</a></li>
@@ -80,19 +88,18 @@
   <section class="page-hero">
     <div class="container split">
       <div>
-        <p class="eyebrow" data-reveal>Funding &middot; Term Loans</p>
-        <h1 class="h-display" data-split>The straightest line to funded<span class="dot">.</span></h1>
-        <p class="lede" data-reveal>One lump sum, one predictable payment, for the inventory buy, the payroll crunch, the equipment that just died, or the expansion you&rsquo;ve been circling. Apply in two minutes; options in as little as 24 hours.</p>
+        <p class="eyebrow" data-reveal>Services &middot; Term Loans</p>
+        <h1 class="h-display" data-reveal><span class="h2-line">One lump sum.</span><span class="h2-line">One plan<span class="dot">.</span></span></h1>
+        <p class="lede" data-reveal>Funding from $5K to $25M wired as a single amount with one fixed payment you can plan around. Apply in minutes; options in as little as 24 hours.</p>
         <div class="hero__ctas" data-reveal>
-          <a class="btn" href="apply.html?product=term" data-magnetic>Apply for a Term Loan</a>
+          <a class="btn" href="apply.html?product=term" data-magnetic>Apply Now</a>
           <a class="phone-link" href="tel:+18000000000"><span class="icon" data-icon="phone"></span>(800) 000-0000</a>
         </div>
         <p class="microcopy" data-reveal><span data-icon="secure"></span>Soft credit pull to see options: your score stays put.</p>
-        <p class="small" data-reveal style="margin-top:18px">One application also covers a <a href="line-of-credit.html">Line of Credit</a>, and your advisor prices both and shows you the difference.</p>
       </div>
       <div style="position:relative" data-reveal="right">
         <figure class="photo-card photo-card--portrait gl curtain">
-          <img src="assets/img/img-contractor.webp" alt="A contractor standing proudly in his workshop" width="800" height="920" fetchpriority="high">
+          <img src="assets/img/img-term-hero.webp" alt="A smiling contractor standing in his workshop" width="800" height="920" fetchpriority="high">
         </figure>
         <div class="floater" style="right:-14px; bottom:34px"><b class="num">$5K &ndash; $25M</b><span>funding range</span></div>
       </div>
@@ -116,25 +123,26 @@
         <article class="bene" data-reveal>
           <span class="icon--chip" data-draw><span class="icon" data-icon="advisor"></span></span>
           <h3>A human runs your file<span class="dot">.</span></h3>
-          <p>Your advisor shops a network of lenders and comes back with the strongest matches, not the first yes, and never a teaser rate.</p>
+          <p>Your advisor prices the strongest matches for your file and walks you through them, never a teaser rate, never a surprise.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- WHAT IT IS / WHO IT'S FOR -->
+  <!-- WHAT IT IS / WHO QUALIFIES -->
   <section>
     <div class="container split">
       <div class="prose">
         <p class="eyebrow" data-reveal>What it is</p>
         <h2 data-split>Borrow once. Repay on schedule. Done<span class="dot">.</span></h2>
         <p data-reveal>A business term loan is the classic: a lump sum wired to your account, repaid over a set term with a set payment. You know the total cost on day one, which makes it the cleanest product for a defined purchase with a defined payoff.</p>
-        <h3 data-reveal>Who it&rsquo;s for</h3>
+        <h3 data-reveal>Who qualifies</h3>
         <ul data-stagger=".07">
-          <li data-reveal><span class="icon" data-icon="check-circle"></span>Owners with a specific number in mind: the machine, the buildout, the bulk order</li>
-          <li data-reveal><span class="icon" data-icon="check-circle"></span>Businesses that want speed without giving up predictable payments</li>
-          <li data-reveal><span class="icon" data-icon="check-circle"></span>Businesses consolidating a costly advance into something saner</li>
+          <li data-reveal><span class="icon" data-icon="check-circle"></span>Six months or more in business</li>
+          <li data-reveal><span class="icon" data-icon="check-circle"></span>Around $8K+ in monthly revenue</li>
+          <li data-reveal><span class="icon" data-icon="check-circle"></span>Credit from the 500s up</li>
         </ul>
+        <p class="small" data-reveal>Close but not quite? Call anyway. One application covers every product we offer, and your advisor prices the fits.</p>
       </div>
       <div class="terms-card" data-reveal="right">
         <div><b class="num">$0</b><span>cost to see your options</span></div>
@@ -146,54 +154,24 @@
     </div>
   </section>
 
-  <!-- MATCH -->
-  <section class="sec-cream">
-    <div class="container match match--light">
-      <div>
-        <p class="eyebrow" data-reveal>Are we a match?</p>
-        <h2 data-split>Term loans fit businesses like this<span class="dot">.</span></h2>
-        <p class="lede" data-reveal>Close but not quite? Call anyway. Your advisor may route you to a Line of Credit or SBA instead. Same application either way.</p>
+  <!-- TRUST: stat cards straddling into the CTA band -->
+  <div class="stat-bridge">
+    <div class="container stat-bridge__row" data-stagger=".08">
+      <div class="stat-card" data-reveal>
+        <p class="stat-card__label">Funded</p>
+        <div class="stat-card__num num" data-count="100" data-prefix="$" data-suffix="M+">$100M+</div>
       </div>
-      <ul class="checks" data-stagger=".09">
-        <li data-reveal><span class="icon" data-draw data-icon="check-circle"></span><span><b>Six months or more in business</b><span>Longer history usually means stronger offers.</span></span></li>
-        <li data-reveal><span class="icon" data-draw data-icon="check-circle"></span><span><b>Around $8K+ in monthly revenue</b><span>Lenders read deposits, not promises.</span></span></li>
-        <li data-reveal><span class="icon" data-draw data-icon="check-circle"></span><span><b>Credit from the 500s up</b><span>Score matters less here than revenue, honestly.</span></span></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- MINI FAQ -->
-  <section>
-    <div class="container container--tight">
-      <div class="sec-head">
-        <p class="eyebrow" data-reveal>Term loan questions</p>
-        <h2 data-split>Answered straight<span class="dot">.</span></h2>
+      <div class="stat-card" data-reveal>
+        <p class="stat-card__label">Businesses Served</p>
+        <div class="stat-card__num num" data-count="2000" data-suffix="+">2,000+</div>
       </div>
-      <div class="mini-faq">
-        <div class="qa" data-reveal>
-          <h3>How fast is &ldquo;fast,&rdquo; honestly?</h3>
-          <p>Options usually land within 24&ndash;48 hours of a complete application. Once you accept, funding can arrive in as little as 24 hours; most files fund within a few business days. Your advisor gives you a real calendar up front, not a slogan.</p>
-        </div>
-        <div class="qa" data-reveal>
-          <h3>What does it cost to find out?</h3>
-          <p>Nothing. Seeing your options is free, uses a soft credit pull, and carries no obligation. If you move forward, every cost is in writing before you sign. Lenders pay us at closing, which is why applying costs you zero.</p>
-        </div>
-        <div class="qa" data-reveal>
-          <h3>Do I need collateral?</h3>
-          <p>Not necessarily. Many term loans in our network are underwritten on revenue, not hard collateral. Where collateral strengthens your terms, your advisor will show you both versions and let you choose.</p>
-        </div>
-        <div class="qa" data-reveal>
-          <h3>My credit took some hits. Waste of time?</h3>
-          <p>No. Steady deposits and time in business carry more weight than the score for this product. If the numbers genuinely don&rsquo;t work yet, your advisor will tell you why and what changes the answer, and that call is free too.</p>
-        </div>
-        <div class="qa" data-reveal>
-          <h3>Term loan or line of credit?</h3>
-          <p>Defined purchase &rarr; term loan. Recurring swings &rarr; <a href="line-of-credit.html">line of credit</a>. You don&rsquo;t have to decide alone: one shared application covers both, and your advisor prices both paths.</p>
-          <p style="margin-top:14px"><a class="link-arrow" href="line-of-credit.html">Compare with a Line of Credit <span data-icon="chevron-right"></span></a></p>
-        </div>
+      <div class="stat-card" data-reveal>
+        <p class="stat-card__label">Google Reviews</p>
+        <div class="stat-card__num num">5.0</div>
+        <div class="stat-card__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- CTA -->
   <section class="cta-band felt">
@@ -202,7 +180,7 @@
       <div class="cta-band__in">
         <h2 data-split>Tell us about the business. We&rsquo;ll bring the numbers<span class="dot">.</span></h2>
         <div class="cta-band__ctas" data-reveal>
-          <a class="btn btn--cream" href="apply.html?product=term" data-magnetic>Apply for a Term Loan</a>
+          <a class="btn btn--cream" href="apply.html?product=term" data-magnetic>Apply Now</a>
           <a class="phone-link" href="tel:+18000000000"><span class="icon" data-icon="phone"></span>Rather talk first? (800) 000-0000</a>
         </div>
         <p class="small" data-reveal>Soft pull only. No cost. Options usually within 24&ndash;48 hours.</p>
@@ -219,12 +197,15 @@
         <img src="assets/logo/lockup-stacked-emerald.svg" alt="High Card Capital" width="190" height="150">
       </div>
       <div>
-        <h4>Services</h4>
+        <h4><a href="services.html">Services</a></h4>
         <ul>
           <li><a href="term-loans.html">Term Loans</a></li>
+          <li><a href="working-capital.html">Working Capital</a></li>
+          <li><a href="equipment-financing.html">Equipment Financing</a></li>
           <li><a href="sba-loans.html">SBA</a></li>
-          <li><a href="heloc.html">HELOC</a></li>
+          <li><a href="revenue-financing.html">Revenue-Based Financing</a></li>
           <li><a href="line-of-credit.html">Line of Credit</a></li>
+          <li><a href="heloc.html">HELOC</a></li>
         </ul>
       </div>
       <div>
@@ -248,7 +229,6 @@
         </address>
       </div>
     </div>
-    </div>
   </div>
 </footer>
 
@@ -257,9 +237,9 @@
   <a class="btn" href="apply.html">Apply Now, it takes 2 minutes</a>
 </div>
 
-<script src="assets/js/icons.js?v=mruyzxwb"></script>
-<script src="assets/js/main.js?v=mruyzxwb"></script>
-<script src="assets/js/gl-hover.js?v=mruyzxwb"></script>
-<script src="assets/js/forms.js?v=mruyzxwb"></script>
+<script src="assets/js/icons.js?v=mrv8n9i8"></script>
+<script src="assets/js/main.js?v=mrv8n9i8"></script>
+<script src="assets/js/gl-hover.js?v=mrv8n9i8"></script>
+<script src="assets/js/forms.js?v=mrv8n9i8"></script>
 </body>
 </html>

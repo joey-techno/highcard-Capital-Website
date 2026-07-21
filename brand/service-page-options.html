@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Service page options · High Card Capital</title>
+<style>
+  @font-face { font-family:'Poppins'; font-weight:600; src:url('../site/assets/fonts/poppins-600.woff2') format('woff2'); font-display:swap; }
+  @font-face { font-family:'Inter'; font-weight:400; src:url('../site/assets/fonts/inter-400.woff2') format('woff2'); font-display:swap; }
+  :root {
+    --racing:#004225; --felt:#00331D; --cream:#F5F0E1; --white:#FBF9F3; --mist:#F4F2EC;
+    --sage:#8FA898; --sage-deep:#4F6B5C; --ink:#141A16; --slate:#5A6660;
+    --line:rgba(0,66,37,.13); --line-strong:rgba(0,66,37,.28); --line-dark:rgba(245,240,225,.16);
+    --card-dark:rgba(245,240,225,.055);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--white); font-family:'Inter',sans-serif; color:var(--ink); padding:56px clamp(20px,4vw,64px) 120px; }
+  h1 { font-family:'Poppins',sans-serif; font-weight:600; font-size:34px; color:var(--racing); }
+  h1 .dot { color:var(--sage); }
+  .lede { color:var(--slate); font-size:15.5px; max-width:760px; margin-top:10px; line-height:1.6; }
+  .label { margin:64px 0 16px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+  .tag { font-family:'Poppins',sans-serif; font-weight:600; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--racing); background:var(--cream); border:1px solid var(--line); border-radius:999px; padding:6px 16px; }
+  .label b { font-family:'Poppins',sans-serif; font-weight:600; font-size:18px; color:var(--racing); }
+  .label span { color:var(--slate); font-size:13.5px; max-width:640px; }
+
+  /* ---- page frame ---- */
+  .frame { max-width:1180px; margin:0 auto; border:1px solid var(--line-strong); border-radius:14px; overflow:hidden; box-shadow:0 30px 70px -30px rgba(0,25,14,.35); background:var(--white); }
+  .chrome { display:flex; gap:6px; padding:10px 14px; background:var(--mist); border-bottom:1px solid var(--line); }
+  .chrome i { width:9px; height:9px; border-radius:50%; background:rgba(0,66,37,.18); }
+  .mocknav { display:flex; align-items:center; justify-content:space-between; padding:14px 34px; background:var(--white); border-bottom:1px solid var(--line); }
+  .mocknav img { height:22px; }
+  .mocknav .links { display:flex; gap:18px; font-size:11.5px; color:var(--sage-deep); }
+  .mocknav .links b { color:var(--racing); }
+  .mockapply { font-family:'Poppins',sans-serif; font-weight:600; font-size:11.5px; background:var(--racing); color:var(--cream); padding:8px 16px; border-radius:9px; }
+
+  /* shared mock atoms */
+  .eyebrow { font-family:'Poppins',sans-serif; font-weight:600; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--sage-deep); }
+  .on-felt .eyebrow { color:var(--sage); }
+  .hd { font-family:'Poppins',sans-serif; font-weight:600; color:var(--racing); letter-spacing:-.015em; line-height:1.12; }
+  .on-felt .hd { color:var(--cream); }
+  .dot { color:var(--sage); }
+  .body-copy { color:var(--slate); line-height:1.62; font-size:12.5px; }
+  .on-felt .body-copy { color:rgba(245,240,225,.72); }
+  .btn { display:inline-block; font-family:'Poppins',sans-serif; font-weight:600; font-size:12px; background:var(--racing); color:var(--cream); padding:11px 22px; border-radius:10px; }
+  .btn--cream { background:var(--white); color:var(--racing); border:1.5px solid var(--racing); }
+  .phone { font-size:11.5px; color:var(--sage-deep); align-self:center; }
+  .on-felt .phone { color:var(--cream); opacity:.85; }
+  .micro { font-size:10.5px; color:var(--sage-deep); }
+  .photo { border-radius:14px; overflow:hidden; box-shadow:0 22px 44px -20px rgba(0,51,29,.4); position:relative; }
+  .photo img { width:100%; height:100%; object-fit:cover; display:block; }
+  .floater { position:absolute; background:var(--white); border:1px solid var(--line); border-radius:12px; padding:10px 16px; box-shadow:0 18px 40px -18px rgba(0,18,10,.35); }
+  .floater b { font-family:'Poppins',sans-serif; font-weight:600; font-size:15px; color:var(--racing); display:block; }
+  .floater span { font-size:10px; color:var(--slate); }
+  .chip { width:34px; height:34px; border-radius:10px; background:var(--cream); border:1px solid var(--line); display:grid; place-items:center; color:var(--racing); font-size:15px; }
+  .stars { color:#FBBC04; letter-spacing:2px; }
+  .g { width:.8em; height:.8em; display:inline-block; vertical-align:-.08em; margin-right:.25em; }
+  .secnote { max-width:1180px; margin:8px auto 0; font-size:11.5px; color:var(--sage-deep); }
+  .secnote b { color:var(--racing); }
+
+  /* ============ OPTION 1 : Split hero, stat seam ============ */
+  .o1-hero { display:grid; grid-template-columns:1.05fr .85fr; gap:44px; padding:52px 56px 46px; align-items:center; background:var(--white); }
+  .o1-hero .hd { font-size:34px; }
+  .o1-hero .body-copy { margin:12px 0 18px; max-width:420px; }
+  .o1-bene { background:var(--mist); padding:38px 56px; display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .bene-card h4 { font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:var(--racing); margin:10px 0 6px; }
+  .bene-card p { font-size:11.5px; color:var(--slate); line-height:1.55; }
+  .o1-what { display:grid; grid-template-columns:1.1fr .8fr; gap:44px; padding:48px 56px; align-items:start; }
+  .o1-what .hd { font-size:22px; margin:6px 0 10px; }
+  .checkline { display:flex; gap:9px; font-size:11.5px; color:var(--ink); margin-top:9px; align-items:baseline; }
+  .checkline i { color:var(--racing); font-style:normal; }
+  .terms { background:var(--white); border:1px solid var(--line-strong); border-radius:16px; padding:20px; display:grid; grid-template-columns:1fr 1fr; gap:16px; box-shadow:0 18px 40px -18px rgba(0,18,10,.18); }
+  .terms b { font-family:'Poppins',sans-serif; font-weight:600; font-size:16px; color:var(--racing); display:block; }
+  .terms span { font-size:10px; color:var(--slate); }
+  .o1-seam { background:linear-gradient(to bottom, var(--white) 46%, var(--felt) 46%); padding:8px 56px 30px; }
+  .o1-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .stat-card { background:var(--white); border:1px solid var(--line); border-radius:13px; text-align:center; padding:20px 12px 16px; box-shadow:0 18px 40px -18px rgba(0,18,10,.3); }
+  .stat-card b { font-family:'Poppins',sans-serif; font-weight:600; font-size:21px; color:var(--racing); display:block; }
+  .stat-card span { font-size:10.5px; color:var(--slate); }
+  .ctaband { background:var(--felt); text-align:center; padding:44px 56px 50px; }
+  .ctaband .hd { font-size:22px; color:var(--cream); max-width:520px; margin:0 auto 18px; }
+  .ctaband .micro { color:var(--sage); margin-top:12px; }
+
+  /* ============ OPTION 2 : Felt hero ============ */
+  .o2-hero { background:var(--felt); display:grid; grid-template-columns:1fr .82fr; gap:44px; padding:52px 56px; align-items:center; }
+  .o2-hero .hd { font-size:33px; }
+  .o2-hero .body-copy { margin:12px 0 18px; max-width:400px; }
+  .o2-ticks { display:flex; gap:22px; margin-top:16px; }
+  .o2-ticks span { font-size:10.5px; color:var(--sage); }
+  .o2-bene { background:var(--white); padding:42px 56px; display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .o2-what { background:var(--mist); display:grid; grid-template-columns:1.1fr .8fr; gap:44px; padding:46px 56px; align-items:start; }
+  .o2-what .hd { font-size:22px; margin:6px 0 10px; }
+  .o2-trust { padding:38px 56px; display:grid; grid-template-columns:auto 1fr; gap:34px; align-items:center; }
+  .gpill { display:inline-flex; align-items:center; gap:9px; background:var(--cream); border:1px solid var(--line); border-radius:999px; padding:10px 20px; white-space:nowrap; }
+  .gpill b { font-family:'Poppins',sans-serif; font-weight:600; font-size:17px; color:var(--racing); }
+  .quoteline { font-size:12.5px; color:var(--slate); line-height:1.6; font-style:italic; }
+  .quoteline b { font-style:normal; color:var(--racing); font-size:11px; display:block; margin-top:6px; font-family:'Poppins',sans-serif; }
+
+  /* ============ OPTION 3 : Center stage ============ */
+  .o3-hero { text-align:center; padding:50px 56px 0; }
+  .o3-hero .hd { font-size:32px; max-width:520px; margin:6px auto 0; }
+  .o3-hero .body-copy { max-width:480px; margin:12px auto 18px; }
+  .o3-photo { margin:34px 56px 0; height:190px; }
+  .o3-photo .floater { right:26px; bottom:-18px; }
+  .o3-bene { padding:52px 56px 40px; display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .o3-what { background:var(--mist); display:grid; grid-template-columns:1.1fr .8fr; gap:44px; padding:46px 56px; align-items:start; }
+  .o3-what .hd { font-size:22px; margin:6px 0 10px; }
+  .o3-trust { padding:34px 56px; display:flex; justify-content:center; gap:40px; align-items:center; border-top:1px solid var(--line); flex-wrap:wrap; }
+  .o3-trust .t { text-align:center; }
+  .o3-trust b { font-family:'Poppins',sans-serif; font-weight:600; font-size:19px; color:var(--racing); display:block; }
+  .o3-trust span { font-size:10.5px; color:var(--slate); }
+
+  @media (max-width:860px) {
+    .o1-hero,.o2-hero,.o1-what,.o2-what,.o3-what,.o2-trust { grid-template-columns:1fr; }
+    .o1-bene,.o2-bene,.o3-bene,.o1-stats { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+  <h1>The service one-pager, three ways<span class="dot">.</span></h1>
+  <p class="lede">This is the template every service reuses: Term Loans first, then Working Capital, Equipment Financing, SBA, Revenue-Based Financing, Line of Credit, and HELOC each swap in their own photo, copy, and numbers. All three keep the locked five sections: hero, three benefits, what it is and who qualifies, trust, final CTA. Photos are placeholders until the gpt-image-1 batch. Every option builds fully fluid across all four modes.</p>
+
+  <!-- ======================= OPTION 1 ======================= -->
+  <div class="label"><span class="tag">Option 1</span><b>Split hero, stat seam</b><span>white split hero like today's product pages but tightened, and the trust band is the home page's stat-card seam straddling into the dark CTA, so the page ends on the same signature move as home</span></div>
+  <div class="frame">
+    <div class="chrome"><i></i><i></i><i></i></div>
+    <div class="mocknav">
+      <img src="../site/assets/logo/lockup-horizontal-emerald.svg" alt="High Card Capital">
+      <div class="links"><span>Home</span><b>Services ▾</b><span>About us</span><span>FAQ</span><span>Blog</span><span>Contact</span></div>
+      <span class="mockapply">Apply Now</span>
+    </div>
+
+    <div class="o1-hero">
+      <div>
+        <p class="eyebrow">Services · Term Loans</p>
+        <h2 class="hd" style="margin-top:8px">One lump sum. One plan<span class="dot">.</span></h2>
+        <p class="body-copy">Funding from $5K to $25M wired as a single amount with a fixed payment you can plan around. Apply in minutes; see options in as little as 24 hours.</p>
+        <div style="display:flex; gap:16px">
+          <span class="btn">Apply Now</span>
+          <span class="phone">📞 (800) 000-0000</span>
+        </div>
+        <p class="micro" style="margin-top:12px">✓ Soft credit pull only. Your score stays put.</p>
+      </div>
+      <div style="position:relative">
+        <div class="photo" style="height:250px"><img src="../site/assets/img/img-contractor.webp" alt=""></div>
+        <div class="floater" style="right:-10px; bottom:26px"><b>$5K – $25M</b><span>funding range</span></div>
+      </div>
+    </div>
+
+    <div class="o1-bene">
+      <div class="bene-card"><span class="chip">⚡</span><h4>Fast is the whole point<span class="dot">.</span></h4><p>Options in as little as 24 hours, funding in as little as 24 more once you accept.</p></div>
+      <div class="bene-card"><span class="chip">📅</span><h4>Payments you can plan<span class="dot">.</span></h4><p>A fixed amount on a fixed schedule. You know the full picture in writing before you sign.</p></div>
+      <div class="bene-card"><span class="chip">🤝</span><h4>A human runs your file<span class="dot">.</span></h4><p>Your advisor brings back the strongest matches, never a teaser rate.</p></div>
+    </div>
+
+    <div class="o1-what">
+      <div>
+        <p class="eyebrow">What it is</p>
+        <h3 class="hd">Borrow once. Repay on schedule. Done<span class="dot">.</span></h3>
+        <p class="body-copy">A lump sum wired to your account, repaid over a set term with a set payment. The cleanest product for a defined purchase with a defined payoff.</p>
+        <div class="checkline"><i>✓</i> Six months or more in business</div>
+        <div class="checkline"><i>✓</i> Around $8K+ in monthly revenue</div>
+        <div class="checkline"><i>✓</i> Credit from the 500s up</div>
+      </div>
+      <div class="terms">
+        <div><b>$0</b><span>cost to see options</span></div>
+        <div><b>24 h</b><span>options in as little as</span></div>
+        <div><b>Fixed</b><span>payment &amp; schedule</span></div>
+        <div><b>In writing</b><span>full cost before you sign</span></div>
+      </div>
+    </div>
+
+    <div class="o1-seam">
+      <div class="o1-stats">
+        <div class="stat-card"><b>$100M+</b><span>funded and counting</span></div>
+        <div class="stat-card"><b>2,000+</b><span>businesses served</span></div>
+        <div class="stat-card"><b>5.0 <span class="stars" style="font-size:.55em">★★★★★</span></b><span>Google reviews</span></div>
+      </div>
+    </div>
+    <div class="ctaband">
+      <h3 class="hd">Tell us about the business. We&rsquo;ll bring the numbers<span class="dot">.</span></h3>
+      <span class="btn btn--cream">Apply Now</span>
+      <p class="micro">Soft pull only. No cost. Options usually within 24&ndash;48 hours.</p>
+    </div>
+  </div>
+  <p class="secnote"><b>On mobile:</b> hero stacks copy over photo exactly like the home hero; benefits and stats go single column; the stat seam keeps the straddle effect.</p>
+
+  <!-- ======================= OPTION 2 ======================= -->
+  <div class="label"><span class="tag">Option 2</span><b>Felt hero</b><span>opens on the dark table-green felt like the home page, so every service page feels like a chapter of home, then lightens as you scroll toward the Apply band; trust is a Google pill plus one short review quote</span></div>
+  <div class="frame">
+    <div class="chrome"><i></i><i></i><i></i></div>
+    <div class="mocknav" style="background:var(--felt); border-bottom:1px solid var(--line-dark)">
+      <img src="../site/assets/logo/lockup-horizontal-cream.svg" alt="High Card Capital">
+      <div class="links" style="color:rgba(245,240,225,.75)"><span>Home</span><b style="color:var(--cream)">Services ▾</b><span>About us</span><span>FAQ</span><span>Blog</span><span>Contact</span></div>
+      <span class="mockapply">Apply Now</span>
+    </div>
+
+    <div class="o2-hero on-felt">
+      <div>
+        <p class="eyebrow">Services · Term Loans</p>
+        <h2 class="hd" style="margin-top:8px">One lump sum. One plan<span class="dot">.</span></h2>
+        <p class="body-copy">Funding from $5K to $25M wired as a single amount with a fixed payment you can plan around. See your options in as little as 24 hours.</p>
+        <div style="display:flex; gap:16px">
+          <span class="btn btn--cream">Apply Now</span>
+          <span class="phone">📞 (800) 000-0000</span>
+        </div>
+        <div class="o2-ticks"><span>✓ Soft pull only</span><span>✓ No cost to see options</span><span>✓ Options in 24h</span></div>
+      </div>
+      <div style="position:relative">
+        <div class="photo" style="height:240px"><img src="../site/assets/img/img-contractor.webp" alt=""></div>
+        <div class="floater" style="left:-12px; bottom:24px"><b>$5K – $25M</b><span>funding range</span></div>
+      </div>
+    </div>
+
+    <div class="o2-bene">
+      <div class="bene-card"><span class="chip">⚡</span><h4>Fast is the whole point<span class="dot">.</span></h4><p>Options in as little as 24 hours, funding in as little as 24 more once you accept.</p></div>
+      <div class="bene-card"><span class="chip">📅</span><h4>Payments you can plan<span class="dot">.</span></h4><p>A fixed amount on a fixed schedule. You know the full picture in writing before you sign.</p></div>
+      <div class="bene-card"><span class="chip">🤝</span><h4>A human runs your file<span class="dot">.</span></h4><p>Your advisor brings back the strongest matches, never a teaser rate.</p></div>
+    </div>
+
+    <div class="o2-what">
+      <div>
+        <p class="eyebrow">What it is</p>
+        <h3 class="hd">Borrow once. Repay on schedule. Done<span class="dot">.</span></h3>
+        <p class="body-copy">A lump sum wired to your account, repaid over a set term with a set payment. The cleanest product for a defined purchase with a defined payoff.</p>
+        <div class="checkline"><i>✓</i> Six months or more in business</div>
+        <div class="checkline"><i>✓</i> Around $8K+ in monthly revenue</div>
+        <div class="checkline"><i>✓</i> Credit from the 500s up</div>
+      </div>
+      <div class="terms">
+        <div><b>$0</b><span>cost to see options</span></div>
+        <div><b>24 h</b><span>options in as little as</span></div>
+        <div><b>Fixed</b><span>payment &amp; schedule</span></div>
+        <div><b>In writing</b><span>full cost before you sign</span></div>
+      </div>
+    </div>
+
+    <div class="o2-trust">
+      <span class="gpill">
+        <svg class="g" style="width:20px;height:20px" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        <b>5.0</b><span class="stars" style="font-size:12px">★★★★★</span>
+      </span>
+      <p class="quoteline">&ldquo;Received our funds within 24 hours of approval. The whole thing was easier than opening a bank account.&rdquo;<b>Verified Google review</b></p>
+    </div>
+
+    <div class="ctaband">
+      <h3 class="hd">Tell us about the business. We&rsquo;ll bring the numbers<span class="dot">.</span></h3>
+      <span class="btn btn--cream">Apply Now</span>
+      <p class="micro">Soft pull only. No cost. Options usually within 24&ndash;48 hours.</p>
+    </div>
+  </div>
+  <p class="secnote"><b>On mobile:</b> dark hero stacks like the home hero with the floater tucked onto the photo; Google pill and quote stack centered.</p>
+
+  <!-- ======================= OPTION 3 ======================= -->
+  <div class="label"><span class="tag">Option 3</span><b>Center stage</b><span>a centered headline with the Apply button immediately under it, then one wide cinematic photo, so the CTA is on screen within the first second on every device; trust is a slim strip of numbers before the final band</span></div>
+  <div class="frame">
+    <div class="chrome"><i></i><i></i><i></i></div>
+    <div class="mocknav">
+      <img src="../site/assets/logo/lockup-horizontal-emerald.svg" alt="High Card Capital">
+      <div class="links"><span>Home</span><b>Services ▾</b><span>About us</span><span>FAQ</span><span>Blog</span><span>Contact</span></div>
+      <span class="mockapply">Apply Now</span>
+    </div>
+
+    <div class="o3-hero">
+      <p class="eyebrow">Services · Term Loans</p>
+      <h2 class="hd">One lump sum. One plan<span class="dot">.</span></h2>
+      <p class="body-copy">Funding from $5K to $25M with a fixed payment you can plan around. See your options in as little as 24 hours.</p>
+      <div style="display:flex; gap:16px; justify-content:center">
+        <span class="btn">Apply Now</span>
+        <span class="phone">📞 (800) 000-0000</span>
+      </div>
+      <p class="micro" style="margin-top:12px">✓ Soft credit pull only. Your score stays put.</p>
+      <div class="photo o3-photo"><img src="../site/assets/img/img-owners-restaurant.webp" alt="">
+        <div class="floater" style="right:26px; bottom:22px"><b>$5K – $25M</b><span>funding range</span></div>
+      </div>
+    </div>
+
+    <div class="o3-bene">
+      <div class="bene-card"><span class="chip">⚡</span><h4>Fast is the whole point<span class="dot">.</span></h4><p>Options in as little as 24 hours, funding in as little as 24 more once you accept.</p></div>
+      <div class="bene-card"><span class="chip">📅</span><h4>Payments you can plan<span class="dot">.</span></h4><p>A fixed amount on a fixed schedule. You know the full picture in writing before you sign.</p></div>
+      <div class="bene-card"><span class="chip">🤝</span><h4>A human runs your file<span class="dot">.</span></h4><p>Your advisor brings back the strongest matches, never a teaser rate.</p></div>
+    </div>
+
+    <div class="o3-what">
+      <div>
+        <p class="eyebrow">What it is</p>
+        <h3 class="hd">Borrow once. Repay on schedule. Done<span class="dot">.</span></h3>
+        <p class="body-copy">A lump sum wired to your account, repaid over a set term with a set payment. The cleanest product for a defined purchase with a defined payoff.</p>
+        <div class="checkline"><i>✓</i> Six months or more in business</div>
+        <div class="checkline"><i>✓</i> Around $8K+ in monthly revenue</div>
+        <div class="checkline"><i>✓</i> Credit from the 500s up</div>
+      </div>
+      <div class="terms">
+        <div><b>$0</b><span>cost to see options</span></div>
+        <div><b>24 h</b><span>options in as little as</span></div>
+        <div><b>Fixed</b><span>payment &amp; schedule</span></div>
+        <div><b>In writing</b><span>full cost before you sign</span></div>
+      </div>
+    </div>
+
+    <div class="o3-trust">
+      <div class="t"><b>$100M+</b><span>funded and counting</span></div>
+      <div class="t"><b>2,000+</b><span>businesses served</span></div>
+      <div class="t"><b>5.0 <span class="stars" style="font-size:.55em">★★★★★</span></b><span>Google reviews</span></div>
+      <div class="t"><b>24/7</b><span>here when you need us</span></div>
+    </div>
+
+    <div class="ctaband">
+      <h3 class="hd">Tell us about the business. We&rsquo;ll bring the numbers<span class="dot">.</span></h3>
+      <span class="btn btn--cream">Apply Now</span>
+      <p class="micro">Soft pull only. No cost. Options usually within 24&ndash;48 hours.</p>
+    </div>
+  </div>
+  <p class="secnote"><b>On mobile:</b> this one is built mobile-first by nature: headline, Apply, photo, all in the first screen; the trust strip wraps to a 2×2 grid.</p>
+
+</body>
+</html>
