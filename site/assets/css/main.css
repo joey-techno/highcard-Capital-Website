@@ -2114,9 +2114,9 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
    all 4 modes. Photo below the solid white nav (Capital-Quickly style).
    ============================================================ */
 .th-hero {
-  --th-formw:clamp(230px, 25vw + 55px, 480px);     /* skinny on phones, wide enough on desktop to hold the one-line header */
-  --th-gap:clamp(18px, 1rem + 2.2vw, 56px);
-  --th-minh:clamp(400px, 7vw + 310px, 522px);
+  --th-formw:clamp(202px, 22vw + 48px, 422px);     /* content -12%; skinny on phones, holds the one-line header */
+  --th-gap:clamp(16px, 0.9rem + 1.9vw, 48px);
+  --th-minh:clamp(300px, 5vw + 232px, 404px);      /* hero ~20% shorter so the trust band shows into Container 2 */
   position:relative; overflow:hidden;
   background-image:
     linear-gradient(to top,
@@ -2129,36 +2129,42 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   position:relative; min-height:var(--th-minh);
   display:grid; grid-template-columns:minmax(0,1fr) var(--th-formw); gap:var(--th-gap);
   align-items:stretch;
-  padding-top:calc(var(--nav-h) + clamp(14px, 1.8vw, 30px));
-  padding-bottom:clamp(30px, 1.8rem + 0.8vw, 52px);
+  padding-top:calc(var(--nav-h) + clamp(8px, 1vw, 18px));
+  padding-bottom:clamp(16px, 1rem + 0.5vw, 32px);
 }
 /* left column — title bottom, subtitle 2 lines, all in the green fade */
-.th-copy { align-self:end; padding-bottom:clamp(8px, 0.9vw, 20px); min-width:0; }
+.th-copy { align-self:end; padding-bottom:clamp(6px, 0.7vw, 16px); min-width:0; }
 .th-title {
   font-family:var(--font-d); font-weight:700; letter-spacing:-.02em; line-height:1.0;
   white-space:nowrap; color:var(--white);
-  font-size:clamp(2.15rem, 0.9rem + 4.4vw, 5rem);
-  margin:0 0 clamp(12px, 0.6rem + 0.9vw, 24px);
+  font-size:clamp(1.9rem, 0.79rem + 3.87vw, 4.4rem);   /* -12% */
+  margin:0 0 clamp(10px, 0.5rem + 0.7vw, 20px);
 }
 .th-title .dot { color:var(--sage); }
 .th-sub {
   color:var(--cream); font-weight:500; line-height:1.45;
-  font-size:clamp(1.02rem, 0.85rem + 0.72vw, 1.5rem);
-  max-width:clamp(340px, 26vw + 88px, 520px);        /* tuned so main site = 2 lines */
-  margin:0 0 clamp(16px, 0.8rem + 1.1vw, 30px);
+  font-size:clamp(0.9rem, 0.75rem + 0.63vw, 1.32rem);   /* -12% */
+  max-width:clamp(300px, 23vw + 77px, 458px);        /* tuned so main site = 2 lines */
+  margin:0 0 clamp(13px, 0.65rem + 0.9vw, 24px);
 }
 .th-micro {
-  display:flex; align-items:center; gap:clamp(6px, 0.4rem + 0.25vw, 10px);
-  color:var(--cream-dim); font-weight:500; font-size:clamp(0.8rem, 0.68rem + 0.35vw, 1.02rem);
+  display:flex; align-items:center; gap:clamp(5px, 0.35rem + 0.22vw, 9px);
+  color:var(--cream-dim); font-weight:500; font-size:clamp(0.7rem, 0.6rem + 0.31vw, 0.9rem);   /* -12% */
 }
-.th-micro .icon { width:clamp(13px, 0.5rem + 0.55vw, 17px); height:clamp(13px, 0.5rem + 0.55vw, 17px); color:var(--sage); flex:none; }
+.th-micro .icon { width:clamp(11px, 0.44rem + 0.48vw, 15px); height:clamp(11px, 0.44rem + 0.48vw, 15px); color:var(--sage); flex:none; }
 /* right column — form card, vertically centered; header one line; fields straight down */
 .th-form { align-self:center; width:100%; }
-.th-form.touch__card { padding:clamp(18px, 0.6rem + 1.6vw, 34px) clamp(18px, 0.6rem + 1.6vw, 34px) clamp(14px, 0.6rem + 1vw, 24px); container-type:inline-size; }
+.th-form.touch__card { padding:clamp(15px, 0.5rem + 1.3vw, 28px) clamp(15px, 0.5rem + 1.3vw, 28px) clamp(11px, 0.5rem + 0.8vw, 19px); container-type:inline-size; }
 /* header sized to the FORM width (cqi), so it always stays ONE line and scales
    with the form at every px — never wraps, never overflows */
-.th-form h3 { white-space:nowrap; font-size:clamp(0.72rem, 5.4cqi, 1.5rem); }
+.th-form h3 { white-space:nowrap; font-size:clamp(0.64rem, 5.4cqi, 1.32rem); margin-bottom:clamp(8px, 0.5rem + 0.4vw, 14px); }
 .th-form .form { grid-template-columns:1fr; }
+/* form internals shrunk ~12% (fonts) with tighter vertical rhythm so the hero hits ~-20% height */
+.th-form .touch__form { gap:clamp(9px, 0.4rem + 0.5vw, 13px); }
+.th-form .touch__form .field label { font-size:clamp(0.6rem, 0.565rem + 0.2vw, 0.72rem); margin-bottom:clamp(3px, 0.18rem + 0.12vw, 5px); }
+.th-form .touch__form input, .th-form .touch__form select { font-size:clamp(0.63rem, 0.57rem + 0.27vw, 0.82rem); padding:clamp(5px, 0.28rem + 0.18vw, 7px) clamp(9px, 0.49rem + 0.48vw, 13px); }
+.th-form .touch__btn { font-size:clamp(0.65rem, 0.59rem + 0.29vw, 0.85rem); padding:clamp(7px, 0.6vw + 4.8px, 10px) clamp(14px, 1.5vw + 9.5px, 20px); }
+.th-form .touch__note { font-size:clamp(0.55rem, 0.51rem + 0.17vw, 0.65rem); }
 
 /* CONNECTOR BAND — zero-height seam, band pulled up 50% so it straddles the two
    containers. width:fit-content + centered so it never leaves dead space; the
@@ -2188,13 +2194,48 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .th-stars svg { width:66%; height:66%; fill:#fff; }
 .th-trust__div { width:1px; align-self:stretch; min-height:clamp(34px, 3.4vw, 58px); background:rgba(245,240,225,.16); flex:none; }
 
-/* CONTAINER 2 — light section; padding-top clears the band's lower half */
-.th-next { background:var(--mist); }
-.th-next__body { padding:clamp(56px, 5vw + 24px, 104px) 0 clamp(48px, 5vw, 96px); }
-.th-next__body .eyebrow { color:var(--sage-deep); }
-.th-next__body h2 { font-family:var(--font-d); font-weight:700; color:var(--racing); letter-spacing:-.02em; font-size:var(--fs-h2); margin:6px 0 14px; }
-.th-next__body h2 .dot { color:var(--sage-deep); }
-.th-next__body p { color:var(--slate); max-width:62ch; line-height:1.6; font-size:var(--fs-lede); }
+/* CONTAINER 2 — Clean paper (--white); tight padding clears the band's lower half.
+   Centered title scales with the viewport (nowrap → always ONE line), capped at
+   the desktop size; subtitle fluid too. */
+.th-next { background:var(--white); }
+.th-intro { margin-inline:auto; text-align:center;
+            margin-top:clamp(-58px, calc(13px - 4.95vw), -2px);
+            margin-bottom:clamp(-150px, calc(-11px - 4.95vw), 0px);
+            padding:0 0 clamp(24px, 2vw, 40px); }
+.th-intro__title { font-family:var(--font-d); font-weight:700; color:var(--racing);
+            letter-spacing:-.022em; line-height:1.05; white-space:nowrap;
+            font-size:min(2.7rem, 4.4vw); margin:0 0 clamp(18px, 1.9vw, 34px); }
+.th-intro__title .dot { color:var(--sage); }
+.th-intro__sub { color:var(--slate); max-width:620px; margin-inline:auto;
+            font-size:clamp(0.89rem, 0.78rem + 0.47vw, 1.09rem); line-height:1.6; }
+
+/* ============================================================
+   CONTAINER 4 — WHY IT MAKES SENSE (emerald spotlight)
+   ============================================================ */
+.th-why { position:relative; overflow:hidden; margin-top:clamp(-72px, calc(-4px - 6.3vw), -30px);
+  padding-block:clamp(40px, 2vw + 22px, 62px); }
+.th-why::before { content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:radial-gradient(56% 68% at 80% 24%, rgba(143,168,152,.18), transparent 62%); }
+/* ALWAYS two columns: text left, image right (never stacks); title spans full width on top */
+.th-why__in { position:relative; z-index:1; display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);
+  column-gap:clamp(16px, 1vw + 8px, 84px); row-gap:clamp(16px, 2vw, 26px); align-items:center; }
+.th-why__head { grid-column:1 / -1; }
+.th-why .eyebrow { color:var(--sage); margin-bottom:12px; }
+.th-why__title { font-family:var(--font-d); font-weight:700; color:var(--cream);
+  letter-spacing:-.022em; line-height:1.05; white-space:nowrap; font-size:min(2.7rem, 4.1vw); margin:0; }
+.th-why__title .dot { color:var(--sage); }
+.th-why__copy { max-width:520px; }
+.th-why__list { list-style:none; display:grid; gap:clamp(10px, 1.4vw, 18px); margin:0 0 clamp(18px, 2.6vw, 30px); }
+.th-why__list li { display:flex; gap:clamp(8px,1.2vw,14px); align-items:center;
+  font-family:var(--font-d); font-weight:600; color:var(--cream);
+  font-size:clamp(0.8rem, 0.62rem + 0.75vw, 1.09rem); }
+.th-why__list .icon { width:clamp(16px,2.6vw,23px); height:clamp(16px,2.6vw,23px); color:var(--sage); flex:none; }
+/* image keeps full form (no crop); width tracks its column, height auto -> fluid scale */
+.th-why__media { position:relative; }
+.th-why__card { margin:0; border-radius:clamp(12px, 1.6vw, 24px); overflow:hidden;
+  border:1px solid rgba(245,240,225,.13); box-shadow:0 44px 90px -34px rgba(0,18,10,.85); }
+.th-why__card img { display:block; width:100%; height:auto; }
 
 /* keep the form ON THE RIGHT and skinny down to phones; title + form header
    wrap when the column gets too narrow to hold one line */
