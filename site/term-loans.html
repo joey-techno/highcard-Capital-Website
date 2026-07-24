@@ -82,145 +82,77 @@
 
 <main id="main">
 
-  <!-- HERO -->
-  <section class="page-hero">
-    <div class="container split">
-      <div>
-        <p class="eyebrow" data-reveal>Services &middot; Term Loans</p>
-        <h1 class="h-display" data-reveal><span class="h2-line">One lump sum.</span><span class="h2-line">One plan<span class="dot">.</span></span></h1>
-        <p class="lede" data-reveal>Funding from $5K to $25M wired as a single amount with one fixed payment you can plan around. Apply in minutes; options in as little as 24 hours.</p>
-        <div class="hero__ctas" data-reveal>
-          <a class="btn" href="apply.html?product=term" data-magnetic>Apply Now</a>
-          <a class="phone-link" href="tel:+18000000000"><span class="icon" data-icon="phone"></span>(800) 000-0000</a>
-        </div>
-        <p class="microcopy" data-reveal><span data-icon="secure"></span>Soft credit pull to see options: your score stays put.</p>
+  <!-- ===== CONTAINER 1 · HERO (photo + bottom fade, title-left / form-right) ===== -->
+  <section class="th-hero">
+    <div class="container th-in">
+      <div class="th-copy">
+        <h1 class="th-title">Term Loans<span class="dot">.</span></h1>
+        <p class="th-sub">Grow, expand, or seize the moment with flexible term funding built for your business.</p>
+        <p class="th-micro"><span class="icon" data-icon="secure"></span>$15K minimum monthly revenue required.</p>
       </div>
-      <div style="position:relative" data-reveal="right">
-        <figure class="photo-card photo-card--portrait gl curtain">
-          <img src="assets/img/img-term-hero.webp" alt="A smiling contractor standing in his workshop" width="800" height="920" fetchpriority="high">
-        </figure>
-        <div class="floater" style="right:-14px; bottom:34px"><b class="num">$5K &ndash; $25M</b><span>funding range</span></div>
+      <div class="th-form touch__card" data-reveal="scale">
+        <h3>See how much you qualify for<span class="dot">.</span></h3>
+        <form class="form touch__form" id="qualifyForm">
+          <div class="field"><label for="qf-name">Name</label><input id="qf-name" name="name" type="text" autocomplete="name" required placeholder="Alex Rivera"></div>
+          <div class="field"><label for="qf-phone">Phone</label><input id="qf-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(555) 000-0000"></div>
+          <div class="field"><label for="qf-email">Email</label><input id="qf-email" name="email" type="email" autocomplete="email" required placeholder="you@yourbusiness.com"></div>
+          <div class="field"><label for="qf-rev">Annual revenue</label>
+            <select id="qf-rev" name="revenue" required>
+              <option value="" disabled selected>Select a range</option>
+              <option value="under-250k">Under $250K</option>
+              <option value="250k-499k">$250K &ndash; $499K</option>
+              <option value="500k-999k">$500K &ndash; $999K</option>
+              <option value="over-1m">Over $1M</option>
+            </select>
+          </div>
+          <button class="btn touch__btn" type="submit" data-magnetic>See my options</button>
+          <p class="small touch__note"><span class="icon" data-icon="secure"></span>Soft pull only. No cost, no obligation.</p>
+        </form>
       </div>
     </div>
   </section>
 
-  <!-- BENEFITS -->
-  <section class="sec-mist texture">
+  <!-- ===== CONNECTOR · trust band straddles Container 1 + Container 2 ===== -->
+  <div class="th-seam">
     <div class="container">
-      <div class="bene-grid" data-stagger=".1">
-        <article class="bene" data-reveal>
-          <span class="icon--chip" data-draw><span class="icon" data-icon="speed"></span></span>
-          <h3>Fast is the whole point<span class="dot">.</span></h3>
-          <p>Options in as little as 24 hours, funding in as little as 24 more once you accept. When timing is the emergency, this is the product built for it.</p>
-        </article>
-        <article class="bene" data-reveal>
-          <span class="icon--chip" data-draw><span class="icon" data-icon="calendar"></span></span>
-          <h3>Payments you can plan around<span class="dot">.</span></h3>
-          <p>A fixed amount on a fixed schedule. No guessing what next month costs. You&rsquo;ll know the full picture in writing before you sign.</p>
-        </article>
-        <article class="bene" data-reveal>
-          <span class="icon--chip" data-draw><span class="icon" data-icon="advisor"></span></span>
-          <h3>A human runs your file<span class="dot">.</span></h3>
-          <p>Your advisor prices the strongest matches for your file and walks you through them, never a teaser rate, never a surprise.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHAT IT IS / WHO QUALIFIES -->
-  <section>
-    <div class="container split">
-      <div class="prose">
-        <p class="eyebrow" data-reveal>What it is</p>
-        <h2 data-split>Borrow once. Repay on schedule. Done<span class="dot">.</span></h2>
-        <p data-reveal>A business term loan is the classic: a lump sum wired to your account, repaid over a set term with a set payment. You know the total cost on day one, which makes it the cleanest product for a defined purchase with a defined payoff.</p>
-        <h3 data-reveal>Who qualifies</h3>
-        <ul data-stagger=".07">
-          <li data-reveal><span class="icon" data-icon="check-circle"></span>Six months or more in business</li>
-          <li data-reveal><span class="icon" data-icon="check-circle"></span>Around $8K+ in monthly revenue</li>
-          <li data-reveal><span class="icon" data-icon="check-circle"></span>Credit from the 500s up</li>
-        </ul>
-        <p class="small" data-reveal>Close but not quite? Call anyway. One application covers every product we offer, and your advisor prices the fits.</p>
-      </div>
-      <div class="terms-card" data-reveal="right">
-        <div><b class="num">$0</b><span>cost to see your options</span></div>
-        <div><b class="num">24 h</b><span>options in as little as</span></div>
-        <div><b>Fixed</b><span>payment &amp; schedule</span></div>
-        <div><b>In writing</b><span>full cost before you sign</span></div>
-        <p class="small" style="grid-column:1/-1; border:none; padding:0">Exact terms depend on approval. See your options first, decide after. No cost, no obligation.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRUST: stat cards straddling into the CTA band -->
-  <div class="stat-bridge">
-    <div class="container stat-bridge__row" data-stagger=".08">
-      <div class="stat-card" data-reveal>
-        <p class="stat-card__label">Funded</p>
-        <div class="stat-card__num num" data-count="100" data-prefix="$" data-suffix="M+">$100M+</div>
-      </div>
-      <div class="stat-card" data-reveal>
-        <p class="stat-card__label">Businesses Served</p>
-        <div class="stat-card__num num" data-count="2000" data-suffix="+">2,000+</div>
-      </div>
-      <div class="stat-card" data-reveal>
-        <p class="stat-card__label">Google Reviews</p>
-        <div class="stat-card__num num">5.0</div>
-        <div class="stat-card__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="th-trust">
+        <div class="th-trust__item">
+          <span class="th-trust__eyebrow">Excellent Rated</span>
+          <div class="th-trust__body">
+            <b class="th-trust__name">Trustpilot</b>
+            <div class="th-stars">
+              <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+              <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+              <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+              <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+              <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            </div>
+          </div>
+        </div>
+        <div class="th-trust__div"></div>
+        <div class="th-trust__item">
+          <span class="th-trust__eyebrow">Funded</span>
+          <div class="th-trust__body"><b class="th-trust__num">$100M+</b></div>
+        </div>
+        <div class="th-trust__div"></div>
+        <div class="th-trust__item">
+          <span class="th-trust__eyebrow">Businesses Served</span>
+          <div class="th-trust__body"><b class="th-trust__num">2,000+</b></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- CTA -->
-
-  <!-- GET IN TOUCH — emerald band: reach us (left) + qualify form (right) -->
-  <section class="sec-touch felt">
+  <!-- ===== CONTAINER 2 · empty placeholder (to design next) ===== -->
+  <section class="th-next">
     <div class="container">
-      <h2 class="touch__title sec-title" data-split>Let&rsquo;s get in touch<span class="dot">.</span></h2>
-      <div class="touch">
-        <div class="touch__info" data-reveal>
-          <p class="touch__lede">We are available for our client 24/7. If you need business funding, we can be reached here:</p>
-          <ul class="touch__reach">
-            <li>
-              <span class="icon--chip"><span class="icon" data-icon="phone"></span></span>
-              <span class="touch__reach-t"><b>Phone</b><a class="num" href="tel:+18000000000">(800) 000-0000</a></span>
-            </li>
-            <li>
-              <span class="icon--chip"><span class="icon" data-icon="mail"></span></span>
-              <span class="touch__reach-t"><b>Email</b><a href="mailto:hello@highcardcapital.example">hello@highcardcapital.example</a></span>
-            </li>
-            <li>
-              <span class="icon--chip"><span class="icon" data-icon="clock"></span></span>
-              <span class="touch__reach-t"><b>Hours</b><span class="touch__reach-v">Mon&ndash;Fri, 8am&ndash;7pm ET</span></span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="touch__card" data-reveal="scale">
-          <h3>See how much you qualify for<span class="dot">.</span></h3>
-          <form class="form touch__form" id="qualifyForm">
-            <div class="field"><label for="qf-name">Name</label><input id="qf-name" name="name" type="text" autocomplete="name" required placeholder="Alex Rivera"></div>
-            <div class="field"><label for="qf-phone">Phone</label><input id="qf-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(555) 000-0000"></div>
-            <div class="field full"><label for="qf-email">Email</label><input id="qf-email" name="email" type="email" autocomplete="email" required placeholder="you@yourbusiness.com"></div>
-            <div class="field full"><label for="qf-rev">Annual revenue</label>
-              <select id="qf-rev" name="revenue" required>
-                <option value="" disabled selected>Select a range</option>
-                <option value="under-250k">Under $250K</option>
-                <option value="250k-499k">$250K &ndash; $499K</option>
-                <option value="500k-999k">$500K &ndash; $999K</option>
-                <option value="over-1m">Over $1M</option>
-              </select>
-            </div>
-            <div class="full">
-              <button class="btn touch__btn" type="submit" data-magnetic>See my options</button>
-            </div>
-            <p class="full small touch__note"><span class="icon" data-icon="secure"></span>Soft pull only. No cost, no obligation.</p>
-          </form>
-        </div>
+      <div class="th-next__body">
+        <p class="eyebrow" data-reveal>What it is</p>
+        <h2 data-split>Borrow once. Repay on schedule<span class="dot">.</span></h2>
+        <p data-reveal>Container&nbsp;2 starts here &mdash; this light section is where the benefits, &ldquo;who qualifies,&rdquo; and the terms card will live. The band above bridges the two.</p>
       </div>
     </div>
   </section>
-
 
 </main>
 

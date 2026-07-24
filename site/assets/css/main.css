@@ -2106,3 +2106,98 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .svc .icon--chip svg { width:calc(13px + .9vw); height:calc(13px + .9vw); }
   .page-hero--center .lede { max-width:100%; }
 }
+
+/* ============================================================
+   TERM-LOANS HERO — photo + bottom fade, title-left / form-right,
+   connector trust band straddling into Container 2.
+   Every value is a clamp (spaces around +/-) so it scales per-pixel,
+   all 4 modes. Photo below the solid white nav (Capital-Quickly style).
+   ============================================================ */
+.th-hero {
+  --th-formw:clamp(230px, 25vw + 55px, 480px);     /* skinny on phones, wide enough on desktop to hold the one-line header */
+  --th-gap:clamp(18px, 1rem + 2.2vw, 56px);
+  --th-minh:clamp(400px, 7vw + 310px, 522px);
+  position:relative; overflow:hidden;
+  background-image:
+    linear-gradient(to top,
+      rgba(0,51,29,.97) 0%, rgba(0,51,29,.90) 12%, rgba(0,51,29,.58) 30%,
+      rgba(0,51,29,.22) 48%, rgba(0,51,29,.10) 68%, rgba(0,51,29,.06) 100%),
+    url('../img/term-hero.webp');
+  background-size:cover; background-position:center 13%; background-repeat:no-repeat;
+}
+.th-in {
+  position:relative; min-height:var(--th-minh);
+  display:grid; grid-template-columns:minmax(0,1fr) var(--th-formw); gap:var(--th-gap);
+  align-items:stretch;
+  padding-top:calc(var(--nav-h) + clamp(14px, 1.8vw, 30px));
+  padding-bottom:clamp(30px, 1.8rem + 0.8vw, 52px);
+}
+/* left column — title bottom, subtitle 2 lines, all in the green fade */
+.th-copy { align-self:end; padding-bottom:clamp(8px, 0.9vw, 20px); min-width:0; }
+.th-title {
+  font-family:var(--font-d); font-weight:700; letter-spacing:-.02em; line-height:1.0;
+  white-space:nowrap; color:var(--white);
+  font-size:clamp(2.15rem, 0.9rem + 4.4vw, 5rem);
+  margin:0 0 clamp(12px, 0.6rem + 0.9vw, 24px);
+}
+.th-title .dot { color:var(--sage); }
+.th-sub {
+  color:var(--cream); font-weight:500; line-height:1.45;
+  font-size:clamp(1.02rem, 0.85rem + 0.72vw, 1.5rem);
+  max-width:clamp(340px, 26vw + 88px, 520px);        /* tuned so main site = 2 lines */
+  margin:0 0 clamp(16px, 0.8rem + 1.1vw, 30px);
+}
+.th-micro {
+  display:flex; align-items:center; gap:clamp(6px, 0.4rem + 0.25vw, 10px);
+  color:var(--cream-dim); font-weight:500; font-size:clamp(0.8rem, 0.68rem + 0.35vw, 1.02rem);
+}
+.th-micro .icon { width:clamp(13px, 0.5rem + 0.55vw, 17px); height:clamp(13px, 0.5rem + 0.55vw, 17px); color:var(--sage); flex:none; }
+/* right column — form card, vertically centered; header one line; fields straight down */
+.th-form { align-self:center; width:100%; }
+.th-form.touch__card { padding:clamp(18px, 0.6rem + 1.6vw, 34px) clamp(18px, 0.6rem + 1.6vw, 34px) clamp(14px, 0.6rem + 1vw, 24px); container-type:inline-size; }
+/* header sized to the FORM width (cqi), so it always stays ONE line and scales
+   with the form at every px — never wraps, never overflows */
+.th-form h3 { white-space:nowrap; font-size:clamp(0.72rem, 5.4cqi, 1.5rem); }
+.th-form .form { grid-template-columns:1fr; }
+
+/* CONNECTOR BAND — zero-height seam, band pulled up 50% so it straddles the two
+   containers. width:fit-content + centered so it never leaves dead space; the
+   content scales per-pixel so the pill grows on big screens. */
+.th-seam { height:0; position:relative; z-index:3; }
+.th-trust {
+  width:fit-content; max-width:100%; margin-inline:auto; transform:translateY(-50%);
+  display:flex; align-items:stretch; flex-wrap:wrap; justify-content:center;   /* equal-height columns: labels line up on top, values center below */
+  gap:clamp(16px, 0.8rem + 1.8vw, 44px);
+  background:var(--ink); border:1px solid rgba(245,240,225,.10);
+  border-radius:clamp(12px, 8px + 0.8vw, 20px);
+  padding:clamp(13px, 0.5rem + 1vw, 24px) clamp(20px, 0.9rem + 1.8vw, 44px);
+  box-shadow:0 30px 70px -28px rgba(0,18,10,.75);
+}
+/* each item = uppercase label on TOP, then a flexible body that centers the value */
+.th-trust__item { display:flex; flex-direction:column; align-items:center; text-align:center; gap:clamp(5px, 0.25rem + 0.4vw, 11px); }
+.th-trust__body { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:clamp(5px, 0.25rem + 0.4vw, 10px); }
+.th-trust__eyebrow { font-family:var(--font-d); font-weight:600; color:var(--cream-faint); text-transform:uppercase; letter-spacing:.09em; font-size:clamp(0.6rem, 0.48rem + 0.28vw, 0.8rem); line-height:1; }
+.th-trust__name { font-family:var(--font-d); font-weight:700; color:var(--cream); font-size:clamp(0.98rem, 0.6rem + 1.05vw, 1.6rem); line-height:1; }
+.th-trust__num { font-family:var(--font-d); font-weight:700; color:var(--cream); font-variant-numeric:tabular-nums; font-size:clamp(1.05rem, 0.62rem + 1.35vw, 1.9rem); line-height:1; }
+.th-stars { display:flex; justify-content:center; gap:clamp(2px, 0.3vw, 5px); }
+.th-stars span {
+  width:clamp(10px, 0.34rem + 0.58vw, 15px); height:clamp(10px, 0.34rem + 0.58vw, 15px);
+  background:#00B67A; border-radius:clamp(2px, 0.2vw, 4px);
+  display:flex; align-items:center; justify-content:center; flex:none;
+}
+.th-stars svg { width:66%; height:66%; fill:#fff; }
+.th-trust__div { width:1px; align-self:stretch; min-height:clamp(34px, 3.4vw, 58px); background:rgba(245,240,225,.16); flex:none; }
+
+/* CONTAINER 2 — light section; padding-top clears the band's lower half */
+.th-next { background:var(--mist); }
+.th-next__body { padding:clamp(56px, 5vw + 24px, 104px) 0 clamp(48px, 5vw, 96px); }
+.th-next__body .eyebrow { color:var(--sage-deep); }
+.th-next__body h2 { font-family:var(--font-d); font-weight:700; color:var(--racing); letter-spacing:-.02em; font-size:var(--fs-h2); margin:6px 0 14px; }
+.th-next__body h2 .dot { color:var(--sage-deep); }
+.th-next__body p { color:var(--slate); max-width:62ch; line-height:1.6; font-size:var(--fs-lede); }
+
+/* keep the form ON THE RIGHT and skinny down to phones; title + form header
+   wrap when the column gets too narrow to hold one line */
+@media (max-width:560px) {
+  .th-title { white-space:normal; }
+}
