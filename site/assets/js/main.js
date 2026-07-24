@@ -104,11 +104,18 @@
 
   /* ---------- split-line headlines ---------- */
   function splitLines(el) {
-    // Tokenize: words as spans (keep an existing trailing .dot span glued to the last word)
-    const dot = el.querySelector('.dot');
-    const dotHTML = dot ? dot.outerHTML : '';
-    if (dot) dot.remove();
-    const words = el.textContent.trim().split(/\s+/);
+    /* Tokenize from a cached copy of the original text (keep an existing trailing
+       .dot span glued to the last word). Never read live textContent on re-splits:
+       the rebuilt DOM has no whitespace between .sl-line siblings, so a second
+       pass would glue words together at every line boundary. */
+    if (!el.dataset.splitText) {
+      const dot = el.querySelector('.dot');
+      el.dataset.splitDot = dot ? dot.outerHTML : '';
+      if (dot) dot.remove();
+      el.dataset.splitText = el.textContent.trim();
+    }
+    const dotHTML = el.dataset.splitDot || '';
+    const words = el.dataset.splitText.split(/\s+/);
     el.textContent = '';
     const spans = words.map((w, i) => {
       const s = doc.createElement('span');
