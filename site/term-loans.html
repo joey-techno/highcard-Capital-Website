@@ -13,7 +13,7 @@
 <link rel="icon" href="assets/logo/app-tile.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/main.css?v=mrv8n9i8">
+<link rel="stylesheet" href="assets/css/main.css?v=mryfczam">
 </head>
 <body data-page="term" data-nav="funding">
 <a class="skip" href="#main">Skip to content</a>
@@ -31,13 +31,12 @@
         <li>
           <a href="services.html" data-nav-item="funding" aria-haspopup="true">Services <span class="caret" data-icon="chevron-up" style="transform:rotate(180deg)"></span></a>
           <div class="drop">
-            <a href="term-loans.html"><span class="icon" data-icon="term-loan"></span><span><b>Term Loans</b><span>$5K – $25M · one lump sum, one plan</span></span></a>
-            <a href="working-capital.html"><span class="icon" data-icon="working-capital"></span><span><b>Working Capital</b><span>Cash for the gap between busy and paid</span></span></a>
-            <a href="equipment-financing.html"><span class="icon" data-icon="equipment"></span><span><b>Equipment Financing</b><span>New &amp; used · the equipment is the collateral</span></span></a>
-            <a href="sba-loans.html"><span class="icon" data-icon="sba-loan"></span><span><b>SBA</b><span>$25K – $15M · terms up to 25 years</span></span></a>
-            <a href="revenue-financing.html"><span class="icon" data-icon="chart-up"></span><span><b>Revenue-Based Financing</b><span>Sized 1–3&times; monthly revenue</span></span></a>
-            <a href="line-of-credit.html"><span class="icon" data-icon="line-of-credit"></span><span><b>Line of Credit</b><span>$10K – $2M · draw, repay, redraw</span></span></a>
-            <a href="heloc.html"><span class="icon" data-icon="heloc"></span><span><b>HELOC</b><span>Up to 90% CLTV · your equity, working</span></span></a>
+            <a href="heloc.html"><span><b>HELOC</b></span></a>
+            <a href="term-loans.html"><span><b>Term Loans</b></span></a>
+            <a href="sba-loans.html"><span><b>SBA</b></span></a>
+            <a href="line-of-credit.html"><span><b>Line of Credit</b></span></a>
+            <a href="equipment-financing.html"><span><b>Equipment Financing</b></span></a>
+            <a href="revenue-financing.html"><span><b>Revenue-Based Financing</b></span></a>
             <div class="drop__foot"><a class="link-arrow" href="services.html">See all services <span data-icon="chevron-right"></span></a></div>
           </div>
         </li>
@@ -61,13 +60,12 @@
       <li><a href="services.html">Services</a></li>
       <li>
         <ul class="menu__sub">
-          <li><a href="term-loans.html">Term Loans <small>$5K – $25M</small></a></li>
-          <li><a href="working-capital.html">Working Capital <small>flexible cash flow</small></a></li>
-          <li><a href="equipment-financing.html">Equipment Financing <small>new &amp; used</small></a></li>
-          <li><a href="sba-loans.html">SBA <small>$25K – $15M</small></a></li>
-          <li><a href="revenue-financing.html">Revenue-Based Financing <small>1–3&times; monthly revenue</small></a></li>
-          <li><a href="line-of-credit.html">Line of Credit <small>$10K – $2M</small></a></li>
           <li><a href="heloc.html">HELOC <small>up to 90% CLTV</small></a></li>
+          <li><a href="term-loans.html">Term Loans <small>$5K – $25M</small></a></li>
+          <li><a href="sba-loans.html">SBA <small>$25K – $15M</small></a></li>
+          <li><a href="line-of-credit.html">Line of Credit <small>$10K – $2M</small></a></li>
+          <li><a href="equipment-financing.html">Equipment Financing <small>new &amp; used</small></a></li>
+          <li><a href="revenue-financing.html">Revenue-Based Financing <small>1–3&times; monthly revenue</small></a></li>
         </ul>
       </li>
       <li><a href="about.html">About us</a></li>
@@ -174,19 +172,55 @@
   </div>
 
   <!-- CTA -->
-  <section class="cta-band felt">
-    <img class="mark-ghost" src="assets/logo/mark-cream.svg" alt="" aria-hidden="true">
+
+  <!-- GET IN TOUCH — emerald band: reach us (left) + qualify form (right) -->
+  <section class="sec-touch felt">
     <div class="container">
-      <div class="cta-band__in">
-        <h2 data-split>Tell us about the business. We&rsquo;ll bring the numbers<span class="dot">.</span></h2>
-        <div class="cta-band__ctas" data-reveal>
-          <a class="btn btn--cream" href="apply.html?product=term" data-magnetic>Apply Now</a>
-          <a class="phone-link" href="tel:+18000000000"><span class="icon" data-icon="phone"></span>Rather talk first? (800) 000-0000</a>
+      <h2 class="touch__title sec-title" data-split>Let&rsquo;s get in touch<span class="dot">.</span></h2>
+      <div class="touch">
+        <div class="touch__info" data-reveal>
+          <p class="touch__lede">We are available for our client 24/7. If you need business funding, we can be reached here:</p>
+          <ul class="touch__reach">
+            <li>
+              <span class="icon--chip"><span class="icon" data-icon="phone"></span></span>
+              <span class="touch__reach-t"><b>Phone</b><a class="num" href="tel:+18000000000">(800) 000-0000</a></span>
+            </li>
+            <li>
+              <span class="icon--chip"><span class="icon" data-icon="mail"></span></span>
+              <span class="touch__reach-t"><b>Email</b><a href="mailto:hello@highcardcapital.example">hello@highcardcapital.example</a></span>
+            </li>
+            <li>
+              <span class="icon--chip"><span class="icon" data-icon="clock"></span></span>
+              <span class="touch__reach-t"><b>Hours</b><span class="touch__reach-v">Mon&ndash;Fri, 8am&ndash;7pm ET</span></span>
+            </li>
+          </ul>
         </div>
-        <p class="small" data-reveal>Soft pull only. No cost. Options usually within 24&ndash;48 hours.</p>
+
+        <div class="touch__card" data-reveal="scale">
+          <h3>See how much you qualify for<span class="dot">.</span></h3>
+          <form class="form touch__form" id="qualifyForm">
+            <div class="field"><label for="qf-name">Name</label><input id="qf-name" name="name" type="text" autocomplete="name" required placeholder="Alex Rivera"></div>
+            <div class="field"><label for="qf-phone">Phone</label><input id="qf-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(555) 000-0000"></div>
+            <div class="field full"><label for="qf-email">Email</label><input id="qf-email" name="email" type="email" autocomplete="email" required placeholder="you@yourbusiness.com"></div>
+            <div class="field full"><label for="qf-rev">Annual revenue</label>
+              <select id="qf-rev" name="revenue" required>
+                <option value="" disabled selected>Select a range</option>
+                <option value="under-250k">Under $250K</option>
+                <option value="250k-499k">$250K &ndash; $499K</option>
+                <option value="500k-999k">$500K &ndash; $999K</option>
+                <option value="over-1m">Over $1M</option>
+              </select>
+            </div>
+            <div class="full">
+              <button class="btn touch__btn" type="submit" data-magnetic>See my options</button>
+            </div>
+            <p class="full small touch__note"><span class="icon" data-icon="secure"></span>Soft pull only. No cost, no obligation.</p>
+          </form>
+        </div>
       </div>
     </div>
   </section>
+
 
 </main>
 
@@ -199,13 +233,12 @@
       <div>
         <h4><a href="services.html">Services</a></h4>
         <ul>
-          <li><a href="term-loans.html">Term Loans</a></li>
-          <li><a href="working-capital.html">Working Capital</a></li>
-          <li><a href="equipment-financing.html">Equipment Financing</a></li>
-          <li><a href="sba-loans.html">SBA</a></li>
-          <li><a href="revenue-financing.html">Revenue-Based Financing</a></li>
-          <li><a href="line-of-credit.html">Line of Credit</a></li>
           <li><a href="heloc.html">HELOC</a></li>
+          <li><a href="term-loans.html">Term Loans</a></li>
+          <li><a href="sba-loans.html">SBA</a></li>
+          <li><a href="line-of-credit.html">Line of Credit</a></li>
+          <li><a href="equipment-financing.html">Equipment Financing</a></li>
+          <li><a href="revenue-financing.html">Revenue-Based Financing</a></li>
         </ul>
       </div>
       <div>
@@ -237,9 +270,9 @@
   <a class="btn" href="apply.html">Apply Now, it takes 2 minutes</a>
 </div>
 
-<script src="assets/js/icons.js?v=mrv8n9i8"></script>
-<script src="assets/js/main.js?v=mrv8n9i8"></script>
-<script src="assets/js/gl-hover.js?v=mrv8n9i8"></script>
-<script src="assets/js/forms.js?v=mrv8n9i8"></script>
+<script src="assets/js/icons.js?v=mryfczam"></script>
+<script src="assets/js/main.js?v=mryfczam"></script>
+<script src="assets/js/gl-hover.js?v=mryfczam"></script>
+<script src="assets/js/forms.js?v=mryfczam"></script>
 </body>
 </html>

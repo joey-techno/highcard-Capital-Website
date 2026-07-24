@@ -18,9 +18,6 @@ const PAGES = [
   { file: 'term-loans.html',     body: 'term-loans.html', id: 'term',  nav: 'funding',
     title: 'Business Term Loans · $5K to $25M, Funded in as Little as 24 Hours | High Card Capital',
     desc: 'One lump sum, one predictable payment. Term loans from $5K to $25M with funding in as little as 24 hours. Soft credit pull to see your options. No cost, no obligation.' },
-  { file: 'working-capital.html', body: 'working-capital.html', id: 'wc', nav: 'funding',
-    title: 'Working Capital · Cash Flow That Keeps Up with the Work | High Card Capital',
-    desc: 'Flexible working capital for payroll, inventory, and the gap between busy and paid. Options in as little as 24 hours with a soft credit pull. No cost, no obligation.' },
   { file: 'equipment-financing.html', body: 'equipment-financing.html', id: 'equipment', nav: 'funding',
     title: 'Equipment Financing · New & Used, the Machine Is the Collateral | High Card Capital',
     desc: 'Finance trucks, ovens, lifts, and machines, new or used. The equipment secures the funding, so approvals lean on the asset. Options in as little as 24 hours.' },
@@ -60,7 +57,7 @@ const PAGES = [
     desc: 'The terms that govern your use of the High Card Capital website: eligibility, acceptable use, intellectual property, disclaimers, limitation of liability, and how to reach us.' },
 ];
 
-const head = P('head.html'), nav = P('nav.html'), footer = P('footer.html'), scripts = P('scripts.html');
+const head = P('head.html'), nav = P('nav.html'), footer = P('footer.html'), scripts = P('scripts.html'), touch = P('touch.html');
 const V = Date.now().toString(36); // cache-buster: new value every build so browsers refetch CSS/JS
 
 for (const pg of PAGES) {
@@ -70,6 +67,7 @@ for (const pg of PAGES) {
     .replaceAll('{{DESC}}', pg.desc)
     .replaceAll('{{ID}}', pg.id)
     .replaceAll('{{NAV}}', pg.nav)
+    .replaceAll('{{TOUCH}}', touch)
     .replaceAll('{{V}}', V);
   writeFileSync(join(OUT, pg.file), html);
   console.log('built', pg.file);
