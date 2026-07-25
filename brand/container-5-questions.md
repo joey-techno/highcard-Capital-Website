@@ -1,7 +1,9 @@
 # Container 5 · Straight Answers (4 questions)
 
 Page: term-loans.html (template for all service pages)
-Status: SPEC ONLY, not built. Copy approved direction, shortened. No dashes anywhere in copy.
+Status: BUILT round 1 of 3, commit fec4f60 on main (classes th-qa*). Rounds 2 and 3
+= comb passes on owner notes. Known round 1 fix already in: numeral min-width:1.35em
+(Poppins subset has no tabular figures, digits drift without it). No dashes in copy.
 
 **OWNER PICK 2026-07-24: THIN LEDGER (direction C, thin variant).** The Dealt Hand
 concept below is kept for reference only, NOT being built. Ledger spec follows in
