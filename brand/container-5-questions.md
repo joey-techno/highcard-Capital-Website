@@ -20,20 +20,22 @@ the row (question ~38%, answer ~62%). Small burger and mobile: answer wraps unde
 question, numeral stays left. Hover (desktop): restrained single effect per
 iteration, chosen from the research addendum.
 
-### Ledger token map (reuses locked C3/C4 tokens)
+### Ledger token map (round 3 values, 2026-07-24: owner asked for centered smaller
+### numerals and a thinner more compact ledger + container)
 | Element | Token | Same as |
 |---|---|---|
-| Section bg + padding | `--mist`, `padding-block:clamp(40px, 2vw + 22px, 62px)` | C4 padding |
-| Head (eyebrow/title/gaps) | identical recipe to C3/C4, title `min(2.43rem, ~3.8vw)` | C3/C4 head |
+| Section bg + padding | `--mist`, `padding-block:clamp(28px, 1.6vw + 14px, 46px)` | tightened round 3 |
+| Head (eyebrow/title) | identical recipe to C3/C4, title `min(2.43rem, ~3.8vw)`; head margin-bottom `clamp(12px, 1.4vw, 22px)`, eyebrow gap 8px | C3/C4 head, tightened |
 | Column max-width | 980px (`.container--tight` value) inside shared `.container` | existing token |
-| Row padding-block | `clamp(18px, 2.6vw, 30px)` | C4 list to button gap |
-| Row internal column gap | `clamp(14px, 2.2vw, 64px)` | C4 column gap |
+| Row padding-block | `clamp(12px, 1.8vw, 20px)` (11px at <=430) | tightened round 3 |
+| Row internal column gap | `clamp(12px, 1.8vw, 30px)` (10px at <=430) | tightened round 3 |
 | Question | `clamp(0.89rem, 0.78rem + 0.47vw, 1.09rem)`, Poppins 600, `--racing` | C3 subtitle token |
 | Answer | `clamp(0.72rem, 0.56rem + 0.68vw, 0.98rem)`, Inter 400, `--slate`, lh 1.6 | C4 checklist token |
-| Q to A gap when stacked | `clamp(8px, 1.2vw, 14px)` | C4 icon gap |
-| Ghost numeral | outlined Poppins 800, ~2.2x question size, sage low alpha | new token |
-| Hairline separators | 1px, sage at low alpha | 1px border rule |
-| Accent bar (iter 2) | 3px `--racing`, expands on hover | new token |
+| Q to A gap when stacked | `clamp(5px, 0.9vw, 10px)` | tightened round 3 |
+| Ghost numeral | outlined Poppins 800, `clamp(1.15rem, 0.7rem + 1.9vw, 2.1rem)` (steeper shrink per break), `align-self:center`, spans Q+A rows when stacked (`grid-row:1 / span 2`), `min-width:1.35em` | round 3 |
+| CTA margin-top | `clamp(14px, 2vw, 22px)` | tightened round 3 |
+| Hairline separators | 1px, sage at low alpha; lighter bookend rules | 1px border rule |
+| Accent bar (iter 2, unused) | 3px `--racing`, expands on hover | new token |
 
 ### Breakpoints (site nav modes, from main.css media queries)
 | Mode | Range | QA width (headless) |
