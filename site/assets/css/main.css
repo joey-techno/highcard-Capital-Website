@@ -2282,35 +2282,35 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 
 /* ============================================================
    CONTAINER 6 — INDUSTRIES WE FUND (emerald scrim photo cards,
-   whole container at 70% scale per owner)
+   full pool scale — owner reverted the 70% experiment)
    ============================================================ */
 .th-ind { background:var(--white); padding-block:clamp(28px, 1.6vw + 14px, 46px); }
 .th-ind__head { text-align:center; margin-bottom:clamp(12px, 1.4vw, 22px); }
 .th-ind__head .eyebrow { justify-content:center; margin-bottom:8px; }
 .th-ind__title { font-family:var(--font-d); font-weight:700; color:var(--racing);
   letter-spacing:-.022em; line-height:1.05; white-space:nowrap;
-  font-size:min(1.7rem, 2.73vw); margin:0; }
+  font-size:min(2.43rem, 3.9vw); margin:0; }
 .th-ind__title .dot { color:var(--sage); }
 .th-ind__grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr));
-  gap:clamp(7px, 1vw, 12.6px); max-width:588px; margin-inline:auto; }
-.th-ind__card { position:relative; border-radius:clamp(8.4px, 1.12vw, 16.8px);
+  gap:clamp(10px, 1.4vw, 18px); max-width:840px; margin-inline:auto; }
+.th-ind__card { position:relative; border-radius:clamp(12px, 1.6vw, 24px);
   overflow:hidden; aspect-ratio:4/5; border:1px solid rgba(143,168,152,.35); }
 .th-ind__card img { width:100%; height:100%; object-fit:cover; display:block;
   transition:transform .3s cubic-bezier(.4, 0, .2, 1); }
 .th-ind__card::after { content:''; position:absolute; inset:0; z-index:1;
   background:linear-gradient(to top, rgba(0,51,29,.92), rgba(0,51,29,.5) 34%, transparent 66%); }
 .th-ind__card:hover img { transform:scale(1.08); }
-.th-ind__lbl { position:absolute; left:0; right:0; bottom:clamp(6.3px, 0.9vw, 11.2px);
+.th-ind__lbl { position:absolute; left:0; right:0; bottom:clamp(9px, 1.3vw, 16px);
   z-index:2; text-align:center; font-family:var(--font-d); font-weight:600;
   color:var(--cream); letter-spacing:.01em;
-  font-size:clamp(0.55rem, 0.48rem + 0.29vw, 0.69rem); }
-.th-ind__cta { display:flex; justify-content:center; margin-top:clamp(9.8px, 1.4vw, 15.4px); }
-.th-ind__cta .btn { font-size:clamp(.45rem, .39rem + .28vw, .59rem);
-  padding:clamp(5.6px, .45vw + 3.4px, 9.5px) clamp(10px, 1.12vw + 5.6px, 19px); }
+  font-size:clamp(0.78rem, 0.68rem + 0.42vw, 0.98rem); }
+.th-ind__cta { display:flex; justify-content:center; margin-top:clamp(14px, 2vw, 22px); }
+.th-ind__cta .btn { font-size:clamp(.64rem, .56rem + .4vw, .84rem);
+  padding:clamp(8px, .64vw + 4.8px, 13.6px) clamp(14.4px, 1.6vw + 8px, 27.2px); }
 @media (max-width:700px) {
-  .th-ind__grid { grid-template-columns:repeat(2, minmax(0,1fr)); max-width:308px; }
+  .th-ind__grid { grid-template-columns:repeat(2, minmax(0,1fr)); max-width:440px; }
 }
-@media (max-width:520px) { .th-ind__title { font-size:min(1.7rem, 3.29vw); } }
+@media (max-width:520px) { .th-ind__title { font-size:min(2.43rem, 4.7vw); } }
 
 /* keep the form ON THE RIGHT and skinny down to phones; title + form header
    wrap when the column gets too narrow to hold one line */

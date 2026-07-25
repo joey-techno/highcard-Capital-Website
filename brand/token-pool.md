@@ -98,12 +98,15 @@ Every dimension live on term-loans today (source: main.css TERM-LOANS section).
 - All current values live in the tables above (section frame, text tokens, spacing
   scale, buttons) and per-round history in container-5-questions.md
 
-### C6 · Industries we fund (`.th-ind`, on --white) — WHOLE CONTAINER AT 70% SCALE (owner call)
-- Section: compact padding-block token; head recipe but title at 0.7: `min(1.7rem, 2.73vw)` (`min(1.7rem, 3.29vw)` <=520)
-- Grid: `repeat(4, minmax(0,1fr))` max-width 588px centered, gap `clamp(7px, 1vw, 12.6px)`; <=700px: `repeat(2,...)` max-width 308px (cards ~137px desktop, ~146px mobile)
-- Cards: `aspect-ratio:4/5`, radius `clamp(8.4px, 1.12vw, 16.8px)`, hairline border sage .35, emerald scrim `linear-gradient(to top, rgba(0,51,29,.92), rgba(0,51,29,.5) 34%, transparent 66%)` (NEVER black), hover img `scale(1.08)` at .3s
-- Labels: over photo, cream Poppins 600 `clamp(0.55rem, 0.48rem + 0.29vw, 0.69rem)`, bottom `clamp(6.3px, 0.9vw, 11.2px)`
-- Button: capstone x0.7 again = `clamp(.45rem, .39rem + .28vw, .59rem)` font (56% of stock .btn); cta margin `clamp(9.8px, 1.4vw, 15.4px)`
+### C6 · Industries we fund (`.th-ind`, on --white) — FULL POOL SCALE
+(a 70% scale experiment was built then REVERTED 2026-07-25, owner: "too small,
+doesn't fit the page well"; lesson: whole-container downscales below pool size
+read as orphaned on the page)
+- Section: compact padding-block token; standard head recipe, title `min(2.43rem, 3.9vw)` (`4.7vw` slope <=520)
+- Grid: `repeat(4, minmax(0,1fr))` max-width 840px centered, gap `clamp(10px, 1.4vw, 18px)`; <=700px: `repeat(2,...)` max-width 440px (cards ~195px desktop)
+- Cards: `aspect-ratio:4/5`, radius `clamp(12px, 1.6vw, 24px)` (pool card radius), hairline border sage .35, emerald scrim `linear-gradient(to top, rgba(0,51,29,.92), rgba(0,51,29,.5) 34%, transparent 66%)` (NEVER black), hover img `scale(1.08)` at .3s
+- Labels: over photo, cream Poppins 600 `clamp(0.78rem, 0.68rem + 0.42vw, 0.98rem)`, bottom `clamp(9px, 1.3vw, 16px)`
+- Button: standard capstone size; cta margin `clamp(14px, 2vw, 22px)`
 - Photos: `img-ind-construction/retail/auto/medical.webp`, 560x700 (4:5), 14 to 52 KB, Pexels IDs 8961156 / 9994733 / 3807695 / 3881817, free commercial use no attribution; `loading="lazy"` + width/height attrs
 - Background rhythm now: white C3 -> felt C4 -> mist C5 -> white C6 -> cream footer
 - NOTE: "View all Industries" btn points at services.html until a real industries page exists
