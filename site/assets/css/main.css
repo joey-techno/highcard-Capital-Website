@@ -2237,6 +2237,47 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   border:1px solid rgba(245,240,225,.13); box-shadow:0 44px 90px -34px rgba(0,18,10,.85); }
 .th-why__card img { display:block; width:100%; height:auto; }
 
+/* ============================================================
+   CONTAINER 5 — STRAIGHT ANSWERS (thin ledger, iteration A)
+   ============================================================ */
+.th-qa { background:var(--mist); padding-block:clamp(40px, 2vw + 22px, 62px); }
+.th-qa__in { max-width:980px; margin-inline:auto; }
+.th-qa__head { text-align:center; margin-bottom:clamp(18px, 1.9vw, 34px); }
+.th-qa__head .eyebrow { justify-content:center; margin-bottom:12px; }
+.th-qa__title { font-family:var(--font-d); font-weight:700; color:var(--racing);
+  letter-spacing:-.022em; line-height:1.05; white-space:nowrap;
+  font-size:min(2.43rem, 3.8vw); margin:0; }
+.th-qa__title .dot { color:var(--sage); }
+.th-qa__list { border-block:1px solid rgba(143,168,152,.2); }
+.th-qa__row { display:grid; align-items:baseline;
+  grid-template-columns:max-content minmax(0, 19em) 1fr;
+  column-gap:clamp(14px, 2.2vw, 40px);
+  padding-block:clamp(18px, 2.6vw, 30px); transition:background .25s; }
+.th-qa__row + .th-qa__row { border-top:1px solid rgba(143,168,152,.35); }
+.th-qa__row:hover { background:rgba(143,168,152,.09); }
+.th-qa__row:hover .th-qa__num { color:var(--sage-deep); -webkit-text-stroke-color:transparent; }
+.th-qa__num { font-family:var(--font-d); font-weight:800;
+  font-size:clamp(1.7rem, 1.4rem + 1.3vw, 2.4rem); line-height:1;
+  min-width:1.35em; font-variant-numeric:tabular-nums; color:transparent;
+  -webkit-text-stroke:1.5px rgba(143,168,152,.75);
+  transition:color .25s, -webkit-text-stroke-color .25s; }
+.th-qa__q { font-family:var(--font-d); font-weight:600; color:var(--racing);
+  font-size:clamp(0.89rem, 0.78rem + 0.47vw, 1.09rem); line-height:1.35; margin:0; }
+.th-qa__a { color:var(--slate); font-size:clamp(0.72rem, 0.56rem + 0.68vw, 0.98rem);
+  line-height:1.6; margin:0; }
+.th-qa__note { text-align:center; font-size:clamp(0.72rem, 0.56rem + 0.68vw, 0.9rem);
+  color:var(--slate); margin-top:clamp(18px, 2.6vw, 30px); }
+.th-qa__note a { color:var(--sage-deep); font-weight:600; text-decoration-color:var(--sage); }
+@media (max-width:700px) {
+  .th-qa__row { grid-template-columns:max-content 1fr; row-gap:clamp(8px, 1.2vw, 14px); }
+  .th-qa__a { grid-column:2; }
+}
+@media (max-width:520px) { .th-qa__title { font-size:min(2.43rem, 4.6vw); } }
+@media (max-width:430px) {
+  .th-qa__num { font-size:1.45rem; -webkit-text-stroke-width:1.2px; }
+  .th-qa__row { column-gap:12px; padding-block:16px; }
+}
+
 /* keep the form ON THE RIGHT and skinny down to phones; title + form header
    wrap when the column gets too narrow to hold one line */
 @media (max-width:560px) {
