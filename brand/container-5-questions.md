@@ -114,7 +114,13 @@ Title: `Straight answers, before you apply.` (dot in sage)
 | 03 | What do I need to apply? | A short application and a few recent bank statements. No mountains of paperwork, just the basics to start. |
 | 04 | How much can I borrow? | Funding scales with your business. We lay out what you qualify for before you commit to anything. |
 
-Closing microcopy: `Still wondering about your situation? The form above takes two minutes.`
+Closing element (ROUND 2, owner call 2026-07-24): the microcopy line is DELETED.
+Replaced by a centered `More FAQs` button linking to `faq.html` (`.th-qa__cta`),
+standard `.btn` style with its own wider fluid range so it visibly steps down at
+every break, smallest on mobile:
+- font `clamp(.8rem, .7rem + .5vw, 1.05rem)`
+- padding `clamp(10px, .8vw + 6px, 17px)` by `clamp(18px, 2vw + 10px, 34px)`
+The hero form anchor id `qualify-form` stays (harmless, other links may use it).
 
 ---
 

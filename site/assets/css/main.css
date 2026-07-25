@@ -2265,9 +2265,9 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   font-size:clamp(0.89rem, 0.78rem + 0.47vw, 1.09rem); line-height:1.35; margin:0; }
 .th-qa__a { color:var(--slate); font-size:clamp(0.72rem, 0.56rem + 0.68vw, 0.98rem);
   line-height:1.6; margin:0; }
-.th-qa__note { text-align:center; font-size:clamp(0.72rem, 0.56rem + 0.68vw, 0.9rem);
-  color:var(--slate); margin-top:clamp(18px, 2.6vw, 30px); }
-.th-qa__note a { color:var(--sage-deep); font-weight:600; text-decoration-color:var(--sage); }
+.th-qa__cta { display:flex; justify-content:center; margin-top:clamp(18px, 2.6vw, 30px); }
+.th-qa__cta .btn { font-size:clamp(.8rem, .7rem + .5vw, 1.05rem);
+  padding:clamp(10px, .8vw + 6px, 17px) clamp(18px, 2vw + 10px, 34px); }
 @media (max-width:700px) {
   .th-qa__row { grid-template-columns:max-content 1fr; row-gap:clamp(8px, 1.2vw, 14px); }
   .th-qa__a { grid-column:2; }
