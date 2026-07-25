@@ -121,8 +121,9 @@ Closing element (ROUND 2, owner call 2026-07-24): the microcopy line is DELETED.
 Replaced by a centered `More FAQs` button linking to `faq.html` (`.th-qa__cta`),
 standard `.btn` style with its own wider fluid range so it visibly steps down at
 every break, smallest on mobile:
-- font `clamp(.8rem, .7rem + .5vw, 1.05rem)`
-- padding `clamp(10px, .8vw + 6px, 17px)` by `clamp(18px, 2vw + 10px, 34px)`
+- font `clamp(.64rem, .56rem + .4vw, .84rem)`
+- padding `clamp(8px, .64vw + 4.8px, 13.6px)` by `clamp(14.4px, 1.6vw + 8px, 27.2px)`
+- (round 3 tweak: all three values scaled by 0.8, owner wanted the button 20% smaller at every break)
 The hero form anchor id `qualify-form` stays (harmless, other links may use it).
 
 ---
