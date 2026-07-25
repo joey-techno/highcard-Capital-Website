@@ -25,6 +25,7 @@ iteration, chosen from the research addendum.
 | Element | Token | Same as |
 |---|---|---|
 | Section bg + padding | `--mist`, `padding-block:clamp(28px, 1.6vw + 14px, 46px)` | tightened round 3 |
+| Inner inline padding | `.th-qa__in` `padding-inline:clamp(28px, 1.6vw + 14px, 46px)` (same token as padding-block, owner wanted all 4 sides matched; adds to the shared .container gutter) | round 3 |
 | Head (eyebrow/title) | identical recipe to C3/C4, title `min(2.43rem, ~3.8vw)`; head margin-bottom `clamp(12px, 1.4vw, 22px)`, eyebrow gap 8px | C3/C4 head, tightened |
 | Column max-width | 980px (`.container--tight` value) inside shared `.container` | existing token |
 | Row padding-block | `clamp(12px, 1.8vw, 20px)` (11px at <=430) | tightened round 3 |

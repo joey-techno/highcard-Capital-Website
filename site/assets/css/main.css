@@ -2241,7 +2241,8 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
    CONTAINER 5 — STRAIGHT ANSWERS (thin ledger, iteration A)
    ============================================================ */
 .th-qa { background:var(--mist); padding-block:clamp(28px, 1.6vw + 14px, 46px); }
-.th-qa__in { max-width:980px; margin-inline:auto; }
+.th-qa__in { max-width:980px; margin-inline:auto;
+  padding-inline:clamp(28px, 1.6vw + 14px, 46px); }
 .th-qa__head { text-align:center; margin-bottom:clamp(12px, 1.4vw, 22px); }
 .th-qa__head .eyebrow { justify-content:center; margin-bottom:8px; }
 .th-qa__title { font-family:var(--font-d); font-weight:700; color:var(--racing);
