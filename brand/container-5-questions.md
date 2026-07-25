@@ -1,9 +1,37 @@
 # Container 5 · Straight Answers (4 questions)
 
 Page: term-loans.html (template for all service pages)
-Status: BUILT round 1 of 3, commit fec4f60 on main (classes th-qa*). Rounds 2 and 3
-= comb passes on owner notes. Known round 1 fix already in: numeral min-width:1.35em
-(Poppins subset has no tabular figures, digits drift without it). No dashes in copy.
+Status: BUILT through 3 comb rounds (commits fec4f60, 8389ed5, 91c95ac, d2ab375,
+cea24b3 on main; classes th-qa*). No dashes in copy.
+
+---
+
+## FINAL LOCKED DIMENSIONS (canonical, reuse for next containers and service pages)
+
+Live CSS: main.css, CONTAINER 5 section. Rendered px shown at the 4 modes
+(main 1440 / big burger 860 / small burger 660 / mobile 500; real phones below 430
+get the extra tightening).
+
+| Token | Value | 1440 / 860 / 660 / 500 px |
+|---|---|---|
+| Section padding, all 4 sides | block AND `.th-qa__in` inline: `clamp(28px, 1.6vw + 14px, 46px)` | 37 / 27.8 / 24.6 / 22 -> min 28 clamps: 37 / 28 / 28 / 28 |
+| Head margin-bottom | `clamp(12px, 1.4vw, 22px)` | 20 / 12 / 12 / 12 |
+| Eyebrow gap under | `8px` fixed | 8 |
+| Title | `min(2.43rem, 3.8vw)` nowrap, `min(2.43rem, 4.6vw)` under 520 | 38.9 / 32.7 / 25 / 23 |
+| Row padding-block | `clamp(12px, 1.8vw, 20px)`; 11px under 430 | 20 / 15.5 / 12 / 12 |
+| Row column-gap | `clamp(12px, 1.8vw, 30px)`; 10px under 430 | 25.9 / 15.5 / 12 / 12 |
+| Stacked Q to A row-gap | `clamp(5px, 0.9vw, 10px)` | n/a / n/a / 5.9 / 5 |
+| Ghost numeral | `clamp(1.15rem, 0.7rem + 1.9vw, 2.1rem)`, Poppins 800 outlined 1.5px (1.2px under 430), `min-width:1.35em`, `align-self:center`, spans Q+A rows when stacked | 33.6 / 27.5 / 23.7 / 20.7 |
+| Question | `clamp(0.89rem, 0.78rem + 0.47vw, 1.09rem)` Poppins 600 racing | 17.4 / 16.5 / 15.6 / 14.8 |
+| Answer | `clamp(0.72rem, 0.56rem + 0.68vw, 0.98rem)` Inter 400 slate lh 1.6 | 15.7 / 14.8 / 13.5 / 12.4 |
+| Hairlines | inner `1px rgba(143,168,152,.35)`, bookends `.2` | 1 |
+| Hover | row bg `rgba(143,168,152,.09)`, numeral fills sage-deep | |
+| CTA margin-top | `clamp(14px, 2vw, 22px)` | 22 / 17.2 / 14 / 14 |
+| Button font | `clamp(.64rem, .56rem + .4vw, .84rem)` | 13.4 / 12.5 / 11.6 / 10.2 |
+| Button padding | `clamp(8px, .64vw + 4.8px, 13.6px)` x `clamp(14.4px, 1.6vw + 8px, 27.2px)` | 13.6x27.2 / 10.3x21.8 / 9x18.6 / 8x14.4 |
+| Column | `.th-qa__in` max-width 980px inside shared `.container` | |
+| Stack break | Q/A side by side above 700px, stacked at and below; numeral spans both when stacked | |
+| Markup pattern | section.th-qa > .container > .th-qa__in > (head data-reveal, list data-stagger > 4x row data-reveal, cta data-reveal > a.btn) | |
 
 **OWNER PICK 2026-07-24: THIN LEDGER (direction C, thin variant).** The Dealt Hand
 concept below is kept for reference only, NOT being built. Ledger spec follows in
