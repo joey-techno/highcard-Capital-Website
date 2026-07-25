@@ -6,7 +6,8 @@ cea24b3 on main; classes th-qa*). No dashes in copy.
 
 ---
 
-## FINAL LOCKED DIMENSIONS (canonical, reuse for next containers and service pages)
+## CURRENT DIMENSIONS after 3 comb rounds (NOT locked — these feed the shared
+## token pool in brand/token-pool.md, which is the go-to for building the next containers)
 
 Live CSS: main.css, CONTAINER 5 section. Rendered px shown at the 4 modes
 (main 1440 / big burger 860 / small burger 660 / mobile 500; real phones below 430
