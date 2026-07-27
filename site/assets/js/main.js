@@ -460,6 +460,102 @@
     spy();
   }
 
+  /* ---------- testimonials carousel — infinite loop w/ peeking neighbors, <=700px ---------- */
+  doc.querySelectorAll('[data-carousel]').forEach(viewport => {
+    const track = viewport.querySelector('.th-tst__grid');
+    const reals = track ? Array.from(track.children) : [];
+    const prevBtn = viewport.querySelector('[data-carousel-prev]');
+    const nextBtn = viewport.querySelector('[data-carousel-next]');
+    const n = reals.length;
+    if (!track || n < 2) return;
+
+    const mq = window.matchMedia('(max-width: 700px)');
+    let built = false, index = 0, timer = null, animating = false;
+    let cloneFirst = null, cloneLast = null;
+
+    // clone ends so there's always a card entering from either side
+    function build() {
+      if (built) return;
+      cloneLast = reals[n - 1].cloneNode(true);   // sits BEFORE the first real card
+      cloneFirst = reals[0].cloneNode(true);       // sits AFTER the last real card
+      [cloneLast, cloneFirst].forEach(c => { c.setAttribute('aria-hidden', 'true'); c.classList.add('is-clone'); });
+      track.insertBefore(cloneLast, reals[0]);
+      track.appendChild(cloneFirst);
+      built = true;
+    }
+    function teardown() {
+      if (!built) return;
+      cloneLast.remove(); cloneFirst.remove();
+      cloneLast = cloneFirst = null; built = false;
+      track.style.transition = ''; track.style.transform = '';
+    }
+
+    // track index space (with clones): 0 = cloneLast, 1..n = reals, n+1 = cloneFirst
+    // offset the track left by `index` slide-widths, then nudge right by the side-peek
+    // margin so the active card is centered with a neighbor peeking on each edge
+    function place(withAnim) {
+      track.style.transition = withAnim ? '' : 'none';
+      track.style.transform = 'translateX(calc(' + (-index) + ' * var(--tst-slide) + var(--tst-peek)))';
+      if (!withAnim) { void track.offsetWidth; }   // flush the no-anim snap before the next move can re-enable transition
+    }
+    function settle() {
+      // called when a slide transition ends OR is cancelled: clear the lock and, if we
+      // landed on a clone, snap (no anim) to the matching real card for a seamless loop
+      animating = false;
+      if (index === 0) { index = n; place(false); }
+      else if (index === n + 1) { index = 1; place(false); }
+    }
+    let safety = null;
+    function go(dir) {
+      if (animating) return;
+      index += dir;
+      // if this move won't actually animate (no transition, e.g. reduced-motion), settle now
+      const willAnimate = mq.matches && !reduced;
+      animating = willAnimate;
+      place(true);
+      if (!willAnimate) { settle(); return; }
+      // self-heal: if transitionend never fires (interrupted paint, etc.), release the lock
+      clearTimeout(safety);
+      safety = setTimeout(() => { if (animating) settle(); }, 900);
+    }
+    // after a move lands on a clone, snap to the matching real card (both end + cancel)
+    track.addEventListener('transitionend', e => { if (e.target === track && e.propertyName === 'transform') settle(); });
+    track.addEventListener('transitioncancel', e => { if (e.target === track && e.propertyName === 'transform') settle(); });
+
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function start() { stop(); if (mq.matches && !reduced) timer = setInterval(() => go(1), 5000); }
+    function restart() { if (mq.matches) start(); }
+
+    prevBtn && prevBtn.addEventListener('click', () => { go(-1); restart(); });
+    nextBtn && nextBtn.addEventListener('click', () => { go(1); restart(); });
+
+    viewport.addEventListener('mouseenter', stop);
+    viewport.addEventListener('mouseleave', start);
+    viewport.addEventListener('focusin', stop);
+    viewport.addEventListener('focusout', start);
+
+    let x0 = null;
+    viewport.addEventListener('pointerdown', e => { x0 = e.clientX; stop(); });
+    viewport.addEventListener('pointerup', e => {
+      if (x0 === null) return;
+      const dx = e.clientX - x0; x0 = null;
+      if (mq.matches && Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+      start();
+    });
+
+    function enter() {
+      build();
+      index = Math.min(2, n);   // start on an interior card so a neighbor peeks both sides ("middle")
+      place(false);
+      start();
+    }
+    function exit() { stop(); teardown(); }
+
+    function sync() { if (mq.matches) enter(); else exit(); }
+    mq.addEventListener ? mq.addEventListener('change', sync) : mq.addListener(sync);
+    sync();
+  });
+
   /* ---------- footer year ---------- */
   const yr = doc.getElementById('yr');
   if (yr) yr.textContent = new Date().getFullYear();

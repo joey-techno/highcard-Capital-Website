@@ -241,3 +241,27 @@ Shortlist (owner to pick):
   restrained; steal the animated border as a hover-only state in A.
 - **C. The Ledger:** 4 horizontal editorial strips, 3px emerald left bar expands
   on hover, inline ghost numeral. Most conservative, loses the dealt-cards moment.
+
+---
+
+## Round 4 · Stamp answers (owner picked option B "The Stamp", 2026-07-27)
+
+Answers rewritten to 4 short LOCKED lines (owner override of no-dash / no-$ rules:
+en dash + $ range in 04 are intentional) and turned into pills so the answer is the
+standout of every row; question demoted to Poppins 500 slate. Row grid now
+`max-content 1fr max-content` center-aligned, pill hugs the right edge; stacks under
+the question at <=700px. Row 01 = solid racing pill with cream text (approval stamp,
+carries the most weight). Exact tokens live in token-pool.md C5 entry. Alternatives
+shown and rejected: A term-sheet value column, C headline answers; a 3-new-container
+round (term sheet card / stat tile board / felt panel) was also shown and rejected,
+owner returned to the ledger. QA'd 1440/860/660/500.
+
+## Round 5 · Stamp revisions (owner, 2026-07-27, same day)
+
+1. Solid green row 01 dropped: ALL pills tinted at rest, EVERY row's pill flips solid
+   racing + cream on row hover (.25s transition). Row 01 keeps only its size/weight step.
+2. Row 03 copy swapped: Q "What are the payment terms?" A "Weekly and Monthly"
+   (replaced the what-do-I-need-to-apply row; --long wrapped-pill variant removed,
+   every answer is a one-liner now).
+3. Related same-round fix: C4 Get Started resized to the shared capstone button tokens.
+QA'd 1440/500, v=mstampb2.

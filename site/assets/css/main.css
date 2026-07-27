@@ -1602,12 +1602,12 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .touch__reach li { display:flex; align-items:center; gap:clamp(12px, .6rem + .8vw, 18px); }
 .touch__reach .icon--chip {
   flex:0 0 auto;
-  width:clamp(28.8px, 24.48px + .648vw, 34.56px); height:clamp(28.8px, 24.48px + .648vw, 34.56px); /* MODES-OK: -20% content scale then -10%, all 4 modes */
-  background:var(--card-dark); border:1px solid var(--line-dark); border-radius:clamp(7.92px, 5.76px + .432vw, 11.52px);
+  width:clamp(20px, 15.19px + 1.336vw, 34.56px); height:clamp(20px, 15.19px + 1.336vw, 34.56px); /* MODES-OK owner 2026-07-27: steeper slope, chips keep shrinking at low px (old floor froze at 28.8 below ~666px); live 360-1450, all 4 modes */
+  background:var(--card-dark); border:1px solid var(--line-dark); border-radius:clamp(5.5px, 3.51px + .552vw, 11.52px); /* MODES-OK */
   display:flex; align-items:center; justify-content:center; line-height:0; transition:background var(--tt-fast), border-color var(--tt-fast);
 }
 /* icon flex-centered inside the chip so the glyph sits dead-center (grid place-items left it optically high) */
-.touch__reach .icon--chip .icon { display:flex; align-items:center; justify-content:center; width:clamp(12.24px, 10.8px + .216vw, 14.4px); height:clamp(12.24px, 10.8px + .216vw, 14.4px); color:var(--sage); } /* MODES-OK: -20% then -10%, all 4 modes */
+.touch__reach .icon--chip .icon { display:flex; align-items:center; justify-content:center; width:clamp(8.4px, 6.42px + .55vw, 14.4px); height:clamp(8.4px, 6.42px + .55vw, 14.4px); color:var(--sage); } /* MODES-OK steeper glyph slope, keeps chip ratio, all 4 modes */
 .touch__reach .icon--chip .icon svg { width:100%; height:100%; display:block; }
 .touch__reach-t { display:grid; min-width:0; }
 .touch__reach-t b { font-family:var(--font-d); font-weight:600; font-size:clamp(.496rem, .464rem + .144vw, .592rem); letter-spacing:.16em; text-transform:uppercase; color:var(--sage); } /* MODES-OK: -20% content scale, all 4 modes */
@@ -1626,9 +1626,9 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .touch__card {
   background:var(--white); border:1px solid rgba(245,240,225,.14); border-radius:clamp(16px, 11px + 1vw, 26px);
   box-shadow:0 40px 90px -34px rgba(0,18,10,.6), 0 10px 30px -14px rgba(0,40,22,.4);
-  /* MODES-OK: card padding -20% (less border-to-content); bottom trimmed extra since the note is tiny
-     and had dead space beneath it. All 4 modes. */
-  padding:clamp(19.2px, .8rem + 2.08vw, 35.2px) clamp(19.2px, .8rem + 2.08vw, 35.2px) clamp(12px, .5rem + 1.3vw, 22px);
+  /* MODES-OK owner 2026-07-27: skinnier card frame ("make the border skinnier") — sides/top
+     ~28px cap down to 10px at 360, bottom 18px down to 8px; helps the 2-col fit at small px. All 4 modes. */
+  padding:clamp(10px, 4.06px + 1.65vw, 28px) clamp(10px, 4.06px + 1.65vw, 28px) clamp(8px, 3.2px + 1.06vw, 18px);
 }
 /* heading sits directly above the form now (subtitle removed) — add the space the sub used to hold */
 .touch__card h3 { font-family:var(--font-d); font-weight:600; letter-spacing:-.02em; color:var(--felt); font-size:clamp(.944rem, .768rem + .807vw, 1.5rem); line-height:1.15; margin-bottom:clamp(14px, .9rem + .8vw, 22px); } /* MODES-OK: -20% content scale, live to ~1450px, all 4 modes */
@@ -1647,11 +1647,65 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .touch__note { display:flex; align-items:center; gap:clamp(4.8px, .24rem + .24vw, 7.2px); margin-top:clamp(-8px, -.4rem - .3vw, -4px); color:var(--slate); font-size:clamp(.624rem, .584rem + .192vw, .736rem); } /* MODES-OK: -20% content scale, tightened bottom gap, all 4 modes */
 .touch__note .icon { width:clamp(10.4px, 8.8px + .24vw, 12.8px); height:clamp(10.4px, 8.8px + .24vw, 12.8px); color:var(--sage-deep); flex:none; } /* MODES-OK: -20%, all 4 modes */
 
-/* MODES-OK: stack to one column on small burger (481–700) and mobile (<=480). */
+/* MODES-OK owner 2026-07-27: NO STACK anywhere — the old 1-col collapse at <=700px is
+   removed sitewide; the 2-col never-stack layout below now applies to every page. */
 @media (max-width:700px) {
-  .touch { grid-template-columns:1fr; }
   .touch__lede { max-width:none; }
 }
+
+/* MODES-OK owner-confirmed: TERM-LOANS-ONLY touch title — match this page's
+   signature recipe (nowrap one line, min(2.43rem, Xvw) + sage dot) so it reads
+   as a sibling of "Industries we back." above. Scoped to body[data-page="term"]
+   so the home-page .sec-touch title (shared sec-title token) is untouched.
+   All 4 modes: slope governs below the 2.43rem cap across the whole range;
+   relaxed slope <=520 per pool head recipe. */
+body[data-page="term"] .sec-touch .touch__title {
+  font-family:var(--font-d); font-weight:700; letter-spacing:-.022em;
+  line-height:1.05; white-space:nowrap; font-size:min(2.43rem, 4.5vw);
+}
+@media (max-width:520px) {
+  body[data-page="term"] .sec-touch .touch__title { font-size:min(2.43rem, 5.4vw); }
+}
+/* MODES-OK owner-confirmed 2026-07-27: SITEWIDE touch layout (was term-loans-only) —
+   reach-us left, form right, NEVER stack, at all 4 modes on every page (owner: "I
+   dont want any stack"). The old global 1-col collapse at <=700px is deleted. Column
+   gap is a single fluid clamp (both terms scaled) that shrinks on narrow widths so
+   two columns stay usable down to ~360px without crushing the fields. */
+.sec-touch .touch {
+  grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  gap:clamp(10px, 0.5rem + 1.2vw, 40px);
+}
+/* MODES-OK owner-confirmed 2026-07-27: SITEWIDE (was term-loans-only) touch form is
+   CONTAINER-FLUID like the hero form (see [[hcc-container-fluid-forms]]).
+   container-type:inline-size lets the card's text size to the FORM's own width (cqi),
+   so the header holds ONE line and every element grows/shrinks with the card at every
+   px — independent of the 2-col vs viewport width. Header "See how much you qualify
+   for." + reach-us values forced nowrap so they never break. All 4 modes; QA 360–1450px. */
+.sec-touch .touch__card { container-type:inline-size; }
+/* header sized to the card width (cqi) → always one line, scales with the form */
+.sec-touch .touch__card h3 {
+  white-space:nowrap; font-size:clamp(0.56rem, 5.4cqi, 1.6rem); /* MODES-OK owner 2026-07-27: hero-form slope, floor lowered so ONE line even in a ~150px card (360px viewport), all 4 modes */
+}
+/* form internals re-based on cqi so they track the card, not the viewport */
+.sec-touch .touch__form { gap:clamp(10px, 2.6cqi, 18px); }
+.sec-touch .touch__form .field label { font-size:clamp(0.66rem, 2.9cqi, 0.82rem); margin-bottom:clamp(4px, 1cqi, 6.4px); }
+.sec-touch .touch__form input,
+.sec-touch .touch__form select { font-size:clamp(0.72rem, 3.2cqi, 0.95rem); padding:clamp(7px, 2cqi, 11px) clamp(10px, 3cqi, 14px); }
+.sec-touch .touch__btn { font-size:clamp(0.74rem, 3.3cqi, 0.97rem); padding:clamp(9px, 2.6cqi, 12.8px) clamp(14px, 4cqi, 24px); }
+.sec-touch .touch__note { font-size:clamp(0.6rem, 2.5cqi, 0.736rem); }
+/* reach-us values (email/phone/hours) forced one line, scale with the info column */
+.sec-touch .touch__reach-t a,
+.sec-touch .touch__reach-v { white-space:nowrap; overflow-wrap:normal; }
+.sec-touch .touch__info { container-type:inline-size; }
+.sec-touch .touch__reach-t a,
+.sec-touch .touch__reach-v { font-size:clamp(0.46rem, 5cqi, 1.075rem); } /* MODES-OK owner 2026-07-27: lower floor + slope so the nowrap email fits the narrowest info column at 360px (never re-wrap), all 4 modes */
+.sec-touch .touch__reach-t b { font-size:clamp(0.48rem, 3cqi, 0.592rem); }
+/* MODES-OK owner-confirmed (entire container, all 4 modes): whole info column scales
+   with its width too — lede + chip/icon track the column, so the ENTIRE container (not
+   just the form) reads as one designed, fluid unit. cqi clamps have both ends bounded. */
+.sec-touch .touch__lede { max-width:none; font-size:clamp(0.78rem, 6cqi, 1.075rem); }
+.sec-touch .touch__reach .icon--chip { width:clamp(18px, 13cqi, 34.56px); height:clamp(18px, 13cqi, 34.56px); } /* MODES-OK owner 2026-07-27: lower floor so chips keep shrinking with the column, all 4 modes */
+.sec-touch .touch__reach .icon--chip .icon { width:clamp(7.5px, 5.4cqi, 14.4px); height:clamp(7.5px, 5.4cqi, 14.4px); } /* MODES-OK */
 
 /* MODES-OK: footer size-fluidity pass — all 4 modes. Every hardcoded px below is now a fluid token or
    clamp (both terms defined) so the footer scales per-pixel like the rest of the site, and long tokens
@@ -2226,6 +2280,8 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   letter-spacing:-.022em; line-height:1.05; white-space:nowrap; font-size:min(2.43rem, 3.69vw); margin:0; }
 .th-why__title .dot { color:var(--sage); }
 .th-why__copy { max-width:520px; }
+.th-why .btn { font-size:clamp(.64rem, .56rem + .4vw, .84rem); /* MODES-OK match capstone buttons (C5/C6), all 4 modes */
+  padding:clamp(8px, .64vw + 4.8px, 13.6px) clamp(14.4px, 1.6vw + 8px, 27.2px); }
 .th-why__list { list-style:none; display:grid; gap:clamp(10px, 1.4vw, 18px); margin:0 0 clamp(18px, 2.6vw, 30px); }
 .th-why__list li { display:flex; gap:clamp(8px,1.2vw,14px); align-items:center;
   font-family:var(--font-d); font-weight:500; color:var(--cream);
@@ -2250,8 +2306,8 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   font-size:min(2.43rem, 3.8vw); margin:0; }
 .th-qa__title .dot { color:var(--sage); }
 .th-qa__list { border-block:1px solid rgba(143,168,152,.2); }
-.th-qa__row { display:grid; align-items:baseline;
-  grid-template-columns:max-content minmax(0, 19em) 1fr;
+.th-qa__row { display:grid; align-items:center; /* MODES-OK Stamp B, all 4 modes */
+  grid-template-columns:max-content 1fr max-content;
   column-gap:clamp(12px, 1.8vw, 30px);
   padding-block:clamp(12px, 1.8vw, 20px); transition:background .25s; }
 .th-qa__row + .th-qa__row { border-top:1px solid rgba(143,168,152,.35); }
@@ -2262,17 +2318,26 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   min-width:1.35em; font-variant-numeric:tabular-nums; color:transparent;
   -webkit-text-stroke:1.5px rgba(143,168,152,.75);
   transition:color .25s, -webkit-text-stroke-color .25s; }
-.th-qa__q { font-family:var(--font-d); font-weight:600; color:var(--racing);
+.th-qa__q { font-family:var(--font-d); font-weight:500; color:var(--slate);
   font-size:clamp(0.89rem, 0.78rem + 0.47vw, 1.09rem); line-height:1.35; margin:0; }
-.th-qa__a { color:var(--slate); font-size:clamp(0.72rem, 0.56rem + 0.68vw, 0.98rem);
-  line-height:1.6; margin:0; }
+.th-qa__a { margin:0; justify-self:end; }
+.th-qa__a span { display:inline-block; font-family:var(--font-d); font-weight:600;
+  color:var(--racing); background:rgba(0,66,37,.07); border:1px solid rgba(0,66,37,.13);
+  border-radius:999px; line-height:1.35; font-variant-numeric:tabular-nums;
+  font-size:clamp(0.78rem, 0.661rem + 0.528vw, 1.14rem); /* MODES-OK all 4 modes, live to ~1450 */
+  padding:clamp(4px, 2.68px + 0.367vw, 8px) clamp(11px, 8.03px + 0.826vw, 20px); /* MODES-OK */
+  transition:background .25s, border-color .25s, color .25s; }
+.th-qa__row:first-child .th-qa__a span { font-weight:700;
+  font-size:clamp(0.84rem, 0.701rem + 0.617vw, 1.26rem); } /* MODES-OK row 01 keeps the size step */
+.th-qa__row:hover .th-qa__a span { background:var(--racing); border-color:var(--racing);
+  color:var(--cream); }
 .th-qa__cta { display:flex; justify-content:center; margin-top:clamp(14px, 2vw, 22px); }
 .th-qa__cta .btn { font-size:clamp(.64rem, .56rem + .4vw, .84rem);
   padding:clamp(8px, .64vw + 4.8px, 13.6px) clamp(14.4px, 1.6vw + 8px, 27.2px); }
 @media (max-width:700px) {
   .th-qa__row { grid-template-columns:max-content 1fr; row-gap:clamp(5px, 0.9vw, 10px); }
   .th-qa__num { grid-row:1 / span 2; }
-  .th-qa__a { grid-column:2; }
+  .th-qa__a { grid-column:2; justify-self:start; } /* MODES-OK small burger + mobile stack */
 }
 @media (max-width:520px) { .th-qa__title { font-size:min(2.43rem, 4.6vw); } }
 @media (max-width:430px) {
@@ -2289,10 +2354,12 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .th-ind__head .eyebrow { justify-content:center; margin-bottom:8px; }
 .th-ind__title { font-family:var(--font-d); font-weight:700; color:var(--racing);
   letter-spacing:-.022em; line-height:1.05; white-space:nowrap;
-  font-size:min(2.43rem, 3.9vw); margin:0; }
+  /* MODES-OK owner-confirmed: slope for short headline "Industries we back." */
+  font-size:min(2.43rem, 4.6vw); margin:0; }
 .th-ind__title .dot { color:var(--sage); }
 .th-ind__grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr));
-  gap:clamp(10px, 1.4vw, 18px); max-width:840px; margin-inline:auto; }
+  /* MODES-OK owner-confirmed: main site + big burger photos x0.88 (grid + gap) */
+  gap:clamp(8.8px, 1.232vw, 15.84px); width:88%; max-width:739px; margin-inline:auto; }
 .th-ind__card { position:relative; border-radius:clamp(12px, 1.6vw, 24px);
   overflow:hidden; aspect-ratio:4/5; border:1px solid rgba(143,168,152,.35); }
 .th-ind__card img { width:100%; height:100%; object-fit:cover; display:block;
@@ -2300,17 +2367,103 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .th-ind__card::after { content:''; position:absolute; inset:0; z-index:1;
   background:linear-gradient(to top, rgba(0,51,29,.92), rgba(0,51,29,.5) 34%, transparent 66%); }
 .th-ind__card:hover img { transform:scale(1.08); }
-.th-ind__lbl { position:absolute; left:0; right:0; bottom:clamp(9px, 1.3vw, 16px);
+.th-ind__lbl { position:absolute; left:0; right:0; bottom:clamp(7.92px, 1.144vw, 14.08px);
   z-index:2; text-align:center; font-family:var(--font-d); font-weight:600;
   color:var(--cream); letter-spacing:.01em;
-  font-size:clamp(0.78rem, 0.68rem + 0.42vw, 0.98rem); }
+  /* MODES-OK owner-confirmed: labels scale with photos, x0.88 main site + big burger */
+  font-size:clamp(0.686rem, 0.598rem + 0.37vw, 0.862rem); }
 .th-ind__cta { display:flex; justify-content:center; margin-top:clamp(14px, 2vw, 22px); }
 .th-ind__cta .btn { font-size:clamp(.64rem, .56rem + .4vw, .84rem);
   padding:clamp(8px, .64vw + 4.8px, 13.6px) clamp(14.4px, 1.6vw + 8px, 27.2px); }
 @media (max-width:700px) {
-  .th-ind__grid { grid-template-columns:repeat(2, minmax(0,1fr)); max-width:440px; }
+  /* MODES-OK owner-confirmed: small burger + mobile photos x0.80 (grid, gap, labels) */
+  .th-ind__grid { grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:clamp(8px, 1.12vw, 14.4px); width:80%; max-width:352px; }
+  .th-ind__lbl { bottom:clamp(7.2px, 1.04vw, 12.8px);
+    font-size:clamp(0.624rem, 0.544rem + 0.336vw, 0.784rem); }
+  /* MODES-OK owner-confirmed: small burger + mobile cards go square */
+  .th-ind__card { aspect-ratio:1/1; }
 }
-@media (max-width:520px) { .th-ind__title { font-size:min(2.43rem, 4.7vw); } }
+/* MODES-OK owner-confirmed: small burger + mobile slope for short headline */
+@media (max-width:520px) { .th-ind__title { font-size:min(2.43rem, 5.6vw); } }
+
+/* ============================================================
+   CONTAINER 7 — TESTIMONIALS (Trustpilot stars, mist band)
+   Follows [[hcc-container-fluid-forms]]: each card is a container
+   (container-type:inline-size) and its contents scale in cqi so the
+   whole card reads as one designed unit at every px. No eyebrow
+   (matches C5/C6). Rhythm: C6 white -> C7 mist -> touch felt.
+   MODES-OK: all 4 modes, per-pixel, both clamp ends bounded.
+   ============================================================ */
+.th-tst { background:var(--mist); padding-block:clamp(28px, 1.6vw + 14px, 46px); }
+.th-tst__head { text-align:center; margin-bottom:clamp(18px, 1.9vw, 34px); }
+.th-tst__title { font-family:var(--font-d); font-weight:700; color:var(--racing);
+  letter-spacing:-.022em; line-height:1.05; white-space:nowrap;
+  font-size:min(2.43rem, 3.7vw); margin:0; }
+.th-tst__title .dot { color:var(--sage); }
+.th-tst__grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:clamp(12px, 1.6vw, 26px); max-width:1000px; margin-inline:auto; }
+.th-tst__card { container-type:inline-size;
+  display:flex; flex-direction:column; gap:clamp(10px, 3.4cqi, 18px);
+  background:var(--white); border:1px solid rgba(143,168,152,.35);
+  border-radius:clamp(12px, 1.6vw, 24px); padding:clamp(16px, 5cqi, 28px);
+  box-shadow:0 24px 60px -34px rgba(0,18,10,.35); margin:0;
+  transition:transform var(--t-fast, .25s) var(--ease-out), box-shadow var(--t-fast, .25s) var(--ease-out); }
+.th-tst__card:hover { transform:translateY(-4px); box-shadow:0 34px 74px -34px rgba(0,18,10,.5); }
+/* MODES-OK owner-confirmed: 4th review is carousel-only — main site + big burger show the
+   original 3 in the grid; the extra card appears only in the <=700px carousel (2026-07-27).
+   Placed AFTER the base .th-tst__card rule + doubled class so display:none wins the cascade. */
+.th-tst__card.th-tst__card--extra { display:none; }
+/* MODES-OK owner-confirmed: stars CENTERED inside the card on all 4 modes (2026-07-27) */
+.th-tst__card .th-stars { justify-content:center; gap:clamp(2px, 0.8cqi, 5px); }
+.th-tst__card .th-stars span { width:clamp(11px, 4.6cqi, 16px); height:clamp(11px, 4.6cqi, 16px); }
+.th-tst__quote { margin:0; font-family:var(--font-b); color:var(--slate);
+  line-height:1.55; font-size:clamp(0.82rem, 4.3cqi, 1.02rem); }
+.th-tst__by { display:flex; flex-direction:column; gap:clamp(1px, 0.4cqi, 3px); margin-top:auto; }
+.th-tst__by b { font-family:var(--font-d); font-weight:600; color:var(--racing);
+  font-size:clamp(0.8rem, 4cqi, 0.98rem); }
+.th-tst__by span { font-family:var(--font-b); color:var(--sage-deep);
+  font-size:clamp(0.68rem, 3.4cqi, 0.82rem); }
+/* carousel chrome — hidden by default (>700px = plain 3-up grid) */
+.th-tst__viewport { position:relative; }
+.th-tst__arrow, .th-tst__dots { display:none; }
+
+/* MODES-OK owner-confirmed: <=700px (small burger + mobile) the 3-up grid becomes an
+   INFINITE 1-at-a-time carousel that always shows a neighbor peeking on BOTH sides (owner
+   2026-07-27, no dots). Active card = --tst-card of the viewport; JS clones the end cards
+   and translates the track by `--tst-slide` per step, nudged right by `--tst-peek` to center
+   the active card. All geometry is bounded clamps → per-pixel fluid across 320–700px,
+   per [[hcc-fluid-scaling-rule]]. See [[hcc-container-fluid-forms]] (cards keep cqi inside). */
+@media (max-width:700px) {
+  .th-tst__viewport { position:relative; overflow:hidden; max-width:520px; margin-inline:auto;
+    /* card = 74% of viewport → 13% peek each side; gap folded into slide + peek */
+    --tst-card:74%; --tst-gap:clamp(8px, 2.4vw, 16px);
+    --tst-slide:calc(var(--tst-card) + var(--tst-gap));
+    /* MODES-OK: exact center offset = half the leftover after the card (small burger + mobile) */
+    --tst-peek:calc((100% - var(--tst-card)) / 2); }
+  .th-tst__grid { display:flex; grid-template-columns:none; max-width:none; gap:var(--tst-gap);
+    transition:transform clamp(.4s, .34s + .5vw, .6s) var(--ease-out); will-change:transform; }
+  .th-tst__card { flex:0 0 var(--tst-card); }
+  .th-tst__card.th-tst__card--extra { display:flex; }   /* MODES-OK: 4th review joins the carousel on <=700px */
+
+  .th-tst__arrow { display:flex; align-items:center; justify-content:center;
+    position:absolute; top:50%; transform:translateY(-50%); z-index:3;
+    width:clamp(30px, 3vw + 20px, 40px); height:clamp(30px, 3vw + 20px, 40px);
+    border-radius:50%; background:var(--white); border:1px solid rgba(143,168,152,.45);
+    color:var(--racing); box-shadow:0 10px 24px -12px rgba(0,18,10,.4);
+    cursor:pointer; transition:background var(--t-fast, .25s), transform var(--t-fast, .25s); }
+  .th-tst__arrow:hover { background:var(--mist); }
+  .th-tst__arrow:active { transform:translateY(-50%) scale(.94); }
+  .th-tst__arrow--prev { left:clamp(2px, 1vw, 10px); }
+  .th-tst__arrow--next { right:clamp(2px, 1vw, 10px); }
+  .th-tst__arrow .icon { width:clamp(13px, 1.4vw + 8px, 18px); height:clamp(13px, 1.4vw + 8px, 18px); display:flex; }
+  .th-tst__arrow--prev .icon { transform:scaleX(-1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .th-tst__grid { transition:none; }
+  .th-tst__card { transition:none; }
+}
+@media (max-width:520px) { .th-tst__title { font-size:min(2.43rem, 4.6vw); } }
 
 /* keep the form ON THE RIGHT and skinny down to phones; title + form header
    wrap when the column gets too narrow to hold one line */

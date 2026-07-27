@@ -93,23 +93,178 @@ Every dimension live on term-loans today (source: main.css TERM-LOANS section).
 - Grid: `minmax(0,max-content)` x2 centered, col gap `clamp(14px, 2.2vw, 64px)`, row gap `clamp(16px, 2vw, 26px)`; eyebrow gap 12px
 - Title `min(2.43rem, 3.69vw)` cream nowrap; list gap `clamp(10px, 1.4vw, 18px)`, list to btn `clamp(18px, 2.6vw, 30px)`; items `clamp(0.72rem, 0.56rem + 0.68vw, 0.98rem)` Poppins 500 cream; check icons `clamp(14px, 2.34vw, 20.7px)` sage, gap `clamp(8px, 1.2vw, 14px)`
 - Photo `clamp(150px, 40vw, 560px)` full form; card radius `clamp(12px, 1.6vw, 24px)`, border cream .13, shadow `0 44px 90px -34px rgba(0,18,10,.85)`; btn--cream
+- Get Started btn sized to the shared capstone tokens (owner 2026-07-27, "match the
+  other containers"): `.th-why .btn` font `clamp(.64rem, .56rem + .4vw, .84rem)`, pad
+  `clamp(8px, .64vw + 4.8px, 13.6px)` x `clamp(14.4px, 1.6vw + 8px, 27.2px)` (same as
+  C5 More FAQs / C6 View all Industries); stays `.btn--cream` on felt
+- Photo swapped 2026-07-27 to `img-why-dashboard-2.webp` (owner picked a more realistic shot):
+  Pexels 7108075 (laptop w/ green trading dashboard, green+peach+tan tones), free commercial no
+  attribution, 1200x800 3:2 WebP q82 ~85KB. Old `img-why-dashboard.webp` kept in /img (unused).
+  CONVERSION PATH (repo has no image tool): `npx --yes sharp-cli -i src.jpg -o dir/ -f webp -q 82
+  resize 1200 800 --fit cover` — sharp-cli fetched on demand via npx; source+target both 3:2 so
+  no crop distortion. Reuse this for future image swaps.
 
-### C5 · Straight answers ledger (`.th-qa`)
-- All current values live in the tables above (section frame, text tokens, spacing
-  scale, buttons) and per-round history in container-5-questions.md
+### C5 · Straight answers ledger (`.th-qa`) — STAMP answers (owner picked option B, 2026-07-27)
+- Section frame / head / spacing: unchanged, all in the tables above; per-round
+  history in container-5-questions.md
+- Copy LOCKED verbatim (owner deliberately overrode the no-dash and no-$ rules for
+  these 4 answers, do not re-flag): 01 `Low Minimum FICO` · 02 `Funding in days, not
+  weeks` · 03 Q `What are the payment terms?` A `Weekly and Monthly` (owner swap
+  2026-07-27, replaced the what-to-apply row) · 04 `$20K – $10MM`
+- Row grid: `max-content 1fr max-content`, `align-items:center` (was baseline +
+  19em question column); question demoted to Poppins 500 `--slate` (size token kept)
+- Answer pill (`.th-qa__a span`): Poppins 600 `--racing` on `rgba(0,66,37,.07)`,
+  border `1px rgba(0,66,37,.13)`, radius 999px, tabular-nums,
+  font `clamp(0.78rem, 0.661rem + 0.528vw, 1.14rem)`,
+  pad `clamp(4px, 2.68px + 0.367vw, 8px)` x `clamp(11px, 8.03px + 0.826vw, 20px)`
+  (slopes live to ~1450 per fluidity lock)
+- Hover stamp (owner revision 2026-07-27, replaced the permanent solid row 01): ALL
+  pills sit tinted by default; `.th-qa__row:hover .th-qa__a span` flips solid
+  `--racing` + cream text, transition `.25s` on bg/border/color. Row 01 keeps only a
+  size/weight step: Poppins 700, `clamp(0.84rem, 0.701rem + 0.617vw, 1.26rem)`
+- `<=700`: pill drops under the question, `justify-self:start`, numeral spans both rows
+  (the `--long` wrapped-pill variant was removed with the 03 copy swap, all answers
+  are one-liners now)
+- QA'd headless 1440 / 860 / 660 / 500 on 2026-07-27; headless tip: msedge needs a
+  scratch `--user-data-dir` and window height <=~4200 or it silently writes nothing
 
 ### C6 · Industries we fund (`.th-ind`, on --white) — FULL POOL SCALE
 (a 70% scale experiment was built then REVERTED 2026-07-25, owner: "too small,
 doesn't fit the page well"; lesson: whole-container downscales below pool size
 read as orphaned on the page)
-- Section: compact padding-block token; standard head recipe, title `min(2.43rem, 3.9vw)` (`4.7vw` slope <=520)
-- Grid: `repeat(4, minmax(0,1fr))` max-width 840px centered, gap `clamp(10px, 1.4vw, 18px)`; <=700px: `repeat(2,...)` max-width 440px (cards ~195px desktop)
-- Cards: `aspect-ratio:4/5`, radius `clamp(12px, 1.6vw, 24px)` (pool card radius), hairline border sage .35, emerald scrim `linear-gradient(to top, rgba(0,51,29,.92), rgba(0,51,29,.5) 34%, transparent 66%)` (NEVER black), hover img `scale(1.08)` at .3s
-- Labels: over photo, cream Poppins 600 `clamp(0.78rem, 0.68rem + 0.42vw, 0.98rem)`, bottom `clamp(9px, 1.3vw, 16px)`
+- Section: compact padding-block token; standard head recipe, title "Industries we back." (owner 2026-07-27, was "Some of the industries we fund.") `min(2.43rem, 4.6vw)` (`5.6vw` slope <=520) — steeper slopes because shorter headline
+- Grid (photos x0.88 in main site + big burger, owner 2026-07-27): `repeat(4, minmax(0,1fr))` `width:88%` max-width 739px centered, gap `clamp(8.8px, 1.232vw, 15.84px)`; <=700px (x0.80 small burger + mobile): `repeat(2,...)` `width:80%` max-width 352px, gap `clamp(8px, 1.12vw, 14.4px)` (cards ~172px desktop)
+- Cards: `aspect-ratio:4/5` (>700px); `1/1` square <=700px (owner 2026-07-27, 4/5 read too tall in 2-col), radius `clamp(12px, 1.6vw, 24px)` (pool card radius), hairline border sage .35, emerald scrim `linear-gradient(to top, rgba(0,51,29,.92), rgba(0,51,29,.5) 34%, transparent 66%)` (NEVER black), hover img `scale(1.08)` at .3s
+- Labels (scale with photos): cream Poppins 600 `clamp(0.686rem, 0.598rem + 0.37vw, 0.862rem)`, bottom `clamp(7.92px, 1.144vw, 14.08px)`; <=700px `clamp(0.624rem, 0.544rem + 0.336vw, 0.784rem)`, bottom `clamp(7.2px, 1.04vw, 12.8px)`
 - Button: standard capstone size; cta margin `clamp(14px, 2vw, 22px)`
 - Photos: `img-ind-construction/retail/auto/medical.webp`, 560x700 (4:5), 14 to 52 KB, Pexels IDs 8961156 / 9994733 / 3807695 / 3881817, free commercial use no attribution; `loading="lazy"` + width/height attrs
 - Background rhythm now: white C3 -> felt C4 -> mist C5 -> white C6 -> cream footer
 - NOTE: "View all Industries" btn points at services.html until a real industries page exists
+
+### C7 · Let's get in touch (`.sec-touch`, felt) — PORTED from home page (owner 2026-07-27)
+- Shared global container (reused from index.html); renders on term-loans via global
+  `.sec-touch`/`.touch`/`.touch__*` CSS. Rhythm stays legal: C6 white -> C7 felt (dark) -> footer cream.
+- Reused verbatim EXCEPT: hero already owns `qualifyForm`/`qf-*` IDs, so the touch form's
+  IDs are suffixed `-touch` (`qualifyForm-touch`, `qf-name-touch`, ...) to avoid duplicate-ID
+  collisions + broken `<label for>`. Any future page with a hero qualify form must do the same.
+- Title tuned to THIS page's recipe (was shared `sec-title` token, read foreign next to
+  "Industries we back."): scoped `body[data-page="term"] .sec-touch .touch__title` ->
+  `min(2.43rem, 4.5vw)` (`5.4vw` <=520), Poppins 700, nowrap, sage dot. Scope keeps home page
+  on its original shared token. Lesson: ported containers inherit the SOURCE page's title
+  system; re-scope to the target page's head recipe or the title reads orphaned.
+- Band padding KEPT roomy (home value `clamp(48px, 3rem + 2vw, 92px)`, not the compact C5/C6
+  token) — it's the closing CTA and wants weight before the footer.
+- Layout NEVER stacks on term-loans (owner 2026-07-27): reach-us left + form right at all 4
+  modes. Scoped `body[data-page="term"] .sec-touch .touch` overrides the global
+  `@media(max-width:700px){.touch{grid-template-columns:1fr}}` (home page still stacks). Column
+  gap dropped to a single fluid `clamp(10px, 0.5rem + 1.2vw, 40px)` so 2 cols stay usable down
+  to ~360px. WATCH the form fields at <=430px — two columns is tight; if fields crush, next
+  lever is a narrower reach-us col or smaller field padding, not re-stacking.
+- Hero form note "Soft pull only..." DELETED from C1 hero (owner 2026-07-27); the touch form
+  keeps its own note.
+- ENTIRE container made container-fluid per the LOCKED RULE above (owner 2026-07-27): touch
+  card + info column each get `container-type:inline-size`; h3 "See how much you qualify for."
+  `clamp(0.9rem, 6cqi, 1.6rem)` nowrap one line; email/phone/hours values nowrap +
+  `clamp(0.72rem, 5.2cqi, 1.075rem)` (removed the `overflow-wrap:anywhere` that broke the email
+  mid-word); lede, labels, inputs, select, button, note, chips, icons all re-based on cqi.
+  Scoped `body[data-page="term"]` so home page touch form keeps its vw sizing.
+- Form still needs a real JotForm action wired (placeholder phone/email, same as other pages).
+- HOURS ROW DELETED SITEWIDE (owner 2026-07-27): the clock-chip "Hours / Mon–Fri, 8am–7pm ET"
+  li removed from the touch reach-us list on ALL pages (partial + 10 built pages) and the
+  `footer__hours` calendar line removed from the footer on all 15 pages + partial. Reach-us
+  is now phone + email only. (`touch__reach-v` CSS kept, harmless.) Nav drawer phone link
+  still says "· Mon–Fri 8–7 ET" — owner has not asked for that one.
+- Icon chips re-clamped steeper (owner 2026-07-27 "icons should shrink when px is lower";
+  old floors froze them at 28.8px below ~666px): global
+  `width/height:clamp(20px, 15.19px + 1.336vw, 34.56px)`, glyph `clamp(8.4px, 6.42px + .55vw, 14.4px)`,
+  radius `clamp(5.5px, 3.51px + .552vw, 11.52px)`; term cqi scope floors lowered to
+  `clamp(18px, 13cqi, 34.56px)` chip / `clamp(7.5px, 5.4cqi, 14.4px)` glyph.
+- TOUCH TREATMENT NOW SITEWIDE (owner 2026-07-27 "I dont want any stack" + "not 1 line"):
+  every `body[data-page="term"] .sec-touch` rule EXCEPT the two title rules was
+  de-scoped to plain `.sec-touch`, and the global `@media(max-width:700px){.touch{1fr}}`
+  stack rule was DELETED. All 10 pages with the touch container now run the never-stack
+  2-col + container-fluid (cqi) treatment. Title recipe stays term-scoped (home keeps
+  sec-title token).
+- Crush fixed with floor drops + skinnier card frame (owner "make the border skinnier"):
+  card padding now `clamp(10px, 4.06px + 1.65vw, 28px)` sides/top,
+  `clamp(8px, 3.2px + 1.06vw, 18px)` bottom (was 19.2..35.2 / 12..22);
+  card h3 `clamp(0.56rem, 5.4cqi, 1.6rem)` (hero slope, floor fits a ~150px card);
+  reach values `clamp(0.46rem, 5cqi, 1.075rem)` (email fits the 360px info column).
+  Measured via DOM probe at effective 360/390/430 + shots at 500/660: 2 cols, h3 one
+  line, zero horizontal overflow.
+- HEADLESS QA TRAP (learned 2026-07-27): Edge headless CANNOT render a viewport
+  narrower than ~492px — a `--window-size=390` screenshot is a ~500px layout cropped
+  to 390, which fakes overflow that does not exist on real phones. For sub-490 QA,
+  constrain `<body style="width:390px">` in a scratch page and read metrics with a
+  DOM probe + `--dump-dom` instead.
+
+### C7b · Testimonials (`.th-tst`, on --mist) — Trustpilot stars (owner 2026-07-27)
+(distinct from the C7 touch container above; sits ABOVE it. Page order is now
+C6 industries -> testimonials -> get-in-touch.)
+- Section: mist bg, compact padding-block `clamp(28px, 1.6vw + 14px, 46px)`; no eyebrow
+  (matches C5/C6). Title "What our clients are saying." page recipe `min(2.43rem, 3.7vw)`
+  (`4.6vw` <=520), nowrap, sage dot; head gap `clamp(18px, 1.9vw, 34px)`.
+- Grid: `repeat(3, minmax(0,1fr))` max-width 1000px, gap `clamp(12px, 1.6vw, 26px)`;
+  <=700px -> 1 col max-width 440px.
+- Cards (container-fluid per LOCKED RULE): white bg, pool radius, hairline sage .35, soft
+  shadow `0 24px 60px -34px rgba(0,18,10,.35)`, hover translateY(-4px)+deeper shadow.
+  `container-type:inline-size`; internals cqi-based (quote `clamp(0.82rem, 4.3cqi, 1.02rem)`,
+  name `4cqi`, biz-type sage-deep `3.4cqi`, star tiles `4.6cqi`).
+- Stars: REUSE `.th-stars` (Trustpilot green #00B67A tiles, white SVG); CENTERED in card on
+  all breaks (owner 2026-07-27; quote/name stay left-aligned).
+- Reviews (owner 2026-07-27): DESKTOP + big burger show only 3 (Maria/Retail, Devon/Automotive,
+  Priya/Medical) like the original grid; the 4th (James/Construction, class `th-tst__card--extra`)
+  is CAROUSEL-ONLY — `display:none` >700px, `display:flex` in the <=700px carousel. All PLACEHOLDER.
+- INFINITE CAROUSEL <=700px (owner 2026-07-27, revised from finite+dots): 3-up grid on >700px;
+  small burger + mobile = never-ending 1-at-a-time slider with a neighbor card PEEKING on both
+  sides at all times, NO DOTS. Markup: `.th-tst__viewport[data-carousel]` wraps `.th-tst__grid`
+  (track) + `[data-carousel-prev/next]` arrows (arrows overlay the peeks, z-index 3).
+  Geometry (CSS vars on viewport, all fluid): `--tst-card:74%` (13% peek each side),
+  `--tst-gap:clamp(8px,2.4vw,16px)`, `--tst-slide:card+gap`, `--tst-peek:(100%-card)/2` (exact
+  center offset). JS (main.js `[data-carousel]`): clones last card before first + first after
+  last; track index space 0=cloneLast,1..n=reals,n+1=cloneFirst; `translateX(calc(-index*slide
+  + peek))`; on landing a clone, `transitionend` snaps (transition:none + reflow flush via
+  `void offsetWidth`) to the matching real card = seamless loop. Starts at interior index
+  `min(2,n)` so it loads "in the middle" with both neighbors visible. AUTO-ADVANCE 5s, paused on
+  hover/focus/touch, disabled under reduced-motion. `enter()/exit()` build/teardown clones on the
+  700px boundary so desktop stays a clean grid. Prev chevron = `chevron-right` flipped scaleX(-1).
+  Cards keep `container-type:inline-size` so cqi fluidity holds inside the slider. Site's first
+  carousel pattern; reuse for any future never-ending slider.
+- Starts at track index `min(2,n)` = 2nd real card (owner "start at card 2"), neighbors peek both sides.
+- ARROW-LOCK FIX (owner 2026-07-27 "arrows don't work"): the `animating` guard could deadlock when a
+  transition was cancelled (a `place(false)` clone-snap interrupts an in-flight slide → fires
+  `transitioncancel`, NOT `transitionend`, so the lock never cleared). Fix: `settle()` handles BOTH
+  `transitionend` + `transitioncancel` (guarded to `e.target===track`), reduced-motion path settles
+  synchronously, plus a 900ms self-heal timeout releases a stuck lock. NOTE: fix is reasoned +
+  asset-verified but NOT browser-tested here (no headless browser); owner must confirm arrows click.
+- Copy is PLACEHOLDER (Maria R./Retail, Devon M./Automotive, Priya S./Medical) — owner to
+  swap real quotes + names. Quotes intentionally echo existing claims (days not weeks,
+  turned down elsewhere, no paperwork).
+- Background rhythm now: white C3 -> felt C4 -> mist C5 -> white C6 -> mist testimonials -> felt touch -> cream footer.
+
+## LOCKED RULE · Container-fluid (design-form fidelity), owner 2026-07-27
+The hero form is the reference: every element grows/shrinks per-pixel so it always looks
+like the designed form, and key text never wraps. Any container that must read "like the
+designed form" (forms AND their whole surrounding container: titles, ledes, info blocks,
+chips, icons, values) MUST follow this at ALL times:
+
+1. **Size to the CONTAINER, not the viewport.** Put `container-type:inline-size` on the box
+   whose width the content should track (the form card, the info column, the section wrap as
+   needed), then size text/spacing in `cqi` (1cqi = 1% of that box's width). vw sizing breaks
+   when the box width stops tracking the viewport (e.g. 2-col vs stacked), so cqi is required
+   for anything that must stay one line or perfectly proportioned inside a column.
+2. **One-line elements get `white-space:nowrap`** AND a cqi font so they shrink to fit instead
+   of wrapping. Headers like "See how much you qualify for." and long values like the email
+   `hello@highcardcapital.example` must never break. (Remove any `overflow-wrap:anywhere` on
+   those — it's what causes mid-word breaks.)
+3. **Every element is a two-ended clamp** — `clamp(min, Xcqi|Xvw, max)`, both ends bounded, no
+   fixed px that only fits one width, no shared token that plateaus early. Scale BOTH terms.
+4. **Scope page-specific fluidity** to `body[data-page="..."] .sec-*` so sibling pages that
+   reuse the same global container keep their own tuning.
+5. **QA the whole container at 360 / 500 / 660 / 860 / 1440 (and to ~1450px):** header one line,
+   no mid-word breaks, no element plateaus, no horizontal overflow. If a nowrap value can't fit
+   the narrowest column, shrink the cqi slope or narrow the column — never re-wrap it.
+Applies to every new container from now on. See [[hcc-container-fluid-forms]].
 
 ## Process rules (every new container)
 1. clamp() needs spaces around + and - or the rule silently drops.
