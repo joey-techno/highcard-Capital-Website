@@ -1661,12 +1661,12 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
    relaxed slope <=520 per pool head recipe. */
 /* MODES-OK all 4 modes: scope extension only (term + loc carbon copy, owner-locked
    cloning contract 2026-07-28) — values unchanged, same rule now serves both pages */
-:is(body[data-page="term"], body[data-page="loc"], body[data-page="rbf"], body[data-page="equipment"]) .sec-touch .touch__title {
+:is(body[data-page="term"], body[data-page="loc"], body[data-page="rbf"], body[data-page="equipment"], body[data-page="sba"]) .sec-touch .touch__title {
   font-family:var(--font-d); font-weight:700; letter-spacing:-.022em;
   line-height:1.05; white-space:nowrap; font-size:min(2.43rem, 4.5vw);
 }
 @media (max-width:520px) {
-  :is(body[data-page="term"], body[data-page="loc"], body[data-page="rbf"], body[data-page="equipment"]) .sec-touch .touch__title { font-size:min(2.43rem, 5.4vw); } /* MODES-OK scope extension only */
+  :is(body[data-page="term"], body[data-page="loc"], body[data-page="rbf"], body[data-page="equipment"], body[data-page="sba"]) .sec-touch .touch__title { font-size:min(2.43rem, 5.4vw); } /* MODES-OK scope extension only */
 }
 /* MODES-OK owner-confirmed 2026-07-27: SITEWIDE touch layout (was term-loans-only) —
    reach-us left, form right, NEVER stack, at all 4 modes on every page (owner: "I
@@ -2614,3 +2614,13 @@ body[data-page="equipment"] .th-title { font-size:min(clamp(30.4px, 12.64px + 3.
   body[data-page="equipment"] .th-title .th-title__l1,
   body[data-page="equipment"] .th-title .th-title__l2 { display:block; }
 }
+
+/* ---- SBA LOANS (sba) — carbon copy overrides (see brand/page-plans/sba-loans.md).
+   Hero title "SBA Loans." = 5.31em TRUE width (531.0 @100px, probed 2026-07-28),
+   NARROWER than "Term Loans." → shared clamp everywhere, zero fit math.
+   The th-ledger numbers strip (shared component above) is on this page only. */
+body[data-page="sba"] .th-hero { --th-hero-img:url('../img/sba-hero.webp'); --th-hero-pos:22% 0%; } /* MODES-OK photo swap + pos tune (subjects left third; vertical 0% pins the top edge so heads never clip, RULE 9), scrim shared */
+/* "Small payments. Big moves." 1400.3 vs ref 1589.8 TRUE → 3.96 × 1.1353 */
+body[data-page="sba"] .th-intro__title { font-size:min(2.43rem, 4.5vw); } /* MODES-OK all 4 modes, width-ratio retune */
+/* "Big plans deserve small payments." 1725.0 vs ref 1903.7 TRUE → 3.69 × 1.1036 */
+body[data-page="sba"] .th-why__title { font-size:min(2.43rem, 4.07vw); } /* MODES-OK all 4 modes, width-ratio retune */

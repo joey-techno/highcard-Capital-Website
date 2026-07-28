@@ -1,7 +1,7 @@
 # Page Plan · SBA Loans
 
 Page file: `sba-loans.html` · build id: `sba` (already registered in site-src/build.mjs, nav: funding)
-Status: **Step 3 ledger FULLY LOCKED 2026-07-28 (design + cells); Steps 1, 2, 4, 5, 6 open**
+Status: **ALL STEPS LOCKED + PAGE BUILT 2026-07-28 — QA passed at 520/701/860/1030/1440 + hero verified with photo; NOT yet committed**
 
 **NEW ON THIS PAGE (owner 2026-07-28): a TERMS LEDGER container** sits between C3 (intro)
 and C4 (why it makes sense). This is an owner-approved extension of the carbon-copy
@@ -91,9 +91,16 @@ Micro one line. No dashes. Hero photo obeys RULE 9 headroom.
        B) Owner and advisor reviewing plans at a desk, blueprints and laptop
        C) Owner standing proud in front of their storefront, keys in hand
        D) Two partners shaking hands inside the shop they just acquired
-- OWNER INSPIRATION: _(paste ideas, references, rewrites here)_
+- OWNER INSPIRATION: _(none)_
 
-**DECISION**: _(pending)_
+**DECISION** (locked 2026-07-28):
+- Title: `SBA Loans.` one line everywhere (narrower than Term Loans → shared clamp,
+  verify with true-em probe at build)
+- Sub: `The lowest payments in small business lending, backed by a government guarantee.` (79 chars)
+- Micro: `650 minimum FICO required.`
+- Hero photo: GENERATE — two partners shaking hands inside the shop they just
+  acquired; landscape, dark moody grade like term-hero, clear space above heads
+  (RULE 9), subjects placed so the form column and bottom fade stay clean.
 
 ---
 
@@ -111,11 +118,14 @@ to the numbers ("here is what it looks like").
 - Title: A) `The cheapest patient capital there is.`
          B) `Small payments. Big moves.`
          C) `Built for the big, deliberate move.`
-- Sub: A) `The government guarantees a large slice of your loan, so lenders offer rates and terms they would never touch otherwise. Acquisitions, buildouts, real estate, and refinancing expensive debt all pencil out.`
-       B) `Terms up to 25 years turn a big move into a small monthly payment. Your advisor assembles the package, sends it to the SBA lenders most likely to approve it, and gives you a real timeline on day one.`
-- OWNER INSPIRATION: _(paste here)_
+- Sub rounds: owner rejected info-dense drafts ("too much info") and any broker-
+  sounding language ("don't come off as broker" — no packaging files / shopping
+  lenders wording anywhere on this page)
+- OWNER INSPIRATION: same length as other pages, direct voice
 
-**DECISION**: _(pending)_
+**DECISION** (locked 2026-07-28):
+- Title: `Small payments. Big moves.` (measure width vs ref 1326.1 for slope at build)
+- Sub: `The lowest payments in business funding, built for your biggest moves. Tell us what you are planning and see what you qualify for, with real guidance from application to closing.`
 
 ---
 
@@ -192,9 +202,12 @@ replacement photo must be 3:2 1200×800. No dashes.
              B) `Acquiring a business` · `Buying your building` · `Refinancing short term debt` · `Expanding with patient capital`
 - Photo: A) keep the dashboard photo (matches term/loc/rbf/equipment, zero geometry risk)
          B) generate new 3:2 concept
-- OWNER INSPIRATION: _(paste here)_
+- OWNER INSPIRATION: no acquisition/building line — owner swapped it for expansion
 
-**DECISION**: _(pending)_
+**DECISION** (locked 2026-07-28):
+- Title: `Big plans deserve small payments.` (retune slope by width ratio vs 1600.3)
+- Checklist: `Expanding your business` · `Refinancing expensive debt` · `Making a major purchase` · `Keeping payments small`
+- Photo: KEEP `img-why-dashboard-2.webp` (same as all other service pages)
 
 ---
 
@@ -218,9 +231,15 @@ the ledger states the numbers, C5 answers the worries.
   Alt rows if owner prefers less ledger overlap:
   05 `Will you handle the paperwork?` → `Yes, start to finish`
   06 `What if SBA isn't the fit?` → `Bridge options ready`
-- OWNER INSPIRATION: _(paste here)_
+- OWNER INSPIRATION: picked the low-overlap set (option B)
 
-**DECISION**: _(pending)_
+**DECISION** (locked 2026-07-28):
+- Title: keep `Straight answers, before you apply.` (zero CSS retuning)
+- 01 `What credit score do I need?` → `650 minimum FICO`
+- 02 `Will you handle the paperwork?` → `Yes, start to finish`
+- 03 `What can I use it for?` → `Almost any business use`
+- 04 `How much can I get?` → `$25K – $15M`
+- Button: keep `More FAQs` → faq.html
 
 ---
 
@@ -236,9 +255,15 @@ Medical · Ecommerce · Restaurants · Transportation (trucking) · Farming
 - Set A (all reuse, zero new photos): Medical · Construction · Restaurants · Retail
 - Set B: Restaurants · Medical · Franchises (NEW photo) · Construction
 - Set C: Hospitality (NEW) · Medical · Retail · Manufacturing (NEW)
-- OWNER INSPIRATION: _(paste here)_
+- OWNER INSPIRATION: _(none — picked all-reuse set)_
 
-**DECISION**: _(pending)_
+**DECISION** (locked 2026-07-28) — cards left to right:
+1. `Medical` — REUSE `img-ind-medical.webp`
+2. `Construction` — REUSE `img-ind-construction.webp`
+3. `Restaurants` — REUSE `img-ind-restaurant.webp`
+4. `Retail` — REUSE `img-ind-retail.webp` (term's OPEN-sign card, owner-approved)
+- Title keep `Industries we back.` · button keep `View all Industries` → services.html
+- ZERO new card photos needed.
 
 ---
 
@@ -250,13 +275,22 @@ Medical · Ecommerce · Restaurants · Transportation (trucking) · Farming
 | C4 photo | tbd | 1200×800 (3:2) | pending Step 4 |
 | C6 cards 1-4 | tbd | 560×700 (4:5), RULE 10 framing | pending Step 6 |
 
-## BUILD CHECKLIST (run only when every DECISION is locked)
+## BUILD CHECKLIST — BUILT 2026-07-28 ✔
 
-- [ ] Ledger design locked from visual options page; `th-ledger` shared CSS written once
-- [ ] Photos generated + owner-picked (options page), converted per rules 9/10
-- [ ] `site-src/pages/sba-loans.html` = term-loans byte-copy + slots + ledger section
-- [ ] `body[data-page="sba"]` CSS block (hero vars + retuned slopes only)
-- [ ] Touch-title `:is()` rule extended to include `sba`
-- [ ] build.mjs sba title/desc synced to locked pills
-- [ ] `node site-src/build.mjs` + gap-probe QA + side-by-side vs term at 360/520/700/1030/1440
-- [ ] Commit
+- [x] Ledger: shared `th-ledger` CSS live (stamp cards, owner-picked design A)
+- [x] Hero photo generated (gpt-image-2, 2 takes), owner picked A (two partners
+      handshake in artisan shop) via brand/sba-photo-options.html; converted
+      FULL-FRAME `sba-hero.webp` (107KB, resize 1536 1024, no crop — RULE 9);
+      sources in brand/ai/photos-sba/. All C6 cards reused — zero new card photos.
+- [x] `site-src/pages/sba-loans.html` = term-loans byte-copy + locked slots +
+      th-ledger section between C3 and C4 (old-gen page replaced)
+- [x] `body[data-page="sba"]` block after equipment: hero var + `--th-hero-pos:22% 0%`
+      + intro slope 4.5vw (1589.8/1400.3 true ratio) + C4 slope 4.07vw
+      (1903.7/1725.0 true ratio). Hero title "SBA Loans." = 531.0 true @100px,
+      narrower than "Term Loans." → shared clamp, zero fit math.
+- [x] Touch-title `:is()` rule extended to include `sba`
+- [x] build.mjs sba title/desc synced to locked copy
+- [x] Built + QA: screenshots at 520/701/860/1030/1440 — ledger 1×4 / 2×2 at the
+      700px break, all one-liners hold, C5 stamps fit stacked, industries 4-up/2×2,
+      hero heads fully clear with photo live at 520 + 1440
+- [ ] NOT YET COMMITTED (awaiting owner)
