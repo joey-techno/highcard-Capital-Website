@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HELOC Hero · Pick A or B</title>
+<style>
+@font-face { font-family:'Poppins'; src:url('../site/assets/fonts/poppins-700.woff2') format('woff2'); font-weight:700; }
+@font-face { font-family:'Inter'; src:url('../site/assets/fonts/inter-400.woff2') format('woff2'); font-weight:400; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#E9E4D6;font-family:'Inter',sans-serif;color:#141A16;padding:48px 20px 90px}
+.wrap{max-width:1080px;margin:0 auto}
+h1{font-family:'Poppins';font-weight:700;font-size:30px;letter-spacing:-.02em;margin-bottom:8px}
+.note{color:#5A6660;font-size:14.5px;max-width:760px;line-height:1.6;margin-bottom:40px}
+.tag{display:inline-block;font-family:'Poppins';font-weight:700;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:#F5F0E1;background:#004225;padding:7px 16px;border-radius:999px;margin-bottom:12px}
+.desc{color:#5A6660;font-size:14px;line-height:1.6;margin-bottom:16px;max-width:720px}
+.hero{position:relative;border-radius:20px;overflow:hidden;margin-bottom:56px;box-shadow:0 24px 60px -30px rgba(0,40,20,.4)}
+.hero img{display:block;width:100%;height:auto}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(0,51,29,.97) 0%, rgba(0,51,29,.90) 12%, rgba(0,51,29,.58) 30%, rgba(0,51,29,.22) 48%, rgba(0,51,29,.10) 68%, rgba(0,51,29,.06) 100%)}
+.hero .t{position:absolute;left:5%;bottom:12%;z-index:2;color:#FBF9F3;font-family:'Poppins';font-weight:700;font-size:min(6vw,64px);letter-spacing:-.02em}
+.hero .t .dot{color:#8FA898}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>HELOC hero photo &middot; pick a take</h1>
+  <p class="note">Both takes shown under the page's real green fade with the title where it will sit. Both have proper clear space above the head (Rule 9), subject to the left, space on the right for the qualify form. Take B is currently wired in as the provisional pick.</p>
+
+  <span class="tag">Take A</span>
+  <p class="desc">Owner in his 40s at the kitchen table at dusk, laptop and notepad, deep blue evening light through the window, warm pendant lamp. The most literal dusk feel; the right side has the kitchen counter behind the form.</p>
+  <div class="hero"><img src="ai/photos-heloc/heloc-hero-a.png" alt="Take A"><span class="t">HELOC<span class="dot">.</span></span></div>
+
+  <span class="tag">Take B &middot; provisional pick</span>
+  <p class="desc">Owner in her 30s at the kitchen table in the evening, warm cabinet light, calm confident smile. The right two thirds is a clean dark wall, so the qualify form and fade sit on an uncluttered background.</p>
+  <div class="hero"><img src="ai/photos-heloc/heloc-hero-b.png" alt="Take B"><span class="t">HELOC<span class="dot">.</span></span></div>
+</div>
+</body>
+</html>

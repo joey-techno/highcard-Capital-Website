@@ -1661,12 +1661,12 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
    relaxed slope <=520 per pool head recipe. */
 /* MODES-OK all 4 modes: scope extension only (term + loc carbon copy, owner-locked
    cloning contract 2026-07-28) — values unchanged, same rule now serves both pages */
-:is(body[data-page="term"], body[data-page="loc"], body[data-page="rbf"], body[data-page="equipment"], body[data-page="sba"]) .sec-touch .touch__title {
+:is(body[data-page="term"], body[data-page="loc"], body[data-page="rbf"], body[data-page="equipment"], body[data-page="sba"], body[data-page="heloc"]) .sec-touch .touch__title {
   font-family:var(--font-d); font-weight:700; letter-spacing:-.022em;
   line-height:1.05; white-space:nowrap; font-size:min(2.43rem, 4.5vw);
 }
 @media (max-width:520px) {
-  :is(body[data-page="term"], body[data-page="loc"], body[data-page="rbf"], body[data-page="equipment"], body[data-page="sba"]) .sec-touch .touch__title { font-size:min(2.43rem, 5.4vw); } /* MODES-OK scope extension only */
+  :is(body[data-page="term"], body[data-page="loc"], body[data-page="rbf"], body[data-page="equipment"], body[data-page="sba"], body[data-page="heloc"]) .sec-touch .touch__title { font-size:min(2.43rem, 5.4vw); } /* MODES-OK scope extension only */
 }
 /* MODES-OK owner-confirmed 2026-07-27: SITEWIDE touch layout (was term-loans-only) —
    reach-us left, form right, NEVER stack, at all 4 modes on every page (owner: "I
@@ -2212,6 +2212,7 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   color:var(--cream-dim); font-weight:500; font-size:clamp(0.7rem, 0.6rem + 0.31vw, 0.9rem);   /* -12% */
 }
 .th-micro .icon { width:clamp(11px, 0.44rem + 0.48vw, 15px); height:clamp(11px, 0.44rem + 0.48vw, 15px); color:var(--sage); flex:none; }
+.th-micro + .th-micro { margin-top:clamp(4px, 0.2vw + 2.5px, 8px); } /* MODES-OK all 4 modes: fluid gap when a hero stacks two proof lines (heloc, owner 2026-07-28) */
 /* right column — form card, vertically centered; header one line; fields straight down */
 .th-form { align-self:center; width:100%; }
 .th-form.touch__card { padding:clamp(15px, 0.5rem + 1.3vw, 28px) clamp(15px, 0.5rem + 1.3vw, 28px) clamp(11px, 0.5rem + 0.8vw, 19px); container-type:inline-size; }
@@ -2305,6 +2306,28 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .th-ledger__label { font-size:clamp(8px, 6px + 0.5vw, 11px); }       /* MODES-OK small burger + mobile fluid */
   .th-ledger__val { font-size:clamp(14px, 12.8px + 0.88vw, 20px); }    /* MODES-OK small burger + mobile fluid, fits 360px cells */
 }
+/* --- table variant: full term-sheet rows (owner pick B for heloc, 2026-07-28).
+   Same section shell + label/value type scale as the stamp cards (pool reuse);
+   hairline rows in two columns >700px, one stacked column ≤700px. */
+.th-ledger__tbl { display:grid; grid-template-columns:repeat(2, minmax(0,1fr));
+  max-width:900px; margin-inline:auto;
+  column-gap:clamp(28px, 1.4vw + 18px, 64px); } /* MODES-OK main + big burger fluid column gutter */
+.th-ledger__row { display:flex; align-items:center; justify-content:space-between;
+  gap:clamp(10px, 1.4vw, 24px); min-width:0;
+  padding-block:clamp(10px, 0.5vw + 6px, 17px); /* MODES-OK fluid row rhythm, all 4 modes */
+  border-bottom:1px solid rgba(0,66,37,.14); }
+.th-ledger__tbl .th-ledger__row:nth-child(-n+2) { border-top:1px solid rgba(0,66,37,.14); }
+.th-ledger__row .th-ledger__label { margin-bottom:0; }
+@media (max-width:700px) {
+  /* MODES-OK small burger + mobile (owner pick B 2026-07-28): open 2×5 grid — cells go
+     label-over-value, centered, hairline lattice; half the height of stacked rows */
+  .th-ledger__tbl { grid-template-columns:repeat(2, minmax(0,1fr)); max-width:520px; column-gap:0; }
+  .th-ledger__row { flex-direction:column; justify-content:center; text-align:center;
+    gap:clamp(6px, 0.8vw + 3px, 10px);                  /* MODES-OK fluid label→value gap */
+    padding-block:clamp(10px, 1.4vw + 5px, 16px);       /* MODES-OK fluid cell rhythm */
+    padding-inline:clamp(4px, 1vw, 10px); }             /* MODES-OK keeps values off the center divider */
+  .th-ledger__row:nth-child(odd) { border-right:1px solid rgba(0,66,37,.14); } /* center divider from the left column */
+}
 
 /* ============================================================
    CONTAINER 4 — WHY IT MAKES SENSE (emerald spotlight)
@@ -2342,6 +2365,81 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .th-why__card img { display:block; width:100%; height:auto; }
 
 /* ============================================================
+   TH-CALC — HELOC CALCULATOR (shared component, first used on heloc).
+   Clean paper (owner pick A, 2026-07-28): centered eyebrow + title,
+   two sliders with live figures, big estimated-line number, split
+   bar (mortgage vs available line) + legend + disclaimer. Sits
+   between C4 (emerald) and C5 (mist). Label/value type reuses the
+   th-ledger pool scales; everything px+vw fluid, live to ~1450.
+   ============================================================ */
+.th-calc { background:var(--white); padding-block:clamp(28px, 1.6vw + 14px, 46px); } /* MODES-OK pool section pad (matches C5/C6) */
+.th-calc__in { max-width:980px; margin-inline:auto; }
+.th-calc__head { text-align:center; margin-bottom:clamp(16px, 1.8vw, 30px); }
+.th-calc__head .eyebrow { justify-content:center; margin-bottom:8px; }
+.th-calc__title { font-family:var(--font-d); font-weight:700; color:var(--racing);
+  letter-spacing:-.022em; line-height:1.05; white-space:nowrap;
+  font-size:min(2.43rem, 4.82vw); margin:0; } /* MODES-OK all 4 modes, width-ratio retune: "Estimate your line." TRUE 909.9 @100px vs C6 ref 953.4 @4.6vw (probed 2026-07-28) */
+.th-calc__title .dot { color:var(--sage); }
+.th-calc__fields { display:grid; grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:clamp(16px, 1.2vw + 8px, 30px) clamp(20px, 2.4vw, 44px); /* MODES-OK fluid, all 4 modes */
+  max-width:680px; margin:0 auto clamp(18px, 2vw, 30px); }
+.th-calc__field { min-width:0; }
+.th-calc__field label { display:block; font-family:var(--font-d); font-weight:600;
+  color:var(--sage-deep); text-transform:uppercase; letter-spacing:.26em;
+  white-space:nowrap; line-height:1;
+  font-size:clamp(8.5px, 4.5px + 0.55vw, 12.5px); /* MODES-OK pool: th-ledger label scale */
+  margin-bottom:clamp(8px, 0.5vw + 5px, 14px); }
+.th-calc__range { -webkit-appearance:none; appearance:none; width:100%; background:transparent;
+  height:clamp(18px, 1.4vw + 10px, 26px); cursor:pointer; margin:0; } /* MODES-OK touch-friendly hit area, fluid */
+.th-calc__range::-webkit-slider-runnable-track { height:clamp(4px, 0.3vw + 2px, 6px);
+  border-radius:999px; background:rgba(0,66,37,.15); }
+.th-calc__range::-webkit-slider-thumb { -webkit-appearance:none; appearance:none;
+  width:clamp(14px, 0.6vw + 10px, 20px); height:clamp(14px, 0.6vw + 10px, 20px);
+  border-radius:50%; background:var(--racing); border:none;
+  margin-top:calc((clamp(4px, 0.3vw + 2px, 6px) - clamp(14px, 0.6vw + 10px, 20px)) / 2);
+  box-shadow:0 2px 6px rgba(0,20,10,.3); }
+.th-calc__range::-moz-range-track { height:clamp(4px, 0.3vw + 2px, 6px);
+  border-radius:999px; background:rgba(0,66,37,.15); }
+.th-calc__range::-moz-range-thumb { width:clamp(14px, 0.6vw + 10px, 20px);
+  height:clamp(14px, 0.6vw + 10px, 20px); border-radius:50%; background:var(--racing);
+  border:none; box-shadow:0 2px 6px rgba(0,20,10,.3); }
+.th-calc__fig { font-family:var(--font-d); font-weight:700; color:var(--racing);
+  white-space:nowrap; line-height:1; font-variant-numeric:tabular-nums;
+  font-size:clamp(13px, 8px + 0.8vw, 19px); /* MODES-OK fluid, all 4 modes */
+  margin-top:clamp(6px, 0.4vw + 4px, 11px); }
+.th-calc__result { text-align:center; margin-bottom:clamp(14px, 1.6vw, 26px); }
+.th-calc__lbl { font-family:var(--font-d); font-weight:600; color:var(--sage-deep);
+  text-transform:uppercase; letter-spacing:.26em; white-space:nowrap; line-height:1;
+  font-size:clamp(8.5px, 4.5px + 0.55vw, 12.5px); /* MODES-OK pool: th-ledger label scale */
+  margin-bottom:clamp(8px, 0.5vw + 5px, 14px); }
+.th-calc__big { font-family:var(--font-d); font-weight:700; color:var(--racing);
+  letter-spacing:-.022em; line-height:1; white-space:nowrap; font-variant-numeric:tabular-nums;
+  font-size:clamp(26px, 12px + 2.4vw, 52px); } /* MODES-OK hero-scale figure, fluid all 4 modes */
+.th-calc__bar { display:flex; overflow:hidden; border-radius:999px;
+  max-width:680px; margin-inline:auto; background:rgba(0,66,37,.12);
+  height:clamp(10px, 0.55vw + 7px, 16px); } /* MODES-OK fluid bar, all 4 modes */
+.th-calc__bar-m { background:#B9B2A2; transition:width .35s ease; }
+.th-calc__bar-h { background:var(--racing); transition:width .35s ease; }
+.th-calc__key { display:flex; justify-content:center; gap:clamp(16px, 2vw, 30px);
+  margin-top:clamp(8px, 0.8vw, 14px); color:var(--slate);
+  font-size:clamp(0.68rem, 0.6rem + 0.3vw, 0.82rem); } /* MODES-OK fluid legend */
+.th-calc__key span { display:inline-flex; align-items:center; gap:7px; white-space:nowrap; }
+.th-calc__swatch { display:inline-block; border-radius:3px;
+  width:clamp(8px, 0.3vw + 6px, 11px); height:clamp(8px, 0.3vw + 6px, 11px); }
+.th-calc__swatch--m { background:#B9B2A2; }
+.th-calc__swatch--h { background:var(--racing); }
+.th-calc__note { text-align:center; color:var(--slate); line-height:1.6;
+  white-space:nowrap; /* owner 2026-07-28: ONE line at every px */
+  /* MODES-OK all 4 modes: cap = original fine-print clamp ×0.9 (owner 10% shrink);
+     fit slopes keep the 53.45em sentence (TRUE 5344.6 @100px Inter, probed 2026-07-28)
+     inside the container gutter (clamp(20px,5vw,48px) per side) with 2% margin */
+  font-size:min(clamp(0.594rem, 0.522rem + 0.27vw, 0.72rem), 1.65vw, 1.833vw - 0.733px);
+  margin:clamp(12px, 1.4vw, 20px) auto 0; }
+@media (max-width:560px) {
+  .th-calc__fields { grid-template-columns:minmax(0,1fr); max-width:420px; } /* MODES-OK mobile stack at pool 560 break */
+}
+
+/* ============================================================
    CONTAINER 5 — STRAIGHT ANSWERS (thin ledger, iteration A)
    ============================================================ */
 .th-qa { background:var(--mist); padding-block:clamp(28px, 1.6vw + 14px, 46px); }
@@ -2375,8 +2473,6 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   font-size:clamp(0.78rem, 0.661rem + 0.528vw, 1.14rem); /* MODES-OK all 4 modes, live to ~1450 */
   padding:clamp(4px, 2.68px + 0.367vw, 8px) clamp(11px, 8.03px + 0.826vw, 20px); /* MODES-OK */
   transition:background .25s, border-color .25s, color .25s; }
-.th-qa__row:first-child .th-qa__a span { font-weight:700;
-  font-size:clamp(0.84rem, 0.701rem + 0.617vw, 1.26rem); } /* MODES-OK row 01 keeps the size step */
 .th-qa__row:hover .th-qa__a span { background:var(--racing); border-color:var(--racing);
   color:var(--cream); }
 .th-qa__cta { display:flex; justify-content:center; margin-top:clamp(14px, 2vw, 22px); }
@@ -2624,3 +2720,12 @@ body[data-page="sba"] .th-hero { --th-hero-img:url('../img/sba-hero.webp'); --th
 body[data-page="sba"] .th-intro__title { font-size:min(2.43rem, 4.5vw); } /* MODES-OK all 4 modes, width-ratio retune */
 /* "Big plans deserve small payments." 1725.0 vs ref 1903.7 TRUE → 3.69 × 1.1036 */
 body[data-page="sba"] .th-why__title { font-size:min(2.43rem, 4.07vw); } /* MODES-OK all 4 modes, width-ratio retune */
+
+/* ---- HELOC (heloc) — carbon copy overrides (see brand/page-plans/heloc.md).
+   Hero title "HELOC." is far narrower than "Term Loans." → shared clamp everywhere,
+   zero fit math. Page adds two shared components: th-ledger table variant + th-calc. */
+body[data-page="heloc"] .th-hero { --th-hero-img:url('../img/heloc-hero.webp'); --th-hero-pos:22% 0%; } /* MODES-OK photo swap + pos tune (subject left third, vertical 0% pins the top so the head never clips, RULE 9), scrim shared */
+/* "Your equity, on standby." — TRUE 1200.7 @100px (probed 2026-07-28); 3.96 × 1589.8/1200.7 */
+body[data-page="heloc"] .th-intro__title { font-size:min(2.43rem, 5.24vw); } /* MODES-OK all 4 modes, width-ratio retune */
+/* "The cheapest capital you will ever tap." — TRUE 1879.2 @100px; 3.69 × 1903.7/1879.2 */
+body[data-page="heloc"] .th-why__title { font-size:min(2.43rem, 3.74vw); } /* MODES-OK all 4 modes, width-ratio retune */

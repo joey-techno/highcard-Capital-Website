@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HELOC Ledger on Phones · Pick a treatment</title>
+<style>
+@font-face { font-family:'Poppins'; src:url('../site/assets/fonts/poppins-700.woff2') format('woff2'); font-weight:700; }
+@font-face { font-family:'Poppins'; src:url('../site/assets/fonts/poppins-600.woff2') format('woff2'); font-weight:600; }
+@font-face { font-family:'Inter'; src:url('../site/assets/fonts/inter-400.woff2') format('woff2'); font-weight:400; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#E9E4D6;font-family:'Inter',sans-serif;color:#141A16;padding:48px 20px 90px}
+.wrap{max-width:1180px;margin:0 auto}
+h1{font-family:'Poppins';font-weight:700;font-size:30px;letter-spacing:-.02em;margin-bottom:8px}
+.note{color:#5A6660;font-size:14.5px;max-width:780px;line-height:1.6;margin-bottom:40px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start}
+.tag{display:inline-block;font-family:'Poppins';font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F5F0E1;background:#004225;padding:6px 14px;border-radius:999px;margin-bottom:10px}
+.desc{color:#5A6660;font-size:13px;line-height:1.55;margin-bottom:14px;min-height:60px}
+.phone{width:100%;max-width:390px;background:#FDFCF9;border-radius:26px;border:6px solid #0B2318;padding:26px 16px;box-shadow:0 24px 60px -35px rgba(0,40,20,.45)}
+
+.lbl{font-family:'Poppins';font-weight:600;color:#5F7A6A;text-transform:uppercase;letter-spacing:.22em;font-size:8.5px;line-height:1;white-space:nowrap}
+.val{font-family:'Poppins';font-weight:700;color:#004225;font-size:14.5px;line-height:1;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* A: stamp cards 2x5 */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.card{text-align:center;background:rgba(0,66,37,.05);border:1px solid rgba(0,66,37,.14);border-radius:11px;padding:13px 6px}
+.card .lbl{margin-bottom:8px}
+
+/* B: open grid, label over value, hairlines */
+.open{display:grid;grid-template-columns:1fr 1fr}
+.open .cell{text-align:center;padding:13px 4px;border-bottom:1px solid rgba(0,66,37,.14)}
+.open .cell:nth-child(-n+2){border-top:1px solid rgba(0,66,37,.14)}
+.open .cell:nth-child(odd){border-right:1px solid rgba(0,66,37,.14)}
+.open .lbl{margin-bottom:8px}
+
+/* C: tight two-column rows */
+.rows{display:grid;grid-template-columns:1fr}
+.rows .r{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 2px;border-bottom:1px solid rgba(0,66,37,.14)}
+.rows .r:first-child{border-top:1px solid rgba(0,66,37,.14)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Ledger on small burger + mobile &middot; three ways to use the width</h1>
+  <p class="note">All shown at real phone width (390px) with the page's white. Desktop keeps the two-column hairline table you locked; this only changes what happens at 700px and below.</p>
+  <div class="row3">
+    <div>
+      <span class="tag">Option A &middot; Stamp grid 2&times;5</span>
+      <p class="desc">The SBA stamp cards, two across and five deep. Uses every pixel of width, matches how SBA looks on phones &mdash; the two pages become siblings on mobile too.</p>
+      <div class="phone">
+        <div class="cards">
+          <div class="card"><div class="lbl">Rate</div><div class="val">7 &ndash; 11% APR</div></div>
+          <div class="card"><div class="lbl">Term</div><div class="val">5 &ndash; 30 Years</div></div>
+          <div class="card"><div class="lbl">Loan to Value</div><div class="val">Up to 90% CLTV</div></div>
+          <div class="card"><div class="lbl">Appraisal</div><div class="val">No Appraisal</div></div>
+          <div class="card"><div class="lbl">Speed</div><div class="val">5 Days</div></div>
+          <div class="card"><div class="lbl">Draw Structure</div><div class="val">Revolving Line</div></div>
+          <div class="card"><div class="lbl">Payments</div><div class="val">Monthly</div></div>
+          <div class="card"><div class="lbl">Credit Check</div><div class="val">Soft Pull</div></div>
+          <div class="card"><div class="lbl">Prepayment</div><div class="val">No Penalties</div></div>
+          <div class="card"><div class="lbl">Use of Funds</div><div class="val">Business Use</div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="tag">Option B &middot; Open grid 2&times;5</span>
+      <p class="desc">Same two-across grid but no boxes: label over number, hairline dividers like the desktop table. Keeps the term-sheet feel while filling the width.</p>
+      <div class="phone">
+        <div class="open">
+          <div class="cell"><div class="lbl">Rate</div><div class="val">7 &ndash; 11% APR</div></div>
+          <div class="cell"><div class="lbl">Term</div><div class="val">5 &ndash; 30 Years</div></div>
+          <div class="cell"><div class="lbl">Loan to Value</div><div class="val">Up to 90% CLTV</div></div>
+          <div class="cell"><div class="lbl">Appraisal</div><div class="val">No Appraisal</div></div>
+          <div class="cell"><div class="lbl">Speed</div><div class="val">5 Days</div></div>
+          <div class="cell"><div class="lbl">Draw Structure</div><div class="val">Revolving Line</div></div>
+          <div class="cell"><div class="lbl">Payments</div><div class="val">Monthly</div></div>
+          <div class="cell"><div class="lbl">Credit Check</div><div class="val">Soft Pull</div></div>
+          <div class="cell"><div class="lbl">Prepayment</div><div class="val">No Penalties</div></div>
+          <div class="cell"><div class="lbl">Use of Funds</div><div class="val">Business Use</div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="tag">Option C &middot; Tighter rows</span>
+      <p class="desc">Keep the stacked rows but shrink the row rhythm so the table reads denser &mdash; the safest change, but still one number per row of width.</p>
+      <div class="phone">
+        <div class="rows">
+          <div class="r"><span class="lbl">Rate</span><span class="val">7 &ndash; 11% APR</span></div>
+          <div class="r"><span class="lbl">Term</span><span class="val">5 &ndash; 30 Years</span></div>
+          <div class="r"><span class="lbl">Loan to Value</span><span class="val">Up to 90% CLTV</span></div>
+          <div class="r"><span class="lbl">Appraisal</span><span class="val">No Appraisal</span></div>
+          <div class="r"><span class="lbl">Speed</span><span class="val">5 Days</span></div>
+          <div class="r"><span class="lbl">Draw Structure</span><span class="val">Revolving Line</span></div>
+          <div class="r"><span class="lbl">Payments</span><span class="val">Monthly</span></div>
+          <div class="r"><span class="lbl">Credit Check</span><span class="val">Soft Pull</span></div>
+          <div class="r"><span class="lbl">Prepayment</span><span class="val">No Penalties</span></div>
+          <div class="r"><span class="lbl">Use of Funds</span><span class="val">Business Use</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

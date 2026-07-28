@@ -556,6 +556,32 @@
     sync();
   });
 
+  /* ---------- HELOC calculator (th-calc) ---------- */
+  doc.querySelectorAll('[data-heloc-calc]').forEach(calc => {
+    const hv = calc.querySelector('[data-hc-value]');
+    const mb = calc.querySelector('[data-hc-mortgage]');
+    if (!hv || !mb) return;
+    const hvFig = calc.querySelector('[data-hc-value-fig]');
+    const mbFig = calc.querySelector('[data-hc-mortgage-fig]');
+    const out = calc.querySelector('[data-hc-out]');
+    const barM = calc.querySelector('[data-hc-bar-m]');
+    const barH = calc.querySelector('[data-hc-bar-h]');
+    const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+    const update = () => {
+      const v = +hv.value;
+      const m = Math.min(+mb.value, v);          // mortgage can't exceed home value
+      const line = Math.max(v * 0.9 - m, 0);     // up to 90% CLTV minus what's owed
+      hvFig.textContent = fmt(v);
+      mbFig.textContent = fmt(m);
+      out.textContent = fmt(line);
+      barM.style.width = (v ? Math.min(m / v, 1) * 100 : 0) + '%';
+      barH.style.width = (v ? (line / v) * 100 : 0) + '%';
+    };
+    hv.addEventListener('input', update);
+    mb.addEventListener('input', update);
+    update();
+  });
+
   /* ---------- footer year ---------- */
   const yr = doc.getElementById('yr');
   if (yr) yr.textContent = new Date().getFullYear();

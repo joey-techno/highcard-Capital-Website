@@ -120,8 +120,9 @@ Every dimension live on term-loans today (source: main.css TERM-LOANS section).
   (slopes live to ~1450 per fluidity lock)
 - Hover stamp (owner revision 2026-07-27, replaced the permanent solid row 01): ALL
   pills sit tinted by default; `.th-qa__row:hover .th-qa__a span` flips solid
-  `--racing` + cream text, transition `.25s` on bg/border/color. Row 01 keeps only a
-  size/weight step: Poppins 700, `clamp(0.84rem, 0.701rem + 0.617vw, 1.26rem)`
+  `--racing` + cream text, transition `.25s` on bg/border/color. Row 01 size/weight
+  step REMOVED (owner 2026-07-28, heloc session): every row now uses the same pill
+  weight and clamp — the first-child rule was deleted from main.css.
 - `<=700`: pill drops under the question, `justify-self:start`, numeral spans both rows
   (the `--long` wrapped-pill variant was removed with the 03 copy swap, all answers
   are one-liners now)
@@ -323,3 +324,44 @@ differ. Sizing identity is guaranteed by SHARING, not copying:
 4. QA at 1440 / 860 / 660 / 500; artifact simulator for 390.
 5. No dashes in copy. Copy stays general, hype, routes to form or FAQ.
 6. Iterate in comb rounds; write refined values BACK into this pool.
+
+## POOL · th-ledger TABLE VARIANT (heloc, owner pick B 2026-07-28 — SITE STANDARD:
+## sba converted to this same language 2026-07-28; stamp variant now unused but kept)
+Full term-sheet rows inside the same .th-ledger shell (white strip under C3, same seam
+pull + padding). Shared with the stamp variant: label scale clamp(8.5px, 4.5px + 0.55vw,
+12.5px) → ≤700 clamp(8px, 6px + 0.5vw, 11px); value scale clamp(15px, 8.5px + 1.068vw,
+24px) → ≤700 clamp(14px, 12.8px + 0.88vw, 20px). New dims:
+- `.th-ledger__tbl` grid: 2 columns of label|value rows >700px (max-width 900,
+  column-gap clamp(28px, 1.4vw + 18px, 64px)).
+- `.th-ledger__row` >700px: flex space-between, gap clamp(10px, 1.4vw, 24px),
+  padding-block clamp(10px, 0.5vw + 6px, 17px), hairline rgba(0,66,37,.14) bottom;
+  top hairline on :nth-child(-n+2).
+- ≤700px (owner pick B 2026-07-28, "too long" fix): OPEN 2×5 GRID — cells become
+  label-over-value, centered (max-width 520, column-gap 0); center divider =
+  border-right on :nth-child(odd); cell gap clamp(6px, 0.8vw + 3px, 10px),
+  padding-block clamp(10px, 1.4vw + 5px, 16px), padding-inline clamp(4px, 1vw, 10px).
+  Half the height of stacked rows; verified one-line at 360/480/660.
+All labels + values one line at every px (verified 520/701/860/1030/1440).
+
+## POOL · TH-CALC HELOC CALCULATOR (heloc, owner pick A clean paper 2026-07-28)
+White section between C4 (emerald) and C5 (mist); pad = pool section pad clamp(28px,
+1.6vw + 14px, 46px); inner max 980. Head = eyebrow ONLY (owner removed the title
+2026-07-28; the .th-calc__title rule stays available). Sliders only (owner), JS in
+main.js `[data-heloc-calc]`; scales $100K–$10M value / $0–$10M mortgage, step $50K,
+defaults $1M / $100K (owner 2026-07-28).
+- Fields grid: 2 cols max-width 680, gap clamp(16px, 1.2vw + 8px, 30px) ×
+  clamp(20px, 2.4vw, 44px); stacks 1 col max-width 420 at ≤560 (pool break).
+- Field labels + result label: th-ledger label scale (pool reuse), margin-bottom
+  clamp(8px, 0.5vw + 5px, 14px).
+- Range input: hit area clamp(18px, 1.4vw + 10px, 26px); track clamp(4px, 0.3vw + 2px,
+  6px) rgba(0,66,37,.15); thumb clamp(14px, 0.6vw + 10px, 20px) racing.
+- Live figures: clamp(13px, 8px + 0.8vw, 19px) Poppins 700 racing tabular.
+- Big line figure: clamp(26px, 12px + 2.4vw, 52px).
+- Split bar: max 680, height clamp(10px, 0.55vw + 7px, 16px), radius 999; mortgage
+  segment #B9B2A2 (warm stone), available line racing, rail rgba(0,66,37,.12).
+- Legend clamp(0.68rem, 0.6rem + 0.3vw, 0.82rem); swatch clamp(8px, 0.3vw + 6px, 11px).
+- Disclaimer: ONE LINE every px (owner 2026-07-28) — nowrap, font-size
+  min(clamp(0.594rem, 0.522rem + 0.27vw, 0.72rem), 1.65vw, 1.833vw − 0.733px);
+  cap = original fine-print clamp ×0.9; fit slopes from sentence TRUE width
+  5344.6 @100px Inter vs container gutter clamp(20px, 5vw, 48px)/side, 2% margin.
+Reusable on any page needing an estimate tool; math: line = max(value × 0.9 − mortgage, 0).

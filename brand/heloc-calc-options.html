@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HELOC Calculator · Pick a treatment</title>
+<style>
+@font-face { font-family:'Poppins'; src:url('../site/assets/fonts/poppins-700.woff2') format('woff2'); font-weight:700; }
+@font-face { font-family:'Poppins'; src:url('../site/assets/fonts/poppins-600.woff2') format('woff2'); font-weight:600; }
+@font-face { font-family:'Inter'; src:url('../site/assets/fonts/inter-400.woff2') format('woff2'); font-weight:400; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#E9E4D6;font-family:'Inter',sans-serif;color:#141A16;padding:48px 20px 90px}
+.wrap{max-width:1120px;margin:0 auto}
+h1{font-family:'Poppins';font-weight:700;font-size:30px;letter-spacing:-.02em;margin-bottom:8px}
+.note{color:#5A6660;font-size:14.5px;max-width:780px;line-height:1.6;margin-bottom:40px}
+.tag{display:inline-block;font-family:'Poppins';font-weight:700;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:#F5F0E1;background:#004225;padding:7px 16px;border-radius:999px;margin-bottom:12px}
+.desc{color:#5A6660;font-size:14px;line-height:1.6;margin-bottom:16px;max-width:760px}
+.stage{border-radius:20px;padding:64px 48px;margin-bottom:64px;box-shadow:0 24px 60px -40px rgba(0,40,20,.35)}
+.white{background:#FDFCF9}
+.felt{background:linear-gradient(160deg,#00331D,#004225)}
+.eyebrow{font-family:'Poppins';font-weight:600;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#5F7A6A;text-align:center;margin-bottom:10px}
+.felt .eyebrow{color:#9DBBA9}
+.sect{font-family:'Poppins';font-weight:700;font-size:34px;letter-spacing:-.022em;color:#0B2318;text-align:center;margin-bottom:38px}
+.sect .dot{color:#5F7A6A}
+.felt .sect{color:#F5F0E1}
+.felt .sect .dot{color:#9DBBA9}
+
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:680px;margin:0 auto 30px}
+label{display:block;font-family:'Poppins';font-weight:600;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#5F7A6A;margin-bottom:10px}
+.felt label{color:#9DBBA9}
+input[type=range]{width:100%;accent-color:#004225;height:4px}
+.felt input[type=range]{accent-color:#8FA898}
+.fig{font-family:'Poppins';font-weight:700;font-size:20px;color:#004225;margin-top:8px;font-variant-numeric:tabular-nums}
+.felt .fig{color:#F5F0E1}
+
+.result{text-align:center;margin:6px 0 26px}
+.result .lbl2{font-family:'Poppins';font-weight:600;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:#5F7A6A;margin-bottom:8px}
+.felt .result .lbl2{color:#9DBBA9}
+.result .big{font-family:'Poppins';font-weight:700;font-size:56px;letter-spacing:-.022em;color:#004225;font-variant-numeric:tabular-nums}
+.felt .result .big{color:#F5F0E1}
+.bar{max-width:680px;margin:0 auto 14px;height:16px;border-radius:999px;overflow:hidden;display:flex;background:rgba(0,66,37,.12)}
+.felt .bar{background:rgba(245,240,225,.15)}
+.bar .m{background:#B9B2A2;height:100%}
+.bar .h{background:#004225;height:100%}
+.felt .bar .m{background:rgba(245,240,225,.35)}
+.felt .bar .h{background:#8FA898}
+.key{display:flex;justify-content:center;gap:28px;font-size:12.5px;color:#5A6660;margin-bottom:22px}
+.felt .key{color:#C9C2B0}
+.key i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px}
+.small{font-size:12px;color:#8B948E;text-align:center;max-width:560px;margin:0 auto}
+.felt .small{color:#9DBBA9}
+
+.card{max-width:720px;margin:0 auto;background:#FDFCF9;border-radius:18px;padding:44px 40px;box-shadow:0 30px 70px -35px rgba(0,20,10,.5)}
+.split{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:center;max-width:1000px;margin:0 auto}
+.split .copy .sect{text-align:left;margin-bottom:16px;font-size:32px}
+.split .copy .eyebrow{text-align:left}
+.split .copy p{color:#C9C2B0;line-height:1.7;font-size:15.5px}
+.split .fields{grid-template-columns:1fr;gap:20px;margin-bottom:22px}
+.split .result .big{font-size:44px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>HELOC calculator &middot; three treatments (all live, drag the sliders)</h1>
+  <p class="note">Sits between the emerald Why section and Straight answers. Two inputs (home value, mortgage balance), a live estimated line at up to 90% combined loan-to-value, and a bar showing mortgage vs available line. All fluid, brand fonts and greens, no dashes.</p>
+
+  <span class="tag">Option A &middot; Clean paper</span>
+  <p class="desc">Open on white like the intro and ledger: centered title, two sliders, the big number, and the split bar. Calm and term-sheet-like &mdash; lets the emerald Why section above keep the drama.</p>
+  <div class="stage white" data-calc>
+    <p class="eyebrow">HELOC Calculator</p>
+    <h2 class="sect">Estimate your line<span class="dot">.</span></h2>
+    <div class="fields">
+      <div><label>Estimated home value</label><input type="range" class="hv" min="100000" max="3000000" step="25000" value="1000000"><div class="fig hvf"></div></div>
+      <div><label>Current mortgage balance</label><input type="range" class="mb" min="0" max="2500000" step="25000" value="100000"><div class="fig mbf"></div></div>
+    </div>
+    <div class="result"><div class="lbl2">Estimated max line</div><div class="big out"></div></div>
+    <div class="bar"><div class="m"></div><div class="h"></div></div>
+    <div class="key"><span><i style="background:#B9B2A2"></i>Mortgage</span><span><i style="background:#004225"></i>Available HELOC</span></div>
+    <p class="small">Based on up to 90% combined loan-to-value. Final approval depends on credit, income, and property verification.</p>
+  </div>
+
+  <span class="tag">Option B &middot; Emerald band</span>
+  <p class="desc">The calculator as its own felt-green moment, cream text and sage accents &mdash; mirrors the get-in-touch band so the page alternates white and emerald all the way down.</p>
+  <div class="stage felt" data-calc>
+    <p class="eyebrow">HELOC Calculator</p>
+    <h2 class="sect">Estimate your line<span class="dot">.</span></h2>
+    <div class="fields">
+      <div><label>Estimated home value</label><input type="range" class="hv" min="100000" max="3000000" step="25000" value="1000000"><div class="fig hvf"></div></div>
+      <div><label>Current mortgage balance</label><input type="range" class="mb" min="0" max="2500000" step="25000" value="100000"><div class="fig mbf"></div></div>
+    </div>
+    <div class="result"><div class="lbl2">Estimated max line</div><div class="big out"></div></div>
+    <div class="bar"><div class="m"></div><div class="h"></div></div>
+    <div class="key"><span><i style="background:rgba(245,240,225,.35)"></i>Mortgage</span><span><i style="background:#8FA898"></i>Available HELOC</span></div>
+    <p class="small">Based on up to 90% combined loan-to-value. Final approval depends on credit, income, and property verification.</p>
+  </div>
+
+  <span class="tag">Option C &middot; Card on emerald, copy beside it</span>
+  <p class="desc">Emerald band, but the calculator lives in a floating white card next to a short pitch &mdash; the same language as the hero form and get-in-touch card. Feels the most like a tool.</p>
+  <div class="stage felt">
+    <div class="split">
+      <div class="copy">
+        <p class="eyebrow">HELOC Calculator</p>
+        <h2 class="sect">Estimate your line<span class="dot">.</span></h2>
+        <p>Two numbers are all it takes. Slide to your home value and what is left on the mortgage, and see the size of the line your equity could open.</p>
+      </div>
+      <div class="card" data-calc>
+        <div class="fields">
+          <div><label>Estimated home value</label><input type="range" class="hv" min="100000" max="3000000" step="25000" value="1000000"><div class="fig hvf"></div></div>
+          <div><label>Current mortgage balance</label><input type="range" class="mb" min="0" max="2500000" step="25000" value="100000"><div class="fig mbf"></div></div>
+        </div>
+        <div class="result"><div class="lbl2">Estimated max line</div><div class="big out"></div></div>
+        <div class="bar"><div class="m"></div><div class="h"></div></div>
+        <div class="key"><span><i style="background:#B9B2A2"></i>Mortgage</span><span><i style="background:#004225"></i>Available HELOC</span></div>
+        <p class="small">Based on up to 90% combined loan-to-value.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+var fmt=function(n){return '$'+Math.round(n).toLocaleString('en-US')};
+document.querySelectorAll('[data-calc]').forEach(function(c){
+  var hv=c.querySelector('.hv'),mb=c.querySelector('.mb');
+  var upd=function(){
+    var v=+hv.value,m=Math.min(+mb.value,v);
+    var line=Math.max(v*0.9-m,0);
+    c.querySelector('.hvf').textContent=fmt(v);
+    c.querySelector('.mbf').textContent=fmt(m);
+    c.querySelector('.out').textContent=fmt(line);
+    var mp=v?Math.min(m/v,1)*100:0, hp=v?line/v*100:0;
+    c.querySelector('.bar .m').style.width=mp+'%';
+    c.querySelector('.bar .h').style.width=hp+'%';
+  };
+  hv.addEventListener('input',upd);mb.addEventListener('input',upd);upd();
+});
+</script>
+</body>
+</html>

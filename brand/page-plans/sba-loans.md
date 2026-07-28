@@ -294,3 +294,15 @@ Medical · Ecommerce · Restaurants · Transportation (trucking) · Farming
       700px break, all one-liners hold, C5 stamps fit stacked, industries 4-up/2×2,
       hero heads fully clear with photo live at 520 + 1440
 - [ ] NOT YET COMMITTED (awaiting owner)
+
+---
+
+## REVISION · 2026-07-28 (heloc session): ledger restyled to the table language
+
+Owner decision after the heloc build: SBA's numbers strip now uses the SAME hairline
+ledger language as heloc ("full HELOC match") — stamp cards retired on this page.
+Markup swapped to `.th-ledger__tbl` / `.th-ledger__row` (4 rows): desktop = two
+hairline columns × 2 rows; ≤700px = open 2×2 grid, label over value, center divider.
+All shared CSS (no sba-specific rules); recipe in token-pool.md POOL · th-ledger
+TABLE VARIANT. Verified 520 / 1440. The stamp-card variant (`.th-ledger__grid` /
+`__cell`) remains in main.css as an available shared style, currently unused.

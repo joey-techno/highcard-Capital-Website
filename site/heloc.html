@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HELOC for Business Owners · Up to 90% CLTV | High Card Capital</title>
-<meta name="description" content="Put the equity in your home to work for your business. A revolving line up to 90% CLTV. Draw what you need, when you need it. See your rate without a hard credit pull.">
-<meta property="og:title" content="HELOC for Business Owners · Up to 90% CLTV | High Card Capital">
-<meta property="og:description" content="Put the equity in your home to work for your business. A revolving line up to 90% CLTV. Draw what you need, when you need it. See your rate without a hard credit pull.">
+<title>HELOC for Business Owners · Up to 90% CLTV, 7 to 11% APR | High Card Capital</title>
+<meta name="description" content="Turn your home equity into revolving business capital, up to 90% CLTV at 7 to 11% APR. No appraisal, soft credit pull, 620 minimum FICO, and closings in as fast as 5 days.">
+<meta property="og:title" content="HELOC for Business Owners · Up to 90% CLTV, 7 to 11% APR | High Card Capital">
+<meta property="og:description" content="Turn your home equity into revolving business capital, up to 90% CLTV at 7 to 11% APR. No appraisal, soft credit pull, 620 minimum FICO, and closings in as fast as 5 days.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/img/img-bakery.webp">
 <meta name="theme-color" content="#00331D">
 <link rel="icon" href="assets/logo/app-tile.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/main.css?v=ms56lt66">
+<link rel="stylesheet" href="assets/css/main.css?v=ms58kqlv">
 </head>
 <body data-page="heloc" data-nav="funding">
 <a class="skip" href="#main">Skip to content</a>
@@ -82,122 +82,247 @@
 
 <main id="main">
 
-  <!-- HERO -->
-  <section class="page-hero">
-    <div class="container split">
-      <div>
-        <p class="eyebrow" data-reveal>Funding &middot; HELOC</p>
-        <h1 class="h-display" data-split>The equity is already yours. Put it to work<span class="dot">.</span></h1>
-        <p class="lede" data-reveal>A home equity line of credit turns the value sitting in your property into revolving capital, up to 90% combined loan-to-value. Draw what you need, when you need it, for startup capital, inventory buys, or bridge funding.</p>
-        <div class="hero__ctas" data-reveal>
-          <a class="btn" href="apply.html?product=heloc" data-magnetic>See my rate</a>
-          <a class="phone-link" href="tel:+18000000000"><span class="icon" data-icon="phone"></span>(800) 000-0000</a>
-        </div>
-        <p class="microcopy" data-reveal><span data-icon="secure"></span>Checking your rate is a soft pull: it won&rsquo;t touch your score.</p>
+  <!-- ===== CONTAINER 1 · HERO (photo + bottom fade, title-left / form-right) ===== -->
+  <section class="th-hero">
+    <div class="container th-in">
+      <div class="th-copy">
+        <h1 class="th-title">HELOC<span class="dot">.</span></h1>
+        <p class="th-sub">Turn your home equity into revolving business capital, up to 90% of its value.</p>
+        <p class="th-micro"><span class="icon" data-icon="secure"></span>620 minimum FICO.</p>
+        <p class="th-micro"><span class="icon" data-icon="secure"></span>No appraisal required.</p>
       </div>
-      <div style="position:relative" data-reveal="right">
-        <figure class="photo-card photo-card--portrait gl curtain">
-          <img src="assets/img/img-heloc.webp" alt="An owner standing in front of the brick building she owns" width="800" height="920" fetchpriority="high">
-        </figure>
-        <div class="floater" style="right:-14px; bottom:34px"><b class="num">Up to 90%</b><span>combined loan-to-value</span></div>
-        <div class="floater" style="left:-14px; top:26px"><b style="font-size:16px">Draw &middot; repay &middot; redraw</b><span>revolving, not one-shot</span></div>
+      <div class="th-form touch__card" id="qualify-form" data-reveal="scale">
+        <h3>See how much you qualify for<span class="dot">.</span></h3>
+        <form class="form touch__form" id="qualifyForm">
+          <div class="field"><label for="qf-name">Name</label><input id="qf-name" name="name" type="text" autocomplete="name" required placeholder="Alex Rivera"></div>
+          <div class="field"><label for="qf-phone">Phone</label><input id="qf-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(555) 000-0000"></div>
+          <div class="field"><label for="qf-email">Email</label><input id="qf-email" name="email" type="email" autocomplete="email" required placeholder="you@yourbusiness.com"></div>
+          <div class="field"><label for="qf-rev">Annual revenue</label>
+            <select id="qf-rev" name="revenue" required>
+              <option value="" disabled selected>Select a range</option>
+              <option value="under-250k">Under $250K</option>
+              <option value="250k-499k">$250K &ndash; $499K</option>
+              <option value="500k-999k">$500K &ndash; $999K</option>
+              <option value="over-1m">Over $1M</option>
+            </select>
+          </div>
+          <button class="btn touch__btn" type="submit" data-magnetic>See my options</button>
+        </form>
       </div>
     </div>
   </section>
 
-  <!-- BENEFITS -->
-  <section class="sec-mist texture">
+  <!-- ===== CONNECTOR · trust band straddles Container 1 + Container 2 ===== -->
+  <div class="th-seam">
     <div class="container">
-      <div class="bene-grid" data-stagger=".1">
-        <article class="bene" data-reveal>
-          <span class="icon--chip" data-draw><span class="icon" data-icon="no-cost"></span></span>
-          <h3>Cheaper than unsecured money<span class="dot">.</span></h3>
-          <p>Because your home secures the line, the rate typically undercuts unsecured business products by a wide margin. Equity is the discount you already earned.</p>
-        </article>
-        <article class="bene" data-reveal>
-          <span class="icon--chip" data-draw><span class="icon" data-icon="line-of-credit"></span></span>
-          <h3>Revolving, not one-shot<span class="dot">.</span></h3>
-          <p>It works like a credit line, not a loan: draw, repay, draw again. Interest accrues only on what you&rsquo;ve actually drawn, so an idle line costs little to nothing.</p>
-        </article>
-        <article class="bene" data-reveal>
-          <span class="icon--chip" data-draw><span class="icon" data-icon="calendar"></span></span>
-          <h3>Walked through, start to close<span class="dot">.</span></h3>
-          <p>Property lending has real steps: appraisal, title, closing. Your advisor runs the sequence and keeps you off hold the entire time.</p>
-        </article>
+      <div class="th-trust">
+        <div class="th-trust__item">
+          <span class="th-trust__eyebrow">Excellent Rated</span>
+          <div class="th-trust__body">
+            <b class="th-trust__name">Trustpilot</b>
+            <div class="th-stars">
+              <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+              <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+              <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+              <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+              <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            </div>
+          </div>
+        </div>
+        <div class="th-trust__div"></div>
+        <div class="th-trust__item">
+          <span class="th-trust__eyebrow">Funded</span>
+          <div class="th-trust__body"><b class="th-trust__num">$100M+</b></div>
+        </div>
+        <div class="th-trust__div"></div>
+        <div class="th-trust__item">
+          <span class="th-trust__eyebrow">Businesses Served</span>
+          <div class="th-trust__body"><b class="th-trust__num">2,000+</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CONTAINER 3 · centered title + subtitle (Clean paper) ===== -->
+  <section class="th-next">
+    <div class="container">
+      <div class="th-intro">
+        <h2 class="th-intro__title" data-split>Your equity, on standby<span class="dot">.</span></h2>
+        <p class="th-intro__sub" data-reveal>A revolving line backed by your home&rsquo;s equity. Draw what you need, repay, and draw again, paying interest only on what you use. Here is what the terms look like.</p>
       </div>
     </div>
   </section>
 
-  <!-- WHAT IT IS + TERMS -->
-  <section>
-    <div class="container split">
-      <div class="prose">
-        <p class="eyebrow" data-reveal>What it is</p>
-        <h2 data-split>Your house has been saving up for you<span class="dot">.</span></h2>
-        <p data-reveal>A HELOC is a revolving credit line secured by the equity in your home: the gap between what it&rsquo;s worth and what you owe. Business owners use it as the lowest-cost flexible capital available to them, especially in year one, when business credit is thin but personal equity is real.</p>
-        <h3 data-reveal>Who it&rsquo;s for</h3>
-        <ul data-stagger=".07">
-          <li data-reveal><span class="icon" data-icon="check-circle"></span>Founders funding a launch before the business has its own track record</li>
-          <li data-reveal><span class="icon" data-icon="check-circle"></span>Owners bridging a gap: a bulk inventory buy, a slow season, a closing date</li>
-          <li data-reveal><span class="icon" data-icon="check-circle"></span>Homeowners with meaningful equity who want the cheapest flexible line they can get</li>
+  <!-- ===== THE NUMBERS · full ledger table on white (heloc, owner pick B 2026-07-28) ===== -->
+  <section class="th-ledger">
+    <div class="container">
+      <div class="th-ledger__tbl" data-stagger>
+        <div class="th-ledger__row" data-reveal><span class="th-ledger__label">Rate</span><span class="th-ledger__val">7 &ndash; 11% APR</span></div>
+        <div class="th-ledger__row" data-reveal><span class="th-ledger__label">Term</span><span class="th-ledger__val">5 &ndash; 30 Years</span></div>
+        <div class="th-ledger__row" data-reveal><span class="th-ledger__label">Loan to Value</span><span class="th-ledger__val">Up to 90% CLTV</span></div>
+        <div class="th-ledger__row" data-reveal><span class="th-ledger__label">Appraisal</span><span class="th-ledger__val">No Appraisal</span></div>
+        <div class="th-ledger__row" data-reveal><span class="th-ledger__label">Speed</span><span class="th-ledger__val">5 Days</span></div>
+        <div class="th-ledger__row" data-reveal><span class="th-ledger__label">Draw Structure</span><span class="th-ledger__val">Revolving Line</span></div>
+        <div class="th-ledger__row" data-reveal><span class="th-ledger__label">Payments</span><span class="th-ledger__val">Monthly</span></div>
+        <div class="th-ledger__row" data-reveal><span class="th-ledger__label">Credit Check</span><span class="th-ledger__val">Soft Pull</span></div>
+        <div class="th-ledger__row" data-reveal><span class="th-ledger__label">Prepayment</span><span class="th-ledger__val">No Penalties</span></div>
+        <div class="th-ledger__row" data-reveal><span class="th-ledger__label">Use of Funds</span><span class="th-ledger__val">Business Use</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTAINER 4 · Why it makes sense (emerald spotlight) ===== -->
+  <section class="th-why felt">
+    <div class="container th-why__in">
+      <div class="th-why__head">
+        <p class="eyebrow">Why it makes sense</p>
+        <h2 class="th-why__title">The cheapest capital you will ever tap<span class="dot">.</span></h2>
+      </div>
+      <div class="th-why__copy">
+        <ul class="th-why__list">
+          <li><span class="icon" data-icon="check-circle"></span>Consolidating debt</li>
+          <li><span class="icon" data-icon="check-circle"></span>Smoothing out cash flow</li>
+          <li><span class="icon" data-icon="check-circle"></span>Growing at the lowest rate</li>
+          <li><span class="icon" data-icon="check-circle"></span>Paying for what you use</li>
         </ul>
-        <p class="small" data-reveal>Plain talk: a HELOC is secured by your home. Your advisor will tell you when it&rsquo;s the wrong tool: that candor is the service.</p>
+        <a class="btn btn--cream" href="apply.html" data-magnetic>Get Started</a>
       </div>
-      <div class="terms-card" data-reveal="right">
-        <div><b class="num">Up to 90%</b><span>combined loan-to-value</span></div>
-        <div><b>Revolving</b><span>draw &middot; repay &middot; redraw</span></div>
-        <div><b class="num">3&ndash;4 wks</b><span>honest timeline to close</span></div>
-        <div><b>Personalized</b><span>rate, soft pull to see it</span></div>
-        <p class="small" style="grid-column:1/-1; border:none; padding:0">Rates and maximums depend on your equity, credit, and property. See your real number first, no cost, no obligation.</p>
+      <div class="th-why__media">
+        <figure class="th-why__card"><img src="assets/img/img-why-dashboard-2.webp" alt="A laptop on a desk showing a business funding dashboard" width="1200" height="800"></figure>
       </div>
     </div>
   </section>
 
-  <!-- MATCH -->
-  <section class="sec-cream">
-    <div class="container match match--light">
-      <div>
-        <p class="eyebrow" data-reveal>Are we a match?</p>
-        <h2 data-split>HELOC basics, before you apply<span class="dot">.</span></h2>
-        <p class="lede" data-reveal>Two minutes of eligibility now saves two weeks of process later. If a HELOC isn&rsquo;t the fit, your advisor reroutes the same application to a product that is.</p>
-      </div>
-      <ul class="checks" data-stagger=".09">
-        <li data-reveal><span class="icon" data-draw data-icon="check-circle"></span><span><b>You own a home with meaningful equity</b><span>Roughly 10%+ left over after the new line is measured against value.</span></span></li>
-        <li data-reveal><span class="icon" data-draw data-icon="check-circle"></span><span><b>Documentable income</b><span>Business or personal: lenders want to see the payment is comfortable.</span></span></li>
-        <li data-reveal><span class="icon" data-draw data-icon="check-circle"></span><span><b>Credit in fair shape or better</b><span>Equity does a lot of lifting; perfect credit isn&rsquo;t required.</span></span></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- MINI FAQ -->
-  <section>
-    <div class="container container--tight">
-      <div class="sec-head">
-        <p class="eyebrow" data-reveal>HELOC questions</p>
-        <h2 data-split>Answered straight<span class="dot">.</span></h2>
-      </div>
-      <div class="mini-faq">
-        <div class="qa" data-reveal>
-          <h3>How fast can a HELOC close?</h3>
-          <p>Three to four weeks is typical: appraisal and title work set the pace, not us. Need capital sooner? Many businesses take a fast <a href="term-loans.html">term loan</a> for the immediate need and open the HELOC behind it for the long game.</p>
+  <!-- ===== HELOC CALCULATOR · estimate your line (clean paper, owner pick A 2026-07-28) ===== -->
+  <section class="th-calc">
+    <div class="container">
+      <div class="th-calc__in" data-heloc-calc>
+        <div class="th-calc__head" data-reveal>
+          <p class="eyebrow">HELOC Calculator</p>
         </div>
-        <div class="qa" data-reveal>
-          <h3>Is my house at risk?</h3>
-          <p>The line is secured by your home: that&rsquo;s what earns the low rate, and it&rsquo;s a real obligation. We&rsquo;ll never dress that up. Your advisor models the payment against your actual cash flow before you sign, and tells you plainly if the margin is too thin.</p>
+        <div class="th-calc__fields" data-reveal>
+          <div class="th-calc__field">
+            <label for="hc-value">Estimated home value</label>
+            <input id="hc-value" class="th-calc__range" type="range" min="100000" max="10000000" step="50000" value="1000000" data-hc-value>
+            <div class="th-calc__fig" data-hc-value-fig>$1,000,000</div>
+          </div>
+          <div class="th-calc__field">
+            <label for="hc-mortgage">Current mortgage balance</label>
+            <input id="hc-mortgage" class="th-calc__range" type="range" min="0" max="10000000" step="50000" value="100000" data-hc-mortgage>
+            <div class="th-calc__fig" data-hc-mortgage-fig>$100,000</div>
+          </div>
         </div>
-        <div class="qa" data-reveal>
-          <h3>What does it cost to see my rate?</h3>
-          <p>Nothing, and the look is a soft pull. If you proceed, closing costs and any fees appear in writing before signatures, the same no-surprises rule as every product on our table.</p>
+        <div class="th-calc__result" data-reveal>
+          <div class="th-calc__lbl">Estimated max line</div>
+          <div class="th-calc__big" data-hc-out>$800,000</div>
         </div>
-        <div class="qa" data-reveal>
-          <h3>Why &ldquo;See my rate&rdquo; instead of &ldquo;Apply&rdquo;?</h3>
-          <p>Because with property lending, the rate is the decision. We&rsquo;d rather show you the real number first and let it argue for itself.</p>
+        <div class="th-calc__bar" data-reveal aria-hidden="true">
+          <div class="th-calc__bar-m" data-hc-bar-m></div>
+          <div class="th-calc__bar-h" data-hc-bar-h></div>
         </div>
+        <div class="th-calc__key" data-reveal>
+          <span><i class="th-calc__swatch th-calc__swatch--m"></i>Mortgage</span>
+          <span><i class="th-calc__swatch th-calc__swatch--h"></i>Available HELOC</span>
+        </div>
+        <p class="th-calc__note" data-reveal>Based on up to 90% combined loan to value. Final approval depends on credit, income, and property verification.</p>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- ===== CONTAINER 5 · Straight answers (thin ledger) ===== -->
+  <section class="th-qa">
+    <div class="container">
+      <div class="th-qa__in">
+        <div class="th-qa__head" data-reveal>
+          <h2 class="th-qa__title">Straight answers, before you apply<span class="dot">.</span></h2>
+        </div>
+        <div class="th-qa__list" data-stagger>
+          <div class="th-qa__row" data-reveal><span class="th-qa__num">01</span><p class="th-qa__q">What credit score do I need?</p><p class="th-qa__a"><span>620 minimum FICO</span></p></div>
+          <div class="th-qa__row" data-reveal><span class="th-qa__num">02</span><p class="th-qa__q">Do I have to draw it all?</p><p class="th-qa__a"><span>Only what you need</span></p></div>
+          <div class="th-qa__row" data-reveal><span class="th-qa__num">03</span><p class="th-qa__q">How fast can I close?</p><p class="th-qa__a"><span>As fast as 5 days</span></p></div>
+          <div class="th-qa__row" data-reveal><span class="th-qa__num">04</span><p class="th-qa__q">Will you handle the paperwork?</p><p class="th-qa__a"><span>Yes, start to finish</span></p></div>
+        </div>
+        <div class="th-qa__cta" data-reveal><a class="btn" href="faq.html" data-magnetic>More FAQs</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTAINER 6 · Industries we fund (emerald scrim cards) ===== -->
+  <section class="th-ind">
+    <div class="container">
+      <div class="th-ind__head" data-reveal>
+        <h2 class="th-ind__title">Industries we back<span class="dot">.</span></h2>
+      </div>
+      <div class="th-ind__grid" data-stagger>
+        <div class="th-ind__card" data-reveal><img src="assets/img/img-ind-medical.webp" alt="A medical professional using modern equipment with a patient" width="560" height="700" loading="lazy"><span class="th-ind__lbl">Medical</span></div>
+        <div class="th-ind__card" data-reveal><img src="assets/img/img-ind-construction.webp" alt="A construction worker with crossed arms on a job site" width="560" height="700" loading="lazy"><span class="th-ind__lbl">Construction</span></div>
+        <div class="th-ind__card" data-reveal><img src="assets/img/img-ind-restaurant.webp" alt="A chef plating a dish in a busy restaurant kitchen" width="560" height="700" loading="lazy"><span class="th-ind__lbl">Restaurants</span></div>
+        <div class="th-ind__card" data-reveal><img src="assets/img/img-ind-retail.webp" alt="A green open sign hanging in a shop window" width="560" height="700" loading="lazy"><span class="th-ind__lbl">Retail</span></div>
+      </div>
+      <div class="th-ind__cta" data-reveal><a class="btn" href="services.html" data-magnetic>View all Industries</a></div>
+    </div>
+  </section>
+
+
+  <!-- ===== CONTAINER 7 · Testimonials (Trustpilot stars, mist band) ===== -->
+  <section class="th-tst">
+    <div class="container">
+      <div class="th-tst__head" data-reveal>
+        <h2 class="th-tst__title">What our clients are saying<span class="dot">.</span></h2>
+      </div>
+      <div class="th-tst__viewport" data-carousel="tst">
+      <div class="th-tst__grid" data-stagger>
+        <figure class="th-tst__card" data-reveal>
+          <div class="th-stars" aria-label="Rated 5 out of 5">
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+          </div>
+          <blockquote class="th-tst__quote">Funding landed in days, not weeks. The team shaped the loan around my slow season instead of forcing me into a box.</blockquote>
+          <figcaption class="th-tst__by"><b>Maria R.</b><span>Retail, Texas</span></figcaption>
+        </figure>
+        <figure class="th-tst__card" data-reveal>
+          <div class="th-stars" aria-label="Rated 5 out of 5">
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+          </div>
+          <blockquote class="th-tst__quote">I was turned down twice before. Here I got a real decision fast and the funds to finally buy the equipment I needed.</blockquote>
+          <figcaption class="th-tst__by"><b>Devon M.</b><span>Automotive, Ohio</span></figcaption>
+        </figure>
+        <figure class="th-tst__card th-tst__card--extra" data-reveal>
+          <div class="th-stars" aria-label="Rated 5 out of 5">
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+          </div>
+          <blockquote class="th-tst__quote">They funded my crew's new gear right before the busy season hit. Fast decision and terms that fit how my jobs actually get paid.</blockquote>
+          <figcaption class="th-tst__by"><b>James T.</b><span>Construction, Georgia</span></figcaption>
+        </figure>
+        <figure class="th-tst__card" data-reveal>
+          <div class="th-stars" aria-label="Rated 5 out of 5">
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
+          </div>
+          <blockquote class="th-tst__quote">No mountains of paperwork, just a short application and a few statements. Simple, fast, and no surprises along the way.</blockquote>
+          <figcaption class="th-tst__by"><b>Priya S.</b><span>Medical, Florida</span></figcaption>
+        </figure>
+      </div>
+      <button class="th-tst__arrow th-tst__arrow--prev" type="button" data-carousel-prev aria-label="Previous review"><span class="icon" data-icon="chevron-right"></span></button>
+      <button class="th-tst__arrow th-tst__arrow--next" type="button" data-carousel-next aria-label="Next review"><span class="icon" data-icon="chevron-right"></span></button>
+      </div>
+    </div>
+  </section>
+
 
   <!-- GET IN TOUCH — emerald band: reach us (left) + qualify form (right) -->
   <section class="sec-touch felt">
@@ -220,12 +345,12 @@
 
         <div class="touch__card" data-reveal="scale">
           <h3>See how much you qualify for<span class="dot">.</span></h3>
-          <form class="form touch__form" id="qualifyForm">
-            <div class="field"><label for="qf-name">Name</label><input id="qf-name" name="name" type="text" autocomplete="name" required placeholder="Alex Rivera"></div>
-            <div class="field"><label for="qf-phone">Phone</label><input id="qf-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(555) 000-0000"></div>
-            <div class="field full"><label for="qf-email">Email</label><input id="qf-email" name="email" type="email" autocomplete="email" required placeholder="you@yourbusiness.com"></div>
-            <div class="field full"><label for="qf-rev">Annual revenue</label>
-              <select id="qf-rev" name="revenue" required>
+          <form class="form touch__form" id="qualifyForm-touch">
+            <div class="field"><label for="qf-name-touch">Name</label><input id="qf-name-touch" name="name" type="text" autocomplete="name" required placeholder="Alex Rivera"></div>
+            <div class="field"><label for="qf-phone-touch">Phone</label><input id="qf-phone-touch" name="phone" type="tel" autocomplete="tel" required placeholder="(555) 000-0000"></div>
+            <div class="field full"><label for="qf-email-touch">Email</label><input id="qf-email-touch" name="email" type="email" autocomplete="email" required placeholder="you@yourbusiness.com"></div>
+            <div class="field full"><label for="qf-rev-touch">Annual revenue</label>
+              <select id="qf-rev-touch" name="revenue" required>
                 <option value="" disabled selected>Select a range</option>
                 <option value="under-250k">Under $250K</option>
                 <option value="250k-499k">$250K &ndash; $499K</option>
@@ -291,9 +416,9 @@
   <a class="btn" href="apply.html">Apply Now, it takes 2 minutes</a>
 </div>
 
-<script src="assets/js/icons.js?v=ms56lt66"></script>
-<script src="assets/js/main.js?v=ms56lt66"></script>
-<script src="assets/js/gl-hover.js?v=ms56lt66"></script>
-<script src="assets/js/forms.js?v=ms56lt66"></script>
+<script src="assets/js/icons.js?v=ms58kqlv"></script>
+<script src="assets/js/main.js?v=ms58kqlv"></script>
+<script src="assets/js/gl-hover.js?v=ms58kqlv"></script>
+<script src="assets/js/forms.js?v=ms58kqlv"></script>
 </body>
 </html>
