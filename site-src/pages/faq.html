@@ -1,109 +1,188 @@
 
 <main id="main">
 
-  <!-- HERO -->
-  <section class="page-hero" style="padding-bottom:clamp(40px,5vw,64px)">
+  <!-- ===== FAQ HERO — shallow photo band, centered title over emerald wash ===== -->
+  <section class="fq-hero">
     <div class="container">
-      <p class="eyebrow" data-reveal>FAQ</p>
-      <h1 class="h-display" data-split>Asked by businesses. Answered straight<span class="dot">.</span></h1>
-      <p class="lede" data-reveal>The ten questions that actually decide whether you apply, in full text, no accordions to hunt through. Ten minutes here beats an hour of hold music anywhere else.</p>
+      <h1 class="fq-hero__title" data-split>Frequently Asked Questions<span class="dot">.</span></h1>
     </div>
   </section>
 
-  <!-- FAQ BODY -->
-  <section style="padding-top:0">
-    <div class="container faq-layout">
-      <div>
-        <div class="faq-group" id="g-products">
-          <h2 data-split>The products<span class="dot">.</span></h2>
+  <!-- ===== GENERAL — slim dropdown list ===== -->
+  <section class="fq">
+    <div class="container">
+      <div class="fq__in">
+        <h2 class="fq__cat" data-reveal>General<span class="dot">.</span></h2>
+        <div class="fq__list" data-faq-acc data-stagger>
 
-          <div class="qa" data-reveal>
-            <h3>Which product is right for me: Term Loan, SBA, HELOC, or Line of Credit?</h3>
-            <p>The one-line version: a defined purchase wants a <a href="term-loans.html">Term Loan</a>; the lowest possible payment on a big move wants <a href="sba-loans.html">SBA</a>; home equity you&rsquo;d like working instead of sitting wants a <a href="heloc.html">HELOC</a>; recurring cash-flow swings want a <a href="line-of-credit.html">Line of Credit</a>.</p>
-            <p>The honest version: you don&rsquo;t have to be right. Your advisor prices the plausible fits side by side and walks you through the trade-offs. One application covers both a Term Loan and a Line of Credit anyway.</p>
+          <div class="fq__item is-open" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="true"><span class="icon fq__chev" data-icon="chevron-right"></span><span>How does funding with us work?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Apply in about two minutes online or over the phone. A real advisor prices your options across our lender network and walks you through them, usually within 24 hours. Pick the offer that fits, sign electronically, and the funds land in your account.</p></div></div>
           </div>
 
-          <div class="qa" data-reveal>
-            <h3>Do I qualify?</h3>
-            <p>Most funded businesses check three boxes: six-plus months in business, roughly $8K or more in monthly revenue, and a U.S. business bank account. Credit helps but doesn&rsquo;t rule: files from the 500s get funded when deposits are steady.</p>
-            <p>SBA holds a higher bar: typically two-plus years in business and credit in the high 600s. HELOC adds home equity and documentable income. If you&rsquo;re under a bar today, your advisor will tell you exactly which one and what changes the answer.</p>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>I already have a loan or advance. Can you still help me?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Usually, yes. Depending on your numbers, we can consolidate what you owe into one saner payment or fund alongside it. Bring your current statements and your advisor will map every exit.</p></div></div>
           </div>
 
-          <div class="qa" data-reveal>
-            <h3>My credit isn&rsquo;t perfect. Is this a waste of time?</h3>
-            <p>No. For most of our products, twelve months of healthy deposits outweigh a dented score, since lenders in our network read revenue first. And because checking your options is a soft pull, finding out costs your score nothing.</p>
-            <p>If another lender turned you down, we dig into <em>why</em> and build a plan to get you back on track. Sometimes that&rsquo;s funding today; sometimes it&rsquo;s a ninety-day path to a much better offer. Either way you leave the call knowing where you stand.</p>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>What do you look at besides my credit score?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>The health of your business: time in business, monthly revenue, and steady deposits count more than a dented score. Checking your options is a soft pull, so finding out costs your credit nothing.</p></div></div>
           </div>
 
-          <div class="qa" data-reveal>
-            <h3>I already have a loan or an advance. Can you still help?</h3>
-            <p>Usually, yes: this is one of the most common files we see. Depending on the numbers, that&rsquo;s a consolidation that replaces expensive daily-payment debt with something saner, or a second position that layers carefully on top of what exists.</p>
-            <p>One warning we give freely: piling short-term advances on top of each other is how good businesses drown. Bring your current statements and your advisor will map the exits, including the ones that don&rsquo;t involve us.</p>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>What does it cost to see my options?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Nothing. Applying is free, seeing your options is free, and walking away is free. Every cost on an offer is in writing before you sign, every time.</p></div></div>
           </div>
+
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>How much can my business qualify for?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Funding runs from $5K to $25M across our products, sized to your revenue and the move you are making. A few of our strongest rates ask for solid credit, but plenty of our products look at your revenue first. We will show you the realistic range for your file.</p></div></div>
+          </div>
+
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="faq-group" id="g-applying">
-          <h2 data-split>Applying<span class="dot">.</span></h2>
-
-          <div class="qa" data-reveal>
-            <h3>How fast can I actually get funded?</h3>
-            <p>Term Loans and Lines of Credit: options usually within 24&ndash;48 hours of a complete application, funding in as little as 24 hours after you accept. Most files fund within a few business days. HELOC: three to four weeks; appraisals set the pace. SBA: two to ten weeks depending on program and lender.</p>
-            <p>Anyone quoting SBA in &ldquo;days&rdquo; is selling you something. You&rsquo;ll get a real calendar for your specific file on your first advisor call.</p>
+  <!-- ===== TERM LOANS ===== -->
+  <section class="fq">
+    <div class="container">
+      <div class="fq__in">
+        <h2 class="fq__cat" data-reveal>Term Loans<span class="dot">.</span></h2>
+        <div class="fq__list" data-faq-acc data-stagger>
+          <div class="fq__item is-open" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="true"><span class="icon fq__chev" data-icon="chevron-right"></span><span>What is a term loan best for?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>One defined move: a big purchase, a buildout, an acquisition, or replacing expensive debt. You get one lump sum with one predictable payment, so the cost of the move is known from day one.</p></div></div>
           </div>
-
-          <div class="qa" data-reveal>
-            <h3>Will checking my options hurt my credit?</h3>
-            <p>No. Seeing your options is a soft pull, invisible to other lenders and harmless to your score. A hard pull happens only if you accept an offer, and we tell you before it does. That sequence never changes, on any product.</p>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>How fast can I be funded?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Options usually land within 24 to 48 hours of applying, and funding can hit your account in as little as 24 hours after you accept.</p></div></div>
           </div>
-
-          <div class="qa" data-reveal>
-            <h3>What documents do I need?</h3>
-            <p>For Term Loans and Lines of Credit: three to six months of business bank statements plus the two-minute application. That&rsquo;s genuinely it for most files. SBA adds tax returns, a P&amp;L, and a personal financial statement (<a href="sba-loans.html">the full list</a>; your advisor assembles the package with you). HELOC adds income documentation and property details.</p>
-          </div>
-
-          <div class="qa" data-reveal>
-            <h3>What happens after I apply?</h3>
-            <p>Within the hour: confirmation and a named advisor on your file. Same business day: a ten-minute call to fill in the picture. Within 24&ndash;48 hours: options in writing. Then you decide: accept, ask questions, or walk away at zero cost.</p>
-            <p>And the fear behind the question, answered plainly: your data is never sold. Applying here does not put your phone on fifty call lists. One advisor calls you, and it&rsquo;s the same one every time. When you&rsquo;re ready, <a href="apply.html">start your application</a> and we take it from there.</p>
-          </div>
-        </div>
-
-        <div class="faq-group" id="g-cost">
-          <h2 data-split>Cost &amp; the fine print<span class="dot">.</span></h2>
-
-          <div class="qa" data-reveal>
-            <h3>What does it cost to work with you?</h3>
-            <p>Zero to apply, zero to see options, zero to walk away. When funding closes, the lender compensates us. That&rsquo;s the business model, stated in plain sight. Some products carry lender-side costs like closing or draw fees; every one of them appears in your written cost sheet before you sign.</p>
-            <p>The rule that governs everything: <strong>your costs are in writing before your signature, every time.</strong> If a number ever surprises you after signing, we failed, and we&rsquo;ve built the process so it can&rsquo;t.</p>
-          </div>
-
-          <div class="qa" data-reveal>
-            <h3>Are you a lender or a broker?</h3>
-            <p>A brokerage, not a direct lender, and that&rsquo;s on purpose. High Card Capital arranges financing through a network of lending partners rather than lending off one balance sheet. One bank can only offer its own shelf; we shop the whole table and make lenders compete for your file.</p>
-            <p>What that means practically: we&rsquo;re paid by lenders at closing (so applying is free), our incentive is your file closing on terms you&rsquo;ll actually accept, and when the honest answer is &ldquo;take the bank&rsquo;s offer, it&rsquo;s better,&rdquo; your advisor says exactly that. More on <a href="about.html">who we are</a>.</p>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>How much can I get?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Term loans run from $5K to $25M, sized to your revenue and what the move calls for.</p></div></div>
           </div>
         </div>
       </div>
-
-      <!-- rail -->
-      <aside class="faq-rail">
-        <nav aria-label="FAQ sections">
-          <ul class="toc">
-            <li><a href="#g-products">The products</a></li>
-            <li><a href="#g-applying">Applying</a></li>
-            <li><a href="#g-cost">Cost &amp; the fine print</a></li>
-          </ul>
-        </nav>
-        <div class="ask-card texture">
-          <h3>Something else on your mind<span class="dot">?</span></h3>
-          <p>A human answers Mon&ndash;Fri, 8am&ndash;7pm ET. Ten minutes usually settles what ten tabs can&rsquo;t.</p>
-          <a class="btn btn--sm" href="contact.html">Ask us directly</a>
-        </div>
-      </aside>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- ===== SBA LOANS ===== -->
+  <section class="fq">
+    <div class="container">
+      <div class="fq__in">
+        <h2 class="fq__cat" data-reveal>SBA Loans<span class="dot">.</span></h2>
+        <div class="fq__list" data-faq-acc data-stagger>
+          <div class="fq__item is-open" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="true"><span class="icon fq__chev" data-icon="chevron-right"></span><span>Why are SBA payments so low?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Terms stretch from 10 to 25 years at rates near Prime, backed by a government guarantee. Long runway plus low rates means the smallest monthly payment in small business lending.</p></div></div>
+          </div>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>What credit score do I need?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>A 650 minimum FICO. If you are under that today, your advisor will tell you exactly what changes the answer.</p></div></div>
+          </div>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>How long does SBA funding take?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Typically 1 to 4 weeks, and we handle the paperwork start to finish so the file never stalls on your desk.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HELOC ===== -->
+  <section class="fq">
+    <div class="container">
+      <div class="fq__in">
+        <h2 class="fq__cat" data-reveal>HELOC<span class="dot">.</span></h2>
+        <div class="fq__list" data-faq-acc data-stagger>
+          <div class="fq__item is-open" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="true"><span class="icon fq__chev" data-icon="chevron-right"></span><span>How much of my home equity can I use?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Up to 90% combined loan to value, turned into a revolving line of business capital. Draw what you need, repay, and draw again, paying interest only on what is out.</p></div></div>
+          </div>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>Do I need an appraisal?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>No. No appraisal, a soft credit pull to see your rate, and closings in as fast as 5 days.</p></div></div>
+          </div>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>What credit score do I need?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>A 620 minimum FICO, with terms from 5 to 30 years and no prepayment penalties.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LINE OF CREDIT ===== -->
+  <section class="fq">
+    <div class="container">
+      <div class="fq__in">
+        <h2 class="fq__cat" data-reveal>Line of Credit<span class="dot">.</span></h2>
+        <div class="fq__list" data-faq-acc data-stagger>
+          <div class="fq__item is-open" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="true"><span class="icon fq__chev" data-icon="chevron-right"></span><span>How does a line of credit work?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Draw what you need, repay, and draw again. You only pay for what you use, and the line refills as you pay it back, so it is always on standby for the next move.</p></div></div>
+          </div>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>How big can my line be?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Lines run from $10K to $5M, sized to your revenue.</p></div></div>
+          </div>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>How fast can I get it?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Options in as little as 24 hours with a soft credit pull, so checking costs your score nothing.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EQUIPMENT FINANCING ===== -->
+  <section class="fq">
+    <div class="container">
+      <div class="fq__in">
+        <h2 class="fq__cat" data-reveal>Equipment Financing<span class="dot">.</span></h2>
+        <div class="fq__list" data-faq-acc data-stagger>
+          <div class="fq__item is-open" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="true"><span class="icon fq__chev" data-icon="chevron-right"></span><span>Can I finance used equipment?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Yes, new and used. We cover up to 100% of the cost and spread it over the working life of the equipment.</p></div></div>
+          </div>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>What if my credit is rough?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>There is no minimum FICO. The equipment itself secures the financing, so lenders read the deal first and the score second.</p></div></div>
+          </div>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>How fast can I get it?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Options in less than 24 hours, so the machine you need does not get sold to someone else while you wait.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REVENUE BASED FINANCING ===== -->
+  <section class="fq">
+    <div class="container">
+      <div class="fq__in">
+        <h2 class="fq__cat" data-reveal>Revenue Based Financing<span class="dot">.</span></h2>
+        <div class="fq__list" data-faq-acc data-stagger>
+          <div class="fq__item is-open" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="true"><span class="icon fq__chev" data-icon="chevron-right"></span><span>How much can I get?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Funding sized 1 to 3 times your monthly revenue. Your sales do the qualifying, not your credit file.</p></div></div>
+          </div>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>What if my credit is bad?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>There is no minimum FICO. Steady revenue is what gets priced, and options land in less than 24 hours.</p></div></div>
+          </div>
+          <div class="fq__item" data-reveal>
+            <button class="fq__q" type="button" aria-expanded="false"><span class="icon fq__chev" data-icon="chevron-right"></span><span>Can I pay it off early?</span></button>
+            <div class="fq__a"><div class="fq__a-in"><p>Yes, and early payoff comes with discounts, so momentum is rewarded instead of penalized.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 {{TOUCH}}
 
 </main>

@@ -2729,3 +2729,62 @@ body[data-page="heloc"] .th-hero { --th-hero-img:url('../img/heloc-hero.webp'); 
 body[data-page="heloc"] .th-intro__title { font-size:min(2.43rem, 5.24vw); } /* MODES-OK all 4 modes, width-ratio retune */
 /* "The cheapest capital you will ever tap." — TRUE 1879.2 @100px; 3.69 × 1903.7/1879.2 */
 body[data-page="heloc"] .th-why__title { font-size:min(2.43rem, 3.74vw); } /* MODES-OK all 4 modes, width-ratio retune */
+
+/* ============================================================
+   FQ — FAQ PAGE (fq-hero shallow photo band + fq slim dropdowns).
+   Built from the pool (2026-07-28): section pads, hairlines,
+   radii, th-qa question scale, th-qa hover tint, fine-print
+   answer scale. Everything px+vw fluid, live to ~1450, all 4
+   modes; accordion = grid-rows spring, chevron rotates.
+   ============================================================ */
+.fq-hero { position:relative; overflow:hidden; display:grid; place-items:center;
+  /* nav is fixed and overlays the band top — add --nav-h to BOTH min-height and top
+     padding so the title centers in the VISIBLE band (owner 2026-07-28) */
+  min-height:calc(var(--nav-h) + clamp(170px, 96px + 16vw, 330px)); /* MODES-OK shallow band, fluid all 4 modes */
+  padding-top:calc(var(--nav-h) + clamp(28px, 1.6vw + 14px, 46px)); /* MODES-OK pool pad + nav clearance */
+  padding-bottom:clamp(28px, 1.6vw + 14px, 46px); /* MODES-OK pool section pad */
+  background-image:
+    linear-gradient(to bottom, rgba(0,51,29,.46), rgba(0,51,29,.62) 55%, rgba(0,51,29,.86)),
+    var(--fq-hero-img, none);
+  background-size:cover; background-position:center 68%; background-color:var(--racing); } /* MODES-OK crop shows the meeting under the title, reference-style */
+.fq-hero__title { font-family:var(--font-d); font-weight:700; color:var(--cream);
+  letter-spacing:-.022em; line-height:1.05; white-space:nowrap; text-align:center;
+  font-size:min(2.43rem, 4.47vw); margin:0; } /* MODES-OK all 4 modes: TRUE 1409.3 @100px (probed 2026-07-28); 3.96 × 1589.8/1409.3, C3 screen fill */
+.fq-hero__title .dot { color:var(--sage); }
+
+.fq { background:var(--white); padding-block:clamp(28px, 1.6vw + 14px, 46px); } /* MODES-OK pool section pad */
+.fq__in { max-width:980px; margin-inline:auto;
+  padding-inline:clamp(0px, 8vw - 57.6px, 46px); } /* MODES-OK pool inner gutter (th-qa recipe), collapses ≤720 */
+.fq__cat { font-family:var(--font-d); font-weight:700; color:var(--racing);
+  letter-spacing:-.022em; line-height:1.05; white-space:nowrap;
+  font-size:var(--t-section-title); /* MODES-OK owner 2026-07-28: same size as the get-in-touch title (shared section-title token, all 4 modes) */
+  margin:0 0 clamp(12px, 1.4vw, 22px); } /* MODES-OK pool head margin */
+.fq__cat .dot { color:var(--sage); }
+.fq + .fq { padding-top:0; } /* categories stack tight; only the first carries the section gap */
+.fq__list { background:var(--white); border:1px solid rgba(0,66,37,.14);
+  border-radius:clamp(10px, 1.2vw, 16px); overflow:hidden; } /* MODES-OK pool hairline + radius */
+.fq__item + .fq__item { border-top:1px solid rgba(0,66,37,.14); }
+.fq__q { display:flex; align-items:center; width:100%; text-align:left;
+  background:none; border:0; cursor:pointer; color:var(--slate);
+  gap:clamp(10px, 1.4vw, 18px); /* MODES-OK pool row gap */
+  padding:clamp(12px, 1.8vw, 20px) clamp(14px, 1.6vw + 8px, 28px); /* MODES-OK pool row rhythm */
+  font-family:var(--font-d); font-weight:500; line-height:1.35;
+  font-size:clamp(0.89rem, 0.78rem + 0.47vw, 1.09rem); /* MODES-OK pool th-qa question scale */
+  transition:background .25s, color .25s; }
+.fq__q:hover { background:rgba(143,168,152,.09); color:var(--racing); } /* pool hover tint */
+.fq__chev { width:clamp(12px, 0.5vw + 9px, 17px); height:clamp(12px, 0.5vw + 9px, 17px); /* MODES-OK fluid chevron */
+  color:var(--sage-deep); flex:none;
+  transition:transform .3s cubic-bezier(.4, 0, .2, 1); }
+.fq__item.is-open .fq__chev { transform:rotate(90deg); }
+.fq__item.is-open .fq__q { color:var(--racing); }
+.fq__a { display:grid; grid-template-rows:0fr;
+  transition:grid-template-rows .35s cubic-bezier(.4, 0, .2, 1); }
+.fq__item.is-open .fq__a { grid-template-rows:1fr; }
+.fq__a-in { overflow:hidden; min-height:0; }
+.fq__a-in p { color:var(--slate); line-height:1.65;
+  font-size:clamp(0.78rem, 0.7rem + 0.35vw, 0.95rem); /* MODES-OK fluid answer text, all 4 modes */
+  /* left inset = question pad + chevron + gap so the answer aligns under the question text */
+  padding:clamp(2px, 0.4vw, 6px) clamp(14px, 1.6vw + 8px, 28px) clamp(14px, 1.8vw, 22px)
+          clamp(36px, 3.5vw + 17px, 63px); margin:0; } /* MODES-OK fluid, all 4 modes */
+/* ---- FAQ (faq) — hero photo hook (fq-* components live above) */
+body[data-page="faq"] .fq-hero { --fq-hero-img:url('../img/faq-hero.webp'); } /* MODES-OK photo var only */

@@ -556,6 +556,23 @@
     sync();
   });
 
+  /* ---------- FAQ dropdowns (fq accordion) ---------- */
+  doc.querySelectorAll('[data-faq-acc]').forEach(list => {
+    list.querySelectorAll('.fq__q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.fq__item');
+        const wasOpen = item.classList.contains('is-open');
+        // one open per group, like the reference layout
+        list.querySelectorAll('.fq__item.is-open').forEach(i => {
+          i.classList.remove('is-open');
+          i.querySelector('.fq__q').setAttribute('aria-expanded', 'false');
+        });
+        item.classList.toggle('is-open', !wasOpen);
+        btn.setAttribute('aria-expanded', String(!wasOpen));
+      });
+    });
+  });
+
   /* ---------- HELOC calculator (th-calc) ---------- */
   doc.querySelectorAll('[data-heloc-calc]').forEach(calc => {
     const hv = calc.querySelector('[data-hc-value]');

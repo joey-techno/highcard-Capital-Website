@@ -1,8 +1,7 @@
 # Page Plan · HELOC
 
 Page file: `heloc.html` · build id: `heloc` (already registered in site-src/build.mjs, nav: funding)
-Status: **ALL STEPS LOCKED + PAGE BUILT 2026-07-28 — hero take B owner-picked, QA passed
-at 520/701/860/1030/1440 (ledger + calc fluid, all one-liners hold); NOT yet committed**
+Status: **DONE — built, revised, and committed 2026-07-28 (commit 0b672fc)**
 
 Source material: owner pasted the full old-gen HELOC page copy 2026-07-28 (hero, "What is
 a HELOC" explainer, 10-row terms table, MCA-payoff section, HELOC calculator). Owner wants
@@ -260,4 +259,4 @@ Retail (OPEN sign), byte-identical card markup from sba-loans.html. No new photo
 - [x] build.mjs heloc title/desc synced to locked copy
 - [x] node site-src/build.mjs · true-em probes (harness deleted) · QA 520/701/860/1030/1440
 - [x] token-pool.md: new POOL entries for th-ledger table variant + th-calc
-- [ ] Commit + push (message with NO double quotes — PS 5.1 mangles them)
+- [x] Commit + push: 0b672fc, 2026-07-28 (incl. SBA ledger restyle + row-01 pill fix)

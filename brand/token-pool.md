@@ -365,3 +365,25 @@ defaults $1M / $100K (owner 2026-07-28).
   cap = original fine-print clamp ×0.9; fit slopes from sentence TRUE width
   5344.6 @100px Inter vs container gutter clamp(20px, 5vw, 48px)/side, 2% margin.
 Reusable on any page needing an estimate tool; math: line = max(value × 0.9 − mortgage, 0).
+
+## POOL · FQ FAQ COMPONENTS (faq rebuild, owner 2026-07-28, reference capitalquickly.com/faqs)
+- `.fq-hero` shallow photo band: the fixed nav overlays the band top, so BOTH
+  min-height and padding-top carry `var(--nav-h)` — min-height calc(var(--nav-h) +
+  clamp(170px, 96px + 16vw, 330px)), padding-top calc(var(--nav-h) + pool pad),
+  padding-bottom pool pad — title centers in the VISIBLE band (owner fix 2026-07-28).
+  Photo via `--fq-hero-img` (page hook body[data-page="faq"]) under a 3-stop emerald
+  wash (.46/.62/.86), position center 68% (meeting visible under title).
+  Title cream centered nowrap `min(2.43rem, 4.47vw)` — TRUE 1409.3 @100px, C3 fill.
+- `.fq` category section: white, pool pad; `.fq + .fq { padding-top:0 }` stacks groups
+  tight. `.fq__in` = th-qa inner recipe (max 980). `.fq__cat` racing left
+  `var(--t-section-title)` (owner 2026-07-28: same size as the get-in-touch title),
+  margin-bottom pool head clamp(12px, 1.4vw, 22px).
+- `.fq__list` hairline box rgba(0,66,37,.14) + pool radius clamp(10px, 1.2vw, 16px);
+  rows split by the same hairline.
+- `.fq__q` row: pool th-qa question scale clamp(0.89rem, 0.78rem + 0.47vw, 1.09rem),
+  padding clamp(12px, 1.8vw, 20px) x clamp(14px, 1.6vw + 8px, 28px), gap
+  clamp(10px, 1.4vw, 18px), sage hover tint, racing when open. Chevron
+  clamp(12px, 0.5vw + 9px, 17px) rotates 90° open.
+- `.fq__a` grid-rows 0fr→1fr .35s spring; answer clamp(0.78rem, 0.7rem + 0.35vw,
+  0.95rem), left inset clamp(36px, 3.5vw + 17px, 63px) aligns under question text.
+- JS `[data-faq-acc]` in main.js: one open per group, first item ships open per group.
