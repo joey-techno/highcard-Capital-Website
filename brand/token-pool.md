@@ -49,7 +49,7 @@ Next container picks a bg that keeps alternating light/dark or light/light-shift
 ## Lines, cards, media
 - Hairline: 1px `rgba(143,168,152,.35)`; bookends lighter `.2`
 - Card radius: `clamp(12px, 1.6vw, 24px)`; dark-bg card border `rgba(245,240,225,.13)`, shadow `0 44px 90px -34px rgba(0,18,10,.85)`
-- Fluid full-form image: width `clamp(150px, 40vw, 560px)`, `height:auto`, never crop
+- Fluid full-form image (C4 why photo): width `max(150px, min(40vw, 129px + 19.82vw, 194.6px + 13.18vw, 251.9px + 8.18vw, 359px))`, `height:auto`, never crop — segments derived from the copy column's fluid height (4 single-line checklist rows + gaps + btn) at 3:2, caps at 988/1154/1375px viewports, `40vw` governs <=~640. DEPENDS ON exactly 4 one-line `<li>` + a 3:2 photo (cloning contract).
 - Hover language: bg tint `rgba(143,168,152,.09)` or translateY lift + soft shadow; transitions ~.25s; always reduced-motion safe
 
 ## Buttons
@@ -265,6 +265,55 @@ chips, icons, values) MUST follow this at ALL times:
    no mid-word breaks, no element plateaus, no horizontal overflow. If a nowrap value can't fit
    the narrowest column, shrink the cqi slope or narrow the column — never re-wrap it.
 Applies to every new container from now on. See [[hcc-container-fluid-forms]].
+
+## LOCKED RULE · Service page cloning (carbon copies), owner 2026-07-28
+The 5 other service pages (equipment-financing, revenue-financing, sba-loans, heloc,
+line-of-credit) become EXACT structural copies of term-loans — only wording and photos
+differ. Sizing identity is guaranteed by SHARING, not copying:
+
+1. Byte-copy `site-src/pages/term-loans.html`; swap content slots only (text, img
+   src/alt). Never edit or duplicate the shared `th-*` CSS — every clamp, break
+   (520/560/700), cqi query, and animation is one shared rule set.
+2. Per-page CSS = ONE `body[data-page="<id>"]` block appended after the th-* section:
+   hero photo vars + retuned title slopes ONLY. Slope method (same screen fill at every
+   viewport): `Y_new = Y_ref × (width_ref / width_new)` at equal font size.
+   Refs: C3 3.96vw · C4 3.69vw · C5 3.8vw · C6 4.6vw; ≤520 slopes = ×1.2.
+3. Hero photo is CSS-side: `.th-hero` carries `--th-hero-img` / `--th-hero-pos`
+   defaults (refactor once); page block overrides the two vars. Scrim written once.
+4. Byte-identical on every page (zero input): trust band · testimonials ·
+   "Let's get in touch" — keep the INLINE touch section with `-touch` form ids,
+   NEVER `{{TOUCH}}` (duplicate ids vs hero form break forms.js). Extend the
+   term-scoped touch-title rule to each new page id.
+5. Text length budgets = same line counts = same heights: hero sub ~2 lines (~85
+   chars), C4 checklist exactly 4 one-line items (photo-width formula depends on it),
+   C5 questions one line + short pills, C6 labels one word-ish.
+6. Photos: hero landscape graded dark like term-hero (identical scrim on top) ·
+   C4 3:2 1200×800 · C6 cards 560×700. Owner decision 2026-07-28: C6 industries are
+   PER-PAGE (relevant to each product); all new photos generated via OpenAI API.
+7. Per-page content is planned FIRST in `brand/page-plans/<page>.md` (step-by-step
+   workbook, owner locks every DECISION line) — no building until the workbook and
+   photos are approved. One page per chat/session.
+8. QA = side by side vs term-loans at 360/520/700/1030/1440 + sweep to 1450: heights
+   match, breaks fire at the same px, one-liners hold, no horizontal overflow.
+9. LOCKED · Hero headroom (owner 2026-07-28, rbf incident): the subject's head must be
+   FULLY CLEAR at every viewport — never touching or cut by the hero's top edge.
+   a) Generation prompts must ask for clear space above the head.
+   b) Convert heroes FULL-FRAME (no cover-crop to a wider aspect — that's what clipped
+      the rbf hero inside the file) and pin `--th-hero-pos` vertical to `0%` when the
+      head sits high, so overflow always trims from the BOTTOM.
+   c) If a picked take still lacks headroom in the file, OUTPAINT it (pattern:
+      `brand/ai/extend-rbf-hero.mjs` — downscale ~85%, sharp-cli `extend` transparent
+      top+right, OpenAI edits endpoint fills only the transparent bands), then convert
+      the extended master full-frame.
+   d) QA with a screenshot at desktop width AND confirm the crop math: vertical 0% =
+      photo top edge always visible, so file headroom = on-screen headroom.
+10. LOCKED · Card framing (owner 2026-07-28): C6 industry-card people are horizontally
+   CENTERED, waist-up, ≥6% headroom in the 560×700 file. Prompts say "subject
+   horizontally centered, waist-up, generous clear space above the head". Converting
+   from 1024×1536 sources: pick an explicit face-centered extract region, two-pass
+   sharp-cli (`extract` → `resize 560 700 -f webp -q 82`), NEVER blind `--fit cover`.
+   The shared ≤700px rule `object-position:center 20%` biases the square crop to
+   protect heads — never remove it. QA both 4:5 and square crops before shipping.
 
 ## Process rules (every new container)
 1. clamp() needs spaces around + and - or the rule silently drops.

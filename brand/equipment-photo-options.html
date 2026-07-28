@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Equipment Financing · Photo Options</title>
+<style>
+  :root { --felt:#00331d; --racing:#004225; --cream:#f5f0e1; --sage:#8fa898; --ink:#0b1f16; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:'Poppins', system-ui, sans-serif; background:#f4f6f4; color:var(--ink); padding:32px clamp(16px,4vw,64px) 80px; }
+  h1 { font-size:clamp(1.4rem,3vw,2.2rem); margin-bottom:6px; } h1 .dot{color:var(--sage);}
+  .note { color:#4b5d54; margin-bottom:36px; font-size:.95rem; }
+  h2 { margin:44px 0 14px; font-size:1.2rem; }
+  .lbl { display:inline-block; background:var(--racing); color:var(--cream); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border-radius:999px; margin-bottom:10px; }
+
+  /* Hero previews: site fade + copy overlaid, top of frame like background-position center 13% */
+  .hero-opt { margin-bottom:30px; }
+  .hero-frame { position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/7; background-size:cover; background-position:center 13%; box-shadow:0 24px 60px -30px rgba(0,18,10,.5); }
+  .hero-frame::after { content:''; position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(0,51,29,.97), rgba(0,51,29,.90) 12%, rgba(0,51,29,.58) 30%, rgba(0,51,29,.22) 48%, rgba(0,51,29,.10) 68%, rgba(0,51,29,.06)); }
+  .hero-copy { position:absolute; z-index:2; left:clamp(18px,4%,56px); bottom:14%; color:var(--cream); max-width:46%; }
+  .hero-copy h3 { font-size:clamp(1.3rem,3.4vw,3rem); line-height:1; letter-spacing:-.022em; white-space:nowrap; }
+  .hero-copy h3 .dot{color:var(--sage);}
+  .hero-copy p { margin-top:10px; font-size:clamp(.7rem,1.2vw,1rem); line-height:1.45; opacity:.94; }
+</style>
+</head>
+<body>
+  <h1>Equipment Financing · Photo Options<span class="dot">.</span></h1>
+  <p class="note">Both hero candidates are shown with the REAL site fade and your locked headline on top, framed roughly as the page crops them. This is the only new photo for this page — all four industry cards reuse photos you already approved. Pick A or B.</p>
+
+  <h2>Hero background — pick A or B</h2>
+  <div class="hero-opt"><span class="lbl">Hero A · Operator in hi-vis beside the forklift</span>
+    <div class="hero-frame" style="background-image:url('ai/photos-equipment/equipment-hero-a.png')">
+      <div class="hero-copy"><h3>Equipment Financing<span class="dot">.</span></h3><p>Get the gear working for you now and spread the cost over its working life.</p></div>
+    </div>
+  </div>
+  <div class="hero-opt"><span class="lbl">Hero B · Owner with clipboard, dock light</span>
+    <div class="hero-frame" style="background-image:url('ai/photos-equipment/equipment-hero-b.png')">
+      <div class="hero-copy"><h3>Equipment Financing<span class="dot">.</span></h3><p>Get the gear working for you now and spread the cost over its working life.</p></div>
+    </div>
+  </div>
+</body>
+</html>

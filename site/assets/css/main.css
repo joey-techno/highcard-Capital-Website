@@ -1659,12 +1659,14 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
    so the home-page .sec-touch title (shared sec-title token) is untouched.
    All 4 modes: slope governs below the 2.43rem cap across the whole range;
    relaxed slope <=520 per pool head recipe. */
-body[data-page="term"] .sec-touch .touch__title {
+/* MODES-OK all 4 modes: scope extension only (term + loc carbon copy, owner-locked
+   cloning contract 2026-07-28) — values unchanged, same rule now serves both pages */
+:is(body[data-page="term"], body[data-page="loc"], body[data-page="rbf"], body[data-page="equipment"]) .sec-touch .touch__title {
   font-family:var(--font-d); font-weight:700; letter-spacing:-.022em;
   line-height:1.05; white-space:nowrap; font-size:min(2.43rem, 4.5vw);
 }
 @media (max-width:520px) {
-  body[data-page="term"] .sec-touch .touch__title { font-size:min(2.43rem, 5.4vw); }
+  :is(body[data-page="term"], body[data-page="loc"], body[data-page="rbf"], body[data-page="equipment"]) .sec-touch .touch__title { font-size:min(2.43rem, 5.4vw); } /* MODES-OK scope extension only */
 }
 /* MODES-OK owner-confirmed 2026-07-27: SITEWIDE touch layout (was term-loans-only) —
    reach-us left, form right, NEVER stack, at all 4 modes on every page (owner: "I
@@ -2171,13 +2173,17 @@ body[data-page="term"] .sec-touch .touch__title {
   --th-formw:clamp(202px, 22vw + 48px, 422px);     /* content -12%; skinny on phones, holds the one-line header */
   --th-gap:clamp(16px, 0.9rem + 1.9vw, 48px);
   --th-minh:clamp(300px, 5vw + 232px, 404px);      /* hero ~20% shorter so the trust band shows into Container 2 */
+  /* photo swaps per page via these two vars (body[data-page] override); the
+     6-stop scrim is written ONCE here — never duplicate it (cloning contract) */
+  --th-hero-img:url('../img/term-hero.webp');
+  --th-hero-pos:center 13%;
   position:relative; overflow:hidden;
   background-image:
     linear-gradient(to top,
       rgba(0,51,29,.97) 0%, rgba(0,51,29,.90) 12%, rgba(0,51,29,.58) 30%,
       rgba(0,51,29,.22) 48%, rgba(0,51,29,.10) 68%, rgba(0,51,29,.06) 100%),
-    url('../img/term-hero.webp');
-  background-size:cover; background-position:center 13%; background-repeat:no-repeat;
+    var(--th-hero-img);
+  background-size:cover; background-position:var(--th-hero-pos); background-repeat:no-repeat;
 }
 .th-in {
   position:relative; min-height:var(--th-minh);
@@ -2264,6 +2270,43 @@ body[data-page="term"] .sec-touch .touch__title {
             font-size:clamp(0.89rem, 0.78rem + 0.47vw, 1.09rem); line-height:1.6; }
 
 /* ============================================================
+   TH-LEDGER — THE NUMBERS (shared component, first used on sba).
+   Open numbers strip on WHITE, directly under the C3 intro (owner
+   2026-07-28: no felt band, no eyebrow/title, no outline, no CTA).
+   Hairline dividers only; the felt C4 below keeps its normal seam
+   pull, so the ledger's bottom padding absorbs it. Layout: 1×4 row
+   >700px (main site + big burger), 2×2 ≤700px (small burger +
+   mobile). Every value fluid per-pixel, live ~1450.
+   ============================================================ */
+.th-ledger { position:relative; background:var(--white);
+  /* pulls up over .th-next's global section padding EXACTLY like .th-why does,
+     so the strip lands where the felt used to — same rhythm as term-loans */
+  margin-top:clamp(-72px, calc(-4px - 6.3vw), -30px); /* MODES-OK seam pull, fluid all 4 modes */
+  padding-top:clamp(10px, 1.2vw, 22px); /* MODES-OK all 4 modes */
+  /* bottom = compact pad + the seam C4 eats back (same clamp as .th-why margin-top) */
+  padding-bottom:calc(clamp(28px, 1.6vw + 14px, 46px) + clamp(30px, 4px + 6.3vw, 72px)); } /* MODES-OK fluid, all 4 modes */
+.th-ledger__grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr));
+  max-width:980px; margin-inline:auto;
+  gap:clamp(10px, 0.5rem + 0.6vw, 16px); } /* MODES-OK fluid card gap, all 4 modes */
+/* stamp-card cells — same language as the C5 answer stamps (owner pick A, 2026-07-28) */
+.th-ledger__cell { text-align:center; min-width:0;
+  background:rgba(0,66,37,.05); border:1px solid rgba(0,66,37,.14);
+  border-radius:clamp(10px, 1.2vw, 16px); /* MODES-OK fluid radius, all 4 modes */
+  padding:clamp(14px, 1vw + 8px, 26px) clamp(8px, 1vw, 18px); } /* MODES-OK fluid cell pad, all 4 modes */
+.th-ledger__label { font-family:var(--font-d); font-weight:600; color:var(--sage-deep);
+  text-transform:uppercase; letter-spacing:.26em; white-space:nowrap; line-height:1;
+  font-size:clamp(8.5px, 4.5px + 0.55vw, 12.5px);  /* MODES-OK main + big burger, one line at 701px worst case */
+  margin-bottom:clamp(6px, 0.4rem + 0.3vw, 12px); }
+.th-ledger__val { font-family:var(--font-d); font-weight:700; color:var(--racing);
+  white-space:nowrap; line-height:1; font-variant-numeric:tabular-nums;
+  font-size:clamp(15px, 8.5px + 1.068vw, 24px); }  /* MODES-OK main + big burger, "Prime + 2 to 3%" fits at 701px, live to 1450 */
+@media (max-width:700px) {
+  .th-ledger__grid { grid-template-columns:repeat(2, minmax(0,1fr)); } /* MODES-OK small burger + mobile go 2×2, shared card gap */
+  .th-ledger__label { font-size:clamp(8px, 6px + 0.5vw, 11px); }       /* MODES-OK small burger + mobile fluid */
+  .th-ledger__val { font-size:clamp(14px, 12.8px + 0.88vw, 20px); }    /* MODES-OK small burger + mobile fluid, fits 360px cells */
+}
+
+/* ============================================================
    CONTAINER 4 — WHY IT MAKES SENSE (emerald spotlight)
    ============================================================ */
 .th-why { position:relative; overflow:hidden; margin-top:clamp(-72px, calc(-4px - 6.3vw), -30px);
@@ -2287,8 +2330,13 @@ body[data-page="term"] .sec-touch .touch__title {
   font-family:var(--font-d); font-weight:500; color:var(--cream);
   font-size:clamp(0.72rem, 0.56rem + 0.68vw, 0.98rem); }
 .th-why__list .icon { width:clamp(14px,2.34vw,20.7px); height:clamp(14px,2.34vw,20.7px); color:var(--sage); flex:none; }
-/* image keeps full form (no crop); width tracks its column, height auto -> fluid scale */
-.th-why__media { position:relative; width:clamp(150px, 40vw, 560px); }
+/* image keeps full form (no crop); width tracks its column, height auto -> fluid scale.
+   MODES-OK big burger + main site: width derived from the copy column's fluid height
+   (4 li rows x 1.65lh + gaps + margin + btn) x 3:2 ratio, so photo height == checklist+btn
+   height per-pixel; segments cap where each copy clamp caps (988/1154/1375px viewports);
+   40vw still governs <=~640 so small burger + mobile keep their proven look */
+.th-why__media { position:relative;
+  width:max(150px, min(40vw, 129px + 19.82vw, 194.6px + 13.18vw, 251.9px + 8.18vw, 359px)); }
 .th-why__card { margin:0; border-radius:clamp(12px, 1.6vw, 24px); overflow:hidden;
   border:1px solid rgba(245,240,225,.13); box-shadow:0 44px 90px -34px rgba(0,18,10,.85); }
 .th-why__card img { display:block; width:100%; height:auto; }
@@ -2383,6 +2431,11 @@ body[data-page="term"] .sec-touch .touch__title {
     font-size:clamp(0.624rem, 0.544rem + 0.336vw, 0.784rem); }
   /* MODES-OK owner-confirmed: small burger + mobile cards go square */
   .th-ind__card { aspect-ratio:1/1; }
+  /* MODES-OK small burger + mobile only (no vertical crop happens >700px where cards
+     are 4:5 = the file ratio): the square crop trims 20% of the file height — bias it
+     to cut 4% top / 16% bottom so heads keep their headroom (owner 2026-07-28:
+     people centered, no head cut off) */
+  .th-ind__card img { object-position:center 20%; }
 }
 /* MODES-OK owner-confirmed: small burger + mobile slope for short headline */
 @media (max-width:520px) { .th-ind__title { font-size:min(2.43rem, 5.6vw); } }
@@ -2469,4 +2522,95 @@ body[data-page="term"] .sec-touch .touch__title {
    wrap when the column gets too narrow to hold one line */
 @media (max-width:560px) {
   .th-title { white-space:normal; }
+}
+
+/* ============================================================
+   LINE OF CREDIT — page overrides. Shares th-* verbatim (cloning
+   contract in token-pool.md); per-page surface is ONLY the hero photo
+   var + the two retuned title slopes below. MODES-OK all 4 modes:
+   owner-locked cloning contract 2026-07-28 — identical fluidity to
+   term-loans in every mode; same min(2.43rem, Xvw) recipe live across
+   the full range (term's C3/C4 titles have no <=520 relax either),
+   slope retuned by measured width ratio so the new headline fills the
+   same screen fraction at every px. Hero title keeps the shared clamp
+   ("Line of Credit." fits at cap: 419px in a ~770px column).
+   ============================================================ */
+body[data-page="loc"] .th-hero { --th-hero-img:url('../img/loc-hero.webp'); } /* MODES-OK photo swap only, scrim + pos shared */
+/* Hero title ALWAYS one line (owner 2026-07-28). MODES-OK small burger + mobile only
+   (<=700px): at >=~500px the shared clamp is the smaller value so sizing stays
+   byte-identical to term-loans; below that the title shrinks per-pixel to fit the
+   column instead of wrapping. Sized with plain vw math (NOT cqi — container queries
+   failed silently in the owner's browser 2026-07-28): column = 0.881vw - 216.4px
+   (container pad 5vw x2 + 202px form + gap), "Line of Credit." = 5.957em, 97% fill
+   → calc(14.3vw - 36px). Verified fit 340-700px. */
+@media (max-width:700px) {
+  /* MODES-OK: px-only (no rem) so enlarged browser/OS text settings can't blow the
+     title past its column; calc margin also absorbs scrollbar-inclusive vw */
+  body[data-page="loc"] .th-title { white-space:nowrap; font-size:min(clamp(30.4px, 12.64px + 3.87vw, 70.4px), calc(13.5vw - 35px)); }
+}
+
+/* ============================================================
+   REVENUE FINANCING — page overrides. Same carbon-copy contract as
+   loc above (token-pool.md): hero photo var + width-ratio slope
+   retunes + the locked one-line hero recipe ONLY. MODES-OK all 4
+   modes: same min(2.43rem, Xvw) recipe live across the full range,
+   slopes retuned by measured width ratio so each headline fills the
+   same screen fraction at every px as its term-loans reference.
+   ============================================================ */
+body[data-page="rbf"] .th-hero { --th-hero-img:url('../img/rbf-hero.webp'); --th-hero-pos:22% 0%; } /* MODES-OK photo swap + pos tune (subject in left third; vertical 0% pins the crop to the photo's top edge so his hair never clips — source has ~2% headroom), scrim shared */
+/* "Capital that moves at your speed." 1353.3 vs ref 1326.1 → 3.96 × .9799 */
+body[data-page="rbf"] .th-intro__title { font-size:min(2.43rem, 3.88vw); } /* MODES-OK all 4 modes, width-ratio retune */
+/* "Built for businesses with real momentum." 1680.6 vs ref 1600.3 → 3.69 × .9522 */
+body[data-page="rbf"] .th-why__title { font-size:min(2.43rem, 3.51vw); } /* MODES-OK all 4 modes, width-ratio retune */
+/* Hero title STACKS on small screens (owner 2026-07-28): "Revenue Based" line 1,
+   "Financing." line 2, via toggle spans in the page markup. Main site + big burger
+   (>700px) hide " Based" and show the one-line "Revenue Financing." at the shared
+   clamp. MODES-OK small burger + mobile (<=700px): two block lines, font shrinks
+   per-pixel to fit the column with plain vw math (NOT cqi — container queries failed
+   silently in the owner's browser): longest line "Revenue Based" = 6.186em, column
+   = 0.881vw - 216.4px, 97% fill → calc(13.8vw - 35px); above ~480px the shared
+   clamp is smaller and wins. Verified fit 340-700px. */
+body[data-page="rbf"] .th-title .th-title__based { display:none; }
+@media (max-width:700px) {
+  /* MODES-OK: px-only (no rem) so enlarged browser/OS text settings can't blow the
+     title past its column; calc margin also absorbs scrollbar-inclusive vw */
+  body[data-page="rbf"] .th-title { white-space:nowrap; font-size:min(clamp(30.4px, 12.64px + 3.87vw, 70.4px), calc(13vw - 35px)); }
+  body[data-page="rbf"] .th-title .th-title__based { display:inline; }
+  body[data-page="rbf"] .th-title .th-title__l1,
+  body[data-page="rbf"] .th-title .th-title__l2 { display:block; }
+}
+/* "Ready funds for whatever comes next." 1544.7 vs ref 1326.1 → 3.96 × .8585 */
+body[data-page="loc"] .th-intro__title { font-size:min(2.43rem, 3.4vw); } /* MODES-OK all 4 modes, width-ratio retune */
+/* "Funds on hand for the moments that matter." 1796.6 vs ref 1600.3 → 3.69 × .891 */
+body[data-page="loc"] .th-why__title { font-size:min(2.43rem, 3.29vw); } /* MODES-OK all 4 modes, width-ratio retune */
+
+/* ============================================================
+   EQUIPMENT FINANCING — page overrides. Same carbon-copy contract
+   as loc/rbf above (token-pool.md): hero photo var + width-ratio
+   slope retunes + the locked hero title recipe ONLY. MODES-OK all
+   4 modes: same min(2.43rem, Xvw) recipe live across the full
+   range, slopes retuned by measured width ratio.
+   ============================================================ */
+body[data-page="equipment"] .th-hero { --th-hero-img:url('../img/equipment-hero.webp'); --th-hero-pos:22% 13%; } /* MODES-OK photo swap + pos tune (subject sits in the left third; keeps her visible in narrow crops), scrim shared */
+/* "The machine pays for itself." 1117.1 vs ref 1326.1 → 3.96 × 1.1871 */
+body[data-page="equipment"] .th-intro__title { font-size:min(2.43rem, 4.7vw); } /* MODES-OK all 4 modes, width-ratio retune */
+/* C4 title kept from term-loans → no retune. Hero title: one-line
+   "Equipment Financing." >700px = 10.84em TRUE rendered width (range-probe measured;
+   the scratch measure harness reads ~16% low — fallback font). At the shared clamp it
+   would overflow the copy column 701-760px, so fit-cap it: big-burger column =
+   66.1vw - 62.4px (10vw pads + 22vw+48 form + 14.4px+1.9vw gap), 95% fill / 10.84em
+   → calc(5.79vw - 5.5px); the px clamp is smaller from ~950px up and wins there.
+   Px-only re-declare of the shared clamp so an enlarged browser/OS rem can't
+   oversize it. MODES-OK main + big burger. */
+body[data-page="equipment"] .th-title { font-size:min(clamp(30.4px, 12.64px + 3.87vw, 70.4px), calc(5.79vw - 5.5px)); }
+/* Hero title STACKS on small screens (owner 2026-07-28): "Equipment" line 1,
+   "Financing." line 2 via toggle spans (rbf pattern). MODES-OK small burger +
+   mobile (<=700px): longest line "Equipment" = 5.31em TRUE width, column =
+   0.881vw - 216.4px, 95% fill → calc(15.7vw - 39px); above ~436px the shared px
+   clamp is smaller and wins. Px-only, no rem, no cqi (both failed in the owner's
+   browser 2026-07-28). */
+@media (max-width:700px) {
+  body[data-page="equipment"] .th-title { white-space:nowrap; font-size:min(clamp(30.4px, 12.64px + 3.87vw, 70.4px), calc(15.7vw - 39px)); }
+  body[data-page="equipment"] .th-title .th-title__l1,
+  body[data-page="equipment"] .th-title .th-title__l2 { display:block; }
 }
