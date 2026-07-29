@@ -18,9 +18,19 @@
   if (nav) {
     const cur = doc.body.dataset.nav;
     if (cur) { const el = nav.querySelector('[data-nav-item="' + cur + '"]'); if (el) el.classList.add('is-current'); }
-    const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 24);
+    /* burger-mode contact strip: it scrolls away with the page while the white bar
+       follows it up per-pixel and pins at the top — no snap point. */
+    const topbar = doc.querySelector('.topbar');
+    const onScroll = () => {
+      nav.classList.toggle('is-scrolled', window.scrollY > 24);
+      if (topbar) {
+        if (getComputedStyle(topbar).display === 'none') nav.style.top = '';
+        else nav.style.top = Math.max(0, topbar.offsetHeight - window.scrollY) + 'px';
+      }
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
 
     // Funding dropdown: real disclosure semantics on top of the CSS hover
     const dropBtn = nav.querySelector('[data-nav-item="funding"]');

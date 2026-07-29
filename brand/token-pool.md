@@ -83,6 +83,7 @@ Every dimension live on term-loans today (source: main.css TERM-LOANS section).
 - Pill: ink bg, border cream .10, radius `clamp(12px, 8px + 0.8vw, 20px)`, pad `clamp(13px, 0.5rem + 1vw, 24px)` x `clamp(20px, 0.9rem + 1.8vw, 44px)`, item gap `clamp(16px, 0.8rem + 1.8vw, 44px)`, shadow `0 30px 70px -28px rgba(0,18,10,.75)`
 - Labels `clamp(0.6rem, 0.48rem + 0.28vw, 0.8rem)` .09em caps; name `clamp(0.98rem, 0.6rem + 1.05vw, 1.6rem)`; numbers `clamp(1.05rem, 0.62rem + 1.35vw, 1.9rem)` tabular; item/body gaps `clamp(5px, 0.25rem + 0.4vw, 11px)` / `10px`
 - Stars: tiles `clamp(10px, 0.34rem + 0.58vw, 15px)` sq, gap `clamp(2px, 0.3vw, 5px)`, radius `clamp(2px, 0.2vw, 4px)`, Trustpilot green #00B67A, white inline SVG at 66%; divider 1px, min-height `clamp(34px, 3.4vw, 58px)`
+- OWNER LOCK 2026-07-29: item order Funded | Trustpilot (middle) | Businesses Served on all 6 service pages; the homepage `.stat-bridge` white cards mirror the same order and content — its Google card was replaced by Excellent Rated / bold Trustpilot wordmark (`.stat-card__tp`, nowrap, TRUE 476.9 @100px, <=920 fit guard `min(calc(12px + 1.74vw), calc(6.05vw - 4.2px))`) + shared `.th-stars` (margin-top 8px desktop / `calc(2px + 1vw)` <=920). Owner tried the dark ink recolor on the home cards and REVERTED to white — do not re-propose.
 
 ### C3 · Intro (`.th-intro`, on --white via .th-next)
 - Seam pulls: margin-top `clamp(-58px, calc(13px - 4.95vw), -2px)`, margin-bottom `clamp(-150px, calc(-11px - 4.95vw), 0px)`, padding-bottom `clamp(24px, 2vw, 40px)`
@@ -598,3 +599,10 @@ gap clamp(5px, 1.3cqi, 14px); glyph clamp(12.8px, 1.52cqi + 12px, 28.8px) racing
 min(clamp(11.2px, 2.08cqi + 9.6px, 32px), 4.4cqi) — owner -20% round on the fluid
 curve; grows per-pixel to 32px at the 1080 box, cqi shrink-to-fit guard (est TRUE
 ~1611 @100px) holds it inside to 320.
+
+## POOL · TOPBAR contact strip (burger modes only, owner 2026-07-29 — Capital Quickly ref)
+- `.topbar` racing bg, cream text, z 110 (under nav 120 / menu 115), position:absolute top:0 → scrolls away; nav follows per-pixel via main.js (`nav.style.top = max(0, stripH - scrollY)`), pins at 0; `body.menu-open .nav { top:0 !important }`
+- Tokens <=920: `--bar-h:66px`, `--strip-h:calc(28px + 1.6vw)` (one line), `--nav-h = bar + strip` (all hero/scroll offsets clear the stack); <=700: `--strip-h:calc(48px + 2.2vw)`, grid 1fr auto, phone row over email row, APPLY spans both rows right
+- Items: Poppins 600 `calc(10px + .5vw)` (<=700 `calc(10.5px + .55vw)`, email fit-guard `min(..., calc(5.4vw - 8px))`), nowrap ALWAYS (strip height must never jump); icons `calc(11px + .5vw)` cream (racing default vanishes on the strip)
+- APPLY: cream box, racing text, uppercase .08em, 700; h `calc(20px + 1.2vw)` / <=700 `calc(24px + 2.6vw)`, radius `calc(5px + .3vw)`
+- White bar <=920: logo left `.nav__logo { margin-right:auto }`, burger right (`order:3`), `.nav__cta { display:none }` — no links, no phone pill, no second Apply (owner: do NOT copy Capital Quickly's desktop link-wrap layout); desktop >=921 untouched

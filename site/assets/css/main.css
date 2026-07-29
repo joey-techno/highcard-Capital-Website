@@ -259,6 +259,10 @@ h3, .h3 { font-size:var(--fs-h3); line-height:1.3; letter-spacing:-.01em; }
 /* ============================================================
    NAV
    ============================================================ */
+/* burger-mode contact strip (Capital Quickly reference, owner 2026-07-29) — desktop never shows it.
+   MODES-OK: display-only line; strip sizing lives in the <=920 and <=700 blocks per mode */
+.topbar { display:none; }
+
 .nav {
   position:fixed; inset:0 0 auto 0; z-index:120; height:var(--nav-h);
   display:flex; align-items:center;
@@ -625,7 +629,9 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   background:var(--sage); margin:24px auto 0;
 }
 
-/* stat bridge — white proof cards straddling the products / how-it-works seam */
+/* stat bridge — white proof cards straddling the products / choose-us seam
+   (2026-07-29: Google card replaced by the Trustpilot lockup reusing the shared
+   .th-stars; owner tried the dark th-trust palette and reverted to white) */
 .stat-bridge { position:relative; z-index:5; margin:-54px 0; }
 .stat-bridge__row { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px; }
 .stat-card {
@@ -639,11 +645,8 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   font-family:var(--font-d); font-weight:600; font-size:clamp(28px, 3vw, 40px);
   color:var(--racing); letter-spacing:-.02em; line-height:1; font-variant-numeric:tabular-nums;
 }
-.stat-card__stars {
-  color:#FBBC04; /* Google review-star gold — third-party rating iconography, exempt from the no-gold brand rule */
-  font-size:18px; letter-spacing:7px; padding-left:7px; /* left pad balances the trailing letter-space so the run centers true */
-  line-height:1; margin-top:8px;
-}
+.stat-card__tp { white-space:nowrap; } /* Trustpilot wordmark stays one line; TRUE 476.9 @100px */
+.stat-card .th-stars { margin-top:8px; } /* MODES-OK main-site spacing under the wordmark */
 .stat-card__label {
   font-family:var(--font-d); font-weight:600; font-size:13px; letter-spacing:.01em;
   color:var(--sage-deep); margin-bottom:10px;
@@ -900,11 +903,11 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   box-shadow:inset 0 1px 0 rgba(255,255,255,.8), 0 30px 60px -28px rgba(0,10,5,.75);
 }
 .rev__top { display:flex; align-items:center; justify-content:center; }
-/* Trustpilot-style star tiles in review gold */
+/* Trustpilot-style star tiles in Trustpilot green (owner 2026-07-29, was review gold #FBBC04) */
 .tp { display:inline-flex; gap:4px; }
 /* MODES-OK: star tiles -1% (all 4 modes) */
 .tp i {
-  width:clamp(16.83px, .99vw + 11.88px, 19.8px); height:clamp(16.83px, .99vw + 11.88px, 19.8px); border-radius:3.5px; background:#FBBC04;
+  width:clamp(16.83px, .99vw + 11.88px, 19.8px); height:clamp(16.83px, .99vw + 11.88px, 19.8px); border-radius:3.5px; background:#00B67A;
   display:grid; place-items:center;
 }
 .tp i::before { content:'\2605'; color:#fff; font-size:clamp(11.88px, .69vw + 8.41px, 13.86px); line-height:1; translate:0 -0.5px; }
@@ -1817,34 +1820,40 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .nav__phone { padding-inline:0; width:clamp(32px, 1.4vw + 24px, 38px); justify-content:center; }
 }
 @media (max-width:920px) {
-  :root { --nav-h:66px; }
+  /* MODES-OK: all 3 burger modes — header is now a two-layer stack (Capital Quickly reference,
+     owner 2026-07-29): racing contact strip (scrolls away) + white bar (pins). --bar-h is the
+     white bar itself; --strip-h is deterministic (calc px+vw, content is nowrap-guarded so it can
+     never rewrap taller); --nav-h stays the TOTAL stack so every downstream offset (heroes,
+     scroll-margins) clears the whole header at page top. */
+  :root { --bar-h:66px; --strip-h:calc(28px + 1.6vw); --nav-h:calc(var(--bar-h) + var(--strip-h)); }
+  /* MODES-OK: all 3 burger modes — bar keeps its 66px height; it starts below the strip and
+     main.js walks top -> 0 per-pixel as the strip scrolls off (no snap point) */
+  .nav { height:var(--bar-h); top:var(--strip-h); }
+  body.menu-open .nav { top:0 !important; } /* menu open: bar pins so the one-page menu budget holds */
+  /* contact strip — one line in big burger: phone · email ........ [APPLY]
+     MODES-OK: all 3 burger modes (this block), <=700 stacks it in two rows below */
+  .topbar { display:block; position:absolute; top:0; left:0; right:0; z-index:110; height:var(--strip-h); background:var(--racing); color:var(--cream); }
+  .topbar__in { height:100%; display:flex; align-items:center; gap:calc(10px + 1.8vw); } /* MODES-OK big burger row gap, fluid 701-920 */
+  .topbar__item { display:inline-flex; align-items:center; gap:calc(5px + .4vw); font-family:var(--font-d); font-weight:500; font-size:calc(10px + .5vw); line-height:1; color:var(--cream); white-space:nowrap; } /* MODES-OK all burger modes, nowrap = strip height can never jump; weight 500 (owner: thinner, 2026-07-29) */
+  .topbar__item .icon { width:calc(11px + .5vw); height:calc(11px + .5vw); flex:none; color:var(--cream); } /* MODES-OK all burger modes; cream overrides the racing .icon default, which vanishes on the racing strip */
+  .topbar__apply { margin-left:auto; display:inline-flex; align-items:center; justify-content:center; flex:none; background:var(--cream); color:var(--racing); font-family:var(--font-d); font-weight:500; font-size:calc(9.5px + .5vw); letter-spacing:.08em; text-transform:uppercase; line-height:1; height:calc(17px + 1vw); padding:0 calc(8px + 1.1vw); border-radius:calc(4px + .3vw); } /* MODES-OK all burger modes, cream box like the reference; owner 2026-07-29: thinner letters, smaller box */
   body { padding-bottom:86px; } /* clearance for the sticky call/apply bar */
-  /* Burger-mode nav row: [≡ burger] [logo] ........ [phone icon] [Apply Now]
-     MODES-OK: applies across all 3 burger modes (big 701–920, small 481–700, mobile ≤480);
-     logo 29px is 10% over the old 26px; phone is icon-only so it stays a fixed square in every burger width. */
+  /* Burger-mode white bar: [logo] ................. [≡ burger] — clean like the reference
+     MODES-OK: applies across all 3 burger modes (big 701–920, small 481–700, mobile ≤480) */
   .nav__links { display:none; }
   .nav__in > nav[aria-label="Primary"] { display:none; } /* empty links wrapper — remove so it doesn't take flex space */
-  /* MODES-OK: all 3 burger modes. burger↔logo gap and cta gap are fluid (calc px+vw) so the row
-     tightens toward 390px and never overflows; both terms scale, per the fluid rule. */
-  .nav__burger { display:block; flex:none; order:-2; margin-right:calc(2px + 1vw); }
+  /* MODES-OK: all 3 burger modes. burger moved to the RIGHT edge (owner 2026-07-29); gap fluid */
+  .nav__burger { display:block; flex:none; order:3; margin-left:calc(2px + 1vw); }
   /* MODES-OK: all 3 burger modes. logo fluid, +15% (owner 2026-07): ~26.4px at 390px → 33.4px by the
      920px handoff. Both terms scaled by 1.15 so it stays fluid/per-pixel, just 15% larger everywhere. */
-  .nav__logo { order:-1; height:calc(23.575px + .7475vw); margin-right:auto; }
-  /* MODES-OK: all 3 burger modes — Apply + phone share ONE fluid height token (--navbtn) so the two
-     boxes are always identical in height. --navbtn: ~33.4px at 390px → 40px at the 920 handoff. */
-  .nav__cta { gap:calc(4px + .8vw); flex:none; align-items:center; --navbtn:calc(28px + 1.3vw); }
-  /* phone = tap-to-call icon-only white/green pill before Apply. A GUARANTEED square: width == height
-     == --navbtn (same as Apply), so it's a clean box, not a tall pill. Icon centered by inline-flex. */
-  .nav__phone {
-    display:inline-flex; align-items:center; justify-content:center; flex:none;
-    height:var(--navbtn); width:var(--navbtn); padding:0;
-  }
-  .nav__phone span:not(.icon) { display:none; }
-  .nav__phone .icon { width:calc(15px + .9vw) !important; height:calc(15px + .9vw) !important; } /* ~18.5px→26px, scales with the box */
-  /* MODES-OK: all 3 burger modes — Apply uses the SAME --navbtn height (not padding) so it matches the
-     phone exactly; horizontal padding fluid so it fits beside the bigger logo at 390px. "Now" hidden. */
-  .nav__apply { height:var(--navbtn); padding:0 calc(9px + 1.4vw); font-size:calc(11.5px + .3vw); flex:none; }
-  .nav__apply .arr, .nav__apply-now { display:none; }
+  .nav__logo { order:-1; height:calc(31.8px + 1.01vw); margin-right:auto; } /* MODES-OK all 3 burger modes — owner 2026-07-29: logo +35% so it fills the clean bar (~35.7px at 390 → ~41px at 920, inside the 66px bar) */
+  /* phone pill + Apply removed from the white bar (owner 2026-07-29) — they live in the strip
+     and in the burger menu's cream boxes. MODES-OK: display-only, all 3 burger modes */
+  .nav__cta { display:none; }
+  /* the home hero eclipse ring is anchored to the hero's top edge; the strip made the header
+     stack taller, so drop the ring by the same amount or its lowest sweep hides behind the bar.
+     MODES-OK: all 3 burger modes, offset tracks --strip-h so it stays per-pixel correct */
+  .hero__fx { top:calc(-1310px + var(--strip-h)); }
   .hero { padding-top:calc(var(--nav-h) + 16px); min-height:auto; }
   .hero__grid { grid-template-columns:1fr; gap:56px; }
   .hand { height:auto; aspect-ratio:6/5; max-width:480px; margin-inline:auto; width:100%; }
@@ -1867,6 +1876,14 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 /* MODES-OK: small-burger (481–700) + mobile (≤480) — link/address text 30% under the ORIGINAL
    (14/13+.28vw/15.5 -> x0.7); both clamp terms scaled so it stays fluid across the whole 320–700 range. */
 @media (max-width:700px) {
+  /* contact strip stacks like the Capital Quickly phone reference: phone row over email row,
+     APPLY box vertically centered on the right. MODES-OK: small burger (481-700) + mobile (<=480),
+     every token calc(px + vw) across 320-700; --strip-h deterministic (rows are nowrap-guarded). */
+  :root { --strip-h:calc(48px + 2.2vw); } /* MODES-OK ~55px at 320 → ~63px at 700 */
+  .topbar__in { display:grid; grid-template-columns:1fr auto; grid-template-rows:auto auto; align-content:center; column-gap:calc(8px + 1vw); row-gap:calc(4px + .6vw); align-items:center; } /* MODES-OK rows hug together and center as a group — no dead band between phone and email (owner 2026-07-29) */
+  .topbar__item { font-size:calc(10.5px + .55vw); } /* MODES-OK */
+  .topbar__mail { font-size:min(calc(10.5px + .55vw), calc(5.4vw - 8px)); } /* MODES-OK fit guard: long email shrinks to fit at very narrow widths instead of wrapping */
+  .topbar__apply { grid-column:2; grid-row:1 / span 2; align-self:center; margin-left:0; height:calc(19px + 2vw); padding:0 calc(9px + 1.6vw); font-size:calc(9.5px + .55vw); } /* MODES-OK owner 2026-07-29: smaller box */
   .footer a,
   .footer address { font-size:clamp(9.8px, 9.1px + .196vw, 10.85px); }
   /* MODES-OK: small-burger (481–700) + mobile — owner 2026-07-29 (rev 2): two 1fr tracks
@@ -1942,7 +1959,8 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .stat-card { padding:calc(5.1px + 2.22vw) calc(2px + 1.5vw) calc(4.3px + 1.97vw); border-radius:calc(6px + 1.8vw); }
   .stat-card__label { font-size:calc(7.1px + .64vw); letter-spacing:0; margin-bottom:calc(2px + 1.3vw); white-space:nowrap; }
   .stat-card__num { font-size:calc(12px + 1.74vw); }
-  .stat-card__stars { font-size:calc(5.3px + 1.38vw); letter-spacing:calc(1px + .5vw); padding-left:3px; margin-top:calc(2px + 1vw); }
+  .stat-card__tp { font-size:min(calc(12px + 1.74vw), calc(6.05vw - 4.2px)); } /* MODES-OK big+small burger + mobile: fit guard (card inner / TRUE 476.9) kicks in below ~367px so the wordmark never overflows */
+  .stat-card .th-stars { margin-top:calc(2px + 1vw); } /* MODES-OK big+small burger + mobile spacing under the wordmark */
   /* hero — fundbox-ratio fluid type: every size scales with the viewport across the whole
      burger range, and the title meets the desktop clamp exactly at the 920px handoff */
   .hero { padding-top:calc(var(--nav-h) + 7vh); } /* 7% of the screen as air under the nav */
@@ -1952,9 +1970,12 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   .hero .nowrap { white-space:normal; }
   .hero .hero__ctas { margin-top:28px; }
   .hero .hero__ctas .btn { width:auto; font-size:calc(9.9px + .81vw); padding:calc(8.1px + 1.17vw) calc(16.2px + 3.15vw); } /* 10% smaller across the burger range */
-  /* eclipse ring in vw so it grows/shrinks per-pixel like the desktop ring; original visible
-     position, tilted slightly so the arc sweeps in on a diagonal instead of crossing flat */
-  .hero__fx { width:185vw; height:185vw; top:-142vw; right:-61vw; transform:rotate(-8deg); filter:blur(5px); }
+  /* eclipse ring in vw so it grows/shrinks per-pixel like the desktop ring; tilted slightly so
+     the arc sweeps in on a diagonal instead of crossing flat. Owner 2026-07-29: +96px base drop —
+     the topbar strip made the header stack taller and swallowed the old high arc; the constant
+     term compensates the (constant-ish) header, the vw term keeps the per-pixel scaling.
+     MODES-OK small burger + mobile */
+  .hero__fx { width:185vw; height:185vw; top:calc(96px - 142vw); right:-61vw; transform:rotate(-8deg); filter:blur(5px); }
   /* hero visual scratched on small screens */
   .hero__visual { display:none; }
   /* width:100% defeats the fit-content shrink from .container's auto margins inside the hero flexbox */
@@ -2136,11 +2157,19 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .nav__links .drop a:hover { background:var(--mist); color:var(--ink); }
 .drop { max-height:calc(100vh - var(--nav-h) - 28px); overflow:auto; overscroll-behavior:contain; }
 
-/* mobile menu holds 7 sub-links now — let it scroll on short phones instead of clipping.
-   MODES-OK: menu exists only <=920; sub-row size steps down fluidly on small heights */
-.menu { overflow-y:auto; -webkit-overflow-scrolling:touch; }
-.menu__sub a { font-size:clamp(15px, 2.6vh + 6px, 19px); padding:clamp(4px, .8vh, 7px) 0; }
-.menu__links a { padding-block:clamp(6px, 1.2vh, 10px); }
+/* mobile menu — ONE SCREEN at every px width AND height (owner 2026-07-29): every row
+   scales on svh/vw with desktop caps, so the menu shrinks to fit instead of scrolling
+   (overflow stays only as a safety net). Height budget at worst case ~= 82svh + nav.
+   MODES-OK: menu exists only <=920 (big burger + small burger + mobile); height-fluid via svh */
+.menu { overflow-y:auto; -webkit-overflow-scrolling:touch; padding:calc(var(--bar-h, 66px) + min(2svh, 28px)) 8vw min(2.2svh, 40px); } /* MODES-OK all burger modes, top clears the white bar (menu-open pins the bar to top:0, so bar height not the full strip stack) */
+.menu__links a { font-size:min(7vw, 4svh, 34px); line-height:1.15; padding-block:min(.45svh, 10px); } /* MODES-OK all burger modes */
+.menu__sub { margin:min(.6svh, 4px) 0 min(1.2svh, 10px); } /* MODES-OK all burger modes */
+.menu__sub a { font-size:min(5vw, 2.5svh, 19px); line-height:1.15; padding:min(.4svh, 7px) 0; } /* MODES-OK all burger modes */
+.menu__foot { gap:min(1.5svh, 16px); padding-top:min(1.8svh, 28px); } /* MODES-OK all burger modes */
+.menu .phone-link { justify-content:center; text-align:center; font-size:min(2.4svh, 16px); line-height:1.2; background:var(--cream); color:var(--racing); border-radius:var(--r-btn); padding-block:min(1.2svh, 12px); } /* MODES-OK all burger modes, phone centered in a cream box like the nav pills (owner 2026-07-29) */
+.menu .phone-link svg { color:var(--racing); }
+.menu__foot .btn { padding-block:min(1.4svh, 14px); font-size:min(2.4svh, 16px); line-height:1.2; background:var(--cream); color:var(--racing); } /* MODES-OK all burger modes, cream box like the open-menu nav Apply (owner 2026-07-29) */
+.menu__foot .btn:hover { background:var(--white); }
 
 /* big burger (701-920): the hand goes 2x4 — per-pixel paddings and type via vw */
 @media (max-width:920px) {
