@@ -10,15 +10,21 @@
     heloc: '',    // HELOC application                        ← JotForm ID here
   };
 
-  var PRODUCT_TO_FORM = { term: 'shared', loc: 'shared', sba: 'sba', heloc: 'heloc' };
+  var PRODUCT_TO_FORM = {
+    term: 'shared', loc: 'shared', sba: 'sba', heloc: 'heloc',
+    business: 'shared', wc: 'shared', equipment: 'shared', rbf: 'shared',
+  };
   var LABELS = {
     term: 'Term Loan', loc: 'Line of Credit', sba: 'SBA Loan', heloc: 'HELOC',
+    business: 'Business Funding', wc: 'Working Capital',
+    equipment: 'Equipment Financing', rbf: 'Revenue Based Financing',
   };
 
   var shell = document.getElementById('embedShell');
   var frameBox = document.getElementById('embedFrame');
   var title = document.getElementById('embedTitle');
-  var chooser = document.querySelectorAll('.choose');
+  var emptyBox = document.getElementById('applyEmpty');
+  var chooser = document.querySelectorAll('button[data-product]');
   if (!shell || !frameBox) return;
 
   function loadForm(product) {
@@ -29,25 +35,21 @@
         (formKey === 'shared' && PRODUCT_TO_FORM[b.dataset.product] === 'shared' && b.dataset.product === product)));
     });
     shell.hidden = false;
+    if (emptyBox) emptyBox.hidden = true;
     if (title) {
-      title.innerHTML = LABELS[product] + ' application' +
-        (formKey === 'shared' ? ' <span class="small" style="font-weight:400">&mdash; one form covers Term Loans and Lines of Credit</span>' : '') +
+      title.innerHTML = LABELS[product] + ' Application' +
+        (product === 'term' || product === 'loc' ? ' <span class="small" style="font-weight:400">&mdash; one form covers Term Loans and Lines of Credit</span>' : '') +
         '<span class="dot">.</span>';
     }
 
     var id = FORM_IDS[formKey];
     frameBox.innerHTML = '';
     if (!id) {
-      // Wired and waiting for the JotForm ID — warm fallback, never a dead end.
+      // Wired and waiting for the JotForm ID — bare placeholder (owner 2026-07-29).
       frameBox.innerHTML =
         '<div class="embed-pending"><div class="inner">' +
-        '<span class="icon icon--chip" data-icon="application"></span>' +
-        '<h3>This form goes live at launch<span class="dot">.</span></h3>' +
-        '<p class="small">The ' + LABELS[product] + ' application is being connected. ' +
-        'You don’t have to wait on it &mdash; an advisor can take your application by phone in about two minutes.</p>' +
-        '<a class="btn btn--sm" href="tel:+18000000000">Call (800) 000-0000<span class="arr" data-icon="arrow-right"></span></a>' +
+        '<p class="small">jotform wiring</p>' +
         '</div></div>';
-      hydrateIcons(frameBox);
     } else {
       var shimmer = document.createElement('div');
       shimmer.className = 'shimmer';

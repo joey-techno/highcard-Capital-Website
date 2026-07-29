@@ -540,3 +540,52 @@ after the industries hook. Workbook: brand/page-plans/industries.md.
 - QA 2026-07-29: 1440 (+6200 tall) / 860 / 660 / 500 — uniform photo panes, titles
   one line, 2-col lists hold to 360 math, no overflow; same headless data-split
   reveal flake as other fq-hero pages (rerun before diagnosing).
+
+## POOL · APX APPLY CARDS (apply.html, locked 2026-07-29)
+
+Two centered check-bullet cards (HELOC / Business Funding) under the thin felt hero.
+- Section `.apx`: white bg, pool section pad clamp(28px, 1.6vw + 14px, 46px).
+- Grid `.apx-grid`: repeat(2, minmax(0,1fr)) max-width 1080 centered, gap clamp(12px, 1.6vw, 26px);
+  <=700px STAYS 2-ACROSS (owner 2026-07-29, prod-grid pattern), gap var(--sp-3).
+- Card `.apx-card`: container-type inline-size; SV/IN box language (radius clamp(12px,1.6vw,24px),
+  sage hairline .35, shadow 0 24px 60px -34px, hover lift .25s, reduced-motion safe);
+  centered column; pad clamp(26px, 9.5cqi, 68px) / clamp(18px, 5.5cqi, 42px) on
+  main site + big burger (owner taller-cards round 2026-07-29); <=700px restores
+  clamp(20px, 7cqi, 48px) / clamp(16px, 5cqi, 38px).
+- Title `.apx-card__t`: Poppins 700 racing + sage dot, nowrap; owner scale round 2026-07-29:
+  clamp(1.79rem, 7.82cqi, 2.89rem) main site + big burger, <=700px override
+  clamp(1.67rem, 7.28cqi, 2.69rem) (owner: x1.18/x1.10, then +20%, then +20% again). Top margin auto centers short content in the row.
+- Icon chip `.apx-card__ico` (reference round 2026-07-29): homepage duotone PNG tiles
+  (heloc.png / term-loan.png), clamp(48px, 10.8cqi, 77px) sq (+20% round), radius clamp(12px, 2.4cqi, 19px),
+  bottom margin clamp(14px, 3.4cqi, 26px); carries the margin-top auto centering.
+- Divider `.apx-card__rule`: sage hairline rgba(143,168,152,.55) 1px, width clamp(56px, 14cqi, 96px),
+  under the title (title bottom margin tightened to clamp(10px, 2.6cqi, 20px)); rule bottom margin
+  clamp(18px, 4.6cqi, 38px) desktop, clamp(14px, 3.6cqi, 28px) <=700, clamp(12px, 3cqi, 22px) <=480.
+- Bullets `.apx-card__list`: +25% spacing round — >=701px grid gap clamp(18px, 4.4cqi, 36px),
+  pre-button margin clamp(24px, 6cqi, 48px); 481-700 gap clamp(12px, 3.2cqi, 24px), margin
+  clamp(18px, 4.6cqi, 36px); <=480 restores gap clamp(9px, 2.4cqi, 18px), margin
+  clamp(14px, 3.6cqi, 28px). li Poppins 600 ink nowrap
+  clamp(0.99rem, 3.2cqi, 1.35rem); check-circle icon racing clamp(16px, 3.3cqi, 24px); left edges
+  aligned. <=700px restores gap clamp(9px, 2.4cqi, 18px) / li clamp(0.84rem, 2.7cqi, 1.14rem) /
+  icon clamp(14px, 2.8cqi, 20px).
+- CTA: pool magnetic button — solid green .btn <button> WITH data-magnetic (View-our-services
+  hover pull), no arrow; margin-top auto; wired to forms.js via data-product
+  (heloc | business->shared form); embed shell #embedShell reused below the grid.
+
+### APX <=700px (2-across, prod-card recipe — owner 2026-07-29)
+Internals ride the standing small-screen tokens so the cards match the homepage 2x2
+hand: card pad calc(var(--sp-2) * 1.2) / var(--sp-2), radius calc(8px + 2.6vw); chip
+var(--chip) radius calc(4px + 1.5vw); title min(var(--fs-h3), 8.8cqi) (cap = "Business
+Funding." TRUE 893.4 @100px, fits to 320); rule calc(24px + 6vw) wide; list gap
+var(--sp-1); li min(var(--fs-body-s), 4.85cqi) (cap = "Funding from $5K to $25M" TRUE
+1329.2, fits to 320); check calc(4px + 2.6vw); btn compact cqi (full-width recipe
+rejected): font min(.94rem, 5cqi), pad min(12px, 3.6cqi) min(26px, 8.5cqi), radius
+calc(4px + 1.5vw) — grows/shrinks with the card at every px.
+
+### APX empty state `.apx-empty` (owner 2026-07-29)
+Solid-hairline card (owner pick over dashed) below the two cards, hidden by forms.js
+the moment any Apply Now / deep link loads a form. Same box language: max-width 1080,
+top margin clamp(12px, 1.6vw, 26px), radius clamp(12px, 1.6vw, 24px), sage hairline .35,
+pool shadow; pad clamp(36px, 5vw + 20px, 110px) / clamp(16px, 3vw, 34px); application
+sprite glyph clamp(20px, 1.4vw + 15px, 36px) racing; line "Choose your application
+above." Poppins 700 racing + sage dot, nowrap, min(1.5rem, .8rem + 1.2vw, 4.8vw).

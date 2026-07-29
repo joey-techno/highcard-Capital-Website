@@ -1,96 +1,59 @@
 
 <main id="main">
 
-  <!-- HERO (felt) -->
-  <section class="apply-hero on-felt">
+  <!-- HERO (thin felt band, two locked lines) -->
+  <section class="fq-hero">
     <div class="container">
-      <p class="eyebrow" data-reveal>The application</p>
-      <h1 class="h-display" data-split>Two minutes. Zero obligation<span class="dot">.</span></h1>
-      <p class="lede" data-reveal>Tell us what you&rsquo;re applying for and we&rsquo;ll load the right form: a real advisor calls you the same business day.</p>
-      <ul class="ticks" style="max-width:820px; padding-top:26px" data-stagger=".09">
-        <li data-reveal><span class="icon" data-icon="secure"></span><span><b>Soft pull</b>, your score stays put</span></li>
-        <li data-reveal><span class="icon" data-icon="no-cost"></span><span><b>No cost,</b> no obligation</span></li>
-        <li data-reveal><span class="icon" data-icon="clock"></span><span>Options in as little as <b>24 hours</b> on Term Loans &amp; Lines of Credit</span></li>
-      </ul>
+      <h1 class="ap-hero__title" data-reveal>
+        <span class="ap-hero__l">Apply to see the loans and the funding options</span>
+        <span class="ap-hero__l">available for your business<span class="dot">.</span></span>
+      </h1>
     </div>
   </section>
 
-  <!-- CHOOSER -->
-  <section>
+  <!-- APPLY CARDS (HELOC vs everything else) -->
+  <section class="apx">
     <div class="container">
-      <div class="sec-head">
-        <p class="eyebrow" data-reveal>Choose your path</p>
-        <h2 data-split>What are you applying for<span class="dot">?</span></h2>
-        <p class="lede" data-reveal>Three forms cover the four products: Term Loans and Lines of Credit share one, so you don&rsquo;t answer anything twice.</p>
+      <div class="apx-grid" data-stagger=".1">
+        <article class="apx-card" data-reveal>
+          <span class="apx-card__ico"><img src="assets/img/icons/heloc.png" alt="" width="192" height="192" loading="lazy"></span>
+          <h2 class="apx-card__t">HELOC<span class="dot">.</span></h2>
+          <span class="apx-card__rule" aria-hidden="true"></span>
+          <ul class="apx-card__list">
+            <li><span class="icon" data-icon="check-circle"></span>The lowest rates</li>
+            <li><span class="icon" data-icon="check-circle"></span>Up to 90% of your equity</li>
+            <li><span class="icon" data-icon="check-circle"></span>Revolving line</li>
+            <li><span class="icon" data-icon="check-circle"></span>No appraisal needed</li>
+          </ul>
+          <button class="btn" type="button" data-magnetic data-product="heloc" aria-pressed="false">Apply Now</button>
+        </article>
+        <article class="apx-card" data-reveal>
+          <span class="apx-card__ico"><img src="assets/img/icons/term-loan.png" alt="" width="192" height="192" loading="lazy"></span>
+          <h2 class="apx-card__t">Business Funding<span class="dot">.</span></h2>
+          <span class="apx-card__rule" aria-hidden="true"></span>
+          <ul class="apx-card__list">
+            <li><span class="icon" data-icon="check-circle"></span>One simple application</li>
+            <li><span class="icon" data-icon="check-circle"></span>Options in 24 hours</li>
+            <li><span class="icon" data-icon="check-circle"></span>Flexible terms</li>
+            <li><span class="icon" data-icon="check-circle"></span>Funding from $5K to $25M</li>
+          </ul>
+          <button class="btn" type="button" data-magnetic data-product="business" aria-pressed="false">Apply Now</button>
+        </article>
       </div>
-      <div class="chooser" role="group" aria-label="Choose what you are applying for" data-stagger=".1">
-        <button class="choose" type="button" aria-pressed="false" data-product="term" data-reveal>
-          <span class="icon--chip" data-draw><span class="icon" data-icon="term-loan"></span></span>
-          <b>Term Loan</b>
-          <span>One lump sum, one plan: $5K to $25M, options in as little as 24 hours.</span>
-          <span class="which">Form 1 &middot; shared with Line of Credit</span>
-        </button>
-        <button class="choose" type="button" aria-pressed="false" data-product="loc" data-reveal>
-          <span class="icon--chip" data-draw><span class="icon" data-icon="line-of-credit"></span></span>
-          <b>Line of Credit</b>
-          <span>Draw, repay, redraw: $10K to $2M, pay only for what you use.</span>
-          <span class="which">Form 1 &middot; shared with Term Loan</span>
-        </button>
-        <button class="choose" type="button" aria-pressed="false" data-product="sba" data-reveal>
-          <span class="icon--chip" data-draw><span class="icon" data-icon="sba-loan"></span></span>
-          <b>SBA Loan</b>
-          <span>Government-backed, terms to 25 years: the lowest payments in small-business lending.</span>
-          <span class="which">Form 2 &middot; its own application</span>
-        </button>
-        <button class="choose" type="button" aria-pressed="false" data-product="heloc" data-reveal>
-          <span class="icon--chip" data-draw><span class="icon" data-icon="heloc"></span></span>
-          <b>HELOC</b>
-          <span>A revolving line on your home&rsquo;s equity, up to 90% CLTV. See your rate first.</span>
-          <span class="which">Form 3 &middot; its own application</span>
-        </button>
-        <div class="choose choose--wide" style="cursor:default" data-reveal>
-          <span class="icon--chip" data-draw><span class="icon" data-icon="advisor"></span></span>
-          <div>
-            <b>Not sure? Good instinct.</b>
-            <span>Skip the guessing: call and an advisor takes your application by phone, then routes it to the right product.</span>
-          </div>
-          <a class="phone-link num" href="tel:+18000000000" style="margin-left:auto; white-space:nowrap"><span class="icon" data-icon="phone"></span>(800) 000-0000</a>
-        </div>
+
+      <!-- EMPTY STATE (hidden once a card is chosen) -->
+      <div class="apx-empty" id="applyEmpty" data-reveal>
+        <span class="icon" data-icon="application"></span>
+        <p>Choose your application above<span class="dot">.</span></p>
       </div>
 
       <!-- EMBED SHELL -->
       <div class="embed-shell" id="embedShell" hidden>
         <div class="sec-head" style="margin-bottom:28px">
           <h2 id="embedTitle">Application<span class="dot">.</span></h2>
-          <p class="microcopy"><span data-icon="secure"></span>Encrypted end to end. Soft pull only. Your data is never sold.</p>
         </div>
         <div class="embed-frame" id="embedFrame"></div>
       </div>
-    </div>
-  </section>
-
-  <!-- WHAT HAPPENS NEXT -->
-  <section class="sec-mist texture">
-    <div class="container container--tight">
-      <div class="sec-head">
-        <p class="eyebrow" data-reveal>After you hit submit</p>
-        <h2 data-split>Here&rsquo;s exactly what happens<span class="dot">.</span></h2>
-      </div>
-      <ol class="flow" data-stagger=".1">
-        <li data-reveal>
-          <span class="icon--chip" data-draw><span class="icon" data-icon="application"></span></span>
-          <div><span class="when">Within the hour</span><b>A named advisor takes your file</b><p>Confirmation lands with a real person&rsquo;s name on it.</p></div>
-        </li>
-        <li data-reveal>
-          <span class="icon--chip" data-draw><span class="icon" data-icon="phone"></span></span>
-          <div><span class="when">Same business day</span><b>One ten-minute call</b><p>Your advisor fills in the picture, then goes to work on the lender network.</p></div>
-        </li>
-        <li data-reveal>
-          <span class="icon--chip" data-draw><span class="icon" data-icon="check-circle"></span></span>
-          <div><span class="when">24&ndash;48 hours</span><b>Options in writing, you decide</b><p>Full costs on paper. Accept, ask questions, or walk away free. SBA and HELOC files get their realistic multi-week calendar on the first call.</p></div>
-        </li>
-      </ol>
-      <p class="small" data-reveal style="margin-top:30px">Prefer a human for the whole thing? <a href="tel:+18000000000">Call (800) 000-0000</a>, applications by phone take about the same two minutes.</p>
     </div>
   </section>
 
