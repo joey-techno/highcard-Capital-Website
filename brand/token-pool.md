@@ -421,15 +421,80 @@ testimonials (mist) → touch (felt) → footer cream. Rhythm stays legal.
   soft shadow 0 24px 60px -34px rgba(0,18,10,.35), inner keyline (product-card
   ::before inset clamp(6px, 0.8cqi + 4px, 10px), border rgba(0,66,37,.10)), hover
   translateY(-4px) + deeper shadow .25s, reduced-motion safe.
+- Icon pip revision (owner 2026-07-29): >=701px (main site + big burger only) the
+  tile curve is scaled x1.10 — clamp(48.4px, 33cqi, 96.8px), radius
+  clamp(9.9px, 6.05cqi, 19.8px); small burger + mobile keep the base curve.
 - Card internals (container-fluid LOCKED RULE — `container-type:inline-size` on the
   card, everything cqi so 1×4 and 2×2 both track the CARD width):
   pad clamp(12px, 9cqi, 26px); icon tile clamp(28px, 17cqi, 48px) sq, radius
   clamp(6px, 3.5cqi, 12px) (baked cream #F5F0E1 tile, generated emblem, trimmed
   192px master like homepage icons); tile-to-title gap clamp(8px, 5cqi, 16px);
   title Poppins 700 racing + sage dot, ONE LINE nowrap shrink-to-fit
-  clamp(0.72rem, 6.4cqi, 1.08rem) (longest "Problem solving." governs the slope,
-  verify at build); title-to-body gap clamp(5px, 3cqi, 10px); body Inter slate
+  clamp(0.792rem, 7.04cqi, 1.188rem) (owner 2026-07-29: x1.10 in ALL 4 modes;
+  longest "Problem solving." governs the slope); title-to-body gap clamp(5px, 3cqi, 10px); body Inter slate
   lh 1.55 clamp(0.66rem, 4.6cqi, 0.92rem) (body copy wraps freely, no line lock).
 - Reveals: section head data-reveal; grid data-stagger, each card data-reveal.
 - QA at build: 360 / 500 / 660 / 860 / 1030 / 1440 + sweep to 1450 — 4-up one row,
   2×2 below 700, card titles one line at every px, no plateau, no overflow.
+
+## POOL · SV SERVICES COMPONENTS (services landing rebuild, built 2026-07-29)
+
+Page: services.html (id `services`). NOT a th-* clone — landing page like About/FAQ:
+fq-hero reused (photo hook only), ab-intro reused (title retune in page hook),
+`{{TOUCH}}` partial kept. New CSS = one SV block (main.css, after the AB block) +
+one `body[data-page="services"]` hook. Workbook: brand/page-plans/services.md.
+
+- Hero: fq-hero verbatim; hook sets --fq-hero-img:services-hero.webp (generated
+  advisor-team take B), --fq-hero-pos:center 30%. Title "Services." (TRUE 444.3
+  @100px) reuses the shared fq-hero__title size UNTOUCHED — About Us. precedent
+  (469.2): short hero titles do NOT get steep ratio slopes.
+- Intro: ab-intro classes verbatim; "Find the right fit." (TRUE 793.4 @100px)
+  retuned in the page hook: min(2.43rem, 7.93vw) = 3.96 x 1589.8/793.4.
+- Card grid (`.sv-vals`/`.sv-vals__grid`): white bg, pool section pad, top 0 under
+  the intro (ab-vals recipe); repeat(2, minmax(0,1fr)) max-width 1080, gap
+  clamp(12px, 1.6vw, 26px); <=700px ONE column, max-width 520, gap
+  clamp(8px, 1.12vw, 14.4px). Owner grid lock 2026-07-29: 2 cols main site + big
+  burger, 1 col small burger + mobile.
+- Card (`.sv-card`, container-fluid cqi): AB card box language (radius
+  clamp(12px,1.6vw,24px), sage hairline .35, shadow 0 24px 60px -34px, hover lift
+  .25s, reduced-motion safe) + overflow:hidden so the photo clips inside the
+  radius; flex column, `.sv-card__cta { margin-top:auto; display:flex;
+  justify-content:center }` pins buttons level AND centers them (owner revision
+  2026-07-29, reference match). Photo (owner revision 2026-07-29, slimmed):
+  height:clamp(120px, 78cqi - 115px, 300px), object-fit cover — the cqi-minus-px
+  slope makes the band proportionally FLATTER as the card narrows (527px card ~
+  16:9, 330px card ~ 2.5:1) so mobile gets the photo extra small, per-pixel, no
+  ratio steps; <=700px (small burger + mobile) the whole curve is scaled x0.90
+  (owner 2026-07-29): clamp(108px, 70.2cqi - 103.5px, 270px); hover scale(1.08)
+  .3s (C6 language), lazy + w/h attrs, 1200x800 webp q82 named svc-<id>.webp.
+- Card internals (all cqi, card ~527px desktop / ~330-520 stacked): pad
+  clamp(16px, 5.5cqi, 30px) / clamp(16px, 6cqi, 32px) (owner revision 2026-07-29,
+  roomier reference match); title one line nowrap clamp(0.92rem, 4.2cqi, 1.32rem)
+  (longest "Revenue Based Financing." verified); "Best for:" label
+  clamp(0.7rem, 2.7cqi, 0.88rem); 3 check bullets (check-circle sprite
+  clamp(12px, 2.8cqi, 16px)) one line each clamp(0.72rem, 2.9cqi, 0.95rem) lh 1.9,
+  INK #141A16 + weight 500 (owner 2026-07-29: darker than slate); button = plain
+  .btn SOLID GREEN (owner 2026-07-29, outline dropped) sized with the EXACT
+  th-qa__cta (About us) vw curve at every viewport (owner 2026-07-29: Learn more
+  = About us button size): clamp(.64rem, .56rem + .4vw, .84rem) /
+  clamp(8px, .64vw + 4.8px, 13.6px) x clamp(14.4px, 1.6vw + 8px, 27.2px).
+- >=701px (main site + big burger only, owner 2026-07-29 x1.10 round): card title
+  clamp(1.012rem, 4.62cqi, 1.452rem); Best for clamp(0.77rem, 2.97cqi, 0.968rem);
+  bullets clamp(0.792rem, 3.19cqi, 1.045rem); check icon
+  clamp(13.2px, 3.08cqi, 17.6px). Small burger + mobile keep the base curves.
+- Copy rule (owner 2026-07-29): every Best-for bullet UNIQUE across the whole
+  grid — no line repeats on two cards; 3 bullets per card keeps row heights equal.
+- Under the grid (owner revisions 2026-07-29, two rounds): the Talk-to-us capstone
+  button was removed; a testimonials band was tried and REJECTED ("No i meant");
+  final: the ab-vals "What we believe in." section (4 belief cards byte-identical
+  to About) sits between the cards and the touch band, on the TST MIST color with
+  the pool section pad restored via the page hook (`body[data-page="services"]
+  .ab-vals { background:var(--mist); padding-top:pool }` — About keeps white bg +
+  top 0 under its intro), plus a centered solid .btn "About us" -> about.html
+  inside the section (th-qa__cta) — the reciprocal of About's View-our-services.
+- Card photos are FREE STOCK (Pexels license, commercial ok, no attribution);
+  sources logged in the workbook. Heroes stay GENERATED (RULE 9b framing).
+- QA 2026-07-29: 1440 / 860 / 660 / 500 + tall 860 full-page — rows equal, buttons
+  level, one-liners hold, col flip at 700, no overflow. NOTE: headless Edge
+  sometimes races the data-split reveal at 1440 and shoots titles mid-animation
+  (flaky, affects every fq-hero page) — rerun the shot before diagnosing CSS.

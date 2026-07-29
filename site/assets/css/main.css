@@ -2837,11 +2837,15 @@ body[data-page="faq"] .fq-hero { --fq-hero-img:url('../img/faq-hero.webp'); } /*
   margin-bottom:clamp(10px, 7cqi, 22px); } /* MODES-OK roomier cqi tile-to-title gap */
 .ab-card__t { font-family:var(--font-d); font-weight:700; color:var(--racing);
   letter-spacing:-.022em; line-height:1.15; white-space:nowrap;
-  font-size:clamp(0.72rem, 6.4cqi, 1.08rem); /* MODES-OK cqi one-line title, "Problem solving." TRUE 824.4 @100px fits with margin */
+  font-size:clamp(0.792rem, 7.04cqi, 1.188rem); /* MODES-OK owner 2026-07-29 title x1.10 in ALL 4 modes (whole curve scaled); "Problem solving." TRUE 824.4 @100px still one line with margin */
   margin:0 0 clamp(5px, 3cqi, 10px); } /* MODES-OK cqi title-to-body gap */
 .ab-card__t .dot { color:var(--sage); }
 .ab-card__b { color:var(--slate); line-height:1.55; margin:0;
   font-size:clamp(0.66rem, 4.6cqi, 0.92rem); } /* MODES-OK cqi body scale */
+@media (min-width:701px) {
+  .ab-card__icon { width:clamp(48.4px, 33cqi, 96.8px); height:clamp(48.4px, 33cqi, 96.8px); /* MODES-OK owner 2026-07-29 pip x1.10 in main site + big burger only (whole curve scaled) */
+    border-radius:clamp(9.9px, 6.05cqi, 19.8px); } /* MODES-OK tile radius follows the x1.10 pip */
+}
 @media (max-width:700px) {
   .ab-vals__grid { grid-template-columns:repeat(2, minmax(0,1fr)); max-width:520px;
     gap:clamp(8px, 1.12vw, 14.4px); } /* MODES-OK owner grid lock: 2x2 small burger + mobile; pool phone gap */
@@ -2850,3 +2854,66 @@ body[data-page="faq"] .fq-hero { --fq-hero-img:url('../img/faq-hero.webp'); } /*
 /* ---- ABOUT (about) — hero photo hook */
 body[data-page="about"] .fq-hero { --fq-hero-img:url('../img/about-hero.webp');
   --fq-hero-pos:center 32%; } /* MODES-OK photo vars only; crop keeps the face centered in the shallow band */
+
+/* ============================================================
+   SV — SERVICES LANDING (pool build 2026-07-29, spec in
+   token-pool.md "POOL · SV SERVICES CARDS" + workbook
+   brand/page-plans/services.md). fq-hero + ab-intro reused;
+   the photo cards are container-fluid (cqi) per the LOCKED
+   RULE so the 2-col and 1-col layouts both track CARD width.
+   ============================================================ */
+.sv-vals { background:var(--white); padding-top:0;
+  padding-bottom:clamp(28px, 1.6vw + 14px, 46px); } /* MODES-OK pool pad; top 0 stacks tight under the intro (ab-vals recipe), all 4 modes */
+.sv-vals__grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr));
+  max-width:1080px; margin-inline:auto;
+  gap:clamp(12px, 1.6vw, 26px); } /* MODES-OK owner grid lock: 2 cols main site + big burger; pool testimonial gap */
+.sv-card { container-type:inline-size; position:relative; background:#fff;
+  border:1px solid rgba(143,168,152,.35); text-align:left;
+  border-radius:clamp(12px, 1.6vw, 24px); /* MODES-OK pool card radius */
+  overflow:hidden; /* photo clips inside the card radius */
+  box-shadow:0 24px 60px -34px rgba(0,18,10,.35);
+  transition:transform .25s, box-shadow .25s;
+  display:flex; flex-direction:column; }
+.sv-card:hover { transform:translateY(-4px); box-shadow:0 30px 70px -34px rgba(0,18,10,.45); }
+@media (prefers-reduced-motion:reduce) { .sv-card:hover { transform:none; } .sv-card:hover .sv-card__photo { transform:none; } }
+.sv-card__photo { display:block; width:100%; object-fit:cover;
+  height:clamp(120px, 78cqi - 115px, 300px); /* MODES-OK owner 2026-07-29: photo slimmed vs 3/2 and EXTRA smaller on mobile — cqi minus px makes the band proportionally flatter as the card narrows (527px card ≈ 16:9, 330px card ≈ 2.5:1), per-pixel in all 4 modes */
+  transition:transform .3s var(--ease-out); } /* MODES-OK C6 photo hover language */
+.sv-card:hover .sv-card__photo { transform:scale(1.08); }
+.sv-card__in { display:flex; flex-direction:column; flex:1;
+  padding:clamp(16px, 5.5cqi, 30px) clamp(16px, 6cqi, 32px) clamp(18px, 6cqi, 32px); } /* MODES-OK owner 2026-07-29 roomier pad (reference match), cqi tracks card width */
+.sv-card__t { font-family:var(--font-d); font-weight:700; color:var(--racing);
+  letter-spacing:-.022em; line-height:1.15; white-space:nowrap;
+  font-size:clamp(0.92rem, 4.2cqi, 1.32rem); /* MODES-OK cqi one-line title tracks card width; longest "Revenue Based Financing." verified at QA widths */
+  margin:0 0 clamp(6px, 1.8cqi, 12px); } /* MODES-OK cqi title-to-label gap */
+.sv-card__t .dot { color:var(--sage); }
+.sv-card__bf { font-family:var(--font-d); font-weight:600; color:var(--racing);
+  font-size:clamp(0.7rem, 2.7cqi, 0.88rem); /* MODES-OK cqi label scale */
+  margin:0 0 clamp(4px, 1.2cqi, 8px); } /* MODES-OK cqi label-to-list gap */
+.sv-card__list { list-style:none; margin:0; padding:0; }
+.sv-card__list li { display:flex; align-items:center; gap:clamp(6px, 1.6cqi, 10px); /* MODES-OK cqi check-to-text gap */
+  color:var(--ink); font-weight:500; line-height:1.9; /* MODES-OK owner 2026-07-29: check text darker (ink + medium, was slate) — color/weight only, all 4 modes */
+  font-size:clamp(0.72rem, 2.9cqi, 0.95rem); } /* MODES-OK cqi one-line bullets track card width */
+.sv-card__list li .icon { width:clamp(12px, 2.8cqi, 16px); height:clamp(12px, 2.8cqi, 16px); flex:none; display:flex; } /* MODES-OK cqi check icon */
+.sv-card__cta { margin-top:auto; padding-top:clamp(12px, 3.4cqi, 20px); /* MODES-OK cqi list-to-button gap; auto pins buttons level across the row */
+  display:flex; justify-content:center; } /* MODES-OK owner 2026-07-29: button centered (reference match), all 4 modes */
+.sv-card__cta .btn { font-size:clamp(.64rem, .56rem + .4vw, .84rem);
+  padding:clamp(8px, .64vw + 4.8px, 13.6px) clamp(14.4px, 1.6vw + 8px, 27.2px); } /* MODES-OK owner 2026-07-29: Learn more = EXACT th-qa__cta (About us) button curve at every viewport, all 4 modes */
+@media (min-width:701px) {
+  .sv-card__t { font-size:clamp(1.012rem, 4.62cqi, 1.452rem); } /* MODES-OK owner 2026-07-29 card title x1.10 in main site + big burger; "Revenue Based Financing." still one line */
+  .sv-card__bf { font-size:clamp(0.77rem, 2.97cqi, 0.968rem); } /* MODES-OK owner 2026-07-29 Best for x1.10 in main site + big burger */
+  .sv-card__list li { font-size:clamp(0.792rem, 3.19cqi, 1.045rem); } /* MODES-OK owner 2026-07-29 bullet text x1.10 in main site + big burger */
+  .sv-card__list li .icon { width:clamp(13.2px, 3.08cqi, 17.6px); height:clamp(13.2px, 3.08cqi, 17.6px); } /* MODES-OK owner 2026-07-29 check icon x1.10 with the text */
+}
+@media (max-width:700px) {
+  .sv-vals__grid { grid-template-columns:minmax(0,1fr); max-width:520px;
+    gap:clamp(8px, 1.12vw, 14.4px); } /* MODES-OK owner grid lock: 1 col small burger + mobile; pool phone gap */
+  .sv-card__photo { height:clamp(108px, 70.2cqi - 103.5px, 270px); } /* MODES-OK owner 2026-07-29: photo band x0.90 in small burger + mobile (whole curve scaled, stays per-pixel) */
+}
+
+/* ---- SERVICES (services) — hero photo + intro title hooks */
+body[data-page="services"] .fq-hero { --fq-hero-img:url('../img/services-hero.webp');
+  --fq-hero-pos:center 30%; } /* MODES-OK photo vars only */
+body[data-page="services"] .ab-intro__title { font-size:min(2.43rem, 7.93vw); } /* MODES-OK "Find the right fit." TRUE 793.4 @100px (probed 2026-07-29); 3.96 x 1589.8/793.4, C3 screen fill */
+body[data-page="services"] .ab-vals { background:var(--mist);
+  padding-top:clamp(28px, 1.6vw + 14px, 46px); } /* MODES-OK owner 2026-07-29: believe-in band on services sits on the tst mist color and stands alone, so it gets the pool section pad back (About keeps top 0 under its intro) */
