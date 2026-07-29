@@ -35,8 +35,8 @@ const PAGES = [
     desc: 'A revolving business line of credit from $10K to $5M. Draw, repay, redraw, and only pay for what you use. Options in as little as 24 hours with a soft credit pull.' },
   // how-it-works kept in /pages but intentionally excluded from the built site (owner's call 2026-07)
   { file: 'about.html',          body: 'about.html',   id: 'about',   nav: 'about',
-    title: 'About Us · A Brokerage That Comes to the Table Prepared | High Card Capital',
-    desc: 'High Card Capital is a commercial-financing brokerage: one application, a network of lenders, and a human advisor who does the homework. The numbers and credentials, up front.' },
+    title: 'About Us · Where Funding Meets Family | High Card Capital',
+    desc: 'High Card Capital is built on relationships: dedicated advisors who learn your business, explain every option in plain English, and stay at your side well beyond funding day.' },
   { file: 'faq.html',            body: 'faq.html',     id: 'faq',     nav: 'faq',
     title: 'FAQ · Frequently Asked Questions | High Card Capital',
     desc: 'How funding works, what it costs, and what you qualify for, answered straight. General questions plus Term Loans, SBA, HELOC, Line of Credit, Equipment, and Revenue Based Financing.' },

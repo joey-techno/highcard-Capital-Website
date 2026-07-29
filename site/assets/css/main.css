@@ -2746,7 +2746,7 @@ body[data-page="heloc"] .th-why__title { font-size:min(2.43rem, 3.74vw); } /* MO
   background-image:
     linear-gradient(to bottom, rgba(0,51,29,.46), rgba(0,51,29,.62) 55%, rgba(0,51,29,.86)),
     var(--fq-hero-img, none);
-  background-size:cover; background-position:center 68%; background-color:var(--racing); } /* MODES-OK crop shows the meeting under the title, reference-style */
+  background-size:cover; background-position:var(--fq-hero-pos, center 68%); background-color:var(--racing); } /* MODES-OK crop var, default = faq meeting crop; per-page hook overrides */
 .fq-hero__title { font-family:var(--font-d); font-weight:700; color:var(--cream);
   letter-spacing:-.022em; line-height:1.05; white-space:nowrap; text-align:center;
   font-size:min(2.43rem, 4.47vw); margin:0; } /* MODES-OK all 4 modes: TRUE 1409.3 @100px (probed 2026-07-28); 3.96 × 1589.8/1409.3, C3 screen fill */
@@ -2788,3 +2788,62 @@ body[data-page="heloc"] .th-why__title { font-size:min(2.43rem, 3.74vw); } /* MO
           clamp(36px, 3.5vw + 17px, 63px); margin:0; } /* MODES-OK fluid, all 4 modes */
 /* ---- FAQ (faq) — hero photo hook (fq-* components live above) */
 body[data-page="faq"] .fq-hero { --fq-hero-img:url('../img/faq-hero.webp'); } /* MODES-OK photo var only */
+
+/* ============================================================
+   AB — ABOUT PAGE (pool build 2026-07-28, spec in token-pool.md
+   "POOL · AB ABOUT COMPONENTS"). fq-hero reused for the band;
+   intro + value cards below. Cards are container-fluid (cqi)
+   per the LOCKED RULE so 1x4 and 2x2 both track card width.
+   ============================================================ */
+.ab-intro { background:var(--white); text-align:center;
+  padding-block:clamp(28px, 1.6vw + 14px, 46px); } /* MODES-OK pool section pad, all 4 modes */
+.ab-intro__in { max-width:980px; margin-inline:auto; }
+.ab-intro__title { font-family:var(--font-d); font-weight:700; color:var(--racing);
+  letter-spacing:-.022em; line-height:1.05; white-space:nowrap;
+  font-size:min(2.43rem, 4.40vw); /* MODES-OK TRUE 1432.0 @100px (probed 2026-07-28); 3.96 x 1589.8/1432, C3 screen fill, fluid all 4 modes */
+  margin:0 0 clamp(18px, 1.9vw, 34px); } /* MODES-OK pool roomy head gap */
+.ab-intro__title .dot { color:var(--sage); }
+.ab-intro__sub { max-width:720px; margin-inline:auto; color:var(--slate); line-height:1.6;
+  font-size:clamp(0.89rem, 0.78rem + 0.47vw, 1.09rem); } /* MODES-OK pool C3 sub token, all 4 modes */
+
+.ab-vals { background:var(--white); padding-top:0;
+  padding-bottom:clamp(28px, 1.6vw + 14px, 46px); } /* MODES-OK pool pad; top 0 stacks tight under the intro CTA */
+.ab-vals__title { font-family:var(--font-d); font-weight:700; color:var(--racing);
+  letter-spacing:-.022em; line-height:1.05; white-space:nowrap; text-align:center;
+  font-size:var(--t-section-title); /* MODES-OK shared section-title token (fq__cat / touch standard) */
+  margin:0 0 clamp(12px, 1.4vw, 22px); } /* MODES-OK pool head margin */
+.ab-vals__title .dot { color:var(--sage); }
+.ab-vals__grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr));
+  max-width:1080px; margin-inline:auto;
+  gap:clamp(12px, 1.6vw, 26px); } /* MODES-OK owner grid lock: 1x4 main site + big burger; pool testimonial gap */
+.ab-card { container-type:inline-size; position:relative; background:#fff;
+  border:1px solid rgba(143,168,152,.35); text-align:center;
+  border-radius:clamp(12px, 1.6vw, 24px); /* MODES-OK pool card radius */
+  padding:clamp(12px, 9cqi, 26px); /* MODES-OK cqi pad tracks card width (container-fluid rule) */
+  box-shadow:0 24px 60px -34px rgba(0,18,10,.35);
+  transition:transform .25s, box-shadow .25s; }
+.ab-card::before { content:""; position:absolute; pointer-events:none;
+  inset:clamp(6px, 0.8cqi + 4px, 10px); /* MODES-OK fluid inner keyline inset */
+  border:1px solid rgba(0,66,37,.10);
+  border-radius:calc(clamp(12px, 1.6vw, 24px) - clamp(6px, 0.8cqi + 4px, 10px)); } /* MODES-OK keyline radius follows card radius minus inset */
+.ab-card:hover { transform:translateY(-4px); box-shadow:0 30px 70px -34px rgba(0,18,10,.45); }
+@media (prefers-reduced-motion:reduce) { .ab-card:hover { transform:none; } }
+.ab-card__icon { display:block; margin-inline:auto;
+  width:clamp(44px, 30cqi, 88px); height:clamp(44px, 30cqi, 88px); /* MODES-OK owner 2026-07-28 playing-card pip: tile doubled, cqi tracks card width */
+  border-radius:clamp(9px, 5.5cqi, 18px); /* MODES-OK cqi tile radius scaled with the pip */
+  margin-bottom:clamp(10px, 7cqi, 22px); } /* MODES-OK roomier cqi tile-to-title gap */
+.ab-card__t { font-family:var(--font-d); font-weight:700; color:var(--racing);
+  letter-spacing:-.022em; line-height:1.15; white-space:nowrap;
+  font-size:clamp(0.72rem, 6.4cqi, 1.08rem); /* MODES-OK cqi one-line title, "Problem solving." TRUE 824.4 @100px fits with margin */
+  margin:0 0 clamp(5px, 3cqi, 10px); } /* MODES-OK cqi title-to-body gap */
+.ab-card__t .dot { color:var(--sage); }
+.ab-card__b { color:var(--slate); line-height:1.55; margin:0;
+  font-size:clamp(0.66rem, 4.6cqi, 0.92rem); } /* MODES-OK cqi body scale */
+@media (max-width:700px) {
+  .ab-vals__grid { grid-template-columns:repeat(2, minmax(0,1fr)); max-width:520px;
+    gap:clamp(8px, 1.12vw, 14.4px); } /* MODES-OK owner grid lock: 2x2 small burger + mobile; pool phone gap */
+}
+
+/* ---- ABOUT (about) — hero photo hook */
+body[data-page="about"] .fq-hero { --fq-hero-img:url('../img/about-hero.webp');
+  --fq-hero-pos:center 32%; } /* MODES-OK photo vars only; crop keeps the face centered in the shallow band */

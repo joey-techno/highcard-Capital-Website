@@ -387,3 +387,39 @@ Reusable on any page needing an estimate tool; math: line = max(value × 0.9 −
 - `.fq__a` grid-rows 0fr→1fr .35s spring; answer clamp(0.78rem, 0.7rem + 0.35vw,
   0.95rem), left inset clamp(36px, 3.5vw + 17px, 63px) aligns under question text.
 - JS `[data-faq-acc]` in main.js: one open per group, first item ships open per group.
+
+## POOL · AB ABOUT COMPONENTS (about rebuild, spec locked 2026-07-28, build pending)
+Structure: fq-hero reuse → white intro → white value-cards section → th-tst
+testimonials (mist) → touch (felt) → footer cream. Rhythm stays legal.
+- Hero: `.fq-hero` byte-reuse; page hook `body[data-page="about"] .fq-hero
+  { --fq-hero-img:url('../img/about-hero.webp'); }` (+ per-photo position). Title
+  "About Us." = fq-hero title recipe `min(2.43rem, Xvw)` — X from TRUE-EM probe at
+  build (short headline → steep slope, expect ~8vw range; relax ×1.2 ≤520).
+- Intro (`.ab-intro`, white): pool compact section pad clamp(28px, 1.6vw + 14px, 46px);
+  inner max 980 (th-qa recipe). Title "Where funding meets family." centered nowrap
+  `min(2.43rem, Xvw)` X probed at build; sage dot; head gap clamp(18px, 1.9vw, 34px)
+  (roomy). Sub = C3 sub token clamp(0.89rem, 0.78rem + 0.47vw, 1.09rem) Inter slate
+  lh 1.6, centered, max-width 720px (longer paragraph than C3's 620 — L1 copy runs
+  ~3 lines desktop; both fluid ends live). CTA = pool `.th-qa__cta` + `.btn`
+  capstone size, "View our services" → services.html.
+- Value cards (`.ab-vals` section white · `.ab-card` cards, owner grid lock
+  2026-07-28): grid `repeat(4, minmax(0,1fr))` max-width 1080 centered, gap
+  clamp(12px, 1.6vw, 26px) (testimonial grid language); ≤700px `repeat(2,
+  minmax(0,1fr))` 2×2, max-width 520 (ledger phone width), gap
+  clamp(8px, 1.12vw, 14.4px). Equal heights per row by grid stretch.
+- Card box: white bg, pool card radius clamp(12px, 1.6vw, 24px), hairline sage .35,
+  soft shadow 0 24px 60px -34px rgba(0,18,10,.35), inner keyline (product-card
+  ::before inset clamp(6px, 0.8cqi + 4px, 10px), border rgba(0,66,37,.10)), hover
+  translateY(-4px) + deeper shadow .25s, reduced-motion safe.
+- Card internals (container-fluid LOCKED RULE — `container-type:inline-size` on the
+  card, everything cqi so 1×4 and 2×2 both track the CARD width):
+  pad clamp(12px, 9cqi, 26px); icon tile clamp(28px, 17cqi, 48px) sq, radius
+  clamp(6px, 3.5cqi, 12px) (baked cream #F5F0E1 tile, generated emblem, trimmed
+  192px master like homepage icons); tile-to-title gap clamp(8px, 5cqi, 16px);
+  title Poppins 700 racing + sage dot, ONE LINE nowrap shrink-to-fit
+  clamp(0.72rem, 6.4cqi, 1.08rem) (longest "Problem solving." governs the slope,
+  verify at build); title-to-body gap clamp(5px, 3cqi, 10px); body Inter slate
+  lh 1.55 clamp(0.66rem, 4.6cqi, 0.92rem) (body copy wraps freely, no line lock).
+- Reveals: section head data-reveal; grid data-stagger, each card data-reveal.
+- QA at build: 360 / 500 / 660 / 860 / 1030 / 1440 + sweep to 1450 — 4-up one row,
+  2×2 below 700, card titles one line at every px, no plateau, no overflow.

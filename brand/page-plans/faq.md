@@ -1,7 +1,7 @@
 # Page Plan · FAQ (rebuild)
 
 Page file: `faq.html` · build id: `faq` (nav: faq)
-Status: **Hero + General shell BUILT 2026-07-28 — question copy in owner review, photo pick pending**
+Status: **BUILT + COMMITTED 2026-07-28 (8b8eba6) — 6 product groups' draft answers still open for owner review; full QA sweep pending**
 
 Owner brief (2026-07-28): rebuild the FAQ page modeled on capitalquickly.com/faqs/ —
 shallow photo hero with the title "Frequently Asked Questions", category headers over
