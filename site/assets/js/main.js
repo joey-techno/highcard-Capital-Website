@@ -209,7 +209,12 @@
       const hold = () => held.forEach(c => c.classList.remove('is-inview'));
       hold();
       const iv = setInterval(hold, 100); /* outlast the observer's async delivery */
-      if (prodHead) prodHead.classList.add('presettle');
+      if (prodHead) {
+        prodHead.classList.add('presettle');
+        /* reveal the section title at load everywhere — on small screens it sits below
+           the fold, so waiting for the observer left it blank vs desktop (owner 2026-07-29) */
+        prodHead.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-inview'));
+      }
       let released = false;
       const release = () => {
         if (released) return;

@@ -606,3 +606,22 @@ curve; grows per-pixel to 32px at the 1080 box, cqi shrink-to-fit guard (est TRU
 - Items: Poppins 600 `calc(10px + .5vw)` (<=700 `calc(10.5px + .55vw)`, email fit-guard `min(..., calc(5.4vw - 8px))`), nowrap ALWAYS (strip height must never jump); icons `calc(11px + .5vw)` cream (racing default vanishes on the strip)
 - APPLY: cream box, racing text, uppercase .08em, 700; h `calc(20px + 1.2vw)` / <=700 `calc(24px + 2.6vw)`, radius `calc(5px + .3vw)`
 - White bar <=920: logo left `.nav__logo { margin-right:auto }`, burger right (`order:3`), `.nav__cta { display:none }` — no links, no phone pill, no second Apply (owner: do NOT copy Capital Quickly's desktop link-wrap layout); desktop >=921 untouched
+
+## POOL · BLOG coming-soon photo page (owner 2026-07-29)
+- Blog page CLEARED: hero title/lede + dashed `.blog-empty` box deleted (CSS rules replaced too); page is now nav → one photo → footer
+- `.blog-soon { padding:calc(var(--nav-h) + clamp(24px,4.5vh,56px)) 0 clamp(40px,7vh,88px) }` — nav-h is mode-aware so it clears the burger topbar stack
+- `.blog-soon__frame`: max-width 960 centered, radius var(--r-panel), 1px var(--line), shadow `0 24px 60px -32px rgba(15,42,31,.35)`
+- Photo `assets/img/blog-coming-soon.webp` (1536x1024, q82, ~96KB): fresh printed stack on dark green worktable, top sheet lifting (owner picked take B over letterpress take A; sources brand/ai/photos-blog/, script brand/ai/gen-blog-coming-soon.mjs)
+
+## POOL · DESKTOP HEADER rework >=921 (owner 2026-07-29 — match the burger language)
+- Nav links: white pill boxes REMOVED → plain racing-green Poppins 600 text `clamp(12px, .4vw + 10.2px, 13.5px)`, gap `clamp(10px, 1.2vw + 2px, 22px)`; hover = 2px currentColor underline slides in left→right (`.nav__links > li > a::after`, scaleX 0→1); dropdown rows unaffected (their own override)
+- Phone: box removed → plain green icon + number, same font as links; icon-only <1080 rule kept
+- Apply: stays SOLID GREEN (owner interrupt: keep green), text now "Apply" (`.nav__apply-now` span deleted from nav.html), letters match burger APPLY: uppercase, .08em, weight 500
+- Logo: `clamp(34px, 1.9vw + 23px, 44px)` (+30%); burger modes keep their own <=920 override
+- nav--dark: cream link/phone text, underline is currentColor, old rgba hover boxes deleted
+
+## Blog coming-soon overlay title (owner 2026-07-29, round 2)
+- `.blog-soon__title`: figcaption absolute inset 0, FLEX centered (grid split the dot span onto its own row — keep flex), scrim rgba(15,42,31,.42), cream Poppins 700 `clamp(26px, 1.8rem + 2.6vw, 66px)`, "Coming Soon" + sage dot (racing dot invisible on the scrim)
+- Round 2 (owner 2026-07-29): underline is SNUG under the letters — `top:calc(50% + .72em)` (em-relative, scales with the fluid font), NOT pinned to the hit-area bottom (that floating gap read as "off"); color stays racing (owner pick). And 921-1080 icon-only phone got its white box + green outline BACK (bare icon floats; boxed only when the number is hidden) with the old green-fill hover.
+- Round 3 (owner 2026-07-29): underline color racing → SAGE (`var(--sage)` #8FA898), pixel-verified.
+- Round 3 strip weights (owner 2026-07-29): phone/email `.topbar__item` 500 → 400 (still read too bold), `.topbar__apply` 500 → 400 to match, and the burger-menu cream boxes (`.menu .phone-link`, `.menu__foot .btn`) 600 → 400 so every burger button carries the same thin weight.

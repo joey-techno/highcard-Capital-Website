@@ -272,23 +272,31 @@ h3, .h3 { font-size:var(--fs-h3); line-height:1.3; letter-spacing:-.01em; }
 }
 /* MODES-OK: nav__in gap fluid (all 4 modes) */
 .nav__in { display:flex; align-items:center; justify-content:space-between; gap:clamp(14px, 1vw + 8px, 24px); width:100%; }
-/* MODES-OK: logo height fluid (all 4 modes) */
-.nav__logo { display:block; height:clamp(26px, 1.5vw + 18px, 34px); flex:none; }
+/* MODES-OK main site >=921 (owner 2026-07-29: logo +30% so it fills the bar; burger modes keep their own override at the <=920 block) */
+.nav__logo { display:block; height:clamp(34px, 1.9vw + 23px, 44px); flex:none; }
 .nav__logo img { height:100%; width:auto; }
 .nav__logo .lg-cream { display:none; }
 
-/* MODES-OK: nav links + their gap/height/padding/font fluid (all 4 modes) */
-.nav__links { display:flex; align-items:center; gap:clamp(5px, .5vw + 2px, 8px); list-style:none; }
+/* MODES-OK main site >=921 (links hidden in burger modes) — owner 2026-07-29: pill boxes
+   removed, plain racing-green text like the burger language, slide-in underline on hover */
+.nav__links { display:flex; align-items:center; gap:clamp(10px, 1.2vw + 2px, 22px); list-style:none; }
 .nav__links > li { position:relative; display:flex; }
 .nav__links a, .nav__links button {
   display:inline-flex; align-items:center; justify-content:center; gap:clamp(4px, .4vw + 2px, 6px);
-  font-family:var(--font-d); font-size:clamp(11.5px, .4vw + 9.7px, 13px); font-weight:600; color:var(--racing); line-height:1;
-  height:clamp(32px, 1.4vw + 24px, 38px); padding:0 clamp(10px, .8vw + 5px, 14px); border-radius:10px; white-space:nowrap;
-  background:var(--white); border:1px solid var(--line-strong);
-  transition:background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
-} /* MODES-OK: color-only change (white pill + green text + green outline); no sizing tokens touched, applies to all modes */
-.nav__links a:hover, .nav__links button:hover { background:var(--racing); border-color:var(--racing); color:var(--cream); }
-.nav__links a:hover .caret, .nav__links button:hover .caret { color:var(--cream); }
+  font-family:var(--font-d); font-size:clamp(12px, .4vw + 10.2px, 13.5px); font-weight:600; color:var(--racing); line-height:1;
+  height:clamp(32px, 1.4vw + 24px, 38px); padding:0 clamp(2px, .2vw + 1px, 4px); white-space:nowrap;
+  background:transparent; border:0; border-radius:0;
+  transition:color var(--t-fast);
+}
+.nav__links > li > a { position:relative; }
+.nav__links > li > a::after {
+  content:""; position:absolute; left:clamp(2px, .2vw + 1px, 4px); right:clamp(2px, .2vw + 1px, 4px); top:calc(50% + .72em);
+  height:2px; border-radius:1px; background:var(--sage);
+  /* MODES-OK main site >=921 only (links hidden in burger modes) — owner 2026-07-29: underline snug under the letters (em-relative, scales with the fluid font), not pinned to the hit-area bottom; SAGE line (owner round 3) */
+  transform:scaleX(0); transform-origin:left center;
+  transition:transform var(--t-fast) var(--ease-out);
+} /* MODES-OK: underline insets/offset fluid; desktop-only element */
+.nav__links > li > a:hover::after, .nav__links > li:focus-within > a::after { transform:scaleX(1); }
 /* MODES-OK: caret fluid (all 4 modes) */
 .nav__links .caret { width:clamp(10px, .5vw + 8px, 12px); height:clamp(10px, .5vw + 8px, 12px); transition:transform var(--t-fast) var(--ease-out); color:var(--sage-deep); }
 /* no current-page highlight — nav buttons are green only on hover (owner's call 2026-07) */
@@ -297,15 +305,16 @@ h3, .h3 { font-size:var(--fs-h3); line-height:1.3; letter-spacing:-.01em; }
 /* MODES-OK: nav cta gap + phone (font/height/padding/gap/svg) + apply fluid (all 4 modes) */
 .nav__cta { display:flex; align-items:center; gap:clamp(5px, .5vw + 2px, 8px); }
 .nav__phone {
-  font-family:var(--font-d); font-weight:600; font-size:clamp(11.5px, .4vw + 9.7px, 13px); color:var(--racing); line-height:1;
+  font-family:var(--font-d); font-weight:600; font-size:clamp(12px, .4vw + 10.2px, 13.5px); color:var(--racing); line-height:1;
   display:inline-flex; gap:clamp(5px, .4vw + 3px, 7px); align-items:center; white-space:nowrap;
-  height:clamp(32px, 1.4vw + 24px, 38px); padding:0 clamp(10px, .8vw + 5px, 14px); border-radius:10px;
-  background:var(--white); border:1px solid var(--line-strong);
-  transition:background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
-} /* MODES-OK: color-only (white pill + green outline); no sizing tokens touched, all modes */
-.nav__phone:hover { background:var(--racing); border-color:var(--racing); color:var(--cream); }
+  height:clamp(32px, 1.4vw + 24px, 38px); padding:0 clamp(2px, .2vw + 1px, 4px);
+  background:transparent; border:0; border-radius:0;
+  transition:color var(--t-fast);
+} /* MODES-OK main site >=921 (hidden in burger modes) — owner 2026-07-29: box removed, plain green icon + number */
+.nav__phone:hover { color:var(--racing-deep, #06170F); }
 .nav__phone svg { width:clamp(13px, .5vw + 10px, 15px); height:clamp(13px, .5vw + 10px, 15px); }
-.nav__apply { height:clamp(32px, 1.4vw + 24px, 38px); padding:0 clamp(13px, 1vw + 7px, 18px); font-size:clamp(11.8px, .4vw + 10px, 13.5px); white-space:nowrap; }
+/* MODES-OK main site >=921 — owner 2026-07-29: stays SOLID GREEN, letters match the burger APPLY (uppercase, .08em, 500) */
+.nav__apply { height:clamp(32px, 1.4vw + 24px, 38px); padding:0 clamp(14px, 1.1vw + 7px, 20px); font-size:clamp(11.4px, .4vw + 9.6px, 13px); font-weight:500; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; }
 
 /* dropdown */
 .drop {
@@ -344,10 +353,8 @@ li:hover > .drop, li:focus-within > .drop, .drop.is-open { opacity:1; visibility
 .nav--dark:not(.is-scrolled) .nav__logo .lg-cream { display:block; }
 .nav--dark:not(.is-scrolled) .nav__links a,
 .nav--dark:not(.is-scrolled) .nav__links button { color:var(--cream); }
-.nav--dark:not(.is-scrolled) .nav__links a:hover,
-.nav--dark:not(.is-scrolled) .nav__links button:hover { background:rgba(245,240,225,.08); }
-.nav--dark:not(.is-scrolled) .nav__phone { background:transparent; border-color:var(--line-dark); color:var(--cream); }
-.nav--dark:not(.is-scrolled) .nav__phone:hover { background:rgba(245,240,225,.08); border-color:var(--line-dark); color:var(--cream); }
+.nav--dark:not(.is-scrolled) .nav__phone { color:var(--cream); }
+.nav--dark:not(.is-scrolled) .nav__phone:hover { color:var(--white); }
 /* Apply Now stays solid green everywhere — no cream on the dark hero (owner's call 2026-07) */
 .nav--dark:not(.is-scrolled) .caret { color:var(--sage); }
 .nav--dark:not(.is-scrolled) .nav__burger span { background:var(--cream); }
@@ -961,16 +968,27 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .page-hero__proof { display:inline-flex; align-items:center; gap:10px; margin-top:26px; padding:11px 18px; border:1px solid var(--line); border-radius:999px; background:var(--cream); font-family:var(--font-d); font-weight:600; font-size:13.5px; color:var(--racing); }
 .page-hero__proof .icon { width:18px; height:18px; }
 
-/* MODES-OK: blog empty-state placeholder — all padding uses fluid clamp() (both terms scale),
-   so it flows per-pixel across all 4 modes; temporary until real posts replace it */
-.blog-empty {
-  text-align:center; max-width:520px; margin-inline:auto;
-  padding:clamp(40px,6vw,72px) clamp(24px,4vw,40px);
-  border:1px dashed var(--line-strong); border-radius:var(--r-panel); background:var(--white);
+/* MODES-OK: blog coming-soon photo page (owner 2026-07-29: page cleared, photo only) —
+   all spacing fluid clamp()/vh so it flows per-pixel across all 4 modes; --nav-h already
+   mode-aware (bar+strip in burger modes), so the top offset clears the header stack everywhere */
+.blog-soon { padding:calc(var(--nav-h) + clamp(24px,4.5vh,56px)) 0 clamp(40px,7vh,88px); }
+.blog-soon__frame {
+  margin:0; max-width:960px; margin-inline:auto;
+  border-radius:var(--r-panel); overflow:hidden;
+  border:1px solid var(--line); background:var(--white);
+  box-shadow:0 24px 60px -32px rgba(15,42,31,.35);
 }
-.blog-empty .eyebrow { margin-bottom:14px; }
-.blog-empty p:not(.eyebrow) { color:var(--slate); font-size:var(--fs-lede); }
-.blog-empty a { color:var(--racing); font-weight:600; text-decoration:underline; text-underline-offset:3px; }
+.blog-soon__frame img { display:block; width:100%; height:auto; }
+/* MODES-OK: overlay title fluid clamp, all 4 modes (owner 2026-07-29: cream title centered on the photo over a soft green scrim) */
+.blog-soon__frame { position:relative; }
+.blog-soon__title {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center;
+  background:rgba(15,42,31,.42);
+  font-family:var(--font-d); font-weight:700; color:var(--cream);
+  font-size:clamp(26px, 1.8rem + 2.6vw, 66px); line-height:1.1; letter-spacing:-.01em;
+  padding:0 clamp(16px, 4vw, 40px);
+}
+.blog-soon__title .dot { color:var(--sage); } /* MODES-OK: color only — racing dot vanishes on the dark scrim */
 
 /* benefit cards */
 .bene-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
@@ -1817,7 +1835,9 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
   /* 921–1080px: collapse phone to icon-only so digits never overflow; keep the icon + chip padding.
      MODES-OK: Main-site mode only (>=921); no fluid tokens changed, hide-rule is width-flat across the band */
   .nav__phone span:not(.icon) { display:none; }
-  .nav__phone { padding-inline:0; width:clamp(32px, 1.4vw + 24px, 38px); justify-content:center; }
+  /* MODES-OK main site 921-1080 (owner 2026-07-29): icon-only phone gets its box BACK — a bare icon floats, boxed reads as a button */
+  .nav__phone { padding-inline:0; width:clamp(32px, 1.4vw + 24px, 38px); justify-content:center; background:var(--white); border:1px solid var(--line-strong); border-radius:10px; }
+  .nav__phone:hover { background:var(--racing); border-color:var(--racing); color:var(--cream); }
 }
 @media (max-width:920px) {
   /* MODES-OK: all 3 burger modes — header is now a two-layer stack (Capital Quickly reference,
@@ -1834,9 +1854,9 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
      MODES-OK: all 3 burger modes (this block), <=700 stacks it in two rows below */
   .topbar { display:block; position:absolute; top:0; left:0; right:0; z-index:110; height:var(--strip-h); background:var(--racing); color:var(--cream); }
   .topbar__in { height:100%; display:flex; align-items:center; gap:calc(10px + 1.8vw); } /* MODES-OK big burger row gap, fluid 701-920 */
-  .topbar__item { display:inline-flex; align-items:center; gap:calc(5px + .4vw); font-family:var(--font-d); font-weight:500; font-size:calc(10px + .5vw); line-height:1; color:var(--cream); white-space:nowrap; } /* MODES-OK all burger modes, nowrap = strip height can never jump; weight 500 (owner: thinner, 2026-07-29) */
+  .topbar__item { display:inline-flex; align-items:center; gap:calc(5px + .4vw); font-family:var(--font-d); font-weight:400; font-size:calc(10px + .5vw); line-height:1; color:var(--cream); white-space:nowrap; } /* MODES-OK all burger modes, nowrap = strip height can never jump; weight 400 (owner round 2: still too bold at 500, 2026-07-29) */
   .topbar__item .icon { width:calc(11px + .5vw); height:calc(11px + .5vw); flex:none; color:var(--cream); } /* MODES-OK all burger modes; cream overrides the racing .icon default, which vanishes on the racing strip */
-  .topbar__apply { margin-left:auto; display:inline-flex; align-items:center; justify-content:center; flex:none; background:var(--cream); color:var(--racing); font-family:var(--font-d); font-weight:500; font-size:calc(9.5px + .5vw); letter-spacing:.08em; text-transform:uppercase; line-height:1; height:calc(17px + 1vw); padding:0 calc(8px + 1.1vw); border-radius:calc(4px + .3vw); } /* MODES-OK all burger modes, cream box like the reference; owner 2026-07-29: thinner letters, smaller box */
+  .topbar__apply { margin-left:auto; display:inline-flex; align-items:center; justify-content:center; flex:none; background:var(--cream); color:var(--racing); font-family:var(--font-d); font-weight:400; font-size:calc(9.5px + .5vw); letter-spacing:.08em; text-transform:uppercase; line-height:1; height:calc(17px + 1vw); padding:0 calc(8px + 1.1vw); border-radius:calc(4px + .3vw); } /* MODES-OK all burger modes, cream box like the reference; owner 2026-07-29 round 2: weight 400 to match the thinner strip text (weight-only change, no sizing tokens touched) */
   body { padding-bottom:86px; } /* clearance for the sticky call/apply bar */
   /* Burger-mode white bar: [logo] ................. [≡ burger] — clean like the reference
      MODES-OK: applies across all 3 burger modes (big 701–920, small 481–700, mobile ≤480) */
@@ -2166,9 +2186,9 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 .menu__sub { margin:min(.6svh, 4px) 0 min(1.2svh, 10px); } /* MODES-OK all burger modes */
 .menu__sub a { font-size:min(5vw, 2.5svh, 19px); line-height:1.15; padding:min(.4svh, 7px) 0; } /* MODES-OK all burger modes */
 .menu__foot { gap:min(1.5svh, 16px); padding-top:min(1.8svh, 28px); } /* MODES-OK all burger modes */
-.menu .phone-link { justify-content:center; text-align:center; font-size:min(2.4svh, 16px); line-height:1.2; background:var(--cream); color:var(--racing); border-radius:var(--r-btn); padding-block:min(1.2svh, 12px); } /* MODES-OK all burger modes, phone centered in a cream box like the nav pills (owner 2026-07-29) */
+.menu .phone-link { justify-content:center; text-align:center; font-weight:400; font-size:min(2.4svh, 16px); line-height:1.2; background:var(--cream); color:var(--racing); border-radius:var(--r-btn); padding-block:min(1.2svh, 12px); } /* MODES-OK all burger modes, phone centered in a cream box like the nav pills (owner 2026-07-29; round 2: weight 400 to match the thinner strip) */
 .menu .phone-link svg { color:var(--racing); }
-.menu__foot .btn { padding-block:min(1.4svh, 14px); font-size:min(2.4svh, 16px); line-height:1.2; background:var(--cream); color:var(--racing); } /* MODES-OK all burger modes, cream box like the open-menu nav Apply (owner 2026-07-29) */
+.menu__foot .btn { padding-block:min(1.4svh, 14px); font-weight:400; font-size:min(2.4svh, 16px); line-height:1.2; background:var(--cream); color:var(--racing); } /* MODES-OK all burger modes, cream box like the open-menu nav Apply (owner 2026-07-29; round 2: weight 400 to match the thinner strip) */
 .menu__foot .btn:hover { background:var(--white); }
 
 /* big burger (701-920): the hand goes 2x4 — per-pixel paddings and type via vw */
