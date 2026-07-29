@@ -1741,6 +1741,7 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 /* MODES-OK: address text matches the new 20%-smaller link size; tighter row gap. All 4 modes, both terms scaled. */
 .footer address { font-style:normal; font-size:clamp(11.2px, 10.4px + .224vw, 12.4px); display:grid; gap:clamp(6px, 4.8px + .3vw, 9px); overflow-wrap:anywhere; }
 .footer address a { display:flex; gap:clamp(7px,.8vw,10px); align-items:center; }
+.footer address a.footer__apply { display:none; } /* MODES-OK owner 2026-07-29: Reach-us Apply Now link is a small burger + mobile feature (nav already carries Apply Now on main site + big burger); the <=700px block shows it. Specificity must beat .footer address a */
 /* MODES-OK: hours row matches the icon+gap of the links above; address indent = icon width + gap so the
    text lines up under them. Both fluid (all 4 modes) — replaces the old inline gap:10px / padding-left:26px. */
 .footer__hours { display:flex; gap:clamp(7px,.8vw,10px); align-items:center; }
@@ -1868,12 +1869,14 @@ body.menu-open .nav__apply { background:var(--cream); color:var(--racing); }
 @media (max-width:700px) {
   .footer a,
   .footer address { font-size:clamp(9.8px, 9.1px + .196vw, 10.85px); }
-  /* MODES-OK: small-burger (481–700) + mobile — owner 2026-07-29: Company links on the RIGHT.
-     Two equal 1fr tracks (no px to scale) so Services sits left, Company right, per-pixel to 320. */
+  /* MODES-OK: small-burger (481–700) + mobile — owner 2026-07-29 (rev 2): two 1fr tracks
+     (no px to scale); LEFT = Reach us then Services, RIGHT = Company starting level with
+     Reach us (its title lines up with REACH US). */
   .footer__grid { grid-template-columns:1fr 1fr; }
-  /* MODES-OK: small-burger + mobile — Reach us on top spanning both tracks (1/-1, no px to scale);
-     logo hidden (display:none), which also removes the empty cell/gap the logo left behind. */
-  .footer__grid > *:last-child { order:-1; grid-column:1/-1; }
+  .footer__grid > *:last-child { grid-column:1; grid-row:1; } /* MODES-OK Reach us top-left */
+  .footer__grid > *:nth-child(2) { grid-column:1; grid-row:2; } /* MODES-OK Services under Reach us */
+  .footer__grid > *:nth-child(3) { grid-column:2; grid-row:1 / span 2; } /* MODES-OK Company right, level with Reach us */
+  .footer address a.footer__apply { display:flex; } /* MODES-OK owner 2026-07-29: Apply Now link after the email, small burger + mobile only */
   .footer__brand { display:none; }
 }
 @media (max-width:640px) {
