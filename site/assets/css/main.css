@@ -2724,11 +2724,14 @@ body[data-page="sba"] .th-why__title { font-size:min(2.43rem, 4.07vw); } /* MODE
 /* ---- HELOC (heloc) — carbon copy overrides (see brand/page-plans/heloc.md).
    Hero title "HELOC." is far narrower than "Term Loans." → shared clamp everywhere,
    zero fit math. Page adds two shared components: th-ledger table variant + th-calc. */
-body[data-page="heloc"] .th-hero { --th-hero-img:url('../img/heloc-hero.webp'); --th-hero-pos:22% 0%; } /* MODES-OK photo swap + pos tune (subject left third, vertical 0% pins the top so the head never clips, RULE 9), scrim shared */
+body[data-page="heloc"] .th-hero { --th-hero-img:url('../img/heloc-hero.webp'); --th-hero-pos:22% 0%; } /* MODES-OK hero take F 2026-07-29 (bright, smiling couple at their house, WAIST-UP). Plain cover + position tune, same as every other service page. LESSON: the first bright takes were full-body wide shots — subjects' legs ran out at the band's bottom leaving flat green, and the title crossed their bodies. A 135% background-size zoom was tried to compensate and made it worse (zooming past cover lifts the photo's bottom edge INTO the band). The fix is FRAMING, not CSS: waist-up like sba/term-hero so subjects fill the band top to bottom. */
 /* "Your equity, on standby." — TRUE 1200.7 @100px (probed 2026-07-28); 3.96 × 1589.8/1200.7 */
 body[data-page="heloc"] .th-intro__title { font-size:min(2.43rem, 5.24vw); } /* MODES-OK all 4 modes, width-ratio retune */
 /* "The cheapest capital you will ever tap." — TRUE 1879.2 @100px; 3.69 × 1903.7/1879.2 */
 body[data-page="heloc"] .th-why__title { font-size:min(2.43rem, 3.74vw); } /* MODES-OK all 4 modes, width-ratio retune */
+/* Owner swap 2026-07-29: straight answers moved ABOVE the calculator. Tone swap was
+   tried and REJECTED by the owner — each container keeps its ORIGINAL background
+   (th-qa mist, th-calc white), so no page-scoped background overrides here. */
 
 /* ============================================================
    FQ — FAQ PAGE (fq-hero shallow photo band + fq slim dropdowns).

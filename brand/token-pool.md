@@ -308,6 +308,16 @@ differ. Sizing identity is guaranteed by SHARING, not copying:
       the extended master full-frame.
    d) QA with a screenshot at desktop width AND confirm the crop math: vertical 0% =
       photo top edge always visible, so file headroom = on-screen headroom.
+9b. LOCKED · Hero framing must be WAIST-UP (owner 2026-07-29, heloc round 2/3 incident):
+   heroes are a SHALLOW wide band, so a full-body wide shot puts the subject's legs at
+   the band's bottom edge — below them the photo runs out and the scrim reads as flat
+   green, and the title lands across their body instead of over background. Generate
+   heroes WAIST-UP with the subject LARGE enough to fill the frame top to bottom
+   (match sba-hero / term-hero). Do NOT try to fix a wide shot with `background-size`
+   zoom: zooming past `cover` lifts the photo's bottom edge INTO the band and makes the
+   dead zone worse. `background-size` stays `cover` on every page — position tune only.
+   Mirroring (sharp `flop`) is also not a fix: it moves the subject under the qualify
+   form. Regenerate with correct framing instead.
 10. LOCKED · Card framing (owner 2026-07-28): C6 industry-card people are horizontally
    CENTERED, waist-up, ≥6% headroom in the 560×700 file. Prompts say "subject
    horizontally centered, waist-up, generous clear space above the head". Converting

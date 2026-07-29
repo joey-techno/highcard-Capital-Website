@@ -2,6 +2,16 @@
 
 Page file: `heloc.html` · build id: `heloc` (already registered in site-src/build.mjs, nav: funding)
 Status: **DONE — built, revised, and committed 2026-07-28 (commit 0b672fc)**
+**REVISION 2026-07-29 (uncommitted):** (a) container swap — Straight answers (th-qa)
+moved ABOVE the calculator (th-calc); each keeps its ORIGINAL background (owner
+rejected a tone swap), so the order is felt → mist → white → white. (b) Hero photo
+replaced: the dusk kitchen shot read too dark with no real smile. Round 2 (bright,
+smiling, in front of a house) was rejected for FULL-BODY framing — flat green under
+the legs; a 135% background-size zoom was tried and reverted (made it worse, see
+token-pool RULE 9b). Round 3 take F installed: WAIST-UP smiling couple at their home,
+plain cover + 22% 0% position, matching sba/term framing. Gen scripts:
+brand/ai/gen-heloc-hero2.mjs (round 2) and gen-heloc-hero3.mjs (round 3); pickers:
+brand/heloc-hero2-options.html, heloc-hero3-options.html. QA'd 1440/860/660/500.
 
 Source material: owner pasted the full old-gen HELOC page copy 2026-07-28 (hero, "What is
 a HELOC" explainer, 10-row terms table, MCA-payoff section, HELOC calculator). Owner wants

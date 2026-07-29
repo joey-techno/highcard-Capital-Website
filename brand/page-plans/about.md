@@ -1,8 +1,9 @@
 # Page Plan · About Us (rebuild)
 
 Page file: `about.html` · build id: `about` (nav: about)
-Status: **BUILT 2026-07-28 (hero take D, icons approved) — QA'd 1440/860/660/500,
-carousel arrows + real-device sweep pending, NOT committed**
+Status: **BUILT + COMMITTED 2026-07-28 (0733c1b) — hero take D, icons pip-sized;
+QA'd 1440/860/660/500; FAQ product-group answers + carousel arrow confirmation
+still open elsewhere**
 
 Owner brief (2026-07-28): rebuild About Us modeled on capitalquickly.com/about-us/ —
 simple page. Photo hero with "About Us" centered (FAQ-hero look), intro/story section,
