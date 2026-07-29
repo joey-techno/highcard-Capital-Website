@@ -498,3 +498,45 @@ one `body[data-page="services"]` hook. Workbook: brand/page-plans/services.md.
   level, one-liners hold, col flip at 700, no overflow. NOTE: headless Edge
   sometimes races the data-split reveal at 1440 and shoots titles mid-animation
   (flaky, affects every fq-hero page) — rerun the shot before diagnosing CSS.
+
+## POOL · IN INDUSTRIES CARDS (industries page, built 2026-07-29)
+
+Page: industries.html (id `industries`, nav after Services). Landing page like
+Services: fq-hero reused (generated trades-collage take C, --fq-hero-pos:center 45%;
+"Industries." TRUE 522.3 @100px reuses shared fq-hero__title untouched, short-title
+precedent), ab-intro reused ("Your industry, our specialty." TRUE 1382.7 @100px ->
+min(2.43rem, 4.55vw) in the page hook), `{{TOUCH}}` kept. New CSS = one IN block
+after the industries hook. Workbook: brand/page-plans/industries.md.
+
+- Layout (owner locks 2026-07-29): 10 category cards STACKED one per row (grid
+  minmax(0,1fr), max-width 1080, gap clamp(12px, 1.6vw, 26px)); photo pane LEFT on
+  main site + big burger (>=701px), photo band on TOP on small burger + mobile
+  (<=700px, grid max-width 520, gap clamp(8px, 1.12vw, 14.4px) — sv phone recipe).
+- SAME-SIZE LOCK (owner 2026-07-29): every photo must LOOK the same size. >=701px:
+  pane is flex:0 0 34% width + align-self:stretch object-fit:cover, and the CARD
+  carries a shared fluid min-height:clamp(210px, 30cqi, 340px) sized to the tallest
+  list (Medical, 8 rows) so short-list cards (Law/Edu/Farm) hold the same height
+  with `.in-card__in { justify-content:center }` centering the content. <=700px:
+  every band uses the sv mobile photo curve clamp(108px, 70.2cqi - 103.5px, 270px).
+- Card box: AB/SV language verbatim — radius clamp(12px, 1.6vw, 24px), sage
+  hairline .35, shadow 0 24px 60px -34px, hover lift .25s, reduced-motion safe,
+  overflow:hidden, container-type:inline-size.
+- Internals (cqi, card ~1080px wide desktop — NOTE wider container than sv cards,
+  so cqi coefficients are smaller): pad clamp(14px, 2.6cqi, 30px) x
+  clamp(16px, 3cqi, 34px); title one line nowrap clamp(0.92rem, 2.1cqi, 1.42rem)
+  (floor verified against "Manufacturing, Wholesale & Distribution" at 360);
+  head gap clamp(8px, 1.2cqi, 14px); list = CSS columns:2 (BOTH layouts),
+  column-gap clamp(14px, 2.4cqi, 30px), items flex + break-inside:avoid, sage dot
+  ::before clamp(5px, 0.55cqi, 7px), text ink #141A16 weight 500 lh 1.9
+  clamp(0.74rem, 1.35cqi, 0.95rem), item gap clamp(6px, 0.8cqi, 10px).
+- Copy rules (owner 2026-07-29): 10 categories = Capital Quickly's 11 with
+  Transportation + Automotive MERGED and repeats deduped; every bullet unique
+  across the grid; every list ends with BOLD racing closer "And every specialty in
+  between" (.in-card__close). No extra section head — the ab-intro doubles as it.
+- Under the grid: centered solid .btn "View our services" -> services.html in a
+  th-qa__cta wrapper (About pattern), then the touch band.
+- Photos: FREE STOCK Pexels 1200x800 webp q82 named ind-<slug>.webp; sources +
+  vet notes (cut logos/names/gloom/dupes) in the workbook. Hero stays GENERATED.
+- QA 2026-07-29: 1440 (+6200 tall) / 860 / 660 / 500 — uniform photo panes, titles
+  one line, 2-col lists hold to 360 math, no overflow; same headless data-split
+  reveal flake as other fq-hero pages (rerun before diagnosing).

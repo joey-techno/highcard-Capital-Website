@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Industries cards · photo + copy picker</title>
+<style>
+:root{--racing:#004225;--cream:#F5F0E1;--sage:#8FA898;--white:#FBF9F3;--slate:#5A6660;--ink:#141A16}
+*{box-sizing:border-box;margin:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--white);color:var(--slate);padding:34px 4vw 80px}
+h1{font-family:Poppins,'Segoe UI',sans-serif;color:var(--racing);font-size:26px;letter-spacing:-.02em;margin-bottom:6px}
+p.lead{font-size:14px;margin-bottom:8px;max-width:940px;line-height:1.6}
+h2.cat{font-family:Poppins,'Segoe UI',sans-serif;color:var(--racing);font-size:20px;margin:44px 0 4px;letter-spacing:-.02em}
+p.note{font-size:12.5px;margin-bottom:10px;max-width:940px;line-height:1.5}
+.tag{display:inline-block;font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream);background:var(--racing);padding:5px 13px;border-radius:999px;margin:14px 0 8px}
+.card{display:flex;max-width:980px;background:#fff;border:1px solid rgba(143,168,152,.35);border-radius:18px;overflow:hidden;box-shadow:0 24px 60px -34px rgba(0,18,10,.35)}
+.card .ph{flex:0 0 34%;min-height:100%}
+.card .ph img{display:block;width:100%;height:100%;object-fit:cover}
+.card .in{flex:1;padding:22px 26px}
+.card h3{font-family:Poppins,'Segoe UI',sans-serif;color:var(--racing);font-size:19px;letter-spacing:-.02em;margin-bottom:10px}
+.card h3 .dot{color:var(--sage)}
+.card ul{list-style:none;columns:2;column-gap:26px;padding:0}
+.card li{font-size:13px;color:var(--ink);font-weight:500;line-height:1.9;break-inside:avoid;display:flex;gap:7px;align-items:center}
+.card li::before{content:'';flex:none;width:6px;height:6px;border-radius:50%;background:var(--sage)}
+.card li.close{font-weight:700;color:var(--racing)}
+</style>
+</head>
+<body>
+<h1>Industries cards · photo + copy picker</h1>
+<p class="lead">Ten categories (Transportation + Automotive merged, owner 2026-07-29). Each candidate photo is shown inside the real card shape: photo LEFT on main site and big burger, top on small burger and mobile. The bullet lists are the round 1 copy drafts, so this page reviews TEXT and PHOTO together. Every list ends with the locked bold closer. Tell me per category: photo 1, 2, or 3 (and any copy edits).</p>
+
+<script>
+const CATS = [
+  ['Construction','construction',[1,3,4],{1:'hard hat duo reviewing plans on site',3:'carpenters framing a house, sunny',4:'bricklayer silhouette against a huge sunset'},['Architecture firms','Concrete services','General contractors','Electricians','HVAC','Landscapers','Lumber yards','Masonry','Painters','Plumbers','Roofers','Specialty tradespeople','Gardeners']],
+  ['Retail','retail',[1,2,4],{1:'two women browsing a bright boutique',2:'shop owner with Open sign (close to the SBA card photo on services)',4:'boutique owner arranging racks, plants'},['Clothing stores','Convenience stores','Dry cleaners','Fitness centers','Florists','Furniture stores','Grocery stores','Hardware stores','Hospitality','Jewelry stores','Salons and spas','Self storage','Specialty stores','Real estate agencies']],
+  ['Transportation &amp; Automotive','transport',[1,4,5],{1:'mechanic with diagnostic tablet in garage',4:'white semi on a scenic mountain highway',5:'friendly trucker at the wheel of his cab'},['Commercial trucking','Ambulance services','Car and limo services','Moving services','Truck stops','Gas stations','Auto repair shops','Car washes','Service centers','Used car dealers']],
+  ['Medical','medical',[1,3],{1:'doctor in warm consultation with a patient',3:'smiling doctor with stethoscope at laptop'},['Chiropractors','Dental practices','Dermatologists','General practitioners','Healthcare facilities','Home health agencies','Medical laboratories','Nutritionists and dietitians','Optometrists','Pharmacies','Podiatrists','Psychiatrists','Senior care','Urgent care centers','Veterinarians']],
+  ['Food Services','food',[2,3,4],{2:'chefs plating filet, bright kitchen',3:'barista pouring latte art (close to the RBF cafe photo on services)',4:'chef at the grill with dramatic flame'},['Bakeries','Cafes and coffee shops','Casual dining','Caterers','Fast food','Fine dining','Food trucks','Juice bars','Restaurants','Restaurant franchises']],
+  ['Business Services','b2b',[1,2,3],{1:'four professionals around laptops',2:'woman leading a team meeting, sunlit',3:'three colleagues, warm plant-filled office'},['Accounting firms','Cleaning services','Insurance agencies','IT service companies','Marketing agencies','Staffing agencies','Warehousing']],
+  ['Manufacturing, Wholesale &amp; Distribution','mfg',[1,3],{1:'warehouse crew with tablet under the racks',3:'two workers walking a box down a warehouse aisle'},['Apparel','Electronics','Food products','Industrial products','Medical products','Metal manufacturers','Textiles','Wood and paper products','Durable goods','Jewelry and precious stones','Transportation equipment']],
+  ['Law Firms','law',[1,4,5],{1:'brass scales and gavel on a warm desk',4:'attorney and client over documents and laptop',5:'attorney at his desk, law books and flag'},['Business law','Family law','Immigration law','Personal injury law','Real estate law']],
+  ['Education &amp; Child Care','edu',[4,5,6],{4:'teacher with vowels chart, kids facing away',5:'kids hands doing crafts, overhead',6:'sunlit preschool room (LOCKED, owner "edu 3")'},['After school programs','Day care centers','Early education centers','Specialized care centers']],
+  ['Farming','farm',[3,4,5],{3:'tractors harvesting, warm (green machines)',4:'farmer with a basket of fresh vegetables',5:'red barns at golden hour sunburst'},['Agriculturalists','Cattle ranchers','Dairy farms','Poultry farms','Vegetable farms']],
+];
+document.write(CATS.map(([title,slug,nums,caps,items])=>{
+  const lis = items.map(i=>`<li>${i}</li>`).join('') + `<li class="close">And every specialty in between</li>`;
+  return `<h2 class="cat">${title}</h2>` + nums.map(n=>
+    `<div class="tag">${slug} ${n} · ${caps[n]}</div>
+     <div class="card"><div class="ph"><img src="stock/ind/${slug}-${n}.jpg" alt=""></div>
+     <div class="in"><h3>${title}<span class="dot">.</span></h3><ul>${lis}</ul></div></div>`).join('');
+}).join(''));
+</script>
+</body>
+</html>

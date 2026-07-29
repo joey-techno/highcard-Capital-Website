@@ -9,6 +9,12 @@ NOTE (QA): headless Edge at 1440 sometimes races the data-split reveal and shoot
 mid-animation (affects About/FAQ too, byte-flaky) — rerun the shot; real browsers fine.
 TRUE widths probed 2026-07-29: "Services." 444.3 @100px (shared fq-hero__title reused,
 About Us. precedent) · "Find the right fit." 793.4 → intro retune 7.93vw in page hook.
+REWORD ROUND (owner 2026-07-29, layout unchanged): hero → "Loans & Financing."
+(TRUE 925.5, shared size untouched); intro → "Find the best option for you."
+(TRUE 1355.0 → retune min(2.43rem, 4.65vw)) + sub "With six ways to fund, we make
+it simple to see which one fits your business. Feeling lost? Reach out and we will
+chart the top choices around your goals." Supersedes the C1/C2 picks below.
+Same round: th-tst testimonials ADDED between the card grid and the believe-in band.
 Page id: `services` (build.mjs:15-17, nav key `funding`). NOT a th-* service-page clone;
 this is a landing page like About/FAQ, so `{{TOUCH}}` stays and shared fq-/ab- components
 are reused. New CSS = one `.sv-*` card component + one `body[data-page="services"]` hook.
@@ -27,10 +33,12 @@ C1 `.fq-hero` (reuse) — generated photo, centered "Services." title, slim band
 C2 `.ab-intro` (reuse) — centered title + sub, no button.
 C3 `.sv-vals` NEW — 6 photo cards (term, sba, heloc, loc, equipment, rbf),
    each: photo 3:2 top, title, "Best for:" + 3 check bullets, Learn more (btn--sm btn--outline).
-C4 `.ab-vals` What we believe in (4 belief cards byte-identical to About) on the
-   TST MIST bg + centered About us button (owner 2026-07-29; a testimonials band
-   was tried first and rejected, Talk-to-us button removed earlier).
-C5 `{{TOUCH}}` — unchanged.
+C4 `.th-tst` testimonials (byte-identical shared) — owner ADDED 2026-07-29 (second
+   thought after the earlier rejection), directly above the believe-in section.
+C5 `.ab-vals` What we believe in (4 belief cards byte-identical to About) on the
+   TST MIST bg + centered About us button (owner 2026-07-29; Talk-to-us button
+   removed earlier). Sits flush under the testimonials on the same mist color.
+C6 `{{TOUCH}}` — unchanged.
 
 ## Step 1 · C1 Hero
 

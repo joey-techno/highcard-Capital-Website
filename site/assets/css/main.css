@@ -2914,6 +2914,57 @@ body[data-page="about"] .fq-hero { --fq-hero-img:url('../img/about-hero.webp');
 /* ---- SERVICES (services) — hero photo + intro title hooks */
 body[data-page="services"] .fq-hero { --fq-hero-img:url('../img/services-hero.webp');
   --fq-hero-pos:center 30%; } /* MODES-OK photo vars only */
-body[data-page="services"] .ab-intro__title { font-size:min(2.43rem, 7.93vw); } /* MODES-OK "Find the right fit." TRUE 793.4 @100px (probed 2026-07-29); 3.96 x 1589.8/793.4, C3 screen fill */
+body[data-page="services"] .ab-intro__title { font-size:min(2.43rem, 4.65vw); } /* MODES-OK "Find the best option for you." TRUE 1355.0 @100px (probed 2026-07-29, reword round); 3.96 x 1589.8/1355, C3 screen fill */
 body[data-page="services"] .ab-vals { background:var(--mist);
   padding-top:clamp(28px, 1.6vw + 14px, 46px); } /* MODES-OK owner 2026-07-29: believe-in band on services sits on the tst mist color and stands alone, so it gets the pool section pad back (About keeps top 0 under its intro) */
+
+/* ---- Industries (industries) — phase 1 hooks only (fq-hero + ab-intro reused,
+   workbook brand/page-plans/industries.md). "Industries." hero title reuses the
+   shared fq-hero__title size untouched (short-title precedent, TRUE 522.3 @100px). */
+body[data-page="industries"] .fq-hero { --fq-hero-img:url('../img/industries-hero.webp');
+  --fq-hero-pos:center 45%; } /* MODES-OK photo vars only */
+body[data-page="industries"] .ab-intro__title { font-size:min(2.43rem, 6.44vw); } /* MODES-OK "We like a challenge." TRUE 978.2 @100px (probed 2026-07-29, reword round); 3.96 x 1589.8/978.2, C3 screen fill */
+
+/* ============================================================
+   IN — INDUSTRIES CARDS (pool build 2026-07-29, spec in
+   token-pool.md "POOL · IN INDUSTRIES CARDS"). 10 stacked cards:
+   photo pane LEFT >=701px / photo band TOP <=700px. Owner locks:
+   photos all LOOK THE SAME SIZE (uniform pane width + shared
+   fluid min-height), bullets unique across grid, bold closer.
+   Container-fluid cqi internals per the LOCKED RULE.
+   ============================================================ */
+.in-vals { background:var(--white); padding-top:0;
+  padding-bottom:clamp(28px, 1.6vw + 14px, 46px); } /* MODES-OK pool section pad; intro above carries the head */
+.in-vals__grid { display:grid; grid-template-columns:minmax(0,1fr);
+  max-width:1080px; margin-inline:auto;
+  gap:clamp(12px, 1.6vw, 26px); } /* MODES-OK sv/ab grid language, all 4 modes */
+.in-card { container-type:inline-size; position:relative; display:flex; background:#fff;
+  border:1px solid rgba(143,168,152,.35); text-align:left;
+  border-radius:clamp(12px, 1.6vw, 24px); overflow:hidden; /* MODES-OK pool card radius */
+  box-shadow:0 24px 60px -34px rgba(0,18,10,.35);
+  transition:transform .25s, box-shadow .25s;
+  min-height:clamp(210px, 30cqi, 340px); } /* MODES-OK owner same-size lock: shared fluid card height sized to the tallest list (Medical) so every photo pane matches */
+.in-card:hover { transform:translateY(-4px); box-shadow:0 30px 70px -34px rgba(0,18,10,.45); }
+@media (prefers-reduced-motion:reduce) { .in-card:hover { transform:none; } }
+.in-card__photo { flex:0 0 34%; width:34%; align-self:stretch; object-fit:cover; } /* MODES-OK uniform pane: fixed width share, fills shared card height (>=701px) */
+.in-card__in { flex:1; display:flex; flex-direction:column; justify-content:center; min-width:0;
+  padding:clamp(14px, 2.6cqi, 30px) clamp(16px, 3cqi, 34px); } /* MODES-OK cqi pad tracks card width; short lists center against the shared height */
+.in-card__t { font-family:var(--font-d); font-weight:700; color:var(--racing);
+  letter-spacing:-.022em; line-height:1.1; white-space:nowrap;
+  font-size:clamp(0.92rem, 2.1cqi, 1.42rem); /* MODES-OK one-line title, floor holds Manufacturing, Wholesale & Distribution at 360 */
+  margin:0 0 clamp(8px, 1.2cqi, 14px); } /* MODES-OK cqi head gap */
+.in-card__t .dot { color:var(--sage); }
+.in-card__list { list-style:none; margin:0; padding:0; columns:2;
+  column-gap:clamp(14px, 2.4cqi, 30px); } /* MODES-OK two columns both layouts, cqi gap */
+.in-card__list li { display:flex; align-items:center; break-inside:avoid;
+  gap:clamp(6px, 0.8cqi, 10px); color:var(--ink); font-weight:500; line-height:1.9; /* MODES-OK sv bullet language */
+  font-size:clamp(0.74rem, 1.35cqi, 0.95rem); } /* MODES-OK fluid bullet scale, all 4 modes */
+.in-card__list li::before { content:''; flex:none; border-radius:50%; background:var(--sage);
+  width:clamp(5px, 0.55cqi, 7px); height:clamp(5px, 0.55cqi, 7px); } /* MODES-OK fluid dot marker */
+.in-card__list li.in-card__close { font-weight:700; color:var(--racing); } /* beats the .in-card__list li weight/color */
+@media (max-width:700px) {
+  .in-vals__grid { max-width:520px; gap:clamp(8px, 1.12vw, 14.4px); } /* MODES-OK sv phone column width + gap */
+  .in-card { flex-direction:column; min-height:0; } /* MODES-OK photo flips on top, height back to content */
+  .in-card__photo { flex:none; width:100%; align-self:auto;
+    height:clamp(108px, 70.2cqi - 103.5px, 270px); } /* MODES-OK sv mobile photo-band recipe: every card identical, flatter as the card narrows */
+}
