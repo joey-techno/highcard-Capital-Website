@@ -27,6 +27,12 @@ OWNER LOCKS (2026-07-29):
   curve — min-height calc(nav + clamp(110px, 56px + 11vw, 220px)) (~1/3 shallower),
   pads calc(nav + clamp(16px, 1vw + 8px, 28px)) top / clamp(16px, 1vw + 8px, 28px)
   bottom (~40% off the pool pad). Fluid all 4 modes.
+- Small burger + mobile round (owner 2026-07-29, <=700px block, revised same day):
+  original band restored (min-height calc(nav + clamp(110px, 56px + 11vw, 220px)),
+  bottom pad clamp(16px, 1vw + 8px, 28px)) with EXTRA top pad clamp(22px, 1.4vw + 11px,
+  38px); title +17% = min(calc(5.24px + 2.83vw), calc(4.4vw - 1.76px)) — the second
+  term is the fit guard (line 1 TRUE 2272.7 vs container pads), which also fixes a
+  pre-existing hairline overflow below ~345px.
 
 QA 2026-07-29: 1440 / 860 / 660 / 500 — 2 lines hold everywhere, no overflow.
 

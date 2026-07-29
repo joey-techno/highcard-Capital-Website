@@ -573,19 +573,28 @@ Two centered check-bullet cards (HELOC / Business Funding) under the thin felt h
   (heloc | business->shared form); embed shell #embedShell reused below the grid.
 
 ### APX <=700px (2-across, prod-card recipe — owner 2026-07-29)
-Internals ride the standing small-screen tokens so the cards match the homepage 2x2
-hand: card pad calc(var(--sp-2) * 1.2) / var(--sp-2), radius calc(8px + 2.6vw); chip
-var(--chip) radius calc(4px + 1.5vw); title min(var(--fs-h3), 8.8cqi) (cap = "Business
-Funding." TRUE 893.4 @100px, fits to 320); rule calc(24px + 6vw) wide; list gap
-var(--sp-1); li min(var(--fs-body-s), 4.85cqi) (cap = "Funding from $5K to $25M" TRUE
-1329.2, fits to 320); check calc(4px + 2.6vw); btn compact cqi (full-width recipe
-rejected): font min(.94rem, 5cqi), pad min(12px, 3.6cqi) min(26px, 8.5cqi), radius
-calc(4px + 1.5vw) — grows/shrinks with the card at every px.
+Internals ride the standing small-screen tokens, scaled by owner rounds 2026-07-29
+(+20% then +30% => text tokens x1.56; chip x1.2 then -10% => x1.08; cap-at-max-fit
+pick for lines that stop fitting): card pad calc(var(--sp-2) * 1.2) /
+calc(var(--sp-2) * .5) (side pad halved for the bigger type), radius calc(8px + 2.6vw);
+chip calc(var(--chip) * 1.08) radius calc(4px + 1.5vw);
+title min(calc(var(--fs-h3) * 1.56), calc(11.19cqi - 0.56px - 0.31vw)) (exact-fit
+guard, "Business Funding." TRUE 893.4, holds to 320); rule calc(24px + 6vw) wide;
+list gap var(--sp-1); li min(calc(var(--fs-body-s) * 1.56), calc(7.52cqi - 0.93px -
+0.55vw)) (exact-fit guard, "Funding from $5K to $25M" TRUE 1329.2, always 1 line to
+320); check calc(4.8px + 3.12vw); btn = prod Learn-more SIZE recipe
+(owner final pick, supersedes the compact round): width 100%, font var(--fs-btn-s),
+pad calc(3.5px + 1.9vw) 0, radius calc(4px + 1.5vw); solid green magnetic kept.
 
 ### APX empty state `.apx-empty` (owner 2026-07-29)
 Solid-hairline card (owner pick over dashed) below the two cards, hidden by forms.js
 the moment any Apply Now / deep link loads a form. Same box language: max-width 1080,
 top margin clamp(12px, 1.6vw, 26px), radius clamp(12px, 1.6vw, 24px), sage hairline .35,
-pool shadow; pad clamp(36px, 5vw + 20px, 110px) / clamp(16px, 3vw, 34px); application
-sprite glyph clamp(20px, 1.4vw + 15px, 36px) racing; line "Choose your application
-above." Poppins 700 racing + sage dot, nowrap, min(1.5rem, .8rem + 1.2vw, 4.8vw).
+pool shadow. CONTAINER-FLUID (owner round 2026-07-29): container-type inline-size on
+the box, all internals cqi via inner wrapper `.apx-empty__in` (a container's own pad
+cannot use its own units) — pad clamp(26px, 10cqi, 110px) / clamp(14px, 3cqi, 34px),
+gap clamp(5px, 1.3cqi, 14px); glyph clamp(12.8px, 1.52cqi + 12px, 28.8px) racing; line
+"Choose your application above." Poppins 700 racing + sage dot, nowrap,
+min(clamp(11.2px, 2.08cqi + 9.6px, 32px), 4.4cqi) — owner -20% round on the fluid
+curve; grows per-pixel to 32px at the 1080 box, cqi shrink-to-fit guard (est TRUE
+~1611 @100px) holds it inside to 320.
